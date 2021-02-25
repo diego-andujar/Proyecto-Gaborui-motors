@@ -11,12 +11,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
+import { AuthFormComponent } from './component/auth-form/auth-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpPageComponent,
-    LogInPageComponent
+    LogInPageComponent,
+    AuthFormComponent
   ],
   imports: [
     BrowserModule,
