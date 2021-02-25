@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent implements OnInit {
-
+  
+  email = new FormControl('', [Validators.required, Validators.email]);
   authForm: FormGroup;
   @Output() sendFormEvent = new EventEmitter();
   @Input() isRegister: boolean = false;
@@ -32,10 +34,18 @@ export class AuthFormComponent implements OnInit {
     })
   }
 
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
   async onSubmit() {
     const formValues = {
       displayName: this.authForm.get('displayName').value,
-      email: this.authForm.get('email').value,
+      email: this.email.value,
       password: this.authForm.get('password').value,
     };
     this.sendFormEvent.emit(formValues);

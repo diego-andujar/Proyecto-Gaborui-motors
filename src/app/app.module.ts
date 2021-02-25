@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { AuthFormComponent } from './component/auth-form/auth-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AuthFormComponent } from './component/auth-form/auth-form.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

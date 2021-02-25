@@ -1,7 +1,7 @@
-<div>
-    <div>
+<div class="auth-form">
+    <div class="wrapper">
         <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
-            <div class="input-container" *ngIf="isRegister">
+            <div *ngIf="isRegister" class="input-container">
                 <label for="displayName">Ingrese Su Nombre:</label>
                 <input
                   type="text"
