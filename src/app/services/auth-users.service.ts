@@ -11,6 +11,25 @@ export class AuthUsersService {
   constructor(private afAuth: AngularFireAuth) { }
 
   /**
+   * LOGIN USING GOOGLE PROVIDER
+   */
+  async loginWithGoogle(): Promise<firebase.User> {
+    try {
+      const res = await this.afAuth.signInWithPopup(
+        new firebase.auth.GoogleAuthProvider()
+      );
+      const { user } = res;
+      localStorage.setItem('user', user.uid);
+      return user;
+    } catch (err) {
+      console.log(err);
+      localStorage.removeItem('user');
+      return null;
+    }
+  }
+
+
+  /**
    * LOGIN USING EMAIL AND PASSWORD
    * @param email
    * @param password

@@ -41,4 +41,11 @@ export class AuthFormComponent implements OnInit {
     this.sendFormEvent.emit(formValues);
   }
 
+  async googleLogin() {
+    const user = await this.authService.loginWithGoogle();
+    if (user) {
+      this.router.navigate(['/posts']);
+    }
+  }
+
 }

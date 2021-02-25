@@ -6,7 +6,7 @@
                 <input
                   type="text"
                   id="displayName"
-                  placeholder="John Doe"
+                  placeholder="Carlos Garcia"
                   formControlName="displayName"
                 />
             </div>
@@ -15,7 +15,7 @@
                 <input
                   type="email"
                   id="email"
-                  placeholder="john@example.com"
+                  placeholder="carlos@example.com"
                   formControlName="email"
                 />
             </div>
@@ -24,11 +24,16 @@
                 <input
                   type="password"
                   id="password"
-                  placeholder="**********"
+                  placeholder="*********"
                   formControlName="password"
                 />
             </div>
             <button type="submit" class="btn-create">Send</button>
         </form>
+        <div class="form-container buttons">
+            <button type="button" (click)="googleLogin()">
+              google
+            </button>
+        </div>
     </div>
 </div>
