@@ -1,1 +1,34 @@
-<p>auth-form works!</p>
+<div>
+    <div>
+        <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
+            <div class="input-container" *ngIf="isRegister">
+                <label for="displayName">Ingrese Su Nombre:</label>
+                <input
+                  type="text"
+                  id="displayName"
+                  placeholder="John Doe"
+                  formControlName="displayName"
+                />
+            </div>
+            <div class="input-container">
+                <label for="email">Ingrese Su Correo Electronico:</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="john@example.com"
+                  formControlName="email"
+                />
+            </div>
+            <div class="input-container">
+                <label for="password">Ingrese Su Contraseña:</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="**********"
+                  formControlName="password"
+                />
+            </div>
+            <button type="submit" class="btn-create">Send</button>
+        </form>
+    </div>
+</div>
