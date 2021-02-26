@@ -11,9 +11,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthFormComponent implements OnInit {
   
-  authForm: FormGroup;
+  authForm!: FormGroup;
   @Output() sendFormEvent = new EventEmitter();
   @Input() isRegister: boolean = false;
+  email: string | null = "";
 
   constructor(
     private fb: FormBuilder,
@@ -27,7 +28,7 @@ export class AuthFormComponent implements OnInit {
 
   createForm(): void {
     this.authForm = this.fb.group({
-      displayName: '',
+      displayName: '' ,
       email: '',
       password: '',
     });

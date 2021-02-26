@@ -1,39 +1,60 @@
 <div class="auth-form">
-  <div class="wrapper">
+  <div class="auth-form-wrapper">
+    <h1 *ngIf="isRegister" class="h1-center">Crear Cuenta</h1>
+    <h1 *ngIf="!isRegister" class="h1-center">Iniciar Sesion</h1>
     <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
       <div class="input-container" *ngIf="isRegister">
-        <label for="displayName">Ingrese Su Nombre:</label>
+        <label class="auth-label" for="displayName">Nombre </label>
         <input
           type="text"
           id="displayName"
           placeholder="Carlos Garcia"
           formControlName="displayName"
+          class="auth-input"
         />
       </div>
       <div class="input-container">
-        <label for="email">Ingrese Su Correo Electronico:</label>
+        <label class="auth-label" for="email">Correo Electronico</label>
         <input
           type="email"
           id="email"
           placeholder="carlos@example.com"
           formControlName="email"
+          class="auth-input"
         />
       </div>
       <div class="input-container">
-        <label for="password">Ingrese Su Contraseña:</label>
+        <label class="auth-label" for="password">Contraseña</label>
         <input
           type="password"
           id="password"
           placeholder="*********"
           formControlName="password"
+          class="auth-input"
         />
       </div>
-      <button type="submit" class="btn-create">Send</button>
+      <div class="button-wrapper">
+        <div class="button-container">
+          <button type="submit" class="submit-button">seguir</button>
+        </div>
+      </div>
     </form>
-    <div class="form-container buttons">
-      <button type="button" (click)="googleLogin()">
-        google
-      </button>
+    <div class="button-wrapper">
+      <div class="button-container">
+        <button type="button" class="button" (click)="googleLogin()">
+          Inicia sesion con Google
+        </button>
+      </div>
+      <div class="no-acc-text" *ngIf="!isRegister">
+        <a [routerLink]="['/sign-up']" routerLinkActive="router-link-active">
+          ¿No tienes cuenta? Registrate aqui
+        </a>
+      </div>
+      <div class="no-acc-text" *ngIf="isRegister">
+        <a [routerLink]="['/log-in']" routerLinkActive="router-link-active" >
+          ¿Ya tienes cuenta? Logeate aqui
+        </a>
+      </div>
     </div>
   </div>
 </div>

@@ -8,17 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   
-  constructor(private afAuth: AngularFireAuth) { }
-
+  
+  constructor(private angularFireAuth: AngularFireAuth ) { }
   /**
-   * LOGIN USING GOOGLE PROVIDER
+   * Log in with Google account
    */
   async loginWithGoogle(): Promise<firebase.User> {
     try {
-      const res = await this.afAuth.signInWithPopup(
+      const response = await this.angularFireAuth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()
       );
-      const { user } = res;
+      const { user } = response;
       localStorage.setItem('user', user.uid);
       return user;
     } catch (err) {
@@ -30,7 +30,7 @@ export class AuthService {
 
 
   /**
-   * LOGIN USING EMAIL AND PASSWORD
+   * Sign in using an email and a password
    * @param email
    * @param password
    */
@@ -39,8 +39,8 @@ export class AuthService {
     password: string
   ): Promise<firebase.User> {
     try {
-      const res = await this.afAuth.signInWithEmailAndPassword(email, password);
-      const { user } = res;
+      const response = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
+      const { user } = response;
       localStorage.setItem('user', user.uid);
       return user;
     } catch (err) {
@@ -61,19 +61,20 @@ export class AuthService {
     password: string
   ): Promise<firebase.User> {
     try {
-      const res = await this.afAuth.createUserWithEmailAndPassword(
+      const response = await this.angularFireAuth.createUserWithEmailAndPassword(
         email,
         password
       );
-      const { user } = res;
+      const { user } = response;
       localStorage.setItem('user', user.uid);
       // Setting up user name and last name
-      await user.updateProfile({
+      const actualUser: any = user;
+      await actualUser.updateProfile({
         displayName,
         photoURL:
           'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
       });
-      return user;
+      return actualUser;
     } catch (err) {
       localStorage.removeItem('user');
       return null;
@@ -84,7 +85,8 @@ export class AuthService {
    * GET CURRENT LOGGED IN USER
    */
   getCurrentUser(): Observable<firebase.User> {
-    return this.afAuth.user;
+    const actualUser: any = this.angularFireAuth.user;
+    return actualUser;
   }
 
   /**
@@ -92,7 +94,7 @@ export class AuthService {
    */
   async logout(): Promise<void> {
     try {
-      await this.afAuth.signOut();
+      await this.angularFireAuth.signOut();
       localStorage.removeItem('user');
     } catch (e) {
       localStorage.removeItem('user');

@@ -1,0 +1,66 @@
+@import "../Lib/variables.scss";
+
+.auth-form {
+    display: flex;
+    background-color: $third-color;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.auth-form-wrapper {
+    background-color: white;
+    width: 38%;
+    padding: 1.6em 2em 3em 2em;
+    border: 2px solid #1C1A1A;
+}
+
+.auth-label {
+    font-family: $primary-font;
+    color: $primary-color;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.auth-input {
+    display: flex;
+    justify-content: right;
+    margin-left: 1.5em;
+    font-family: $secondary-font;
+    width: 19em;
+
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px;
+    margin: 1.5em 0;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.no-acc-text {
+    width: 70%;
+    text-decoration: none;
+    text-align: center;
+}
+
+.h1-center {
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: $primary-font;
+    color: $primary-color;
+    padding-bottom: 0.2em;
+}
+
+a {
+    text-decoration: none;
+    font-family: $primary-font;
+    
+    color: $primary-color;
+}
