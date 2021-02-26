@@ -32,7 +32,6 @@
             list-style: none;
             margin-left: 100px;
             padding-bottom: 6px;
-            justify-self: center;
             a {
                 text-decoration: none;
                 color: inherit;
@@ -40,13 +39,16 @@
             &.login {
                 background-color: $third-color;
                 color: $secondary-color;
-                padding: 13px 0px;
+                margin-left: 200px;
+                padding: 13px 10px;
                 border-radius: 5px;
             }
             &.sign-up {
                 background-color: $secondary-color;
-                padding: 13px 0px;
+                padding: 13px 10px;
                 border-radius: 5px;
+                margin-left: 10px;
+                margin-right: 20px;
             }
             &.user-info {
                 display: flex;
