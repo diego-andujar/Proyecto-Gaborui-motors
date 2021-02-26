@@ -1,0 +1,64 @@
+<nav class="menu" id="navbarContainer">
+    <a [routerLink]="['/']" class="logo">
+        <img src="../../../assets/logo ejwhite.png" alt="Gaboruilogo" height="100%">
+    </a>
+
+    <ul class="navbar">
+        <!--id menucontainer-->
+        <li class="active">
+            <a [routerLink]="['/']">Home</a>
+        </li>
+        <li *ngIf="user">
+            <a [routerLink]="['/user/posts']">Perfil</a>
+        </li>
+        <li *ngIf="user">
+            <a [routerLink]="['/user/posts']">Vehiculos</a>
+        </li>
+        <li *ngIf="user">
+            <a [routerLink]="['/user/posts']">Citas</a>
+        </li>
+        <li *ngIf="!user">
+            <a [routerLink]="['/categories']">Nosotros</a>
+        </li>
+        <li *ngIf="!user">
+            <a [routerLink]="['/contact']">Contacto</a>
+        </li>
+        <li *ngIf="!user">
+            <a [routerLink]="['/contact']">Ubicación</a>
+        </li>
+        <li class="login" *ngIf="!user">
+            <a [routerLink]="['/login']">Login</a>
+        </li>
+        <li class="sign-up" *ngIf="!user">
+            <a [routerLink]="['/sign-up']">Sign Up</a>
+        </li>
+        <li class="user-info" *ngIf="user">
+            <p>{{ user.displayName }}</p>
+            <img [src]="
+            user.photoURL
+              ? user.photoURL
+              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'
+          " class="photo" />
+        </li>
+        <li class="logout" *ngIf="user">
+            <button type="button" (click)="logout()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-log-out"
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+        </button>
+        </li>
+    </ul>
+</nav>
