@@ -14,6 +14,7 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { AuthFormComponent } from './component/auth-form/auth-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  async onHandleSignUp(formData: { displayName: string; email: string; password: string; }) {
+    const user = await this.authService.signUpWithEmail(
+      formData.displayName,
+      formData.email,
+      formData.password
+    );
+
+    if (user) {
+      this.router.navigate(['/']);
+    }
   }
-
 }

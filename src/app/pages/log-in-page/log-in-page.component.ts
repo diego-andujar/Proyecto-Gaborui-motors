@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-log-in-page',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogInPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  async loginCallback(formValues: { email: string; password: string }) {
+    try {
+      console.log('LOGIN CALLBACK');
+      if (formValues) {
+        const user = await this.authService.signInWithEmail(
+          formValues.email,
+          formValues.password
+        );
+        if (user) {
+          this.router.navigate(['/']);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
 }
