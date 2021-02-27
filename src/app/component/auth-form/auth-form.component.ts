@@ -14,7 +14,7 @@ export class AuthFormComponent implements OnInit {
   authForm!: FormGroup;
   @Output() sendFormEvent = new EventEmitter();
   @Input() isRegister: boolean = false;
-  email: string | null = "";
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(
     private fb: FormBuilder,

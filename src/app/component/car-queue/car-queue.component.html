@@ -1,0 +1,11 @@
+<div>
+    <mat-paginator [length]="carList.length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[1, 4]"
+              (page)="getPaginatorData($event)">
+    </mat-paginator>
+    <ng-container *ngFor="let car of (carList | slice: lowValue : highValue)">
+        <app-car-view [car]="car"></app-car-view>
+    </ng-container>
+</div>
+

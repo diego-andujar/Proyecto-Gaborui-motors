@@ -14,14 +14,27 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { AuthFormComponent } from './component/auth-form/auth-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { CarQueueComponent } from './component/car-queue/car-queue.component';
+import { ManagerPageComponent } from './pages/manager-page/manager-page.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CarViewComponent } from './component/car-view/car-view.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { PaginatorPipe } from './pipes/paginator.pipe';
+import { SideNavComponent } from './component/side-nav/side-nav.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpPageComponent,
     LogInPageComponent,
-    AuthFormComponent
+    AuthFormComponent,
+    CarQueueComponent,
+    ManagerPageComponent,
+    CarViewComponent,
+    PaginatorPipe,
+    SideNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +48,9 @@ import { MatIconModule } from '@angular/material/icon'
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
+    MatPaginatorModule,
+    MatGridListModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
