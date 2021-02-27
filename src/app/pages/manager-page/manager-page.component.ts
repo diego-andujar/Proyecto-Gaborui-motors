@@ -11,6 +11,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ManagerPageComponent implements OnInit {
 
+  selectedValue!: string;
+  selectedCar!: string;
+  carBrands: any[] = [
+    {value: 'volvo', viewValue: 'Volvo'},
+    {value: 'saab', viewValue: 'Saab'},
+    {value: 'mercedes', viewValue: 'Mercedes'},
+    {value: 'honda', viewValue: 'Honda'},
+    {value: 'toyota', viewValue: 'Toyota'},
+    {value: 'mitsubishi', viewValue: 'Mitsubishi'},
+    {value: 'renault', viewValue: 'Renault'},
+    {value: 'ford', viewValue: 'Ford'},
+    {value: 'Hyundai', viewValue: 'Hyundai'},
+    {value: 'tesla', viewValue: 'Tesla'},
+  ];
+
   carForm!: FormGroup;
   isLoading = true;
   carToUpdate: Car = null;

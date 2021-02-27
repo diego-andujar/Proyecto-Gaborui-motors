@@ -9,39 +9,39 @@
         (ngSubmit)="onSubmit()"
         >
         <!-- POST TITLE -->
+        
+
         <div class="input-container">
-            <label class="auth-label" for="brand">marca:</label>
-            <input
-            type="text"
-            id="title"
-            placeholder="Javascript from 0 to Expert"
-            formControlName="brand"
-            class="auth-input"
-            />
+            <mat-label class="auth-label">marca:</mat-label>
+            <mat-select placeholder="Honda" formControlName="brand" [(ngModel)]="selectedValue" name="car">
+            <mat-option  *ngFor="let car of carBrands" [value]="car.value">
+                {{car.viewValue}}
+            </mat-option>
+            </mat-select>
         </div>
 
         <!-- POST SUMMARY -->
         <div class="input-container">
             <label class="auth-label" for="summary">modelo:</label>
-            <textarea
+            <input
             type="text"
             id="summary"
-            placeholder="Lorem ipsum..."
+            placeholder="Fiesta"
             formControlName="model"
             class="auth-input"
-            ></textarea>
+            >
         </div>
 
         <!-- POST DESCRIPTION -->
         <div class="input-container">
             <label class="auth-label" for="description">año:</label>
-            <textarea
+            <input
             type="text"
             id="description"
-            placeholder="Lorem ipsum..."
+            placeholder="2010"
             formControlName="year"
             class="auth-input"
-            ></textarea>
+            >
         </div>
 
         <!-- POST PHOTO -->
@@ -50,7 +50,7 @@
             <input
             type="text"
             id="photo"
-            placeholder="Lorem ipsum..."
+            placeholder="aaa11a"
             formControlName="plate"
             class="auth-input"
             />

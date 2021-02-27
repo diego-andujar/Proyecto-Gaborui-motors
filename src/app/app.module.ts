@@ -23,6 +23,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { PaginatorPipe } from './pipes/paginator.pipe';
 import { SideNavComponent } from './component/side-nav/side-nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatPaginatorModule,
     MatGridListModule,
     MatSidenavModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

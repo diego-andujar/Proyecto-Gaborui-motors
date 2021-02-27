@@ -1,10 +1,23 @@
 <div>
     <mat-grid-list cols="4">
         <mat-grid-tile colspan="1">
-            {{car.brand}}
+            
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-            {{car.model}}
+            <div class="grid-data-cars">
+                <div class="input-container">
+                    <h3 class="auth-label">marca</h3>
+                    <span>{{car.brand}}</span>
+                </div>
+                <div class="input-container">
+                    <h3 class="auth-label">modelo</h3>
+                    <span>{{car.model}}</span>
+                </div>
+                <div class="input-container">
+                    <h3 class="auth-label">año</h3>
+                    <span>{{car.year}}</span>
+                </div>
+            </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1">
             {{car.year}}
