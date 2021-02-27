@@ -15,6 +15,9 @@ import { CarruselComponent } from './components/carrusel/carrusel.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { MapsComponent } from './components/maps/maps.component';
 
+import { GalleryComponent } from './components/gallery/gallery.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,8 @@ import { MapsComponent } from './components/maps/maps.component';
     HomePageComponent,
     CarruselComponent,
     ContactComponent,
-    MapsComponent
+    MapsComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { MapsComponent } from './components/maps/maps.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
