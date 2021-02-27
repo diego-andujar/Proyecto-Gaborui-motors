@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { MapsComponent } from './components/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ContactComponent } from './components/contact/contact.component';
     NavbarComponent,
     HomePageComponent,
     CarruselComponent,
-    ContactComponent
+    ContactComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
