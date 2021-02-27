@@ -1,25 +1,35 @@
 @import "../../../styles/components/car-view.scss";
 
 
-.grid-data-cars {
-    background-color: #fff;
-    width: 100%;
+.input-data-container {
+    padding: 1em 3em;
 }
 
-span {
-    background-color: yellow;
+.input-container-data {
     display: flex;
-    border: 2px solid #1C1A1A;
-    text-transform: capitalize;
-    width: 60%;
-    height: 10%;
+    justify-content: center;
     align-items: center;
+    width: 90%;
+    height: 2em;
+    text-align: central;
+    text-transform: capitalize;
+    border: 2px solid #1C1A1A;
+}
+
+.data-wrapper {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
 }
 
 mat-grid-tile {
-    background-color: yellowgreen;
+    background-color: lightcoral;
     display: flex;
     justify-content: right;
+    align-items: center;
     width: 50%;
+    height: 40%;
     border: 2px solid #1C1A1A
 }
+
