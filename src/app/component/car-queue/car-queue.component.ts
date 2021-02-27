@@ -1,4 +1,6 @@
-import { Car } from './../../models/cars';
+import { Car } from './../../models/car';
+import { CarsService } from './../../services/cars.service';
+import { Car } from '../../models/car';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
@@ -13,6 +15,7 @@ export class CarQueueComponent implements OnInit {
   lowValue: number = 0;
   highValue: number = 1;
 
+  cars: Array<Car> = [];
 
   carList: Car[] = [
     {
@@ -41,9 +44,12 @@ export class CarQueueComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private carsService: CarsService) { }
 
   ngOnInit(): void {
+    this.carsService.getAllCars().subscribe((cars) => {
+      this.cars = cars;
+    })
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {

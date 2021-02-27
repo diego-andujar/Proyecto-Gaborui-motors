@@ -1,6 +1,71 @@
 <p>manager-page works!</p>
-
 <app-car-queue></app-car-queue>
+<div class="auth-form">
+    <div class="auth-form-wrapper">
+        <h1 class="h1-center">Añadir Un Nuevo Vehiculo</h1>
+        <form
+        [formGroup]="carForm"
+        class="form-container"
+        (ngSubmit)="onSubmit()"
+        >
+        <!-- POST TITLE -->
+        <div class="input-container">
+            <label class="auth-label" for="brand">marca:</label>
+            <input
+            type="text"
+            id="title"
+            placeholder="Javascript from 0 to Expert"
+            formControlName="brand"
+            class="auth-input"
+            />
+        </div>
+
+        <!-- POST SUMMARY -->
+        <div class="input-container">
+            <label class="auth-label" for="summary">modelo:</label>
+            <textarea
+            type="text"
+            id="summary"
+            placeholder="Lorem ipsum..."
+            formControlName="model"
+            class="auth-input"
+            ></textarea>
+        </div>
+
+        <!-- POST DESCRIPTION -->
+        <div class="input-container">
+            <label class="auth-label" for="description">año:</label>
+            <textarea
+            type="text"
+            id="description"
+            placeholder="Lorem ipsum..."
+            formControlName="year"
+            class="auth-input"
+            ></textarea>
+        </div>
+
+        <!-- POST PHOTO -->
+        <div class="input-container">
+            <label class="auth-label" for="photo">placa:</label>
+            <input
+            type="text"
+            id="photo"
+            placeholder="Lorem ipsum..."
+            formControlName="plate"
+            class="auth-input"
+            />
+        </div>
+
+        <!-- POST CATEGORY -->
+        <div class="button-wrapper">
+            <div class="button-container">
+                <button type="submit" class="button" >
+                    Crear vehiculo
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
     
 

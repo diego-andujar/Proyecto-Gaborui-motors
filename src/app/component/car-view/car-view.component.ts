@@ -1,4 +1,4 @@
-import { Car } from './../../models/cars';
+import { Car } from '../../models/car';
 import { Component, Input, OnInit } from '@angular/core';
 
 export interface Tile {
