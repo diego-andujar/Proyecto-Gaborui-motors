@@ -14,9 +14,10 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { MapsComponent } from './components/maps/maps.component';
-
 import { GalleryComponent } from './components/gallery/gallery.component';
-
+import { GallerygridComponent } from './components/gallerygrid/gallerygrid.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     CarruselComponent,
     ContactComponent,
     MapsComponent,
-    GalleryComponent
+    GalleryComponent,
+    GallerygridComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +39,12 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatGridListModule
     
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
