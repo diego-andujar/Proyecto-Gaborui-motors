@@ -28,28 +28,42 @@
                         <h3 class="auth-label">modelo</h3>
                         <span class="input-container-data">{{car.model}}</span>
                     </div>
-                
                     <div class="input-data-container">
                         <h3 class="auth-label">año</h3>
                         <span class="input-container-data">{{car.year}}</span>
                     </div>
-                    <div class="input-data-container">
-                        <h3 class="auth-label">año</h3>
-                        <span class="input-container-data">{{car.year}}</span>
-                    </div>
-                    <div class="input-data-container">
-                        <h3 class="auth-label">año</h3>
-                        <span class="input-container-data">{{car.year}}</span>
+                    <div class="input-data-container container-texto">
+                        <h3 class="auth-label">falla identificada</h3>
+                        <span class="input-container-data longer">{{car.year}}</span>
                     </div>
                 </div>
             </div>
             
         </mat-grid-tile>
         <mat-grid-tile colspan="1">
-            <span>Fecha Propuesta 10/03/2021</span>
-            <button>Aceptar solicitud</button>
-            <button>Modificar solicitud</button>
-            <button>Rechazar solicitud</button>
+            <div class="confirmar-cita">
+                <div class="span">
+                    <span>Fecha Propuesta 10/03/2021</span>
+                </div>
+                <div>
+                    <div class="span button-wrapper">
+                        <div class="button-container">
+                        <button class="submit-button">Aceptar solicitud</button>
+                    </div>
+                    </div>
+                    
+                    <div class="span button-wrapper">
+                        <div class="button-container">
+                            <button class="submit-button">Modificar solicitud</button>
+                        </div>
+                    </div>
+                    <div class="span button-wrapper">
+                        <div class="button-container">
+                            <button class="submit-button">Rechazar solicitud</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </mat-grid-tile>
     </mat-grid-list>
 </div>

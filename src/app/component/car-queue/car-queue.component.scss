@@ -1,0 +1,16 @@
+@import "../../../styles/Lib/variables.scss";
+
+mat-paginator {
+    background-color: $secondary-color;
+    font-family: $third-font;
+    font-size: small;
+}
+
+
+h2 {
+    font-family: $primary-font;
+    color: $primary-color;
+    text-transform: uppercase;
+    text-align: left;
+    margin-left: 2.5%;
+}
