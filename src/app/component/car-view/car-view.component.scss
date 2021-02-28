@@ -1,8 +1,35 @@
 @import "../../../styles/components/car-view.scss";
 
 
+.grid-wrapper {
+    height: 90em;
+    padding: 3em;
+}
+
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.image {
+    width: 100%;
+}
+
+h2 {
+    font-family: $primary-font;
+    text-transform: uppercase;
+}
+
 .input-data-container {
-    padding: 1em 3em;
+    padding: 1em ;
+    width: 33%;
 }
 
 .input-container-data {
@@ -13,23 +40,30 @@
     height: 2em;
     text-align: central;
     text-transform: capitalize;
-    border: 2px solid #1C1A1A;
+    border: 2px solid $primary-color;
 }
 
 .data-wrapper {
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
+    display: flex;
+    width: 90%;
     text-align: left;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.grid-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 mat-grid-tile {
-    background-color: lightcoral;
     display: flex;
-    justify-content: right;
-    align-items: center;
-    width: 50%;
-    height: 40%;
-    border: 2px solid #1C1A1A
+    align-content: center;
+    border: 2px solid $primary-color;
+    height: 60%;
 }
 
