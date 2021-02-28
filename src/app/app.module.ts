@@ -30,6 +30,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-gnrl-manager.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatInputModule } from '@angular/material/input';
     PaginatorPipe,
     SideNavComponent,
     OrdenReparacionComponent,
+    VistaGnrlManagerComponent,
   ],
   imports: [
     BrowserModule,
