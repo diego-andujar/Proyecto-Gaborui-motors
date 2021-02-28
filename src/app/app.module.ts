@@ -24,6 +24,12 @@ import { PaginatorPipe } from './pipes/paginator.pipe';
 import { SideNavComponent } from './component/side-nav/side-nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSelectModule} from '@angular/material/select';
+import { OrdenReparacionComponent } from './component/orden-reparacion/orden-reparacion.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -36,6 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
     CarViewComponent,
     PaginatorPipe,
     SideNavComponent,
+    OrdenReparacionComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +60,11 @@ import {MatSelectModule} from '@angular/material/select';
     MatGridListModule,
     MatSidenavModule,
     MatSelectModule,
+    MatRadioModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
