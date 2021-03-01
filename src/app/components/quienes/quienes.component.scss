@@ -1,0 +1,26 @@
+@import "../../../styles/Lib/variables.scss";
+.somos{
+    text-align: center;
+    font-size: 50px;
+    padding-top: 50px;
+    font-weight: bold;
+}
+.texto {
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 1000px;
+    font-size: 25px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
+.servi {
+    padding-top: 50px;
+    display: inline-block;
+    width: 350px;
+    font-size: 17px;
+    padding-bottom: 50px;
+}

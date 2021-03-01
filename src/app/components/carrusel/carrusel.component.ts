@@ -12,6 +12,9 @@ export class CarruselComponent implements OnInit {
   ngOnInit(): void {
   }
 
+<<<<<<< HEAD
   
 
+=======
+>>>>>>> origin/diego
 }
