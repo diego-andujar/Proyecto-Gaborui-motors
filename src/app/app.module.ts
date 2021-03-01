@@ -11,12 +11,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
 import { QuienesComponent } from './components/quienes/quienes.component';
+import { CarruselComponent } from './components/carrusel/carrusel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    QuienesComponent
+    QuienesComponent,
+    CarruselComponent,
   ],
   imports: [
     BrowserModule,
