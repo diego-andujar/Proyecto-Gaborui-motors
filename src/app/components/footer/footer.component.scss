@@ -1,32 +1,45 @@
 @import "../../../styles/Lib/variables.scss";
-body{
-    
-    border: 0px;
-    margin: 0px;
-}
+
 footer {
-    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: $primary-color;
-    color: white;
+    color: $third-color;
     width: 100%;
-    height: 200px;
+    height: 32%;
     margin: 0px;
-    align-self: baseline;
     font-size: 35px;
     letter-spacing: 5px;
 }
-.normal{ 
-    font-size: 20px;
-    line-height: 40px;
+
+.title {
+    margin-bottom: 12%;
 }
-footer ul{ 
-    border: 0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    line-height: 60px;
-    justify-content: center;
-    justify-content:space-around;
+
+h5 {
+    font-family: $primary-font;
+    margin: 6% 0 0 0;
+    font-size: x-large;
+    color: $third-color;
+    text-transform: uppercase;
+}
+
+.normal{ 
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 500;
+    font-family: $secondary-font;
+    align-items: center;
+    text-align: left;
+
+    &.image-media{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3%;
+    }
 }
 
 /* 5a3a218028bee4 1 */
@@ -34,9 +47,34 @@ footer ul{
     height: 30px;
     width: 30px;
 }
+
 .face{
     /* kisspng-facebook-marshall-jr-high-school-icon-facebook-5a8707dda3d7c6 1 */
     height: 30px;
     width: 30px;
+}
+
+a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: $third-color;
+}
+
+.info-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+    padding: 0em 1em;
+}
+
+.list-element {
+    text-align: left;
+    display: flex;
+    justify-content: left;
+    height: 100%;
 }
 

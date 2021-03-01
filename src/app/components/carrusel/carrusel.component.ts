@@ -12,4 +12,6 @@ export class CarruselComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
 }

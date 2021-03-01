@@ -9,7 +9,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
@@ -19,28 +18,22 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { GallerygridComponent } from './components/gallerygrid/gallerygrid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
-=======
 import { FooterComponent } from './components/footer/footer.component';
 import { QuienesComponent } from './components/quienes/quienes.component';
-import { CarruselComponent } from './components/carrusel/carrusel.component';
->>>>>>> origin/diego
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
     NavbarComponent,
     HomePageComponent,
     CarruselComponent,
     ContactComponent,
     MapsComponent,
     GalleryComponent,
-    GallerygridComponent
-=======
+    GallerygridComponent,
     FooterComponent,
     QuienesComponent,
     CarruselComponent,
->>>>>>> origin/diego
   ],
   imports: [
     BrowserModule,
