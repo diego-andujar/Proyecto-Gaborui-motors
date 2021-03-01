@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FooterComponent } from './components/footer/footer.component';
 import { QuienesComponent } from './components/quienes/quienes.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { QuienesComponent } from './components/quienes/quienes.component';
     FooterComponent,
     QuienesComponent,
     CarruselComponent,
+    ImageSliderComponent,
   ],
   imports: [
     BrowserModule,

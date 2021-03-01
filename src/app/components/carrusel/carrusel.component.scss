@@ -13,12 +13,9 @@
 .prev,
 .next {
     cursor: pointer;
-    position: absolute;
     top: 50%;
     width: auto;
     margin-top: -22px;
-    padding: 16px;
-    color: #fdfffc;
     font-weight: bold;
     font-size: 18px;
     border-radius: 0 3px 3px 0;
@@ -70,15 +67,10 @@
 
 .centro {
   width: 100%;
-  height: 85%;
+  height: 97%;
+  clear: both;
 }
 
-.slider {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
 
 .slider-controls {
   position: absolute;
@@ -91,7 +83,6 @@
 }
 
 .slider input[type="radio"] {
-  position: absolute;
 }
 
 .slider-controls label {
@@ -122,19 +113,16 @@
 
 .slides {
   list-style: none;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
 }
 
 .slide {
   position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  height: 100%;
-
+  width: 90%;
+  height: 90%;
   opacity: 0;
   transform: translatex(-100%);
   transition: transform 250ms linear;
