@@ -1,0 +1,33 @@
+@import "../../../styles/Lib/variables.scss";
+.mecanicopagina {
+    margin-top: 120px;
+    height: 75%;
+    width: 100%;
+}
+
+.bloques {
+    list-style: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-around;
+    margin-left: -80px;
+    // width: 30%;
+    height: 100%;
+    // background-color: $secondary-color;
+    font-family: $primary-font;
+    .indv {
+        border: 0px;
+        background-color: $secondary-color;
+        width: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .indva {
+        width: 350px;
+        border-bottom-right-radius: 200px;
+    }
+    .indvb {
+        background-color: $third-color;
+    }
+}

@@ -18,6 +18,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { GallerygridComponent } from './components/gallerygrid/gallerygrid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ContactComponent,
     MapsComponent,
     GalleryComponent,
-    GallerygridComponent
+    GallerygridComponent,
+    MecanicoPageComponent
   ],
   imports: [
     BrowserModule,
