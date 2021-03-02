@@ -20,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { NgQrScannerModule } from 'angular2-qrscanner';
+import { ScannerqrComponent } from './components/scannerqr/scannerqr.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     MapsComponent,
     GalleryComponent,
     GallerygridComponent,
-    MecanicoPageComponent
+    MecanicoPageComponent,
+    ScannerqrComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +47,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatGridListModule,
-    QRCodeModule
-    
+    QRCodeModule,
+    NgQrScannerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
