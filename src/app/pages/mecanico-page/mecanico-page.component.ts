@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mecanico-page.component.scss']
 })
 export class MecanicoPageComponent implements OnInit {
-
-  constructor() { }
+  public myAngularxQrCode: string = "";
+  constructor() {
+   
+    this.myAngularxQrCode = 'Jhoel Blanco en qr que loco';
+   }
 
   ngOnInit(): void {
   }

@@ -19,6 +19,7 @@ import { GallerygridComponent } from './components/gallerygrid/gallerygrid.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.compo
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    QRCodeModule
     
   ],
   providers: [],

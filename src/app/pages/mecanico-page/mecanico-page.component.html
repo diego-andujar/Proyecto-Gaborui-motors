@@ -1,7 +1,10 @@
 <div class="mecanicopagina">
     <ul class="bloques">
         <li class="indv indva">Esto creo que esta listo es el perfil que hizo robert</li>
-        <li class="indv indvb"> cuadro qr</li>
+        <li class="indv indvb">
+            <p>Codigo QR</p>
+            <qrcode [qrdata]="myAngularxQrCode" [width]="450" [errorCorrectionLevel]="'M'" [elementType]="'img'"></qrcode>
+        </li>
         <li class="indv indvc">Esto creo que esta listo es el carro que hizo javier</li>
     </ul>
 </div>
