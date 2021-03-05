@@ -17,33 +17,6 @@ export class CarQueueComponent implements OnInit {
 
   cars: Array<Car> = [];
 
-  carList: Car[] = [
-    {
-      brand: "Honda",
-      model: "Civic",
-      year: 2006,
-      plate: "LAV-45T",
-    },
-    {
-      brand: "Toyota",
-      model: "Corolla",
-      year: 2008,
-      plate: "LAV-32T",
-    },
-    {
-      brand: "Mazda",
-      model: "6",
-      year: 2006,
-      plate: "LAV-41T",
-    },
-    {
-      brand: "Mitsubishi",
-      model: "Lancer",
-      year: 2008,
-      plate: "LAV-15T",
-    },
-  ]
-
   constructor(private carsService: CarsService) { }
 
   ngOnInit(): void {
