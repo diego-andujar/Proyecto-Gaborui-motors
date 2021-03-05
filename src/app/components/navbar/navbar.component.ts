@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   user: firebase.User = null;
   
 
-  constructor(private authService: AuthService;) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {

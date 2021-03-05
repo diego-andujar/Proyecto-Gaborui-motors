@@ -9,7 +9,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
@@ -17,12 +16,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { MapsComponent } from './components/maps/maps.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { GallerygridComponent } from './components/gallerygrid/gallerygrid.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatGridListModule} from '@angular/material/grid-list';
 import { FooterComponent } from './components/footer/footer.component';
 import { QuienesComponent } from './components/quienes/quienes.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
-=======
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { AuthFormComponent } from './component/auth-form/auth-form.component';
@@ -45,12 +41,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-gnrl-manager.component';
->>>>>>> fuenmayor
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
     NavbarComponent,
     HomePageComponent,
     CarruselComponent,
@@ -62,7 +56,6 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     QuienesComponent,
     CarruselComponent,
     ImageSliderComponent,
-=======
     SignUpPageComponent,
     LogInPageComponent,
     AuthFormComponent,
@@ -73,7 +66,6 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     SideNavComponent,
     OrdenReparacionComponent,
     VistaGnrlManagerComponent,
->>>>>>> fuenmayor
   ],
   imports: [
     BrowserModule,
@@ -85,11 +77,7 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-<<<<<<< HEAD
-    MatGridListModule
-    
-=======
-    MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatPaginatorModule,
     MatGridListModule,
@@ -100,7 +88,6 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
->>>>>>> fuenmayor
   ],
   providers: [],
   bootstrap: [AppComponent]

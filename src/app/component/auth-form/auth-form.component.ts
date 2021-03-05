@@ -43,9 +43,6 @@ export class AuthFormComponent implements OnInit {
 
   async onSubmit() {
     const formValues = {
-      displayName: this.authForm.get('displayName').value,
-      email: this.authForm.get('email').value,
-      password: this.authForm.get('password').value,
     };
     this.sendFormEvent.emit(formValues);
   }
