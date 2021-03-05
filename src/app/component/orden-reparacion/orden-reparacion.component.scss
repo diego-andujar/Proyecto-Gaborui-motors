@@ -1,0 +1,95 @@
+@import "../../../styles/components/text-boxes.scss";
+@import "../../../styles/components/buttons.scss";
+@import "../car-view/car-view.component.scss";
+@import "../../../styles/Lib/variables.scss";
+
+.input-data-container {
+    display: flex;
+    flex-direction: column;
+    padding: 3em 0em;
+    margin: 0px;
+    width: 24%;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.input-data-container-new {
+    display: flex;
+    flex-direction: column;
+    padding: 3em 1em;
+    margin: 0px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 90em;
+}
+
+.data-wrapper {
+    padding: 2em;
+    border: solid 1px $primary-color;
+    background-color: white;
+}
+
+.form-container {
+    height: 114em;
+    width: 100%;
+    padding-top: 3em;
+    background-color: $third-color;
+}
+
+textarea {
+    display: block;
+    resize: none;
+    overflow: auto;
+    width: 75%;
+    height: 90%;
+    font-size: large;
+}
+
+.auth-input {
+    font-size: medium;
+    width: 80%;
+}
+
+.auth-label {
+    font-size: large;
+}
+
+.auth-label-largo {
+    font-size: large;
+    font-family: $primary-font;
+    text-transform: uppercase;
+    width: 12%;
+    padding-right: 1em;
+}
+
+.textarea-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 20em;
+    margin: 1em;
+  }
+
+.textarea-cont {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1em;
+}
+
+.text-costos {
+    display: flex;
+    align-items: center;
+    height: 20em;
+}
