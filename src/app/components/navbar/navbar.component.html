@@ -10,7 +10,7 @@
             <a [routerLink]="['/']">Home</a>
         </li>
         <li *ngIf="user">
-            <a [routerLink]="['/']">Perfil</a>
+            <a [routerLink]="['/perfil', user.uid]">Perfil</a>
         </li>
         <li *ngIf="user">
             <a [routerLink]="['/']">Vehiculos</a>
