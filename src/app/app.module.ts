@@ -41,6 +41,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-gnrl-manager.component';
+import { ClientPageComponent } from './pages/client-page/client-page.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     SideNavComponent,
     OrdenReparacionComponent,
     VistaGnrlManagerComponent,
+    ClientPageComponent,
   ],
   imports: [
     BrowserModule,

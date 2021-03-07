@@ -1,8 +1,10 @@
+import { AuthService } from './../../services/auth.service';
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../models/car';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import firebase from "firebase";
 
 @Component({
   selector: 'app-manager-page',
@@ -26,21 +28,26 @@ export class ManagerPageComponent implements OnInit {
     {value: 'tesla', viewValue: 'Tesla'},
   ];
 
+  user!: firebase.User;
   carForm!: FormGroup;
   isLoading = true;
-  carToUpdate: Car = null;
+  carToUpdate!: Car;
 
   showFiller = false;
   constructor(
     private fb: FormBuilder,
     private carService: CarsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService,
   ) { }
 
 
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+    })
     this.buildForm();
     this.getUrlParams();
   }
@@ -72,13 +79,6 @@ export class ManagerPageComponent implements OnInit {
         return;
       }
       this.isLoading = false;
-    });
-  }
-
-  createNewPost(newCar: Car): void {
-    this.carService.createNewCar(newCar).then((response) => {
-      console.log('response', JSON.stringify(response, null, 4));
-      this.router.navigate(['/posts']);
     });
   }
 

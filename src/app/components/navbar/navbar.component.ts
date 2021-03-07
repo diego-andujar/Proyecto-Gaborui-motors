@@ -10,7 +10,7 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class NavbarComponent implements OnInit {
 
-  user: firebase.User = null;
+  user!: firebase.User;
   
 
   constructor(private authService: AuthService, private router: Router) { }
