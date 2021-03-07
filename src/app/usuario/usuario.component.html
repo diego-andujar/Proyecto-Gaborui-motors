@@ -1,0 +1,25 @@
+<div class="usuario">
+    <div class="foto">
+        <div class="foto-usuario">
+            <label class="hoverable" for="fileInput">
+                <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+                <div class="hover-text">Choose file</div>
+                <div class="background"></div>
+              </label>
+              <br/>
+              <input id="fileInput" type='file' (change)="onSelectFile($event)">
+        </div>
+        <label for="id">Gabo Ruiz</label>
+        <button><mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon></button> 
+    </div>
+    <app-formulario></app-formulario>
+    <div class="bton">
+        <label for="cita">Pedir una cita</label>
+        <app-boton></app-boton>
+    </div>
+    <div class="barra">
+        <label for="cita">Vehiculos Registrados</label>
+        <progress id="file" value="32" max="100"> 32% </progress>
+    </div>
+    
+</div>

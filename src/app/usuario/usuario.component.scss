@@ -1,0 +1,155 @@
+.usuario{
+    overflow: hidden;
+}
+.foto{
+    width: 20%;
+    position: absolute;
+    top: 27%;
+    margin-left: 6%;
+}
+.foto-usuario{
+   
+}
+
+label[for=id]{
+    margin-left: 23%;
+}
+
+button{
+    background: transparent;
+    border: transparent;
+    position: absolute;
+    margin-top: 11%;
+    margin-left: -19%;
+}
+
+.bton{
+    position: absolute;
+    background: #6AB8E3;
+    height: 19%;
+    width: 20%;
+    left: 79%;
+    top: 59%;
+    border: solid;
+}
+
+#file{
+    margin-top: 6%;
+    margin-left: 22%;
+    height: 38%;
+}
+.barra{
+    position: absolute;
+    background: #6AB8E3;
+    height: 19%;
+    width: 20%;
+    left: 79%;
+    top: 39%;
+    border: solid;
+}
+
+label[for=cita]{
+    align-items: center;
+    font-family: 'Poppins';
+    color: #f9f9f9;
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    font-family: Lato;
+  }
+  
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+  .hoverable{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+    border: 5px solid #000;
+    border-radius: 50%;
+  }
+  .hoverable .hover-text{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left:  50%;
+    transform: translate(-50%,-50%);   
+    z-index: 2;
+  }
+  .hoverable .background{
+    position: absolute;
+    display: none;
+    top: 0;
+    left:  0;
+    bottom: 0;
+    right: 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hoverable:hover .hover-text{
+    display: block;
+  }
+  .hoverable:hover .background{
+    display: block;
+  }
+  
+  #fileInput{
+    display: none;
+  }
+
+@media screen and (max-width: 720px){
+  .foto{
+    width: 21%;
+    position: absolute;
+    top: 10%;
+    margin-left: 35%;
+}
+  .barra{
+    position: absolute;
+    background: #6AB8E3;
+    height: 12%;
+    width: 73%;
+    left: 14%;
+    top: 93%;
+    border: solid;
+}
+.bton{
+    position: absolute;
+    background: #6AB8E3;
+    height: 12%;
+    width: 73%;
+    left: 14%;
+    top: 106%;
+    border: solid;
+}
+.hoverable{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    height: 96px;
+    width: 96px;
+    border: 5px solid #000;
+    border-radius: 50%;
+    margin-left: 7%
+  }
+  button{
+    background: transparent;
+    border: transparent;
+    position: absolute;
+    margin-top: -8%;
+    margin-left: 125%;
+}
+label[for=id]{
+    position: absolute;
+    right: -15%
+}
+} 
