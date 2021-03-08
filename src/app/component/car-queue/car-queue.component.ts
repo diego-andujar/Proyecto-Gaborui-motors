@@ -1,8 +1,7 @@
-import { Car } from './../../models/car';
 import { CarsService } from './../../services/cars.service';
 import { Car } from '../../models/car';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
