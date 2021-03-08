@@ -1,17 +1,17 @@
-import { AuthService } from './../../services/auth.service';
-import { CarsService } from './../../services/cars.service';
-import { Car } from './../../models/car';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Car } from 'src/app/models/car';
+import { AuthService } from 'src/app/services/auth.service';
+import { CarsService } from 'src/app/services/cars.service';
 import firebase from "firebase";
 
 @Component({
-  selector: 'app-manager-page',
-  templateUrl: './manager-page.component.html',
-  styleUrls: ['./manager-page.component.scss']
+  selector: 'app-new-car-form',
+  templateUrl: './new-car-form.component.html',
+  styleUrls: ['./new-car-form.component.scss']
 })
-export class ManagerPageComponent implements OnInit {
+export class NewCarFormComponent implements OnInit {
 
   selectedValue!: string;
   selectedCar!: string;
@@ -27,13 +27,13 @@ export class ManagerPageComponent implements OnInit {
     {value: 'Hyundai', viewValue: 'Hyundai'},
     {value: 'tesla', viewValue: 'Tesla'},
   ];
-
   user!: firebase.User;
   carForm!: FormGroup;
   isLoading = true;
   carToUpdate!: Car;
 
   showFiller = false;
+
   constructor(
     private fb: FormBuilder,
     private carService: CarsService,
@@ -42,13 +42,21 @@ export class ManagerPageComponent implements OnInit {
     private authService: AuthService,
   ) { }
 
-
-
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
     })
+    this.buildForm();
     this.getUrlParams();
+  }
+
+  buildForm(): void {
+    this.carForm = this.fb.group({
+      brand: '',
+      model: '',
+      year: '',
+      plate: '',
+    });
   }
 
   getUrlParams(): void {
@@ -72,6 +80,27 @@ export class ManagerPageComponent implements OnInit {
     });
   }
 
+  onSubmit(): void {
+    const newCar: Car = {
+      brand: this.carForm.get('brand').value,
+      model: this.carForm.get('model').value,
+      year: this.carForm.get('year').value,
+      plate: this.carForm.get('plate').value,
+    };
+    this.createNewCar(newCar);
+  }
 
+  createNewCar(newPost: Car): void {
+    this.carService.createNewCar(newPost).then((response) => {
+      console.log('response', JSON.stringify(response, null, 4));
+      this.router.navigate(['/']);
+    });
+  }
+
+  updateCar(carData: Car): void {
+    this.carService.updateCar(this.carToUpdate.id, carData).then(() => {
+      this.router.navigate(['/']);
+    });
+  }
 
 }

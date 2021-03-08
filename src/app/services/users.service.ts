@@ -1,8 +1,10 @@
+import { Car } from './../models/car';
 import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -83,10 +85,17 @@ export class UsersService {
     return this.userCollection.doc<User>(userId).update(userData);
   }
 
+  updateUserCar(userId: string, userCar: Car): Promise<void> {
+    return this.userCollection.doc<User>(userId).update({
+      cars: thisfirestore.FieldValue.arrayUnion(userCar)
+    });
+  }
+
   /**
    * DELETE car BY ID
    * @param userId
    */
   deleteUser(userId: string): Promise<void> {
     return this.userCollection.doc<User>(userId).delete();
+  }
 }

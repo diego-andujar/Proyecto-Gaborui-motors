@@ -51,7 +51,8 @@ import { UsuarioCalendarioComponent } from './usuario-calendario/usuario-calenda
 import {MatCardModule} from '@angular/material/card';
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { UsernameComponent } from './username/username.component'; // a plugin
+import { UsernameComponent } from './username/username.component';
+import { NewCarFormComponent } from './components/new-car-form/new-car-form.component'; // a plugin
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -88,6 +89,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BotonComponent,
     UsuarioCalendarioComponent,
     UsernameComponent,
+    NewCarFormComponent,
   ],
   imports: [
     MatCardModule,
