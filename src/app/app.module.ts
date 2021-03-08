@@ -9,6 +9,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
@@ -42,10 +43,30 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-gnrl-manager.component';
 import { ClientPageComponent } from './pages/client-page/client-page.component';
+=======
+import { UsuarioComponent } from './usuario/usuario.component';
+import { FormularioComponent } from './usuario/formulario/formulario.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { BotonComponent } from './usuario/boton/boton.component';
+import { UsuarioCalendarioComponent } from './usuario-calendario/usuario-calendario.component';
+import {MatCardModule} from '@angular/material/card';
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { UsernameComponent } from './username/username.component'; // a plugin
+
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+]);
+>>>>>>> origin/robert
 
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
     NavbarComponent,
     HomePageComponent,
     CarruselComponent,
@@ -68,8 +89,16 @@ import { ClientPageComponent } from './pages/client-page/client-page.component';
     OrdenReparacionComponent,
     VistaGnrlManagerComponent,
     ClientPageComponent,
+=======
+    UsuarioComponent,
+    FormularioComponent,
+    BotonComponent,
+    UsuarioCalendarioComponent,
+    UsernameComponent,
+>>>>>>> origin/robert
   ],
   imports: [
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -78,6 +107,7 @@ import { ClientPageComponent } from './pages/client-page/client-page.component';
     AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     BrowserAnimationsModule,
     MatGridListModule,
     MatIconModule,
@@ -90,6 +120,13 @@ import { ClientPageComponent } from './pages/client-page/client-page.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+=======
+    MatInputModule,
+    MatIconModule,
+    MatProgressBarModule,
+    NoopAnimationsModule,
+    FullCalendarModule 
+>>>>>>> origin/robert
   ],
   providers: [],
   bootstrap: [AppComponent]

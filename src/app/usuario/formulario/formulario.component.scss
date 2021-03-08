@@ -1,0 +1,250 @@
+form{
+    border: solid;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10%;
+    padding: 1%;
+}
+label[for=nombre]{
+    position: absolute;
+    top: 26%;
+}
+#nombre{
+    position: absolute;
+    top: 32%;
+    left: 27%;
+    width: 18%;
+}
+label[for=email]{
+    position: absolute;
+    top: 40%;
+}
+#email{
+    position: absolute;
+    top: 45%;
+    left: 27%;
+    width: 18%;
+}
+label[for=usuario]{
+    position: absolute;
+    top: 53%;
+}
+#usuario{
+    position: absolute;
+    top: 58%;
+    left: 27%;
+    width: 18%;
+}
+label[for=edad]{
+    position: absolute;
+    top: 65%;
+}
+#edad{
+    position: absolute;
+    top: 70%;
+    left: 27%;
+}
+label[for=cedula]{
+    position: absolute;
+    top: 78%;
+}
+#cedula{
+    position: absolute;
+    top: 83%;
+    left: 27%;
+    width: 18%;
+}
+label[for=tlf]{
+    position: absolute;
+    right: 33%;
+    top: 26%;
+}
+#tlf{
+    position: absolute;
+    right: 25%;
+    top: 32%;
+    width: 18%;
+}
+label[for=genero]{
+    position: absolute;
+    right: 40%;
+    top: 39%;
+}
+#genero{
+    position: absolute;
+    right: 25%;
+    top: 45%;
+    width: 18%;
+}
+label[for=direccion]{
+    position: absolute;
+    right: 39%;
+    top: 52%;
+}
+#direccion{
+    position: absolute;
+    right: 25%;
+    top: 58%;
+    width: 18%;
+}
+label[for=ciudad]{
+    position: absolute;
+    right: 40%;
+    top: 65%;
+}
+#ciudad{
+    position: absolute;
+    right: 36%;
+    top: 70%;
+    width: 8%;
+}
+label[for=estado]{
+    position: absolute;
+    right: 31%;
+    top: 65%;
+}
+#estado{
+    position: absolute;
+    right: 27%;
+    top: 70%;
+    width: 8%;
+}
+label[for=codigo]{
+    position: absolute;
+    right: 36%;
+    top: 77%;
+}
+#codigo{
+    position: absolute;
+    right: 25%;
+    top: 83%;
+    width: 18%;
+}
+
+@media screen and (max-width: 720px){
+form{
+    position: absolute;
+    border: solid;
+    width: 91%;
+    margin-left: 3%;
+    margin-top: 60%;
+    padding: 1%;
+    height: 63%;
+}
+label[for=nombre]{
+    position: absolute;
+    top: 1%;
+}
+#nombre{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 81%;
+}
+label[for=email]{
+    position: absolute;
+    top: 10%;
+}
+#email{
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 81%;
+}
+label[for=usuario]{
+    position: absolute;
+    top: 20%;
+}
+#usuario{
+    position: absolute;
+    top: 24%;
+    left: 5%;
+    width: 81%;
+}
+label[for=edad]{
+    position: absolute;
+    top: 29%;
+}
+#edad{
+    position: absolute;
+    top: 33%;
+    left: 10%;
+}
+label[for=cedula]{
+    position: absolute;
+    top: 38%;
+}
+#cedula{
+    position: absolute;
+    top: 42%;
+    left: 5%;
+    width: 81%;
+}
+label[for=tlf]{
+    position: absolute;
+    right: 56%;
+    top: 47%;
+}
+#tlf{
+    position: absolute;
+    right: 11%;
+    top: 52%;
+    width: 81%;
+}
+label[for=genero]{
+    position: absolute;
+    right: 83%;
+    top: 58%;
+}
+#genero{
+    position: absolute;
+    right: 12%;
+    top: 63%;
+    width: 81%;
+}
+label[for=direccion]{
+    position: absolute;
+    right: 78%;
+    top: 69%;
+}
+#direccion{
+    position: absolute;
+    right: 10%;
+    top: 74%;
+    width: 81%;
+}
+label[for=ciudad]{
+    position: absolute;
+    right: 68%;
+    top: 80%;
+}
+#ciudad{
+    position: absolute;
+    right: 63%;
+    top: 85%;
+    width: 8%;
+}
+label[for=estado]{
+    position: absolute;
+    right: 24%;
+    top: 80%;
+}
+#estado{
+    position: absolute;
+    right: 20%;
+    top: 85%;
+    width: 8%;
+}
+label[for=codigo]{
+    position: absolute;
+    right: 69%;
+    top: 89%;
+}
+#codigo{
+    position: absolute;
+    right: 11%;
+    top: 94%;
+    width: 81%;
+}
+}
+
