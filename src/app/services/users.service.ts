@@ -1,10 +1,11 @@
 import { Car } from './../models/car';
 import { User } from './../models/user';
-import { Injectable } from '@angular/core';
+import { Injectable, Pipe } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
+import { query } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import * as firebase from 'firebase';
 export class UsersService {
 
   userCollection: AngularFirestoreCollection<User>;
+  db = firebase.firestore();
 
   constructor(private firestore: AngularFirestore) { 
     this.userCollection = this.firestore.collection<User>('users', (ref) =>
@@ -66,7 +68,29 @@ export class UsersService {
       );
   }
 
+  getUserCars(userId: string): Array<Car> {
 
+    const carList: Array<Car> = [];
+
+    this.db.collection("users")
+    .where("id", "==", userId).get()
+    .then(querySnapshot => {
+      return querySnapshot.docs[0].ref.collection("cars").get();
+    })
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let car = ({
+          
+          brand: doc.get("brand"),
+          model: doc.get("model"),
+          year: doc.get("year"),
+          plate: doc.get("plate"),
+        })
+        carList.push(car);
+      })
+    })
+    return carList;
+  }
 
   /**
    * CREATE NEW car

@@ -1,6 +1,6 @@
 import { CarsService } from './../../services/cars.service';
 import { Car } from '../../models/car';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 
@@ -11,37 +11,11 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class CarQueueComponent implements OnInit {
 
+  @Input() carList: Array<Car> = [];
   lowValue: number = 0;
   highValue: number = 1;
 
   cars: Array<Car> = [];
-
-  carList: Car[] = [
-    {
-      brand: "Honda",
-      model: "Civic",
-      year: 2006,
-      plate: "LAV-45T",
-    },
-    {
-      brand: "Toyota",
-      model: "Corolla",
-      year: 2008,
-      plate: "LAV-32T",
-    },
-    {
-      brand: "Mazda",
-      model: "6",
-      year: 2006,
-      plate: "LAV-41T",
-    },
-    {
-      brand: "Mitsubishi",
-      model: "Lancer",
-      year: 2008,
-      plate: "LAV-15T",
-    },
-  ]
 
   constructor(private carsService: CarsService) { }
 
@@ -49,6 +23,7 @@ export class CarQueueComponent implements OnInit {
     this.carsService.getAllCars().subscribe((cars) => {
       this.cars = cars;
     })
+    console.log(this.carList)
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
