@@ -4,7 +4,8 @@
               [pageSizeOptions]="[1]"
               (page)="getPaginatorData($event)">
     </mat-paginator>
-    <h2>Solicitudes Pendientes</h2>
+    <h2 *ngIf="userType === 'manager'">Solicitudes Pendientes</h2>
+    <h2 *ngIf="userType === 'client'">Vehiculos Activos</h2>
     <ng-container *ngFor="let car of (carList | slice: lowValue : highValue)">
         <app-car-view [car]="car"></app-car-view>
     </ng-container>

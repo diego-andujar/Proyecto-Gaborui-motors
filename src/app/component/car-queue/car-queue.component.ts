@@ -12,6 +12,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class CarQueueComponent implements OnInit {
 
   @Input() carList: Array<Car> = [];
+  @Input() userType: string = "";
   lowValue: number = 0;
   highValue: number = 1;
 

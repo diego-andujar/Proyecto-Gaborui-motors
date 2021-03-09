@@ -13,6 +13,7 @@ import { ConsoleReporter } from 'jasmine';
 export class ClientPageComponent implements OnInit {
 
   carList: Array<Car> = [];
+  userType: string = "client";
   user!: firebase.User;
 
   constructor(
