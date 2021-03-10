@@ -21,7 +21,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgQrScannerModule } from 'angular2-qrscanner';
-import { ScannerqrComponent } from './components/scannerqr/scannerqr.component';
+//import { ScannerqrComponent } from './components/scannerqr/scannerqr.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { ScannerqrComponent } from './components/scannerqr/scannerqr.component';
     GalleryComponent,
     GallerygridComponent,
     MecanicoPageComponent,
-    ScannerqrComponent
+    //ScannerqrComponent
   ],
   imports: [
     BrowserModule,
