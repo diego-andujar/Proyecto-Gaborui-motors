@@ -6,245 +6,289 @@ form{
     padding: 1%;
 }
 label[for=nombre]{
-    position: absolute;
-    top: 26%;
+    position: relative;
+    // top: 26%;
+    display: inline-block;
 }
 #nombre{
-    position: absolute;
-    top: 32%;
-    left: 27%;
-    width: 18%;
+    position: relative;
+    // top: 32%;
+    // left: 27%;
+    // width: 18%;
+    display: inline-block;
 }
 label[for=email]{
-    position: absolute;
-    top: 40%;
+    position: relative;
+    // top: 40%;
+    display: inline-block;
 }
 #email{
-    position: absolute;
-    top: 45%;
-    left: 27%;
-    width: 18%;
+    position: relative;
+    // top: 45%;
+    // left: 27%;
+    // width: 18%;
+    display: inline-block;
 }
 label[for=usuario]{
-    position: absolute;
-    top: 53%;
+    position: relative;
+    // top: 53%;
+    display: inline-block;
 }
 #usuario{
-    position: absolute;
-    top: 58%;
-    left: 27%;
-    width: 18%;
+    position: relative;
+    // top: 58%;
+    // left: 27%;
+    // width: 18%;
+    display: inline-block;
 }
 label[for=edad]{
-    position: absolute;
-    top: 65%;
+    position: relative;
+    // top: 65%;
+    display: inline-block;
 }
 #edad{
-    position: absolute;
-    top: 70%;
-    left: 27%;
+    position: relative;
+    // top: 70%;
+    // left: 27%;
+    display: inline-block;
 }
 label[for=cedula]{
-    position: absolute;
-    top: 78%;
+    position: relative;
+    // top: 78%;
+    display: inline-block;
 }
 #cedula{
-    position: absolute;
-    top: 83%;
-    left: 27%;
-    width: 18%;
+    position: relative;
+    // top: 83%;
+    // left: 27%;
+    // width: 18%;
+    display: inline-block;
 }
 label[for=tlf]{
-    position: absolute;
-    right: 33%;
-    top: 26%;
+    position: relative;
+    // right: 33%;
+    // top: 26%;
+    display: inline-block;
 }
 #tlf{
-    position: absolute;
-    right: 25%;
-    top: 32%;
-    width: 18%;
+    position: relative;
+    // right: 25%;
+    // top: 32%;
+    // width: 18%;
+    display: inline-block;
 }
 label[for=genero]{
-    position: absolute;
-    right: 40%;
-    top: 39%;
+    position: relative;
+    // right: 40%;
+    // top: 39%;
+    display: inline-block;
 }
 #genero{
-    position: absolute;
-    right: 25%;
-    top: 45%;
-    width: 18%;
+    position: relative;
+    // right: 25%;
+    // top: 45%;
+    // width: 18%;
+    display: inline-block;
 }
 label[for=direccion]{
-    position: absolute;
-    right: 39%;
-    top: 52%;
+    position: relative;
+    // right: 39%;
+    // top: 52%;
+    display: inline-block;
 }
 #direccion{
-    position: absolute;
-    right: 25%;
-    top: 58%;
-    width: 18%;
+    position: relative;
+    // right: 25%;
+    // top: 58%;
+    // width: 18%;
+    display: inline-block;
 }
 label[for=ciudad]{
-    position: absolute;
-    right: 40%;
-    top: 65%;
+    position: relative;
+    // right: 40%;
+    // top: 65%;
+    display: inline-block;
 }
 #ciudad{
-    position: absolute;
-    right: 36%;
-    top: 70%;
-    width: 8%;
+    position: relative;
+    // right: 36%;
+    // top: 70%;
+    // width: 8%;
+    display: inline-block;
 }
 label[for=estado]{
-    position: absolute;
-    right: 31%;
-    top: 65%;
+    position: relative;
+    // right: 31%;
+    // top: 65%;
+    display: inline-block;
 }
 #estado{
-    position: absolute;
-    right: 27%;
-    top: 70%;
-    width: 8%;
+    position: relative;
+    // right: 27%;
+    // top: 70%;
+    // width: 8%;
+    display: inline-block;
 }
 label[for=codigo]{
-    position: absolute;
-    right: 36%;
-    top: 77%;
+    position: relative;
+    // right: 36%;
+    // top: 77%;
+    display: inline-block;
 }
 #codigo{
-    position: absolute;
-    right: 25%;
-    top: 83%;
-    width: 18%;
+    position: relative;
+    // right: 25%;
+    // top: 83%;
+    // width: 18%;
+    display: inline-block;
 }
 
 @media screen and (max-width: 720px){
 form{
-    position: absolute;
+    position: relative;
     border: solid;
     width: 91%;
     margin-left: 3%;
-    margin-top: 60%;
+    margin-top: 70%;
     padding: 1%;
     height: 63%;
 }
 label[for=nombre]{
-    position: absolute;
-    top: 1%;
+    position: relative;
+    // top: 1%;
+    display: inline-block;
 }
 #nombre{
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 81%;
+    position: relative;
+    // top: 5%;
+    // left: 5%;
+    // width: 81%;
+    display: inline-block;
 }
 label[for=email]{
-    position: absolute;
-    top: 10%;
+    position: relative;
+    // top: 10%;
+    display: inline-block;
 }
 #email{
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    width: 81%;
+    position: relative;
+    // top: 15%;
+    // left: 5%;
+    // width: 81%;
+    display: inline-block;
 }
 label[for=usuario]{
-    position: absolute;
-    top: 20%;
+    position: relative;
+    // top: 20%;
+    display: inline-block;
 }
 #usuario{
-    position: absolute;
-    top: 24%;
-    left: 5%;
-    width: 81%;
+    position: relative;
+    // top: 24%;
+    // left: 5%;
+    // width: 81%;
+    display: inline-block;
 }
 label[for=edad]{
-    position: absolute;
-    top: 29%;
+    position: relative;
+    // top: 29%;
+    display: inline-block;
 }
 #edad{
-    position: absolute;
-    top: 33%;
-    left: 10%;
+    position: relative;
+    // top: 33%;
+    // left: 10%;
+    display: inline-block;
 }
 label[for=cedula]{
-    position: absolute;
-    top: 38%;
+    position: relative;
+    // top: 38%;
+    display: inline-block;
 }
 #cedula{
-    position: absolute;
-    top: 42%;
-    left: 5%;
-    width: 81%;
+    position: relative;
+    // top: 42%;
+    // left: 5%;
+    // width: 81%;
+    display: inline-block;
 }
 label[for=tlf]{
-    position: absolute;
-    right: 56%;
-    top: 47%;
+    position: relative;
+    // right: 56%;
+    // top: 47%;
+    display: inline-block;
 }
 #tlf{
-    position: absolute;
-    right: 11%;
-    top: 52%;
-    width: 81%;
+    position: relative;
+    // right: 11%;
+    // top: 52%;
+    // width: 81%;
+    display: inline-block;
 }
 label[for=genero]{
-    position: absolute;
-    right: 83%;
-    top: 58%;
+    position: relative;
+    // right: 83%;
+    // top: 58%;
+    display: inline-block;
 }
 #genero{
-    position: absolute;
-    right: 12%;
-    top: 63%;
-    width: 81%;
+    position: relative;
+    // right: 12%;
+    // top: 63%;
+    // width: 81%;
+    display: inline-block;
 }
 label[for=direccion]{
-    position: absolute;
-    right: 78%;
-    top: 69%;
+    position: relative;
+    // right: 78%;
+    // top: 69%;
+    display: inline-block;
 }
 #direccion{
-    position: absolute;
-    right: 10%;
-    top: 74%;
-    width: 81%;
+    position: relative;
+    // right: 10%;
+    // top: 74%;
+    // width: 81%;
+    display: inline-block;
 }
 label[for=ciudad]{
-    position: absolute;
-    right: 68%;
-    top: 80%;
+    position: relative;
+    // right: 68%;
+    // top: 80%;
+    display: inline-block;
 }
 #ciudad{
-    position: absolute;
-    right: 63%;
-    top: 85%;
-    width: 8%;
+    position: relative;
+    // right: 63%;
+    // top: 85%;
+    // width: 8%;
+    display: inline-block;
 }
 label[for=estado]{
-    position: absolute;
-    right: 24%;
-    top: 80%;
+    position: relative;
+    // right: 24%;
+    // top: 80%;
+    display: inline-block;
 }
 #estado{
-    position: absolute;
-    right: 20%;
-    top: 85%;
-    width: 8%;
+    position: relative;
+    // right: 20%;
+    // top: 85%;
+    // width: 8%;
+    display: inline-block;
 }
 label[for=codigo]{
-    position: absolute;
-    right: 69%;
-    top: 89%;
+    position: relative;
+    // right: 69%;
+    // top: 89%;
+    display: inline-block;
 }
 #codigo{
-    position: absolute;
-    right: 11%;
-    top: 94%;
-    width: 81%;
+    position: relative;
+    // right: 11%;
+    // top: 94%;
+    // width: 81%;
+    display: inline-block;
 }
 }
 

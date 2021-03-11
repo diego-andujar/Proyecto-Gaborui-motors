@@ -6,9 +6,9 @@
 }
 .foto{
     width: 20%;
-    position: absolute;
+    position: relative;
     top: 4%;
-    margin-left: 5%;
+    margin-left: 8%;
 }
 #file{
     margin-top: 6%;
@@ -30,7 +30,7 @@ img {
     border-radius: 50%;
   }
   .hoverable .hover-text{
-    position: absolute;
+    position: relative;
     display: none;
     top: 50%;
     left:  50%;
@@ -38,7 +38,7 @@ img {
     z-index: 2;
   }
   .hoverable .background{
-    position: absolute;
+    position: relative;
     display: none;
     top: 0;
     left:  0;
@@ -59,35 +59,20 @@ img {
   #fileInput{
     display: none;
   }
-  label[for=username]{
-      position: absolute;
-      left: 18%;
+
+  label{
+    margin: 30%;
+    margin-left: 50%;
+    width: 300%;
+    display: flex;
+    // text-align: center;
   }
-  label[for=mail]{
-    position: absolute;
-    top: 118%;
-    left: -4%;
-}
- label[for=nombre]{
-    position: absolute;
-    top: 148%;
-    left: -4%;
-}
- label[for=genero]{
-    position: absolute;
-    top: 169%;
-    left: -4%;
-}
- label[for=edad]{
-    position: absolute;
-    top: 189%;
-    left: -4%;
-}
+
 
 @media screen and (max-width: 1024px){
     .username{
         background: #6AB8E3;
-        height: 45%;
+        height: 48%;
         width: 35%;
         border-bottom-left-radius: 221px;
         border-bottom-right-radius: 0;
@@ -95,33 +80,14 @@ img {
     }
     .foto{
         width: 20%;
-        position: absolute;
+        position: relative;
         top: 4%;
         margin-left: 10%;
     }
-    label[for=username]{
-        position: absolute;
-        left: 28%;
+    label{
+      display: flex;
+      margin: 26%;
+      margin-left: 53%;
     }
-    label[for=mail]{
-      position: absolute;
-      top: 118%;
-      left: -4%;
-  }
-   label[for=nombre]{
-      position: absolute;
-      top: 148%;
-      left: -17%;
-  }
-   label[for=genero]{
-      position: absolute;
-      top: 169%;
-      left: 6%;
-  }
-   label[for=edad]{
-      position: absolute;
-      top: 189%;
-      left: 35%;
-  }
   
 }
