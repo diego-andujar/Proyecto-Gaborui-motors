@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "gaborui-motors": {
+      "hosting": {
+        "ProyectoSInfo": [
+          "gaborui-motors"
+        ]
+      }
+    }
+  }
+}

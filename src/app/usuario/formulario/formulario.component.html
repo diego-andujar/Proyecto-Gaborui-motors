@@ -1,44 +1,129 @@
 <div class="form">
-    <form action="/" autocomplete="off">
-        <label for="nombre">Nombre Completo:</label>
-        <input type="text" id="nombre" name="nombre"><br><br>
-        <label for="email">Correo:</label>
-        <input type="email" id="email" name="email" autocomplete="off"><br><br>
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario"><br><br>
-        <label for="edad">Edad:</label>
-        <select name="edad" id="edad">
-            <option value="26">26</option>
-            <option value="50">50</option>
-            <option value="30">30</option>
-            <option value="19">19</option>
-        </select>
-        <br><br>
-        <label for="cedula">Cedula:</label>
-        <input type="text" id="cedula" name="cedula"><br><br>
-        <label for="tlf">Numero de Telefono:</label>
-        <input type="text" id="tlf" name="tlf"><br><br>
-        <label for="genero">Genero:</label>
-        <select name="genero" id="genero">
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-        </select>
-        <br><br>
-        <label for="direccion">Direccion:</label>
-        <input type="text" id="direccion" name="direccion"><br><br>
-        <label for="ciudad">Ciudad:</label>
-        <select name="ciudad" id="ciudad">
-            <option value=""></option>
-            <option value=""></option>
-        </select>
-        <br><br>
-        <label for="estado">Estado:</label>
-        <select name="estado" id="estado">
-            <option value=""></option>
-            <option value=""></option>
-        </select>
-        <br><br>
-        <label for="codigo">Codigo Postal:</label>
-        <input type="text" id="codigo" name="codigo"><br><br>
+    <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+        <input type="text" formControlName="name" placeholder="Your Name">
+        <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div class="container-error-message" *ngIf="name.errors.required">
+            Name is required
+          </div>
+          <div class="container-error-message" *ngIf="address.errors.minlength">
+            address must be at least 5 characters long.
+          </div>
+        </div>
+
+        <input type="text" formControlName="email" placeholder="Your email">
+    
+        <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div class="container-error-message" *ngIf="email.errors.required">
+            Email is required
+          </div>
+          <div class="container-error-message" *ngIf="email.errors.minlength">
+            Email must be at least 5 characters long.
+          </div>
+          <div class="container-error-message"
+            *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+            Value has to be a valid email address.
+          </div>
+        </div>
+
+        <input type="text" formControlName="user" placeholder="Your user">
+        <div class="alert-danger" *ngIf="user.invalid && (user.dirty || user.touched)">
+          <div class="container-error-message" *ngIf="user.errors.required">
+            user is required
+          </div>
+          <div class="container-error-message" *ngIf="address.errors.minlength">
+            address must be at least 5 characters long.
+          </div>
+        </div>
+
+        <input type="text" formControlName="age" placeholder="Your age">
+        <div class="alert-danger" *ngIf="age.invalid && (age.dirty || age.touched)">
+          <div class="container-error-message" *ngIf="age.errors.required">
+            age is required
+          </div>
+          <div class="container-error-message" *ngIf="address.errors.minlength">
+            address must be at least 5 characters long.
+          </div>
+        </div>
+
+        <input type="text" formControlName="ci" placeholder="Your ci">
+        <div class="alert-danger" *ngIf="ci.invalid && (ci.dirty || ci.touched)">
+          <div class="container-error-message" *ngIf="ci.errors.required">
+            ci is required
+          </div>
+          <div class="container-error-message" *ngIf="address.errors.minlength">
+            address must be at least 5 characters long.
+          </div>
+        </div>
+
+        <input type="text" formControlName="gender" placeholder="Your gender">
+        <div class="alert-danger" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+          <div class="container-error-message" *ngIf="gender.errors.required">
+            gender is required
+          </div>
+          <div class="container-error-message" *ngIf="address.errors.minlength">
+            address must be at least 5 characters long.
+          </div>
+        </div>
+
+        <input type="text" formControlName="address" placeholder="Your address">
+        <div class="alert-danger" *ngIf="address.invalid && (address.dirty || address.touched)">
+          <div class="container-error-message" *ngIf="address.errors.required">
+            address is required
+          </div>
+          <div class="container-error-message" *ngIf="address.errors.minlength">
+            address must be at least 5 characters long.
+          </div>
+        </div>
+
+        <input type="text" formControlName="cp" placeholder="Your cp">
+        <div class="alert-danger" *ngIf="cp.invalid && (cp.dirty || cp.touched)">
+          <div class="container-error-message" *ngIf="cp.errors.required">
+            cp is required
+          </div>
+          <div class="container-error-message" *ngIf="email.errors.minlength">
+            Email must be at least 5 characters long.
+          </div>
+        </div>
+        <button type="submit" class="btn-send" >Send</button>
       </form>
+      
 </div>
+
+<!-- <div class="form">
+    <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+      <input type="text" formControlName="name" placeholder="Your Name">
+      <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div class="container-error-message" *ngIf="name.errors.required">
+          Name is required
+        </div>
+        <div class="container-error-message" *ngIf="name.errors.minlength">
+          Name must be at least 5 characters long.
+        </div>
+      </div>
+  
+      <input type="text" formControlName="email" placeholder="Your email">
+  
+      <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div class="container-error-message" *ngIf="email.errors.required">
+          Email is required
+        </div>
+        <div class="container-error-message" *ngIf="email.errors.minlength">
+          Email must be at least 5 characters long.
+        </div>
+        <div class="container-error-message"
+          *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+          Value has to be a valid email address.
+        </div>
+      </div>
+      <textarea formControlName="message" placeholder="Type your message"></textarea>
+      <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+        <div class="container-error-message" *ngIf="message.errors.required">
+          Message is required
+        </div>
+        <div class="container-error-message" *ngIf="message.errors.minlength">
+          Message must be at least 10 characters long.
+        </div>
+      </div>
+      <button type="submit" class="btn-send" [disabled]="!contactForm.valid">Send</button>
+    </form>
+  </div> -->

@@ -5,143 +5,195 @@ form{
     margin-top: 10%;
     padding: 1%;
 }
-label[for=nombre]{
-    position: relative;
-    // top: 26%;
-    display: inline-block;
+// label[for=nombre]{
+//     position: relative;
+//     // top: 26%;
+//     display: inline-block;
+// }
+// #nombre{
+//     position: relative;
+//     // top: 32%;
+//     // left: 27%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+// label[for=email]{
+//     position: relative;
+//     // top: 40%;
+//     display: inline-block;
+// }
+// #email{
+//     position: relative;
+//     // top: 45%;
+//     // left: 27%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+// label[for=usuario]{
+//     position: relative;
+//     // top: 53%;
+//     display: inline-block;
+// }
+// #usuario{
+//     position: relative;
+//     // top: 58%;
+//     // left: 27%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+// label[for=edad]{
+//     position: relative;
+//     // top: 65%;
+//     display: inline-block;
+// }
+// #edad{
+//     position: relative;
+//     // top: 70%;
+//     // left: 27%;
+//     display: inline-block;
+// }
+// label[for=cedula]{
+//     position: relative;
+//     // top: 78%;
+//     display: inline-block;
+// }
+// #cedula{
+//     position: relative;
+//     // top: 83%;
+//     // left: 27%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+// label[for=tlf]{
+//     position: relative;
+//     // right: 33%;
+//     // top: 26%;
+//     display: inline-block;
+// }
+// #tlf{
+//     position: relative;
+//     // right: 25%;
+//     // top: 32%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+// label[for=genero]{
+//     position: relative;
+//     // right: 40%;
+//     // top: 39%;
+//     display: inline-block;
+// }
+// #genero{
+//     position: relative;
+//     // right: 25%;
+//     // top: 45%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+// label[for=direccion]{
+//     position: relative;
+//     // right: 39%;
+//     // top: 52%;
+//     display: inline-block;
+// }
+// #direccion{
+//     position: relative;
+//     // right: 25%;
+//     // top: 58%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+// label[for=ciudad]{
+//     position: relative;
+//     // right: 40%;
+//     // top: 65%;
+//     display: inline-block;
+// }
+// #ciudad{
+//     position: relative;
+//     // right: 36%;
+//     // top: 70%;
+//     // width: 8%;
+//     display: inline-block;
+// }
+// label[for=estado]{
+//     position: relative;
+//     // right: 31%;
+//     // top: 65%;
+//     display: inline-block;
+// }
+// #estado{
+//     position: relative;
+//     // right: 27%;
+//     // top: 70%;
+//     // width: 8%;
+//     display: inline-block;
+// }
+// label[for=codigo]{
+//     position: relative;
+//     // right: 36%;
+//     // top: 77%;
+//     display: inline-block;
+// }
+// #codigo{
+//     position: relative;
+//     // right: 25%;
+//     // top: 83%;
+//     // width: 18%;
+//     display: inline-block;
+// }
+
+.btn-send {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #6AB8E3;
+    border-bottom: 2px solid #6AB8E3;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+    font-size: 15px;
+    &:hover:not([disabled]) {
+      background: #6AB8E3;
+    }
+  }
+
+ input[type="text"],
+ input[type="email"],
+ textarea {
+  -webkit-transition: all 0, 30s ease-in-out;
+  transition: all 0, 30s ease-in-out;
+  outline: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  background: #fff;
+  margin-bottom: 4%;
+  border: 1px solid #ccc;
+  padding: 3%;
+  color: #555;
+
+  &:focus {
+    -webkit-box-shadow: 0 0 5px #6AB8E3;
+    box-shadow: 0 0 5px #6AB8E3;
+    padding: 3%;
+    border: 1px solid #6AB8E3;
+  }
 }
-#nombre{
-    position: relative;
-    // top: 32%;
-    // left: 27%;
-    // width: 18%;
-    display: inline-block;
-}
-label[for=email]{
-    position: relative;
-    // top: 40%;
-    display: inline-block;
-}
-#email{
-    position: relative;
-    // top: 45%;
-    // left: 27%;
-    // width: 18%;
-    display: inline-block;
-}
-label[for=usuario]{
-    position: relative;
-    // top: 53%;
-    display: inline-block;
-}
-#usuario{
-    position: relative;
-    // top: 58%;
-    // left: 27%;
-    // width: 18%;
-    display: inline-block;
-}
-label[for=edad]{
-    position: relative;
-    // top: 65%;
-    display: inline-block;
-}
-#edad{
-    position: relative;
-    // top: 70%;
-    // left: 27%;
-    display: inline-block;
-}
-label[for=cedula]{
-    position: relative;
-    // top: 78%;
-    display: inline-block;
-}
-#cedula{
-    position: relative;
-    // top: 83%;
-    // left: 27%;
-    // width: 18%;
-    display: inline-block;
-}
-label[for=tlf]{
-    position: relative;
-    // right: 33%;
-    // top: 26%;
-    display: inline-block;
-}
-#tlf{
-    position: relative;
-    // right: 25%;
-    // top: 32%;
-    // width: 18%;
-    display: inline-block;
-}
-label[for=genero]{
-    position: relative;
-    // right: 40%;
-    // top: 39%;
-    display: inline-block;
-}
-#genero{
-    position: relative;
-    // right: 25%;
-    // top: 45%;
-    // width: 18%;
-    display: inline-block;
-}
-label[for=direccion]{
-    position: relative;
-    // right: 39%;
-    // top: 52%;
-    display: inline-block;
-}
-#direccion{
-    position: relative;
-    // right: 25%;
-    // top: 58%;
-    // width: 18%;
-    display: inline-block;
-}
-label[for=ciudad]{
-    position: relative;
-    // right: 40%;
-    // top: 65%;
-    display: inline-block;
-}
-#ciudad{
-    position: relative;
-    // right: 36%;
-    // top: 70%;
-    // width: 8%;
-    display: inline-block;
-}
-label[for=estado]{
-    position: relative;
-    // right: 31%;
-    // top: 65%;
-    display: inline-block;
-}
-#estado{
-    position: relative;
-    // right: 27%;
-    // top: 70%;
-    // width: 8%;
-    display: inline-block;
-}
-label[for=codigo]{
-    position: relative;
-    // right: 36%;
-    // top: 77%;
-    display: inline-block;
-}
-#codigo{
-    position: relative;
-    // right: 25%;
-    // top: 83%;
-    // width: 18%;
-    display: inline-block;
-}
+
+  .alert-danger {
+    color: #721c24;
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    margin-bottom: 5px;
+  }
+
+  .container-error-message {
+    padding: 3px;
+  }
+
 
 @media screen and (max-width: 720px){
 form{
@@ -153,142 +205,192 @@ form{
     padding: 1%;
     height: 63%;
 }
-label[for=nombre]{
-    position: relative;
-    // top: 1%;
-    display: inline-block;
+.btn-send {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #6AB8E3;
+    border-bottom: 2px solid #6AB8E3;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+    font-size: 15px;
+    &:hover:not([disabled]) {
+      background: #6AB8E3;
+    }
+  }
+
+ input[type="text"],
+ input[type="email"],
+ textarea {
+  -webkit-transition: all 0, 30s ease-in-out;
+  transition: all 0, 30s ease-in-out;
+  outline: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  background: #fff;
+  margin-bottom: 4%;
+  border: 1px solid #ccc;
+  padding: 3%;
+  color: #555;
+
+  &:focus {
+    -webkit-box-shadow: 0 0 5px #6AB8E3;
+    box-shadow: 0 0 5px #6AB8E3;
+    padding: 3%;
+    border: 1px solid #6AB8E3;
+  }
 }
-#nombre{
-    position: relative;
-    // top: 5%;
-    // left: 5%;
-    // width: 81%;
-    display: inline-block;
-}
-label[for=email]{
-    position: relative;
-    // top: 10%;
-    display: inline-block;
-}
-#email{
-    position: relative;
-    // top: 15%;
-    // left: 5%;
-    // width: 81%;
-    display: inline-block;
-}
-label[for=usuario]{
-    position: relative;
-    // top: 20%;
-    display: inline-block;
-}
-#usuario{
-    position: relative;
-    // top: 24%;
-    // left: 5%;
-    // width: 81%;
-    display: inline-block;
-}
-label[for=edad]{
-    position: relative;
-    // top: 29%;
-    display: inline-block;
-}
-#edad{
-    position: relative;
-    // top: 33%;
-    // left: 10%;
-    display: inline-block;
-}
-label[for=cedula]{
-    position: relative;
-    // top: 38%;
-    display: inline-block;
-}
-#cedula{
-    position: relative;
-    // top: 42%;
-    // left: 5%;
-    // width: 81%;
-    display: inline-block;
-}
-label[for=tlf]{
-    position: relative;
-    // right: 56%;
-    // top: 47%;
-    display: inline-block;
-}
-#tlf{
-    position: relative;
-    // right: 11%;
-    // top: 52%;
-    // width: 81%;
-    display: inline-block;
-}
-label[for=genero]{
-    position: relative;
-    // right: 83%;
-    // top: 58%;
-    display: inline-block;
-}
-#genero{
-    position: relative;
-    // right: 12%;
-    // top: 63%;
-    // width: 81%;
-    display: inline-block;
-}
-label[for=direccion]{
-    position: relative;
-    // right: 78%;
-    // top: 69%;
-    display: inline-block;
-}
-#direccion{
-    position: relative;
-    // right: 10%;
-    // top: 74%;
-    // width: 81%;
-    display: inline-block;
-}
-label[for=ciudad]{
-    position: relative;
-    // right: 68%;
-    // top: 80%;
-    display: inline-block;
-}
-#ciudad{
-    position: relative;
-    // right: 63%;
-    // top: 85%;
-    // width: 8%;
-    display: inline-block;
-}
-label[for=estado]{
-    position: relative;
-    // right: 24%;
-    // top: 80%;
-    display: inline-block;
-}
-#estado{
-    position: relative;
-    // right: 20%;
-    // top: 85%;
-    // width: 8%;
-    display: inline-block;
-}
-label[for=codigo]{
-    position: relative;
-    // right: 69%;
-    // top: 89%;
-    display: inline-block;
-}
-#codigo{
-    position: relative;
-    // right: 11%;
-    // top: 94%;
-    // width: 81%;
-    display: inline-block;
-}
+
+  .alert-danger {
+    color: #721c24;
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    margin-bottom: 5px;
+  }
+
+  .container-error-message {
+    padding: 3px;
+  }
+// label[for=nombre]{
+//     position: relative;
+//     // top: 1%;
+//     display: inline-block;
+// }
+// #nombre{
+//     position: relative;
+//     // top: 5%;
+//     // left: 5%;
+//     // width: 81%;
+//     display: inline-block;
+// }
+// label[for=email]{
+//     position: relative;
+//     // top: 10%;
+//     display: inline-block;
+// }
+// #email{
+//     position: relative;
+//     // top: 15%;
+//     // left: 5%;
+//     // width: 81%;
+//     display: inline-block;
+// }
+// label[for=usuario]{
+//     position: relative;
+//     // top: 20%;
+//     display: inline-block;
+// }
+// #usuario{
+//     position: relative;
+//     // top: 24%;
+//     // left: 5%;
+//     // width: 81%;
+//     display: inline-block;
+// }
+// label[for=edad]{
+//     position: relative;
+//     // top: 29%;
+//     display: inline-block;
+// }
+// #edad{
+//     position: relative;
+//     // top: 33%;
+//     // left: 10%;
+//     display: inline-block;
+// }
+// label[for=cedula]{
+//     position: relative;
+//     // top: 38%;
+//     display: inline-block;
+// }
+// #cedula{
+//     position: relative;
+//     // top: 42%;
+//     // left: 5%;
+//     // width: 81%;
+//     display: inline-block;
+// }
+// label[for=tlf]{
+//     position: relative;
+//     // right: 56%;
+//     // top: 47%;
+//     display: inline-block;
+// }
+// #tlf{
+//     position: relative;
+//     // right: 11%;
+//     // top: 52%;
+//     // width: 81%;
+//     display: inline-block;
+// }
+// label[for=genero]{
+//     position: relative;
+//     // right: 83%;
+//     // top: 58%;
+//     display: inline-block;
+// }
+// #genero{
+//     position: relative;
+//     // right: 12%;
+//     // top: 63%;
+//     // width: 81%;
+//     display: inline-block;
+// }
+// label[for=direccion]{
+//     position: relative;
+//     // right: 78%;
+//     // top: 69%;
+//     display: inline-block;
+// }
+// #direccion{
+//     position: relative;
+//     // right: 10%;
+//     // top: 74%;
+//     // width: 81%;
+//     display: inline-block;
+// }
+// label[for=ciudad]{
+//     position: relative;
+//     // right: 68%;
+//     // top: 80%;
+//     display: inline-block;
+// }
+// #ciudad{
+//     position: relative;
+//     // right: 63%;
+//     // top: 85%;
+//     // width: 8%;
+//     display: inline-block;
+// }
+// label[for=estado]{
+//     position: relative;
+//     // right: 24%;
+//     // top: 80%;
+//     display: inline-block;
+// }
+// #estado{
+//     position: relative;
+//     // right: 20%;
+//     // top: 85%;
+//     // width: 8%;
+//     display: inline-block;
+// }
+// label[for=codigo]{
+//     position: relative;
+//     // right: 69%;
+//     // top: 89%;
+//     display: inline-block;
+// }
+// #codigo{
+//     position: relative;
+//     // right: 11%;
+//     // top: 94%;
+//     // width: 81%;
+//     display: inline-block;
+// }
 }
 
