@@ -1,4 +1,8 @@
+import { UsersService } from 'src/app/services/users.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import firebase from "firebase";
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-home-page',
@@ -7,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private userService: UsersService,
+  ) { }
 
   ngOnInit(): void {
   }

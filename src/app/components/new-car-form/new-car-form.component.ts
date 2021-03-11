@@ -1,3 +1,4 @@
+import { UsersService } from 'src/app/services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,6 +41,7 @@ export class NewCarFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
+    private userService: UsersService,
   ) { }
 
   ngOnInit(): void {
@@ -87,15 +89,13 @@ export class NewCarFormComponent implements OnInit {
       year: this.carForm.get('year').value,
       plate: this.carForm.get('plate').value,
     };
-    this.createNewCar(newCar);
+    this.createNewCar(newCar, this.user.uid);
   }
 
-  createNewCar(newPost: Car): void {
-    this.carService.createNewCar(newPost).then((response) => {
-      console.log('response', JSON.stringify(response, null, 4));
-      this.router.navigate(['/']);
-    });
-  }
+  createNewCar(newCar: Car, id: string): void {
+    this.userService.createUserCar(newCar, id);
+    //this.router.navigate(['/']);
+  } 
 
   updateCar(carData: Car): void {
     this.carService.updateCar(this.carToUpdate.id, carData).then(() => {

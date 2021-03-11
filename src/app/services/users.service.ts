@@ -1,6 +1,7 @@
+import { userInfo } from 'node:os';
 import { Car } from './../models/car';
 import { User } from './../models/user';
-import { Injectable, Pipe } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -54,6 +55,24 @@ export class UsersService {
       );
   }
 
+  getUserByUid(userId: string): User[] {
+    const userList: Array<User> = [];
+    this.db.collection("users")
+    .where("id", "==", userId).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+          let userNow: User = ({
+            id: doc.get("id"),
+            name: doc.get("name"),
+            email: doc.get("email"),
+            phoneNumber: doc.get("phoneNumber"),
+          })
+          userList.push(userNow);
+          
+        })
+      });
+      return userList;
+  }
+
   getUserByEmail(emailId: string): Observable<User> {
     return this.userCollection
       .doc<User>(emailId)
@@ -68,8 +87,17 @@ export class UsersService {
       );
   }
 
-  getUserCars(userId: string): Array<Car> {
+  userExits(userId: string): boolean{
+    let user = this.db.collection("users")
+    .where("id", "==", userId).get()
+    if (user != null){
+      return true;
+    }
+    return false;
+  }
 
+  getUserCars(userId: string): Array<Car> {
+    
     const carList: Array<Car> = [];
 
     this.db.collection("users")
@@ -98,6 +126,14 @@ export class UsersService {
    */
   createNewUser(newUser: User): Promise<DocumentReference> {
     return this.userCollection.add(newUser);
+  }
+
+  createUserCar(newCar: Car, userId: string) {
+    this.db.collection("users")
+    .where("id", "==", userId).get()
+    .then(querySnapshot => {
+      return querySnapshot.docs[0].ref.collection("cars").add(newCar);
+    })
   }
 
   /**

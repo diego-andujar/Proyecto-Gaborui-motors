@@ -1,0 +1,37 @@
+@import "../../../styles/components/text-boxes.scss";
+@import "../../../styles/components/buttons.scss";
+
+mat-select {
+    width: 47%;
+}
+
+.datos-manager-wrapper {
+    height: 96.5%;
+}
+
+.form-new {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.div-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.car-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 44em;
+    background-color: $secondary-color;
+}
