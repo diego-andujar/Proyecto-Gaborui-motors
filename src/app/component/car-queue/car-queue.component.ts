@@ -24,7 +24,6 @@ export class CarQueueComponent implements OnInit {
     this.carsService.getAllCars().subscribe((cars) => {
       this.cars = cars;
     })
-    console.log(this.carList)
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {

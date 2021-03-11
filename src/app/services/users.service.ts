@@ -95,10 +95,32 @@ export class UsersService {
     
     const carList: Array<Car> = [];
 
-    this.db.collection("users")
-    .where("id", "==", userId).get()
+    this.db.collection("users").get()
     .then(querySnapshot => {
-      return querySnapshot.docs[0].ref.collection("cars").get();
+      return querySnapshot.docs[0].ref.collection("cars").get()
+    })
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let car = ({
+          brand: doc.get("brand"),
+          model: doc.get("model"),
+          year: doc.get("year"),
+          plate: doc.get("plate"),
+        })
+        carList.push(car);
+      })
+    })
+    return carList;
+  }
+
+  getAllCars(): Array<Car> {
+    
+    const carList: Array<Car> = [];
+
+    this.db.collection("users")
+    .where("id", "!=", null).get()
+    .then(querySnapshot => {
+      return querySnapshot.docs[0].ref.collection("cars").get()
     })
     .then(querySnapshot => {
       querySnapshot.forEach(doc => {

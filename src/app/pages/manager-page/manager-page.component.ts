@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from "firebase";
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-manager-page',
@@ -15,24 +16,12 @@ export class ManagerPageComponent implements OnInit {
 
   selectedValue!: string;
   selectedCar!: string;
-  carBrands: any[] = [
-    {value: 'volvo', viewValue: 'Volvo'},
-    {value: 'saab', viewValue: 'Saab'},
-    {value: 'mercedes', viewValue: 'Mercedes'},
-    {value: 'honda', viewValue: 'Honda'},
-    {value: 'toyota', viewValue: 'Toyota'},
-    {value: 'mitsubishi', viewValue: 'Mitsubishi'},
-    {value: 'renault', viewValue: 'Renault'},
-    {value: 'ford', viewValue: 'Ford'},
-    {value: 'Hyundai', viewValue: 'Hyundai'},
-    {value: 'tesla', viewValue: 'Tesla'},
-  ];
-
   user!: firebase.User;
   carForm!: FormGroup;
   isLoading = true;
   carToUpdate!: Car;
 
+  carList: Array<Car> = [];
   showFiller = false;
   constructor(
     private fb: FormBuilder,
@@ -40,6 +29,7 @@ export class ManagerPageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
+    private authUsers: UsersService,
   ) { }
 
 
@@ -47,6 +37,9 @@ export class ManagerPageComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
+    })
+    this.carService.getAllCars().subscribe((cars) => {
+      this.carList = cars;
     })
     this.getUrlParams();
   }
