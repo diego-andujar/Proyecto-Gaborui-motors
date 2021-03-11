@@ -7,13 +7,17 @@
 }
 
 mat-grid-list {
+    display: flex;
     justify-content: center;
     align-items: center;
+    height: 90%;
+    width: 95%;
+    margin-left: 4%;
 }
 
 .grid-wrapper {
     width: 95%;
-    margin-left: 2.5%;
+    height: 50%;
 }
 
 .title-wrapper {
@@ -38,7 +42,7 @@ h2 {
 }
 
 .input-data-container {
-    padding: 1em ;
+    padding: 0% 1%;
     width: 33%;
 }
 
@@ -78,7 +82,7 @@ mat-grid-tile {
     display: flex;
     align-content: center;
     border: 2px solid $primary-color;
-    height: 60%;
+    height: 32%;
 }
 
 .confirmar-cita {

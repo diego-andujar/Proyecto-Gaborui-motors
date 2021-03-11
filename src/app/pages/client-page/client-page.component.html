@@ -1,7 +1,12 @@
 <p>client-page works!</p>
 <app-usuario></app-usuario>
 <div class="car-list-wrapper">
-    <app-car-queue [carList]="carList" [userType]="userType"></app-car-queue>
+        <app-car-queue [carList]="carList" [userType]="userType" *ngIf="carList.length > 0 && !newCar"></app-car-queue>
+        <app-new-car-form *ngIf="newCar || carList.length == 0"></app-new-car-form>
 </div>
-<app-new-car-form></app-new-car-form>
+<div class="button-container">
+    <button class="submit-button" (click)="newCarButton()" *ngIf="!newCar && carList.length > 0">añadir carro</button>
+    <button class="submit-button" (click)="newCarButton()" *ngIf="newCar && carList.length > 0">vista vehiculos</button>
+</div>
+
 <app-usuario-calendario></app-usuario-calendario>

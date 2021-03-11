@@ -17,6 +17,7 @@ export class ClientPageComponent implements OnInit {
   userType: string = "client";
   user!: firebase.User;
   userDB!: User;
+  newCar = false;
 
   constructor(
     private authService: AuthService,
@@ -31,16 +32,12 @@ export class ClientPageComponent implements OnInit {
     this.createUser();
   }
 
-  seeCars(){
-    console.log("hola")
+  async onSubmit() {
     this.carList = this.authUsers.getUserCars(this.user.uid);
-    console.log(this.carList);
-    
   }
 
-  async onSubmit() {
-    console.log("hola")
-    this.carList = this.authUsers.getUserCars(this.user.uid);
+  newCarButton(){
+    this.newCar = !this.newCar;
   }
 
   createUser(){
@@ -57,11 +54,10 @@ export class ClientPageComponent implements OnInit {
         this.authUsers.createNewUser(newUser);
       }
       
-      let usernow = (this.authUsers.getUserByUid(user.uid))[0] as User;
-      console.log(usernow.name)
+      /*this.authUsers.getUserByUid(user.uid).subscribe(user => {
+        this.userDB = user;
+      })*/
     })
-    
-    
   }
 
 }

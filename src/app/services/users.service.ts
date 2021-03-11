@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase';
 import { query } from '@angular/animations';
+import { snapshotChanges } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -55,22 +56,16 @@ export class UsersService {
       );
   }
 
-  getUserByUid(userId: string): User[] {
-    const userList: Array<User> = [];
-    this.db.collection("users")
-    .where("id", "==", userId).get().then(querySnapshot => {
+  getUserByUid(userId: string): Observable<User> {
+    let id: string = "";
+    const list: Observable<User>[] = [];
+    const usersRef = this.db.collection('users').where("id", "==", userId).get().then((querySnapshot) =>{
       querySnapshot.forEach(doc => {
-          let userNow: User = ({
-            id: doc.get("id"),
-            name: doc.get("name"),
-            email: doc.get("email"),
-            phoneNumber: doc.get("phoneNumber"),
-          })
-          userList.push(userNow);
-          
-        })
-      });
-      return userList;
+        id = doc.id;
+        list.push(this.getUserById(doc.id));
+      })
+    });
+    return list[0];
   }
 
   getUserByEmail(emailId: string): Observable<User> {
@@ -108,7 +103,6 @@ export class UsersService {
     .then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let car = ({
-          
           brand: doc.get("brand"),
           model: doc.get("model"),
           year: doc.get("year"),
