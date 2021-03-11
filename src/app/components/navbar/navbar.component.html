@@ -3,7 +3,7 @@
     <a [routerLink]="['/']" class="logo">
         <img src="../../../assets/logo ejwhite.png" alt="Gaboruilogo" height="100%">
     </a>
-    
+
     <ul class="navbar">
 
         <li class="active">
@@ -35,13 +35,13 @@
             <a [routerLink]="['/user/posts']">Reportes</a>
         </li> -->
         <li *ngIf="!user">
-            <a [routerLink]="['/categories']">Nosotros</a>
+            <a [routerLink]="['/nosotros']">Nosotros</a>
         </li>
         <li *ngIf="!user">
             <a [routerLink]="['/contact']">Contacto</a>
         </li>
         <li *ngIf="!user">
-            <a [routerLink]="['/contact']">Ubicación</a>
+            <a [routerLink]="['/ubicacion']">Ubicación</a>
         </li>
         <li class="login" *ngIf="!user">
             <a [routerLink]="['/log-in']">Login</a>
@@ -64,7 +64,7 @@
                 </svg>
         </button>
         </li>
-         <!--<li class="logout" *ngIf="!user">
+        <!--<li class="logout" *ngIf="!user">
             <button type="button"> (click)="logout() 
           <img src="https://www.wpclipart.com/signs_symbol/alphabets_numbers/outlined_alphabet/white_capitol/capitol_X_white.png" alt="logoutimg" height="100%">
         </button>
