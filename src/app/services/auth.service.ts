@@ -2,24 +2,41 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import  firebase from 'firebase';
 import { Observable } from 'rxjs';
+import auth, {firebase} from '@react-native-firebase/auth';
+import { User } from '../models/user';
+import { AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   
-  
+  userCollection!: AngularFirestoreCollection<User>;
   constructor(private angularFireAuth: AngularFireAuth ) { }
   /**
    * Log in with Google account
    */
   async loginWithGoogle(): Promise<firebase.User> {
     try {
+      let primeraVez: boolean = false;
       const response = await this.angularFireAuth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()
-      );
+      )
       const { user } = response;
       localStorage.setItem('user', user.uid);
+      const actualUser = user;
+      primeraVez = response.additionalUserInfo?.isNewUser;
+      console.log(primeraVez)
+      if (primeraVez){
+        console.log(entre)
+        let userDB: User = {
+          name: actualUser.displayName,
+          email: actualUser.email,
+          phoneNumber: actualUser.phoneNumber,
+          id: actualUser.uid,
+        }
+        firebase.firestore().collection("users").add(userDB)
+      }
       return user;
     } catch (err) {
       console.log(err);
@@ -27,6 +44,7 @@ export class AuthService {
       return null;
     }
   }
+
 
 
   /**
@@ -74,6 +92,13 @@ export class AuthService {
         photoURL:
           'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
       });
+      let userDB: User = {
+        name: actualUser.displayName,
+        email: actualUser.email,
+        phoneNumber: actualUser.phoneNumber,
+        id: actualUser.uid,
+      }
+      firebase.firestore().collection("users").add(userDB)
       return actualUser;
     } catch (err) {
       localStorage.removeItem('user');

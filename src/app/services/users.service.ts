@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { userInfo } from 'node:os';
 import { Car } from './../models/car';
 import { User } from './../models/user';
@@ -17,9 +18,12 @@ export class UsersService {
   userCollection: AngularFirestoreCollection<User>;
   db = firebase.firestore();
 
-  constructor(private firestore: AngularFirestore) { 
+  constructor(
+    private firestore: AngularFirestore,
+    private auth: AuthService,
+    ) { 
     this.userCollection = this.firestore.collection<User>('users', (ref) =>
-      ref.orderBy('email')
+      ref.orderBy('name')
     );
   }
 
@@ -70,7 +74,7 @@ export class UsersService {
 
   getUserByEmail(emailId: string): Observable<User> {
     return this.userCollection
-      .doc<User>(emailId)
+      .doc<User.id>(emailId)
       .snapshotChanges()
       .pipe(
         map((user) => {
@@ -90,6 +94,8 @@ export class UsersService {
     }
     return false;
   }
+
+ 
 
   getUserCars(userId: string): Array<Car> {
     

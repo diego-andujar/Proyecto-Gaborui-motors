@@ -46,9 +46,6 @@ export class AuthFormComponent implements OnInit {
         email: user.email,
         phoneNumber: user.phoneNumber,
       }
-      if (!this.userService.getUserById(user.uid)){
-        this.userService.createNewUser(newUser);
-      }
       this.router.navigate(['/']);
     }
 
