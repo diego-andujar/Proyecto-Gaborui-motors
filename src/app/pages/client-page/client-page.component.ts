@@ -1,10 +1,10 @@
+import { CarsService } from 'src/app/services/cars.service';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Car } from 'src/app/models/car';
 import firebase from "firebase";
 import { User } from 'src/app/models/user';
-import { userInfo } from 'node:os';
 
 @Component({
   selector: 'app-client-page',
@@ -22,12 +22,14 @@ export class ClientPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private authUsers: UsersService,
+    private carService: CarsService,
   ) { }
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
-      this.carList = this.authUsers.getUserCars(user.uid);
+      this.carList = this.carService.getUserCars(user.uid);
+      console.log(user.uid)
     })
   }
 

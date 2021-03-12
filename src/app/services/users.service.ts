@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { userInfo } from 'node:os';
 import { Car } from './../models/car';
@@ -21,6 +22,7 @@ export class UsersService {
   constructor(
     private firestore: AngularFirestore,
     private auth: AuthService,
+    private afsAuth: AngularFireAuth,
     ) { 
     this.userCollection = this.firestore.collection<User>('users', (ref) =>
       ref.orderBy('name')
@@ -41,7 +43,17 @@ export class UsersService {
     );
   }
 
+  getCurrentUser(){
+    this.auth.isAuth().subscribe(auth => {
+      if (auth) {
+        this.userUid = auth.uid;
+      }
+    })
+  }
 
+  isUserAdmin(userUid: string){
+    return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
+  }
   /**
    * GET car BY ID
    * @param carId
@@ -63,7 +75,9 @@ export class UsersService {
   getUserByUid(userId: string): Observable<User> {
     let id: string = "";
     const list: Observable<User>[] = [];
-    const usersRef = this.db.collection('users').where("id", "==", userId).get().then((querySnapshot) =>{
+    const usersRef = this.db.collection('users')
+    .where("id", "==", userId).get()
+    .then((querySnapshot) =>{
       querySnapshot.forEach(doc => {
         id = doc.id;
         list.push(this.getUserById(doc.id));
@@ -84,15 +98,6 @@ export class UsersService {
           };
         })
       );
-  }
-
-  userExits(userId: string): boolean{
-    let user = this.db.collection("users")
-    .where("id", "==", userId).get()
-    if (user != null){
-      return true;
-    }
-    return false;
   }
 
  

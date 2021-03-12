@@ -1,3 +1,5 @@
+import firebase  from "firebase";
+import { AuthService } from 'src/app/services/auth.service';
 import { Car } from './../models/car';
 import { Injectable } from '@angular/core';
 import { AngularFireList } from '@angular/fire/database';
@@ -8,6 +10,7 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from "@angular/fire/auth";
 
 
 @Injectable({
@@ -16,8 +19,12 @@ import { map } from 'rxjs/operators';
 export class CarsService {
 
   carCollection: AngularFirestoreCollection<Car>;
+  db = firebase.firestore();
 
-  constructor(private firestore: AngularFirestore) { 
+  constructor(
+    private firestore: AngularFirestore,
+    private authService: AuthService,
+    ) { 
     this.carCollection = this.firestore.collection<Car>('cars', (ref) =>
       ref.orderBy('brand')
     );
@@ -53,6 +60,25 @@ export class CarsService {
           };
         })
       );
+  }
+
+  getUserCars(userId: string): Array<Car> {
+    const list: Array<Car> = [];
+    const usersRef = this.db.collection('cars')
+    .where("userid", "==", userId).get()
+    .then((querySnapshot) =>{
+      querySnapshot.forEach(doc => {
+        let car = ({
+          brand: doc.get("brand"),
+          model: doc.get("model"),
+          year: doc.get("year"),
+          plate: doc.get("plate"),
+        })
+        console.log(car)
+        list.push(car);
+      })
+    });
+    return list;
   }
 
   /**

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import  firebase from 'firebase';
 import { Observable } from 'rxjs';
-import auth, {firebase} from '@react-native-firebase/auth';
 import { User } from '../models/user';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,10 @@ import { AngularFirestoreCollection } from '@angular/fire/firestore';
 export class AuthService {
   
   userCollection!: AngularFirestoreCollection<User>;
-  constructor(private angularFireAuth: AngularFireAuth ) { }
+  constructor(
+    private angularFireAuth: AngularFireAuth,
+    private afsAuth: AngularFireAuth,
+    ) { }
   /**
    * Log in with Google account
    */
@@ -26,14 +29,15 @@ export class AuthService {
       localStorage.setItem('user', user.uid);
       const actualUser = user;
       primeraVez = response.additionalUserInfo?.isNewUser;
-      console.log(primeraVez)
       if (primeraVez){
-        console.log(entre)
         let userDB: User = {
           name: actualUser.displayName,
           email: actualUser.email,
           phoneNumber: actualUser.phoneNumber,
           id: actualUser.uid,
+          rol: {
+            client: true,
+          }
         }
         firebase.firestore().collection("users").add(userDB)
       }
@@ -45,6 +49,9 @@ export class AuthService {
     }
   }
 
+  isAuth() {
+    return this.afsAuth.authState.pipe(map(auth => auth));
+  }
 
 
   /**
@@ -97,6 +104,9 @@ export class AuthService {
         email: actualUser.email,
         phoneNumber: actualUser.phoneNumber,
         id: actualUser.uid,
+        rol: {
+          client: true,
+        }
       }
       firebase.firestore().collection("users").add(userDB)
       return actualUser;

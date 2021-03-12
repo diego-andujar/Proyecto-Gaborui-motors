@@ -40,12 +40,6 @@ export class AuthFormComponent implements OnInit {
   async googleLogin() {
     const user = await this.authService.loginWithGoogle();
     if (user) {
-      const newUser: User = {
-        id: user.uid,
-        name: user.displayName,
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-      }
       this.router.navigate(['/']);
     }
 

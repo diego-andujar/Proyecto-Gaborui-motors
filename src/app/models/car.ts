@@ -5,4 +5,5 @@ export interface Car {
     model?: string;
     year?: number;
     plate?: string;
+    userid?: string;
 }
