@@ -13,6 +13,5 @@ export interface User {
     state?: string,
     postalCode?: string,
     birthDate?: string,
-    cars?: Car[],
     rol?: Roles,
 }

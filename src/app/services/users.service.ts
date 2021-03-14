@@ -27,7 +27,7 @@ export class UsersService {
     private auth: AuthService,
     private afsAuth: AngularFireAuth,
     ) { 
-      this.isUserClientss(localStorage.getItem("user"))
+      this.getUser(localStorage.getItem("user"))
   }
 
   /**
@@ -49,25 +49,31 @@ export class UsersService {
     return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
   }
 
-  isUserClients(userUid: string){
-    return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
-  }
-
-  isUserClient(doc: any){
+  creatingUserInLocalStorage(doc: any){
     this.user = {
+      id: doc.data().id,
       name: doc.data().name,
       email: doc.data().email,
+      cedula: doc.data().cedula,
+      phoneNumber: doc.data().phoneNumber,
+      address: doc.data().address,
+      city: doc.data().city,
+      state: doc.data().state,
+      postalCode: doc.data().postalCode,
+      birthDate: doc.data().birthDate,
       rol: doc.data().rol,
     }
     localStorage.setItem("CurrentUser", JSON.stringify(this.user))
+    localStorage.setItem("UserFireId", doc.id)
   }
 
 
-  isUserClientss(userId: string) {
+  getUser(userId: string) {
     let user: User;
     this.db.collection("users").where("id", "==", userId).get().then(snapshot => {
       snapshot.docs.forEach(doc => {
-        user = this.isUserClient(doc)
+        localStorage.setItem("UserFireId", doc.id)
+        user = this.creatingUserInLocalStorage(doc)
       })
     })
   }
@@ -85,6 +91,7 @@ export class UsersService {
    * GET car BY ID
    * @param carId
    */
+  /*
   getUserById(userId: string): Observable<User> {
     return this.userCollection
       .doc<User>(userId)
@@ -125,7 +132,7 @@ export class UsersService {
           };
         })
       );
-  }
+  }*/
 
  
 
