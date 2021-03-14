@@ -1,72 +1,111 @@
-    <form [formGroup]="authForm" class="form-container">
+    <form [formGroup]="authForm" class="form-container" (ngSubmit)="validateForm() && onSubmit()">
     <div class="auth-form-wrapper">
         <div class="photo">
-            <img [src]="
-            user.photoURL
-            ? user.photoURL
-            : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'
-            "/>
+            
         </div>
             
         <div class="wrapper">
             <div class="input-container">
                 <label class="auth-label" for="displayName">Nombre Completo</label>
                 <input
+                    required
                     type="text"
-                    id="name"
                     placeholder="Carlos Garcia"
                     formControlName="name"
                     class="auth-input"
-                    *ngIf="!name"
+                    *ngIf="!userFire.name"
                 />
                 <input
                     type="text"
-                    id="name"
-                    value= {{user.displayName}}
+                    value= "hola"
+                    autocomplete="off"
                     formControlName="name"
                     class="auth-input"
                     readonly
-                    *ngIf="name"
+                    *ngIf="userFire.name"
                 />
             </div>
             <div class="input-container">
                 <label class="auth-label" for="email">Correo Electronico</label>
                 <input
+                required
                 type="email"
                 id="email"
                 placeholder="carlos@example.com"
                 formControlName="email"
                 class="auth-input"
+                *ngIf="!userFire.email"
+                />
+                <input
+                readonly
+                type="email"
+                id="email"
+                placeholder="carlos@example.com"
+                formControlName="email"
+                class="auth-input"
+                *ngIf="userFire.email"
                 />
             </div>
             <div class="input-container">
                 <label class="auth-label" for="displayName">Fecha de nacimiento </label>
                 <input
+                    required
                     type="text"
                     id="birthDate"
                     placeholder="Carlos Garcia"
                     formControlName="birthDate"
                     class="auth-input"
+                    *ngIf="!userFire.birthDate"
+                />
+                <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="birthDate"
+                    class="auth-input"
+                    readonly
+                    *ngIf="userFire.birthDate"
                 />
             </div>
             <div class="input-container" >
                 <label class="auth-label" for="displayName">cedula </label>
+                <input
+                    required
+                    type="text"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="cedula"
+                    class="auth-input"
+                    *ngIf="!userFire.cedula"
+                />
                 <input
                     type="text"
                     id="displayName"
                     placeholder="Carlos Garcia"
                     formControlName="cedula"
                     class="auth-input"
+                    *ngIf="userFire.cedula"
+                    readonly
                 />
             </div>
             <div class="input-container" >
                 <label class="auth-label" for="displayName">numero de telefono </label>
                 <input
+                    required
                     type="text"
                     id="displaName"
                     placeholder="Carlos Garcia"
                     formControlName="phone"
                     class="auth-input"
+                    *ngIf="!userFire.phoneNumber"
+                />
+                <input
+                    readonly
+                    type="text"
+                    id="displaName"
+                    placeholder="Carlos Garcia"
+                    formControlName="phone"
+                    class="auth-input"
+                    *ngIf="userFire.phoneNumber"
                 />
             </div>
             <div class="input-container" >
@@ -77,47 +116,107 @@
                     placeholder="Carlos Garcia"
                     formControlName="genero"
                     class="auth-input"
+                    *ngIf="!userFire.genero"
+                    required
+                />
+                <input
+                    type="text"
+                    id="displName"
+                    placeholder="Carlos Garcia"
+                    formControlName="genero"
+                    class="auth-input"
+                    *ngIf="userFire.genero"
+                    readonly
                 />
             </div>
             <div class="input-container">
                 <label class="auth-label" for="password">Direccion</label>
                 <input
-                    type="password"
+                    required
+                    type="text"
                     id="password"
                     placeholder=""
                     formControlName="direccion"
                     class="auth-input"
+                    *ngIf="!userFire.address"
+                />
+                <input
+                    type="text"
+                    id="password"
+                    placeholder=""
+                    formControlName="direccion"
+                    class="auth-input"
+                    *ngIf="userFire.address"
+                    readonly
                 />
             </div>
             <div class="input-container">
                 <label class="auth-label" for="password">ciudad</label>
                 <input
-                    type="password"
+                    required
+                    type="text"
                     id="passwor"
                     placeholder=""
                     formControlName="ciudad"
                     class="auth-input"
+                    *ngIf="!userFire.city"
+                />
+                <input
+                    type="text"
+                    id="passwor"
+                    placeholder=""
+                    formControlName="ciudad"
+                    class="auth-input"
+                    *ngIf="userFire.city"
+                    readonly
                 />
             </div>
             <div class="input-container">
                 <label class="auth-label" for="password">estado</label>
                 <input
-                    type="password"
+                    required
+                    type="text"
                     id="passwo"
                     placeholder=""
                     formControlName="estado"
                     class="auth-input"
+                    *ngIf="!userFire.state"
+                />
+                <input
+                    readonly
+                    type="text"
+                    id="passwo"
+                    placeholder=""
+                    formControlName="estado"
+                    class="auth-input"
+                    *ngIf="userFire.state"
                 />
             </div>
             <div class="input-container">
                 <label class="auth-label" for="password">codigo postal</label>
                 <input
-                    type="password"
+                    required
+                    type="text"
                     id="passw"
                     placeholder=""
                     formControlName="postal"
                     class="auth-input"
+                    *ngIf="!userFire.postalCode"
                 />
+                <input
+                    type="text"
+                    id="passw"
+                    placeholder=""
+                    formControlName="postal"
+                    class="auth-input"
+                    *ngIf="userFire.postalCode"
+                    readonly
+                />
+            </div>
+            <div class="button-wrapper">
+                <div class="button-container">
+                  <button type="submit" class="submit-button">seguir</button>
+                </div>
             </div>
         </div>
     </div>

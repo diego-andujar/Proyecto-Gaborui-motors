@@ -69,6 +69,7 @@ export class AuthService {
       const response = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
       const { user } = response;
       localStorage.setItem('user', user.uid);
+      
       return user;
     } catch (err) {
       console.log(err);

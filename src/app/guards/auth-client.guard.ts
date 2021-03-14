@@ -21,7 +21,7 @@ export class AuthClientGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let user: any = JSON.parse(localStorage.getItem("CurrentUser"))
-    if (user.rol.client === true){
+    if (user.rol.client == true){
       return true;
     } else {
       return this.router.parseUrl("/log-in");

@@ -44,6 +44,10 @@ export class UsersService {
     );
   }
 
+  getFireUserId(): string {
+    return JSON.parse(localStorage.getItem("CurrentUser"))
+  }
+
 
   isUserAdmin(userUid: string){
     return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
