@@ -10,10 +10,10 @@ import { FullscreenOverlayContainer } from '@angular/cdk/overlay';
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
-  { path: "sign-up", component: SignUpPageComponent },
-  { path: "log-in", component: LogInPageComponent },
-  { path: "manager", component: ManagerPageComponent },
-  { path: "perfil/:userID", canActivate: [AuthClientGuard], pathMatch: "full", component: ClientPageComponent}
+  // { path: "sign-up", component: SignUpPageComponent },
+  // { path: "log-in", component: LogInPageComponent },
+  // { path: "manager", component: ManagerPageComponent },
+  // { path: "perfil/:userID", canActivate: [AuthClientGuard], pathMatch: "full", component: ClientPageComponent}
 ];
 
 @NgModule({
