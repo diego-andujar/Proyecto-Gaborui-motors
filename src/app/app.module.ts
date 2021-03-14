@@ -22,6 +22,8 @@ import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.compo
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UsernameBarComponent } from './components/username-bar/username-bar.component';
+// import { AdmingPageComponent } from './pages/adming-page/adming-page.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 //import { ScannerqrComponent } from './components/scannerqr/scannerqr.component';
 
 @NgModule({
@@ -36,6 +38,8 @@ import { UsernameBarComponent } from './components/username-bar/username-bar.com
     GallerygridComponent,
     MecanicoPageComponent,
     UsernameBarComponent,
+    // AdmingPageComponent,
+    AdminPageComponent,
     //ScannerqrComponent
   ],
   imports: [
