@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { ClientPageComponent } from './pages/client-page/client-page.component';
-=======
-// import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.component';
->>>>>>> jhoelprueba
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ManagerPageComponent } from './pages/manager-page/manager-page.component';
 import { NgModule } from '@angular/core';
