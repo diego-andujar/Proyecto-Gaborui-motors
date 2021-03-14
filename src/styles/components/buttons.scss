@@ -1,5 +1,4 @@
 @import "../Lib/variables.scss";
-
 .button-wrapper {
     margin: 2em 2em;
     height: 2em;
@@ -14,21 +13,19 @@
     display: flex;
     justify-content: center;
     color: $third-color;
-
     .button {
         background-color: $primary-color;
-      font-family: $primary-font;
-      font-weight: 500;
-      display: block;
-      width: 80%;
-      outline: none;
-      cursor: pointer;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: white;
-      height: 4em;
+        font-family: $primary-font;
+        font-weight: 500;
+        display: block;
+        width: 80%;
+        outline: none;
+        cursor: pointer;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: white;
+        height: 4em;
     }
-
     .submit-button {
         background-color: $primary-color;
         display: flex;
@@ -44,4 +41,4 @@
         text-transform: uppercase;
         color: white;
     }
-}  
+}
