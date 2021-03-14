@@ -1,3 +1,4 @@
+import { User } from './../models/user';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core';
@@ -9,7 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class AuthClientGuard implements CanActivate {
   
-  private userId: string = "";
 
   constructor(
     private authService: AuthService, 
@@ -20,14 +20,13 @@ export class AuthClientGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.authService.getCurrentUser().subscribe((user) => {
-      this.userId = user.uid;
-    })
-    console.log(this.authService.isAuth())
-    if (this.authService.isAuth()){
+    let user: any = JSON.parse(localStorage.getItem("CurrentUser"))
+    if (user.rol.client === true){
       return true;
+    } else {
+      return this.router.parseUrl("/log-in");
     }
-    return this.router.parseUrl("/log-in");
+    
     
   }
 }

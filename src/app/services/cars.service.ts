@@ -74,7 +74,6 @@ export class CarsService {
           year: doc.get("year"),
           plate: doc.get("plate"),
         })
-        console.log(car)
         list.push(car);
       })
     });

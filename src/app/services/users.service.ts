@@ -19,7 +19,7 @@ export class UsersService {
 
   userCollection: AngularFirestoreCollection<User>;
   db = firebase.firestore();
-  user!: Observable<User>;
+  user!: User;
   bool!: Promise<boolean>;
 
   constructor(
@@ -27,9 +27,7 @@ export class UsersService {
     private auth: AuthService,
     private afsAuth: AngularFireAuth,
     ) { 
-    this.userCollection = this.firestore.collection<User>('users', (ref) =>
-      ref.orderBy('name')
-    );
+      this.isUserClientss(localStorage.getItem("user"))
   }
 
   /**
@@ -46,43 +44,31 @@ export class UsersService {
     );
   }
 
-  getCurrentUser(): string{
-    let userId: string = this.auth.getCurrentUserId();
-    return userId;
-  }
 
   isUserAdmin(userUid: string){
     return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
   }
 
-  async isUserClient(): Promise<any> {
-    let users: User;
-    await this.delay(3000);
-    await this.db.collection('users')
-    .where("id", "==", this.getCurrentUser()).get()
-    .then((querySnapshot) =>{
-      querySnapshot.forEach(doc => {
-        let user = ({
-          name: doc.get("name"),
-          rol: doc.get("rol"),
-          emil: doc.get("email"),
-        })
-        this.bool = user.rol.client;
-        return this.bool;
+  isUserClients(userUid: string){
+    return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
+  }
+
+  isUserClient(doc: any){
+    this.user = {
+      name: doc.data().name,
+      email: doc.data().email,
+      rol: doc.data().rol,
+    }
+    localStorage.setItem("CurrentUser", JSON.stringify(this.user))
+  }
+
+
+  isUserClientss(userId: string) {
+    let user: User;
+    this.db.collection("users").where("id", "==", userId).get().then(snapshot => {
+      snapshot.docs.forEach(doc => {
+        user = this.isUserClient(doc)
       })
-    })
-  }
-
-  isUserClients(): any {
-    this.isUserClient()
-    console.log("primera vez " + this.bool)  
-    return this.bool;
-  }
-
-  isUserClientss(): any {
-    this.db.collection('users')
-    .where("id", "==", this.getCurrentUser()).get({
-      
     })
   }
 
@@ -121,7 +107,7 @@ export class UsersService {
     .then((querySnapshot) =>{
       querySnapshot.forEach(doc => {
         id = doc.id;
-        list.push(this.getUserById(doc.id));
+        localStorage.setItem("num", doc.id);
       })
     });
     return list[0];

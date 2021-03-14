@@ -1,15 +1,13 @@
     <form [formGroup]="authForm" class="form-container">
     <div class="auth-form-wrapper">
         <div class="photo">
-            <div>
-                <img [src]="
-                user.photoURL
-                ? user.photoURL
-                : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'
-                "  />
-            </div>
+            <img [src]="
+            user.photoURL
+            ? user.photoURL
+            : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'
+            "/>
         </div>
-        
+            
         <div class="wrapper">
             <div class="input-container">
                 <label class="auth-label" for="displayName">Nombre Completo</label>
@@ -17,7 +15,7 @@
                     type="text"
                     id="name"
                     placeholder="Carlos Garcia"
-                    formControlName="displayName"
+                    formControlName="name"
                     class="auth-input"
                     *ngIf="!name"
                 />
@@ -25,7 +23,7 @@
                     type="text"
                     id="name"
                     value= {{user.displayName}}
-                    formControlName="displayName"
+                    formControlName="name"
                     class="auth-input"
                     readonly
                     *ngIf="name"
@@ -65,7 +63,7 @@
                 <label class="auth-label" for="displayName">numero de telefono </label>
                 <input
                     type="text"
-                    id="displayName"
+                    id="displaName"
                     placeholder="Carlos Garcia"
                     formControlName="phone"
                     class="auth-input"
@@ -75,7 +73,7 @@
                 <label class="auth-label" for="displayName">genero </label>
                 <input
                     type="text"
-                    id="displayName"
+                    id="displName"
                     placeholder="Carlos Garcia"
                     formControlName="genero"
                     class="auth-input"
@@ -87,7 +85,7 @@
                     type="password"
                     id="password"
                     placeholder=""
-                    formControlName="Direccion"
+                    formControlName="direccion"
                     class="auth-input"
                 />
             </div>
@@ -95,7 +93,7 @@
                 <label class="auth-label" for="password">ciudad</label>
                 <input
                     type="password"
-                    id="password"
+                    id="passwor"
                     placeholder=""
                     formControlName="ciudad"
                     class="auth-input"
@@ -105,7 +103,7 @@
                 <label class="auth-label" for="password">estado</label>
                 <input
                     type="password"
-                    id="password"
+                    id="passwo"
                     placeholder=""
                     formControlName="estado"
                     class="auth-input"
@@ -115,7 +113,7 @@
                 <label class="auth-label" for="password">codigo postal</label>
                 <input
                     type="password"
-                    id="password"
+                    id="passw"
                     placeholder=""
                     formControlName="postal"
                     class="auth-input"
