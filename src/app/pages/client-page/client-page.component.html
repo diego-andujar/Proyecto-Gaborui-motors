@@ -1,5 +1,5 @@
 <p>client-page works!</p>
-<app-usuario></app-usuario>
+<app-client-form></app-client-form>
 <div class="car-list-wrapper">
         <app-car-queue [carList]="carList" [userType]="userType" *ngIf="carList.length > 0 && !newCar"></app-car-queue>
         <app-new-car-form *ngIf="newCar || carList.length == 0"></app-new-car-form>

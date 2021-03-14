@@ -1,11 +1,5 @@
 import { Car } from './car';
-
-export interface Roles {
-    client?: boolean,
-    manager?: boolean,
-    admin?: boolean,
-    mechanic?: boolean,
-}
+import { Roles } from "./roles"
 
 export interface User {
     id?: string,

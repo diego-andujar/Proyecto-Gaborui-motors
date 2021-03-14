@@ -12,6 +12,8 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   
   userCollection!: AngularFirestoreCollection<User>;
+  user!: firebase.User | null;
+  userId!: string;
   constructor(
     private angularFireAuth: AngularFireAuth,
     private afsAuth: AngularFireAuth,
@@ -122,6 +124,11 @@ export class AuthService {
   getCurrentUser(): Observable<firebase.User> {
     const actualUser: any = this.angularFireAuth.user;
     return actualUser;
+  }
+
+  getCurrentUserId(): string{
+    const actualUser: any = firebase.auth().currentUser;
+    return actualUser.uid;
   }
 
   /**

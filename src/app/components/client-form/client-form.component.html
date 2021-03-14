@@ -1,0 +1,126 @@
+    <form [formGroup]="authForm" class="form-container">
+    <div class="auth-form-wrapper">
+        <div class="photo">
+            <div>
+                <img [src]="
+                user.photoURL
+                ? user.photoURL
+                : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'
+                "  />
+            </div>
+        </div>
+        
+        <div class="wrapper">
+            <div class="input-container">
+                <label class="auth-label" for="displayName">Nombre Completo</label>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Carlos Garcia"
+                    formControlName="displayName"
+                    class="auth-input"
+                    *ngIf="!name"
+                />
+                <input
+                    type="text"
+                    id="name"
+                    value= {{user.displayName}}
+                    formControlName="displayName"
+                    class="auth-input"
+                    readonly
+                    *ngIf="name"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="email">Correo Electronico</label>
+                <input
+                type="email"
+                id="email"
+                placeholder="carlos@example.com"
+                formControlName="email"
+                class="auth-input"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="displayName">Fecha de nacimiento </label>
+                <input
+                    type="text"
+                    id="birthDate"
+                    placeholder="Carlos Garcia"
+                    formControlName="birthDate"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">cedula </label>
+                <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="cedula"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">numero de telefono </label>
+                <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="phone"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">genero </label>
+                <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="genero"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">Direccion</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder=""
+                    formControlName="Direccion"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">ciudad</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder=""
+                    formControlName="ciudad"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">estado</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder=""
+                    formControlName="estado"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">codigo postal</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder=""
+                    formControlName="postal"
+                    class="auth-input"
+                />
+            </div>
+        </div>
+    </div>
+    </form>

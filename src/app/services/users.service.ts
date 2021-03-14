@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import firebase from 'firebase';
 import { query } from '@angular/animations';
 import { snapshotChanges } from '@angular/fire/database';
+import { isPromise } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,8 @@ export class UsersService {
 
   userCollection: AngularFirestoreCollection<User>;
   db = firebase.firestore();
+  user!: Observable<User>;
+  bool!: Promise<boolean>;
 
   constructor(
     private firestore: AngularFirestore,
@@ -43,17 +46,55 @@ export class UsersService {
     );
   }
 
-  getCurrentUser(){
-    this.auth.isAuth().subscribe(auth => {
-      if (auth) {
-        this.userUid = auth.uid;
-      }
-    })
+  getCurrentUser(): string{
+    let userId: string = this.auth.getCurrentUserId();
+    return userId;
   }
 
   isUserAdmin(userUid: string){
     return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
   }
+
+  async isUserClient(): Promise<any> {
+    let users: User;
+    await this.delay(3000);
+    await this.db.collection('users')
+    .where("id", "==", this.getCurrentUser()).get()
+    .then((querySnapshot) =>{
+      querySnapshot.forEach(doc => {
+        let user = ({
+          name: doc.get("name"),
+          rol: doc.get("rol"),
+          emil: doc.get("email"),
+        })
+        this.bool = user.rol.client;
+        return this.bool;
+      })
+    })
+  }
+
+  isUserClients(): any {
+    this.isUserClient()
+    console.log("primera vez " + this.bool)  
+    return this.bool;
+  }
+
+  isUserClientss(): any {
+    this.db.collection('users')
+    .where("id", "==", this.getCurrentUser()).get({
+      
+    })
+  }
+
+  isUserManager(userUid: string){
+    return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
+  }
+
+  isUserMechanic(userUid: string){
+    return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
+  }
+
+  
   /**
    * GET car BY ID
    * @param carId
@@ -65,7 +106,7 @@ export class UsersService {
       .pipe(
         map((user) => {
           return {
-            name: user.payload.id,
+            name: user.payload.data(name),
             ...user.payload.data(),
           };
         })
