@@ -2,28 +2,28 @@
 
     <ul class="formulario-contacto">
         <li class="loco2">
-            <form action="https://formspree.io/jhoelanexo@gmail.com" method="POST">
+            <form>
                 <div class="form-group">
-                    <label for="firstName">Nombre y apellido</label>
-                    <input class="firstName" type="text" class="form-control">
+                    <label for="nombre">Nombre y apellido</label>
+                    <input [(ngModel)]="newProducto.nombre" class="firstName" type="text" class="form-control">
 
                 </div>
                 <div class="form-group">
                     <label for="firstName">Username</label>
-                    <input class="form-control">
+                    <input class="form-control" [(ngModel)]="newProducto.username">
 
                 </div>
                 <div class="form-group">
                     <label for="firstName">Rol</label>
-                    <input class="firstName" type="text" class="form-control">
+                    <input class="firstName" type="text" class="form-control" [(ngModel)]="newProducto.rol">
 
                 </div>
                 <div class="form-group">
                     <label for="firstName">Edad</label>
-                    <input class="firstName" type="text" class="form-control">
+                    <input class="firstName" type="text" class="form-control" [(ngModel)]="newProducto.edad">
 
                 </div>
-                <button class="btn btn-primary">Guardar</button>
+                <button class="btn btn-primary" (click)="guardarHijo()">Guardar</button>
                 <button class="btn btn-primary">Nuevo</button>
             </form>
         </li>
