@@ -5,22 +5,22 @@
             <form>
                 <div class="form-group">
                     <label for="nombre">Nombre y apellido</label>
-                    <input [(ngModel)]="newProducto.nombre" class="firstName" type="text" class="form-control">
+                    <input [(ngModel)]="newHijo.nombre" class="firstName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
 
                 </div>
                 <div class="form-group">
                     <label for="firstName">Username</label>
-                    <input class="form-control" [(ngModel)]="newProducto.username">
+                    <input class="form-control" [(ngModel)]="newHijo.username" [ngModelOptions]="{standalone: true}">
 
                 </div>
                 <div class="form-group">
                     <label for="firstName">Rol</label>
-                    <input class="firstName" type="text" class="form-control" [(ngModel)]="newProducto.rol">
+                    <input class="firstName" type="text" class="form-control" [(ngModel)]="newHijo.rol" [ngModelOptions]="{standalone: true}">
 
                 </div>
                 <div class="form-group">
                     <label for="firstName">Edad</label>
-                    <input class="firstName" type="text" class="form-control" [(ngModel)]="newProducto.edad">
+                    <input class="firstName" type="text" class="form-control" [(ngModel)]="newHijo.edad" [ngModelOptions]="{standalone: true}">
 
                 </div>
                 <button class="btn btn-primary" (click)="guardarHijo()">Guardar</button>

@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPageComponent implements OnInit {
   //Esto tiene peos por el ng model, deberia reconocer la variable 
+
   newHijo: Hijo = {
     nombre:"",
     username:"",
@@ -21,9 +22,8 @@ export class AdminPageComponent implements OnInit {
   
   private path ='Hijos/';
   constructor(public firestoreService: FirestoreService ) {
-
+    
    }
-   
   ngOnInit(): void {
   }
 
