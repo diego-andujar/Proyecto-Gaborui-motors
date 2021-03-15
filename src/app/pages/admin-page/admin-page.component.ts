@@ -11,13 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class AdminPageComponent implements OnInit {
   //Esto tiene peos por el ng model, deberia reconocer la variable 
   hijos:Hijo[]=[];
-  // newHijo: Hijo = {
-  //   nombre:"",
-  //   username:"",
-  //   rol:"",
-  //   edad: 18,
-  //   id:this.firestoreService.getId()
-  // };
+  newHijo: Hijo = {
+    nombre:"",
+    username:"",
+    rol:"",
+    edad: 18,
+    id:this.firestoreService.getId()
+  };
   
   enableNewHijo=false;
   

@@ -1,4 +1,79 @@
 @import "../../../styles/Lib/variables.scss";
+.todo {
+    margin-top: 120px;
+    height: 85%;
+    width: 100%;
+}
+
+.bloques {
+    list-style: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-around;
+    margin-left: -70px;
+    // width: 30%;
+    height: 100%;
+    // background-color: $secondary-color;
+    font-family: $primary-font;
+    font-size: 1.5em;
+    .bloque {
+        border: 0px;
+        background-color: #6AB8E3;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+    }
+    .bloquea {
+        width: 20%;
+        border-bottom-right-radius: 200px;
+    }
+    .bloqueb {
+        display: flex;
+        flex-direction: column;
+        //background-color: white;
+        border: 2px solid black
+    }
+}
+
+.folder {
+    display: flex;
+    background-color: $primary-color;
+    width: 100%;
+    height: 5%;
+}
+
+.botonesumg {
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    width: 100%;
+    list-style: none;
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+}
+
+.botonesumghijos {
+    justify-content: space-around;
+}
+
+.valores {
+    list-style: none;
+    color: inherit;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    // border-bottom: black;
+}
+
+.editdelete {
+    margin-right: 4%;
+}
+
+.username-bar {
+    background-color: $primary-color;
+}
+
 .formulario-contacto {
     display: flex;
     list-style: none;
@@ -59,11 +134,11 @@
 .contactdiv {
     margin-top: 6%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     height: 88%;
-    background-color: $secondary-color;
+    background-color: $third-color;
 }
 
 .alert {
