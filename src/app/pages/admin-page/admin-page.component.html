@@ -14,7 +14,7 @@
                     <li class="botonesumghijos"><button>Gerente</button></li>
                 </ul>
             </div>
-            <!-- <div>
+            <div>
                 <ul class="valores" *ngFor="let hijo of hijos">
 
                     <label>{{hijo.nombre}}</label>
@@ -25,20 +25,24 @@
 
                 </ul>
 
-            </div> -->
+            </div>
         </li>
         <li class="bloque bloqueb">
             <div>Registro</div>
 
             <div class="contactdiv">
-                <button (click)="nuevo()">Nuevo</button>
-                <button class="btn btn-primary" (click)="guardarHijo()">Guardar</button>
+                <div class="nuevoguardar">
+                    <button (click)="nuevo()">Nuevo</button>
+                    <button class="btn btn-primary" (click)="guardarHijo()">
+                      Guardar
+
+                        </button>
+                </div>
                 <ul class="formulario-contacto">
                     <li class="loco2">
                         <form>
-
-                            <div *ngIf="enableNewHijo">
-                                <button (click)="enableNewHijo=false">X</button>
+                            <div *ngIf="enableNewHijo" class="formu">
+                                <button (click)="enableNewHijo=false" class="x">X</button>
                                 <div class="form-group">
                                     <label for="nombre">Nombre y apellido</label>
                                     <input [(ngModel)]="newHijo.nombre" class="firstName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
