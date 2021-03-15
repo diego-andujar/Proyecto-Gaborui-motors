@@ -10,21 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPageComponent implements OnInit {
   //Esto tiene peos por el ng model, deberia reconocer la variable 
-
-  newHijo: Hijo = {
-    nombre:"",
-    username:"",
-    rol:"",
-    edad: 0,
-    id:this.firestoreService.getId()
-  };
+  hijos:Hijo[]=[];
+  // newHijo: Hijo = {
+  //   nombre:"",
+  //   username:"",
+  //   rol:"",
+  //   edad: 18,
+  //   id:this.firestoreService.getId()
+  // };
   
+  enableNewHijo=false;
   
   private path ='Hijos/';
   constructor(public firestoreService: FirestoreService ) {
     
    }
   ngOnInit(): void {
+    this.getHijos();
   }
 
   guardarHijo(){
@@ -33,4 +35,23 @@ export class AdminPageComponent implements OnInit {
     console.log(this.newHijo)
   }
   
+  getHijos(){
+    this.firestoreService.getCollection<Hijo>(this.path).subscribe( res => {
+     this.hijos=res;
+    });
+  }
+  deleteHijo(hijo: Hijo){
+    this.firestoreService.deleteDoc(this.path,hijo.id)
+  }
+
+  nuevo(){
+    this.enableNewHijo=true;
+    this.newHijo = {
+      nombre:"",
+      username:"",
+      rol:"",
+      edad: 18,
+      id:this.firestoreService.getId()
+    };
+  }
 }
