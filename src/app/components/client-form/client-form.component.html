@@ -70,7 +70,7 @@
                 <label class="auth-label" for="displayName">cedula </label>
                 <input
                     required
-                    type="text"
+                    type="number"
                     id="displayName"
                     placeholder="Carlos Garcia"
                     formControlName="cedula"
@@ -91,9 +91,9 @@
                 <label class="auth-label" for="displayName">numero de telefono </label>
                 <input
                     required
-                    type="text"
+                    type="number"
                     id="displaName"
-                    placeholder="Carlos Garcia"
+                    placeholder="4140000000"
                     formControlName="phone"
                     class="auth-input"
                     *ngIf="!userFire.phoneNumber"
@@ -108,18 +108,17 @@
                     *ngIf="userFire.phoneNumber"
                 />
             </div>
-            <div class="input-container" >
-                <label class="auth-label" for="displayName">genero </label>
-                <input
-                    type="text"
-                    id="displName"
-                    placeholder="Carlos Garcia"
-                    formControlName="genero"
-                    class="auth-input"
-                    *ngIf="!userFire.genero"
-                    required
-                />
-                <input
+            <div class="input-container" *ngIf="!userFire.genero">
+                    <mat-label class="auth-label">genero:</mat-label>
+                    <mat-select placeholder="Masculino" formControlName="genero" [(ngModel)]="selectedValue" name="car">
+                    <mat-option  *ngFor="let car of generos" [value]="car.value">
+                        {{car.viewValue}}
+                    </mat-option>
+                    </mat-select>
+            </div>
+            <div class="input-container" *ngIf="userFire.genero">
+                    <label class="auth-label" for="displayName">genero </label>
+                    <input
                     type="text"
                     id="displName"
                     placeholder="Carlos Garcia"
@@ -127,7 +126,8 @@
                     class="auth-input"
                     *ngIf="userFire.genero"
                     readonly
-                />
+                    />
+                
             </div>
             <div class="input-container">
                 <label class="auth-label" for="password">Direccion</label>

@@ -4,6 +4,13 @@ form{
     padding: 0px;
 }
 
+mat-select {
+    width: 59%;
+    background-color: white;
+    border: 0.5px solid $primary-color;
+    font-family: $secondary-font;
+}
+
 img {
     width: 90%;
 }

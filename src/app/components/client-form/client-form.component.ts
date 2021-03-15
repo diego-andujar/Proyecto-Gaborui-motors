@@ -18,7 +18,15 @@ export class ClientFormComponent implements OnInit {
   userFire: any;
   user!: firebase.User;
   db = firebase.firestore();
-  userFireId!: string;
+  userFireId!: string ;
+
+  selectedValue!: string;
+  selectedCar!: string;
+  generos: any[] = [
+    {value: 'masculino', viewValue: 'Masculino'},
+    {value: 'femenino', viewValue: 'Femenino'},
+    {value: 'nobinario', viewValue: 'No Binario'},
+  ];
   
   isName!: boolean;
   @Output() sendFormEvent = new EventEmitter();
@@ -64,7 +72,6 @@ export class ClientFormComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log(this.userFireId)
     if (this.authForm.pristine) {
       alert("Please fill in all required fields!");
     } else {
@@ -77,53 +84,43 @@ export class ClientFormComponent implements OnInit {
         estado: this.authForm.get('estado'),
         ciudad: this.authForm.get('ciudad'),
         postal: this.authForm.get('postal'),
-        rol: this.authForm.get('rol'),
       };
-      if (this.userFire.birthDate === undefined || this.userFire.birthDate.length === 0){
+      if ((this.userFire.birthDate === undefined || this.userFire.birthDate.length === 0) && formValues.birthDate?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({birthDate: formValues.birthDate?.value})
-        this.userService.getUser(this.userFire.id);
+        
       }
-      if (this.userFire.cedula === undefined || this.userFire.cedula.length === 0){
+      if ((this.userFire.cedula === undefined || this.userFire.cedula === null) && formValues.cedula?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({cedula: formValues.cedula?.value})
-        this.userService.getUser(this.userFire.id);
       }
-      if (this.userFire.phoneNumber === undefined || this.userFire.phoneNumber.length === 0){
+      if ((this.userFire.phoneNumber === undefined || this.userFire.phoneNumber) === null && formValues.phone?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({phoneNumber: formValues.phone?.value})
-        this.userService.getUser(this.userFire.id);
       }
-      if (this.userFire.genero === undefined || this.userFire.genero.length === 0){
+      if ((this.userFire.genero === undefined || this.userFire.genero === null) && formValues.genero?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({genero: formValues.genero?.value})
-        this.userService.getUser(this.userFire.id);
       }
-      if (this.userFire.address === undefined || this.userFire.address.length === 0){
+      if ((this.userFire.address === undefined || this.userFire.address === null) && formValues.direccion?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({address: formValues.direccion?.value})
-        this.userService.getUser(this.userFire.id);
       }
-      if (this.userFire.state === undefined || this.userFire.state.length === 0){
+      if ((this.userFire.state === undefined || this.userFire.state === null) && formValues.estado?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({state: formValues.estado?.value})
-        this.userService.getUser(this.userFire.id);
       }
-      if (this.userFire.city === undefined || this.userFire.city.length === 0){
+      if ((this.userFire.city === undefined || this.userFire.city === null) && formValues.ciudad?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({city: formValues.ciudad?.value})
-        this.userService.getUser(this.userFire.id);
       }
-      if (this.userFire.postalCode === undefined || this.userFire.postalCode.length === 0){
+      if ((this.userFire.postalCode === undefined || this.userFire.postalCode === null) && formValues.postal?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({postalCode: formValues.postal?.value})
-        this.userService.getUser(this.userFire.id);
       }
-      if (this.userFire.rol === undefined || this.userFire.rol.length === 0){
-        const userRef = this.db.collection("users").doc(this.userFireId);
-        userRef.update({rol: formValues.rol?.value})
-        this.userService.getUser(this.userFire.id);
-      }
+      console.log(this.userFire.genero)
+      this.userService.getUser(this.userFire.id);
+      
     }
   }
 
