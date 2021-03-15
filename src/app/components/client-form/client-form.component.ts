@@ -80,7 +80,7 @@ export class ClientFormComponent implements OnInit {
         cedula: this.authForm.get('cedula'),
         phone: this.authForm.get('phone'),
         genero: this.authForm.get('genero'),
-        direccion: this.authForm.get('Direccion'),
+        direccion: this.authForm.get('direccion'),
         estado: this.authForm.get('estado'),
         ciudad: this.authForm.get('ciudad'),
         postal: this.authForm.get('postal'),
@@ -118,9 +118,8 @@ export class ClientFormComponent implements OnInit {
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({postalCode: formValues.postal?.value})
       }
-      console.log(this.userFire.genero)
+      console.log(formValues.genero?.value +  "   " + this.userFire.genero)
       this.userService.getUser(this.userFire.id);
-      
     }
   }
 

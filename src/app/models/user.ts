@@ -14,4 +14,5 @@ export interface User {
     postalCode?: string,
     birthDate?: string,
     rol?: Roles,
+    genero?: string,
 }

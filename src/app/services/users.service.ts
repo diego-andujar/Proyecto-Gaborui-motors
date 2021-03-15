@@ -66,6 +66,7 @@ export class UsersService {
       postalCode: doc.data().postalCode,
       birthDate: doc.data().birthDate,
       rol: doc.data().rol,
+      genero: doc.data().genero,
     }
     localStorage.setItem("CurrentUser", JSON.stringify(this.user))
     localStorage.setItem("UserFireId", doc.id)
