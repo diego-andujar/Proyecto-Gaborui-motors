@@ -50,7 +50,7 @@
                 <mat-form-field *ngIf="!userFire.birthDate || editarForm" class="example-full-width" appearance="fill">
                     <mat-label class="auth-label">Fecha de nacimiento</mat-label>
                     <input [min]="minDate" 
-                    [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker">
+                    [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker" />
                     <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker  [startAt]="startDate" #datepicker>
                         <mat-datepicker-actions>

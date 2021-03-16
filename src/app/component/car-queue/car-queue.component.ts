@@ -29,6 +29,7 @@ export class CarQueueComponent implements OnInit {
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
+    
     return event;
   }
   

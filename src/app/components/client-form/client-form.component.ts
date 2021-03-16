@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import firebase from "firebase";
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
   styleUrls: ['./client-form.component.scss']
 })
+
 export class ClientFormComponent implements OnInit {
 
   authForm!: FormGroup;
@@ -37,6 +39,7 @@ export class ClientFormComponent implements OnInit {
   @Output() sendFormEvent = new EventEmitter();
 
   constructor(
+    private datePipe : DatePipe,
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
@@ -55,6 +58,12 @@ export class ClientFormComponent implements OnInit {
     this.validateUsers();
   }
 
+  formatDates(date: Date): string{
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`
+  }
 
   validateUsers(){
     if(this.userFire.name == null){
@@ -82,9 +91,8 @@ export class ClientFormComponent implements OnInit {
     if (this.authForm.pristine) {
       alert("Please fill in all required fields!");
     } else {
-      console.log(this.authForm.get('birthDate')?.value)
       const formValues = {
-        birthDate: this.authForm.get('birthDate'),
+        birthDate: this.datePipe.transform(this.authForm.get('birthDate')?.value, "dd-MM-yyyy"),
         cedula: this.authForm.get('cedula'),
         phone: this.authForm.get('phone'),
         genero: this.authForm.get('genero'),
@@ -93,10 +101,9 @@ export class ClientFormComponent implements OnInit {
         ciudad: this.authForm.get('ciudad'),
         postal: this.authForm.get('postal'),
       };
-      if ((this.userFire.birthDate === undefined || this.userFire.birthDate.length === 0) && formValues.birthDate?.value != null){
+      if ((this.userFire.birthDate === undefined || this.userFire.birthDate.length === 0) && formValues.birthDate?.valueOf != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
-        userRef.update({birthDate: formValues.birthDate?.value})
-        
+        userRef.update({birthDate: formValues.birthDate}) 
       }
       if ((this.userFire.cedula === undefined || this.userFire.cedula === null) && formValues.cedula?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
@@ -145,3 +152,15 @@ export class ClientFormComponent implements OnInit {
   }
 
 }
+
+export const MY_FORMATS = {
+  parse: {
+      dateInput: 'LL'
+  },
+  display: {
+      dateInput: 'YYYY-MM-DD',
+      monthYearLabel: 'YYYY',
+      dateA11yLabel: 'LL',
+      monthYearA11yLabel: 'YYYY'
+  }
+};
