@@ -1,7 +1,7 @@
 import { environment } from './../environments/environment.prod';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
@@ -55,6 +55,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
     MatGridListModule,
     QRCodeModule,
     NgQrScannerModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

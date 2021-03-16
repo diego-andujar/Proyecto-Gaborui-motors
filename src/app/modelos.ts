@@ -1,7 +1,18 @@
+// import { Roles } from './models/user';
 export interface Hijo {
-    nombre:string;
-    username:string;
+    address:string;
+    birthDate:string;
+    cedula:number;
+    city:string;
+    email:string;
+    genero:string;
+    name:string;
+    phoneNumber:number;
+    postalCode:string;
     rol:string;
-    edad: number;
+    state:string;
+    // username:string;
+    // // rol:string;
+    // edad: number;
     id:string;
 }

@@ -9,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-page.component.scss']
 })
 export class AdminPageComponent implements OnInit {
-  //Esto tiene peos por el ng model, deberia reconocer la variable 
+  
   hijos:Hijo[]=[];
   newHijo: Hijo = {
-    nombre:"",
-    username:"",
+    address:"",
+    birthDate:"",
+    cedula:0,
+    city:"",
+    email:"",
+    genero:"",
+    name:"",
+    phoneNumber:0,
+    postalCode:"",
     rol:"",
-    edad: 18,
+    state:"",
     id:this.firestoreService.getId()
   };
   
@@ -47,10 +54,17 @@ export class AdminPageComponent implements OnInit {
   nuevo(){
     this.enableNewHijo=true;
     this.newHijo = {
-      nombre:"",
-      username:"",
+      address:"",
+      birthDate:"",
+      cedula:0,
+      city:"",
+      email:"",
+      genero:"",
+      name:"",
+      phoneNumber:0,
+      postalCode:"",
       rol:"",
-      edad: 18,
+      state:"",
       id:this.firestoreService.getId()
     };
   }
