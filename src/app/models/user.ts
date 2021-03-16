@@ -1,24 +1,18 @@
 import { Car } from './car';
-
-export interface Roles {
-    client?: boolean,
-    manager?: boolean,
-    admin?: boolean,
-    mechanic?: boolean,
-}
+import { Roles } from "./roles"
 
 export interface User {
     id?: string,
     name?: string,
     email?: string,
-    cedula?: string,
-    phoneNumber?: string,
+    cedula?: number,
+    phoneNumber?: number,
     photoUrl?: string,
     address?: string,
     city?: string,
     state?: string,
-    postalCode?: string,
+    postalCode?: number,
     birthDate?: string,
-    cars?: Car[],
     rol?: Roles,
+    genero?: string,
 }

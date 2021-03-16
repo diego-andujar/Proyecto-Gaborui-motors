@@ -11,7 +11,7 @@ import { AuthService } from "src/app/services/auth.service";
 export class NavbarComponent implements OnInit {
 
   user!: firebase.User;
-  
+  userFire!: any;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
     })
+    this.userFire = JSON.parse(localStorage.getItem("CurrentUser"))
   }
 
   async logOutUser(){

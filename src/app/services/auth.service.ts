@@ -12,6 +12,8 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   
   userCollection!: AngularFirestoreCollection<User>;
+  user!: firebase.User | null;
+  userId!: string;
   constructor(
     private angularFireAuth: AngularFireAuth,
     private afsAuth: AngularFireAuth,
@@ -67,6 +69,7 @@ export class AuthService {
       const response = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
       const { user } = response;
       localStorage.setItem('user', user.uid);
+      
       return user;
     } catch (err) {
       console.log(err);
@@ -122,6 +125,11 @@ export class AuthService {
   getCurrentUser(): Observable<firebase.User> {
     const actualUser: any = this.angularFireAuth.user;
     return actualUser;
+  }
+
+  getCurrentUserId(): string{
+    const actualUser: any = firebase.auth().currentUser;
+    return actualUser.uid;
   }
 
   /**

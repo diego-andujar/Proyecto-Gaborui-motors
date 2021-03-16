@@ -59,8 +59,12 @@ import {MatCardModule} from '@angular/material/card';
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { UsernameComponent } from './username/username.component';
-import { NewCarFormComponent } from './components/new-car-form/new-car-form.component'; // a plugin
-
+import { NewCarFormComponent } from './components/new-car-form/new-car-form.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { MechanicPageComponent } from './pages/mechanic-page/mechanic-page.component';
+import { ClientFormComponent } from './components/client-form/client-form.component'; // a plugin
+import { DatePipe } from '@angular/common';
+import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -102,6 +106,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UsuarioCalendarioComponent,
     UsernameComponent,
     NewCarFormComponent,
+    AdminPageComponent,
+    MechanicPageComponent,
+    ClientFormComponent,
+    ClientAppointmentFormComponent,
   ],
   imports: [
     MatCardModule,
@@ -135,7 +143,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarModule,
     MatFormFieldModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

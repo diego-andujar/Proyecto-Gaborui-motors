@@ -48,15 +48,15 @@ export class FormularioComponent implements OnInit {
   onSubmit(): void {
     const newUser: User = {
       id: this.user.uid,
-      name: this.clientForm.get('name').value,
-      email: this.clientForm.get('email').value,
-      birthDate: this.clientForm.get('edad').value,
-      cedula: this.clientForm.get('cedula').value,
-      phoneNumber: this.clientForm.get('phoneNumber').value,
-      address: this.clientForm.get('direction').value,
-      city: this.clientForm.get('city').value,
-      state: this.clientForm.get('state').value,
-      postalCode: this.clientForm.get('postalCode').value,
+      name: this.clientForm.get('name'),
+      email: this.clientForm.get('email'),
+      birthDate: this.clientForm.get('edad'),
+      cedula: this.clientForm.get('cedula'),
+      phoneNumber: this.clientForm.get('phoneNumber'),
+      address: this.clientForm.get('direction'),
+      city: this.clientForm.get('city'),
+      state: this.clientForm.get('state'),
+      postalCode: this.clientForm.get('postalCode'),
     };
     this.createNewUser(newUser);
   }

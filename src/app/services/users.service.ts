@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import firebase from 'firebase';
 import { query } from '@angular/animations';
 import { snapshotChanges } from '@angular/fire/database';
+import { isPromise } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -18,15 +19,15 @@ export class UsersService {
 
   userCollection: AngularFirestoreCollection<User>;
   db = firebase.firestore();
+  user!: User;
+  bool!: Promise<boolean>;
 
   constructor(
     private firestore: AngularFirestore,
     private auth: AuthService,
     private afsAuth: AngularFireAuth,
     ) { 
-    this.userCollection = this.firestore.collection<User>('users', (ref) =>
-      ref.orderBy('name')
-    );
+      this.getUser(localStorage.getItem("user"))
   }
 
   /**
@@ -43,21 +44,59 @@ export class UsersService {
     );
   }
 
-  getCurrentUser(){
-    this.auth.isAuth().subscribe(auth => {
-      if (auth) {
-        this.userUid = auth.uid;
-      }
-    })
+  getFireUserId(): string {
+    return JSON.parse(localStorage.getItem("CurrentUser"))
   }
+
 
   isUserAdmin(userUid: string){
     return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
   }
+
+  creatingUserInLocalStorage(doc: any){
+    this.user = {
+      id: doc.data().id,
+      name: doc.data().name,
+      email: doc.data().email,
+      cedula: doc.data().cedula,
+      phoneNumber: doc.data().phoneNumber,
+      address: doc.data().address,
+      city: doc.data().city,
+      state: doc.data().state,
+      postalCode: doc.data().postalCode,
+      birthDate: doc.data().birthDate,
+      rol: doc.data().rol,
+      genero: doc.data().genero,
+    }
+    localStorage.setItem("CurrentUser", JSON.stringify(this.user))
+    localStorage.setItem("UserFireId", doc.id)
+  }
+
+
+  getUser(userId: string) {
+    let user: User;
+    this.db.collection("users").where("id", "==", userId).get().then(snapshot => {
+      snapshot.docs.forEach(doc => {
+        localStorage.setItem("UserFireId", doc.id)
+        user = this.creatingUserInLocalStorage(doc)
+      })
+    })
+  }
+
+  isUserManager(userUid: string){
+    return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
+  }
+
+  isUserMechanic(userUid: string){
+    return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
+  }
+
+  
   /**
    * GET car BY ID
    * @param carId
    */
+  /*
   getUserById(userId: string): Observable<User> {
     return this.userCollection
       .doc<User>(userId)
@@ -65,7 +104,7 @@ export class UsersService {
       .pipe(
         map((user) => {
           return {
-            name: user.payload.id,
+            name: user.payload.data(name),
             ...user.payload.data(),
           };
         })
@@ -80,7 +119,7 @@ export class UsersService {
     .then((querySnapshot) =>{
       querySnapshot.forEach(doc => {
         id = doc.id;
-        list.push(this.getUserById(doc.id));
+        localStorage.setItem("num", doc.id);
       })
     });
     return list[0];
@@ -98,7 +137,7 @@ export class UsersService {
           };
         })
       );
-  }
+  }*/
 
  
 
