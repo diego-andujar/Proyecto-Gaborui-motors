@@ -34,4 +34,8 @@ export class FirestoreService {
     const collection = this.database.collection<tipo>(path);
     return collection.valueChanges();
   }
+
+  getClientUsers(){
+    
+  }
 }

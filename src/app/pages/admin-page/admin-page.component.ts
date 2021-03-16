@@ -1,6 +1,7 @@
 import { Hijo } from './../../modelos';
 import { FirestoreService } from './../../servicios/firestore.service';
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // -------TODO ESTO ES PARA EL ADMIN Y HACER CRUD EN CLIENTE, MECA Y GERENTE JHOEL--------
 @Component({
@@ -9,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-page.component.scss']
 })
 export class AdminPageComponent implements OnInit {
-  
+  lowValue: number = 0;
+  highValue: number = 1;
   hijos:Hijo[]=[];
   newHijo: Hijo = {
     address:"",
@@ -68,4 +70,14 @@ export class AdminPageComponent implements OnInit {
       id:this.firestoreService.getId()
     };
   }
+
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
+  
+
+  pageSize: number = 1;
+  pageNumber: number = 1;
 }

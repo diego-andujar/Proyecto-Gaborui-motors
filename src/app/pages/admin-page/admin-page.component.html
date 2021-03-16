@@ -15,9 +15,10 @@
                 </ul>
             </div>
             <div>
-                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                <mat-paginator [length]="hijos.length" [pageSize]="pageSize" [pageSizeOptions]="[1, 5, 10, 25, 100]" (page)="getPaginatorData($event)">
                 </mat-paginator>
-                <ul class="valores" *ngFor="let hijo of hijos">
+
+                <ul class="valores" *ngFor="let hijo of (hijos | slice:lowValue:highValue)">
 
                     <label>{{hijo.name}}</label>
                     <div class="editdelete">
