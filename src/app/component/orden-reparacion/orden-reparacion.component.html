@@ -1,0 +1,122 @@
+<div class="form-container">
+    <form action="">
+        <div class="title-wrapper">
+            <div>
+                <h2>orden de reparacion</h2>
+            </div>
+        </div>
+        <div class="form-wrapper">
+            <div class="data-wrapper">
+                <div class="input-data-container">
+                    <label class="auth-label" for="displayName">cliente </label>
+                    <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="displayName"
+                    class="auth-input"
+                    />
+                </div>
+                <div class="input-data-container">
+                    <label class="auth-label" for="displayName">mecanico </label>
+                    <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="displayName"
+                    class="auth-input"
+                    />
+                </div>
+                <div class="input-data-container">
+                    <label class="auth-label" for="displayName">gerente </label>
+                    <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="displayName"
+                    class="auth-input"
+                    />
+                </div>
+                <div class="input-data-container">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Fecha de Emision</mat-label>
+                        <input formControlName="date" matInput [matDatepicker]="picker">
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <button mat-raised-button (click)="picker.open()">ABRIR</button>
+                </div>
+                <div class="input-data-container-new">
+                    <div class="textarea-container">
+                        <div class="auth-label-largo">
+                            <label for="displayName">diagnostico </label>
+                        </div>
+                        <textarea
+                        cols="100"
+                        type="text"
+                        id="displayName"
+                        formControlName="displayName"
+                        ></textarea>
+                        <div class="text-costos">
+                            <textarea cols="60" rows="5"
+                            cols="20"
+                            type="text"
+                            id="displayName"
+                            formControlName="displayName"
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div class="textarea-container">
+                        <div class="auth-label-largo">
+                            <label for="displayName">repuestos comprados </label>
+                        </div>
+                        <textarea
+                        cols="100"
+                        type="text"
+                        id="displayName"
+                        formControlName="displayName"
+                        ></textarea>
+                        <div class="text-costos">
+                            <textarea cols="60" rows="5"
+                            cols="20"
+                            type="text"
+                            id="displayName"
+                            formControlName="displayName"
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div class="textarea-container">
+                        <div class="auth-label-largo" >
+                            <label for="displayName">procedimiento aplicado </label>
+                        </div>
+                        <textarea cols="60" rows="5"
+                        cols="20"
+                        type="text"
+                        id="displayName"
+                        formControlName="displayName"
+                        ></textarea>
+                        <div class="text-costos">
+                            <textarea cols="60" rows="5"
+                            cols="20"
+                            type="text"
+                            id="displayName"
+                            formControlName="displayName"
+                            ></textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="input-data-container">
+                        <label class="auth-label" for="displayName">costo total </label>
+                        <input
+                        type="text"
+                        id="displayName"
+                        placeholder="$1230.00"
+                        formControlName="displayName"
+                        class="auth-input"
+                        />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

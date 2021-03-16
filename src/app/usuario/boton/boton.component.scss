@@ -1,0 +1,41 @@
+button{
+    background-color: #6AB8E3;
+    border-radius: 41px;
+    border-color: black;
+    margin-top: 16%;
+    width: 48%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: -38%;
+}
+section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 50%;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }

@@ -26,6 +26,19 @@
         color: white;
         height: 4em;
     }
+    .button {
+        background-color: $primary-color;
+        font-family: $primary-font;
+        font-weight: 500;
+        display: block;
+        width: 80%;
+        outline: none;
+        cursor: pointer;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: white;
+        height: 4em;
+    }
     .submit-button {
         background-color: $primary-color;
         display: flex;
