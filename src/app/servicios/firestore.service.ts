@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
 @Injectable({
@@ -5,28 +6,34 @@ import { AngularFirestore} from '@angular/fire/firestore';
 })
 export class FirestoreService {
 
-  constructor(public database: AngularFirestore) { }
+  constructor(public database: AngularFirestore, private authservice: AuthService) {
+   }
 
-  createDoc(data: any, path: string, id: string){
+  createDoc(data: any, path: string, refId: string, nombre:string, email:string, password:string){
+   this.createLogin(nombre,email,password)
     const collection = this.database.collection(path)
-    return collection.doc(id).set(data)
+    return collection.doc(refId).set(data)
   }
 
-  getDoc(path:string, id:string){
-    const collection = this.database.collection(path)
-    return  collection.doc(id).valueChanges();
+  async createLogin(nombre:string, email:string, password:string){
+    await this.authservice.signUpWithEmailAdmin(nombre,email,password)
   }
 
-  deleteDoc(path:string, id:string){
+  getDoc(path:string, refId:string){
     const collection = this.database.collection(path)
-    return  collection.doc(id).delete();
+    return  collection.doc(refId).valueChanges();
   }
 
-  updateDoc(data:any, path:string, id:string){
+  deleteDoc(path:string, refId:string){
     const collection = this.database.collection(path)
-    return  collection.doc(id).update(data);
+    return  collection.doc(refId).delete();
   }
-  getId(){
+
+  updateDoc(data:any, path:string, refId:string){
+    const collection = this.database.collection(path)
+    return  collection.doc(refId).update(data);
+  }
+  getrefId(){
    return this.database.createId()
   }
 

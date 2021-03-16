@@ -1,7 +1,9 @@
+import { Roles } from '../../models/roles';
 import { Hijo } from './../../modelos';
 import { FirestoreService } from './../../servicios/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { User } from 'src/app/models/user';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // -------TODO ESTO ES PARA EL ADMIN Y HACER CRUD EN CLIENTE, MECA Y GERENTE JHOEL--------
 @Component({
@@ -11,9 +13,12 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class AdminPageComponent implements OnInit {
   lowValue: number = 0;
-  highValue: number = 1;
-  hijos:Hijo[]=[];
-  newHijo: Hijo = {
+  highValue: number = 5;
+  usuarios:User[]=[];
+  // hijos:Hijo[]=[];
+  
+  newUsuario: User = {
+    id:"",
     address:"",
     birthDate:"",
     cedula:0,
@@ -22,40 +27,42 @@ export class AdminPageComponent implements OnInit {
     genero:"",
     name:"",
     phoneNumber:0,
-    postalCode:"",
-    rol:"",
+    postalCode:0,
+    // rol:Roles,
     state:"",
-    id:this.firestoreService.getId()
+    refId:this.firestoreService.getrefId()
   };
   
-  enableNewHijo=false;
+  enablenewUsuario=false;
   
   private path ='users/';
   constructor(public firestoreService: FirestoreService ) {
     
    }
   ngOnInit(): void {
-    this.getHijos();
+    this.getUsuarios();
   }
 
-  guardarHijo(){
+  guardarUsuario(){
     
-    this.firestoreService.createDoc(this.newHijo,this.path,this.newHijo.id);
-    console.log(this.newHijo)
+    this.firestoreService.createDoc(this.newUsuario,this.path,this.newUsuario.refId, this.newUsuario.name,this.newUsuario.email,"JavierNoTeArreches");
+    console.log(this.newUsuario)
   }
   
-  getHijos(){
-    this.firestoreService.getCollection<Hijo>(this.path).subscribe( res => {
-     this.hijos=res;
+  getUsuarios(){
+    this.firestoreService.getCollection<User>(this.path).subscribe( res => {
+     this.usuarios=res;
     });
   }
-  deleteHijo(hijo: Hijo){
-    this.firestoreService.deleteDoc(this.path,hijo.id)
+  deleteUsuario(users: User){
+    console.log(users.refId);
+    this.firestoreService.deleteDoc(this.path,users.refId)
+    
   }
 
   nuevo(){
-    this.enableNewHijo=true;
-    this.newHijo = {
+    this.enablenewUsuario=true;
+    this.newUsuario = {
       address:"",
       birthDate:"",
       cedula:0,
@@ -64,10 +71,10 @@ export class AdminPageComponent implements OnInit {
       genero:"",
       name:"",
       phoneNumber:0,
-      postalCode:"",
-      rol:"",
+      postalCode:0,
+      // rol:Roles,
       state:"",
-      id:this.firestoreService.getId()
+      refId:this.firestoreService.getrefId()
     };
   }
 

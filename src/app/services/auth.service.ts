@@ -119,6 +119,43 @@ export class AuthService {
     }
   }
 
+  // ------------
+  async signUpWithEmailAdmin(
+    displayName: string,
+    email: string,
+    password: string
+  ){
+    try {
+      const response = await this.angularFireAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      // const { user } = response;
+      // // localStorage.setItem('user', user.uid);
+      // // Setting up user name and last name
+      // const actualUser: any = user;
+      // await actualUser.updateProfile({
+      //   displayName,
+      //   photoURL:
+      //     'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
+      // });
+      // // let userDB: User = {
+      // //   name: actualUser.displayName,
+      // //   email: actualUser.email,
+      // //   phoneNumber: actualUser.phoneNumber,
+      // //   id: actualUser.uid,
+      // //   rol: {
+      // //     client: true,
+      // //   }
+      // // }
+      // // firebase.firestore().collection("users").add(userDB)
+      // return actualUser;
+    } catch (err) {
+      localStorage.removeItem('user');
+       console.log("noMeGrites");
+    }
+  }
+
   /**
    * GET CURRENT LOGGED IN USER
    */
