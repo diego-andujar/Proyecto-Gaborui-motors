@@ -28,7 +28,7 @@ export class AdminPageComponent implements OnInit {
   
   enableNewHijo=false;
   
-  private path ='Hijos/';
+  private path ='users/';
   constructor(public firestoreService: FirestoreService ) {
     
    }
