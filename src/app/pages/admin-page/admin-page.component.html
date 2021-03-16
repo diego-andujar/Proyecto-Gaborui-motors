@@ -9,9 +9,9 @@
         <li class=" bloque ">
             <div class="folder">
                 <ul class="botonesumg">
-                    <li class="botonesumghijos"><button>Usuario</button></li>
-                    <li class="botonesumghijos"><button>Mecanico</button></li>
-                    <li class="botonesumghijos"><button>Gerente</button></li>
+                    <li class="botonesumghijos"><button (click)="listaClientes()">Usuario</button></li>
+                    <li class="botonesumghijos"><button (click)="listaMecanicos()">Mecanico</button></li>
+                    <li class="botonesumghijos"><button (click)="listaGerentes()">Gerente</button></li>
                 </ul>
             </div>
             <div>
@@ -58,8 +58,21 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstName">Rol</label>
-                                    <input class="firstName" type="text" class="form-control" [(ngModel)]="newUsuario.rol" [ngModelOptions]="{standalone: true}">
+                                    <!-- <label for="firstName">Rol</label> -->
+                                    <!-- <input class="firstName" type="text" class="form-control" [(ngModel)]="newUsuario.rol" [ngModelOptions]="{standalone: true}"> -->
+                                    <mat-label>Rol</mat-label>
+                                    <mat-select [(ngModel)]="selectedValue" name="rol" placeholder="rol" (selectionChange)="setRol($event.value)">
+                                        <mat-option *ngFor="let rol of roles" [value]="rol.value">
+                                            {{rol.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <!-- <mat-label> Rol </mat-label>
+                                    <mat-select [( ngModel )]="selectedValue" name=" rol " (selectionChange)="setRol($event.value)">
+                                        <mat-option *ngFor="let rol of roles" [ value ]="rol.value">
+                                            {{rol.viewValue}}
+                                        </mat-option>
+                                    </mat-select> -->
+
 
                                 </div>
                                 <div class="form-group">

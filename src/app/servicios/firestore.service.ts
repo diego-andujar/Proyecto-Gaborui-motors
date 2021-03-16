@@ -9,15 +9,15 @@ export class FirestoreService {
   constructor(public database: AngularFirestore, private authservice: AuthService) {
    }
 
-  createDoc(data: any, path: string, refId: string, nombre:string, email:string, password:string){
-   this.createLogin(nombre,email,password)
+  createDoc(data: any, path: string, refId: string){
+  //  this.createLogin(nombre,email,password)
     const collection = this.database.collection(path)
     return collection.doc(refId).set(data)
   }
 
-  async createLogin(nombre:string, email:string, password:string){
-    await this.authservice.signUpWithEmailAdmin(nombre,email,password)
-  }
+  // async createLogin(nombre:string, email:string, password:string){
+  //   await this.authservice.signUpWithEmailAdmin(nombre,email,password)
+  // }
 
   getDoc(path:string, refId:string){
     const collection = this.database.collection(path)
@@ -42,7 +42,4 @@ export class FirestoreService {
     return collection.valueChanges();
   }
 
-  getClientUsers(){
-    
-  }
 }
