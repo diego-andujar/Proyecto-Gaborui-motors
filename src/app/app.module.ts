@@ -57,6 +57,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { MechanicPageComponent } from './pages/mechanic-page/mechanic-page.component';
 import { ClientFormComponent } from './components/client-form/client-form.component'; // a plugin
 import { DatePipe } from '@angular/common';
+import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -96,6 +97,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AdminPageComponent,
     MechanicPageComponent,
     ClientFormComponent,
+    ClientAppointmentFormComponent,
   ],
   imports: [
     MatCardModule,
