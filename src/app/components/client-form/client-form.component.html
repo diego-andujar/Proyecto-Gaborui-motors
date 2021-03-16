@@ -1,9 +1,9 @@
-    <form [formGroup]="authForm" class="form-container" (ngSubmit)="validateForm() && onSubmit()">
+<div class="form-container">
     <div class="auth-form-wrapper">
         <div class="photo">
-            
+            <button id="boton-editar" (click)="editar()">editar datos</button>
         </div>
-            
+        <form [formGroup]="authForm" (ngSubmit)="validateForm() && onSubmit()">   
         <div class="wrapper">
             <div class="input-container">
                 <label class="auth-label" for="displayName">Nombre Completo</label>
@@ -47,23 +47,26 @@
                 />
             </div>
             <div class="input-container">
-                <label class="auth-label" for="displayName">Fecha de nacimiento </label>
-                <input
-                    required
-                    type="text"
-                    id="birthDate"
-                    placeholder="Carlos Garcia"
-                    formControlName="birthDate"
-                    class="auth-input"
-                    *ngIf="!userFire.birthDate"
-                />
+                <mat-form-field *ngIf="!userFire.birthDate || editarForm" class="example-full-width" appearance="fill">
+                    <mat-label class="auth-label">Fecha de nacimiento</mat-label>
+                    <input [min]="minDate" 
+                    [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker  [startAt]="startDate" #datepicker>
+                        <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+                <label *ngIf="userFire.birthDate && !editarForm" class="auth-label" for="displayName">Fecha de Nacimiento</label>
                 <input
                     type="text"
                     autocomplete="off"
                     formControlName="birthDate"
                     class="auth-input"
                     readonly
-                    *ngIf="userFire.birthDate"
+                    *ngIf="userFire.birthDate && !editarForm"
                 />
             </div>
             <div class="input-container" >
@@ -78,7 +81,7 @@
                     *ngIf="!userFire.cedula"
                 />
                 <input
-                    type="text"
+                    type="number"
                     id="displayName"
                     placeholder="Carlos Garcia"
                     formControlName="cedula"
@@ -96,16 +99,16 @@
                     placeholder="4140000000"
                     formControlName="phone"
                     class="auth-input"
-                    *ngIf="!userFire.phoneNumber"
+                    *ngIf="!userFire.phoneNumber || editarForm"
                 />
                 <input
                     readonly
-                    type="text"
+                    type="number"
                     id="displaName"
                     placeholder="Carlos Garcia"
                     formControlName="phone"
                     class="auth-input"
-                    *ngIf="userFire.phoneNumber"
+                    *ngIf="userFire.phoneNumber && !editarForm"
                 />
             </div>
             <div class="input-container" *ngIf="!userFire.genero">
@@ -196,7 +199,7 @@
                 <label class="auth-label" for="password">codigo postal</label>
                 <input
                     required
-                    type="text"
+                    type="number"
                     id="passw"
                     placeholder=""
                     formControlName="postal"
@@ -204,7 +207,7 @@
                     *ngIf="!userFire.postalCode"
                 />
                 <input
-                    type="text"
+                    type="number"
                     id="passw"
                     placeholder=""
                     formControlName="postal"
@@ -219,5 +222,7 @@
                 </div>
             </div>
         </div>
-    </div>
     </form>
+    </div>
+</div>
+    

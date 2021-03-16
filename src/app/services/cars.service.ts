@@ -2,7 +2,6 @@ import firebase  from "firebase";
 import { AuthService } from 'src/app/services/auth.service';
 import { Car } from './../models/car';
 import { Injectable } from '@angular/core';
-import { AngularFireList } from '@angular/fire/database';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -10,7 +9,6 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AngularFireAuth } from "@angular/fire/auth";
 
 
 @Injectable({

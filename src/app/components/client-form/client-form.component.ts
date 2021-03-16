@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import firebase from "firebase";
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-client-form',
@@ -19,6 +20,10 @@ export class ClientFormComponent implements OnInit {
   user!: firebase.User;
   db = firebase.firestore();
   userFireId!: string ;
+  editarForm = false;
+  startDate = new Date(2000, 0, 1)
+  minDate = new Date(1910, 0, 1);
+  maxDate = new Date(2005, 12, 31);
 
   selectedValue!: string;
   selectedCar!: string;
@@ -39,6 +44,7 @@ export class ClientFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.editarForm = false;
     this.userFire = JSON.parse(localStorage.getItem("CurrentUser"))
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
@@ -47,8 +53,8 @@ export class ClientFormComponent implements OnInit {
   
     this.createForm();
     this.validateUsers();
-    
   }
+
 
   validateUsers(){
     if(this.userFire.name == null){
@@ -72,9 +78,11 @@ export class ClientFormComponent implements OnInit {
   }
 
   async onSubmit() {
+    this.editarForm = false;
     if (this.authForm.pristine) {
       alert("Please fill in all required fields!");
     } else {
+      console.log(this.authForm.get('birthDate')?.value)
       const formValues = {
         birthDate: this.authForm.get('birthDate'),
         cedula: this.authForm.get('cedula'),
@@ -94,7 +102,7 @@ export class ClientFormComponent implements OnInit {
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({cedula: formValues.cedula?.value})
       }
-      if ((this.userFire.phoneNumber === undefined || this.userFire.phoneNumber) === null && formValues.phone?.value != null){
+      if ((this.userFire.phoneNumber === undefined || this.userFire.phoneNumber === null) && formValues.phone?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({phoneNumber: formValues.phone?.value})
       }
@@ -118,7 +126,6 @@ export class ClientFormComponent implements OnInit {
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({postalCode: formValues.postal?.value})
       }
-      console.log(formValues.genero?.value +  "   " + this.userFire.genero)
       this.userService.getUser(this.userFire.id);
     }
   }
@@ -130,6 +137,11 @@ export class ClientFormComponent implements OnInit {
     } 
     
     return true;
+  }
+
+  editar(){
+    this.editarForm = !this.editarForm;
+    console.log(this.editarForm)
   }
 
 }
