@@ -12,6 +12,16 @@
 <div class="seccion-pagina">
     <app-client-appointment-form [carList]="carList"></app-client-appointment-form>
 </div>
-
+<div>
+    <mat-paginator [length]="appointmentsList.length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[1]"
+              (page)="getPaginatorData($event)">
+    </mat-paginator>
+    <ng-container *ngFor="let appointment of (appointmentsList | slice: lowValue : highValue)">
+        <app-appointment-view  [appointment]="appointment"></app-appointment-view>
+        <button (click)="deleteApp(appointment)">Eliminar solicitud de cita</button>
+    </ng-container>
+</div>
 
 <app-usuario-calendario></app-usuario-calendario>
