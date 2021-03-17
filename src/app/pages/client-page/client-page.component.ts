@@ -31,8 +31,10 @@ export class ClientPageComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
-      this.carList = this.carService.getUserCars(user.uid);
+      this.carList = this.carService.getUserCars(user.uid)
+      localStorage.setItem("UserCars", JSON.stringify(this.carService.getUserCars(user.uid)));
     })
+    console.log("hola")
   }
 
   async onSubmit() {

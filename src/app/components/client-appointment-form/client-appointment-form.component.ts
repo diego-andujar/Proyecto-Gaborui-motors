@@ -38,7 +38,6 @@ export class ClientAppointmentFormComponent implements OnInit {
     this.createForm();
     this.minDate.setDate(this.minDate.getDate() + 7)
     this.maxDate.setDate(this.maxDate.getDate() + 54)
-    console.log(this.minDate + " max " + this.maxDate);
   }
 
   dateFilter = date => {

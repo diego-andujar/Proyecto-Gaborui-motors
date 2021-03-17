@@ -1,3 +1,4 @@
+import { FirestoreService } from './firestore.service';
 import firebase  from "firebase";
 import { AuthService } from 'src/app/services/auth.service';
 import { Car } from './../models/car';
@@ -16,16 +17,15 @@ import { map } from 'rxjs/operators';
 })
 export class CarsService {
 
-  carCollection: AngularFirestoreCollection<Car>;
+  carCollection!: AngularFirestoreCollection<Car>;
   db = firebase.firestore();
 
   constructor(
+    private fireService: FirestoreService,
     private firestore: AngularFirestore,
     private authService: AuthService,
     ) { 
-    this.carCollection = this.firestore.collection<Car>('cars', (ref) =>
-      ref.orderBy('brand')
-    );
+    this.db.collection('cars').orderBy('brand');
   }
 
   /**
@@ -83,8 +83,10 @@ export class CarsService {
    * CREATE NEW car
    * @param newPost
    */
-  createNewCar(newCar: Car): Promise<DocumentReference> {
-    return this.carCollection.add(newCar);
+  createNewCar(newCar: Car): any {
+    const id = this.fireService.getId();
+    newCar.carId = id;
+    return this.db.collection("cars").doc(id).set(newCar);
   }
 
   /**
@@ -93,7 +95,9 @@ export class CarsService {
    * @param carData
    */
   updateCar(carId: string, postData: Car): Promise<void> {
-    return this.carCollection.doc<Car>(carId).update(postData);
+    return this.carCollection.doc<Car>(carId).update(postData).then(
+      
+    );
   }
 
   /**

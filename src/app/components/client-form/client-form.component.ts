@@ -88,7 +88,7 @@ export class ClientFormComponent implements OnInit {
   async onSubmit() {
     this.editarForm = false;
     if (this.authForm.pristine) {
-      alert("Please fill in all required fields!");
+      alert("Por favor todos los campos son requeridos!");
     } else {
       const formValues = {
         birthDate: this.datePipe.transform(this.authForm.get('birthDate')?.value, "dd-MM-yyyy"),
