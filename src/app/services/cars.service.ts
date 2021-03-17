@@ -71,6 +71,7 @@ export class CarsService {
           model: doc.get("model"),
           year: doc.get("year"),
           plate: doc.get("plate"),
+          carId: doc.get("carId"),
         })
         list.push(car);
       })

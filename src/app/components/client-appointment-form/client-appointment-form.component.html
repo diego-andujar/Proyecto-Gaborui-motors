@@ -7,14 +7,12 @@
       <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
           <div class="wrapper">
                 <div class="inp">
-                    <label class="auth-label" for="displayName">Confirme su vehiculo </label>
-                    <input
-                        type="text"
-                        id="displayName"
-                        placeholder="Carlos Garcia"
-                        formControlName="selectedCar"
-                        class="auth-input"
-                    />
+                    <mat-label class="auth-label">Confirme su vehiculo</mat-label>
+                    <mat-select placeholder="vehiculos" formControlName="selectedCar" [(ngModel)]="selectedValue" name="car">
+                    <mat-option  *ngFor="let car of carList" [value]="car">
+                        {{car.brand}}  {{car.model}} {{car.year}} {{car.plate}}
+                    </mat-option>
+                    </mat-select>
                 </div>
                 <div class="inp">
                     
@@ -43,13 +41,6 @@
           </div>
         </div>
       </form>
-      <div class="button-wrapper">
-        <div class="button-container">
-          <button type="button" class="button" (click)="googleLogin()">
-            Regresar
-          </button>
-        </div>
-      </div>
     </div>
   </div>
   

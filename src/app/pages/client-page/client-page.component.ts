@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { Car } from 'src/app/models/car';
 import firebase from "firebase";
 import { User } from 'src/app/models/user';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ClientAppointmentFormComponent } from 'src/app/components/client-appointment-form/client-appointment-form.component';
 
 @Component({
   selector: 'app-client-page',
@@ -20,6 +22,7 @@ export class ClientPageComponent implements OnInit {
   newCar = false;
 
   constructor(
+    private dialog: MatDialog,
     private authService: AuthService,
     private authUsers: UsersService,
     private carService: CarsService,
@@ -38,6 +41,14 @@ export class ClientPageComponent implements OnInit {
 
   newCarButton(){
     this.newCar = !this.newCar;
+  }
+
+  onCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = "30%";
+    this.dialog.open(ClientAppointmentFormComponent);
   }
 
 }

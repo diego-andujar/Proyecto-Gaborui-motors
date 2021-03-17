@@ -14,4 +14,5 @@ export interface Car {
     gasTankWhenIn?: number;
     mechanicPictures?: Array<string>;
     accesories?: Array<string>;
+    carId?: string;
 }

@@ -8,6 +8,10 @@
     <button class="submit-button" (click)="newCarButton()" *ngIf="!newCar && carList.length > 0">añadir carro</button>
     <button class="submit-button" (click)="newCarButton()" *ngIf="newCar && carList.length > 0">vista vehiculos</button>
 </div>
-<app-client-appointment-form></app-client-appointment-form>
+<button mat-raised-button (click)="onCreate()">Pida una Cita</button>
+<div class="seccion-pagina">
+    <app-client-appointment-form [carList]="carList"></app-client-appointment-form>
+</div>
+
 
 <app-usuario-calendario></app-usuario-calendario>

@@ -58,6 +58,7 @@ import { MechanicPageComponent } from './pages/mechanic-page/mechanic-page.compo
 import { ClientFormComponent } from './components/client-form/client-form.component'; // a plugin
 import { DatePipe } from '@angular/common';
 import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -127,9 +128,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NoopAnimationsModule,
     FullCalendarModule,
     MatFormFieldModule,
+    MatDialogModule,
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ClientAppointmentFormComponent],
 })
 export class AppModule { }
 

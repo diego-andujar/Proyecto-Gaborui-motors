@@ -1,3 +1,5 @@
+import { AppointmentServiceService } from './../../services/appointment-service.service';
+import { Appointment } from './../../models/appointment';
 import { Car } from 'src/app/models/car';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -16,10 +18,11 @@ export class ClientAppointmentFormComponent implements OnInit {
   authForm!: FormGroup;
   @Output() sendFormEvent = new EventEmitter();
   @Input() isRegister: boolean = false;
-  carList!: Array<Car>;
+  @Input() carList: Array<Car> = [];
   minDate = new Date();
   maxDate = new Date(2021, 12, 31);
   today = new Date();
+  car!: Car;
   
 
   constructor(
@@ -28,6 +31,7 @@ export class ClientAppointmentFormComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private userService: UsersService,
+    private appointmentService: AppointmentServiceService,
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +48,7 @@ export class ClientAppointmentFormComponent implements OnInit {
 
   createForm(): void {
     this.authForm = this.fb.group({
-      selectedCar: '',
+      selectedCar: this.car,
       appointmentDate: '',
       diagnostico: '',
     });
@@ -61,9 +65,17 @@ export class ClientAppointmentFormComponent implements OnInit {
   async onSubmit() {
     const formValues = {
       selectedCar: this.authForm.get('selectedCar'),
-      appointmentDate: this.authForm.get('appointmentDate'),
+      appointmentDate: this.datePipe.transform(this.authForm.get('appointmentDate')?.value, "dd-MM-yyyy"),
       diagnostico: this.authForm.get('diagnostico'),
     };
     this.sendFormEvent.emit(formValues);
+    let cita: Appointment = {
+      car: formValues.selectedCar?.value.carId,
+      date: formValues.appointmentDate,
+      userid: localStorage.getItem("user"),
+      estado: "solicitada",
+      diagnosis: formValues.diagnostico?.value,
+    }
+    this.appointmentService.crearCita(cita);
   }
 }
