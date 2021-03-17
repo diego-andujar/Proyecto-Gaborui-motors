@@ -5,7 +5,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import firebase from "firebase";
 import { DatePipe } from '@angular/common';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-client-form',

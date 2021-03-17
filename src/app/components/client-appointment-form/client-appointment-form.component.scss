@@ -1,0 +1,51 @@
+@import "../../../styles/components/text-boxes.scss";
+
+.auth-form {
+    width: 70vw;
+}
+
+div {
+    padding: 0%;
+    margin: 0%;
+}
+
+.auth-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding: 0% 2%;
+    width: 96%;
+
+}
+
+.inp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0% 2%;
+    width: 96%;
+}
+
+#label {
+    width: 20%;
+    height: 30vh;
+}
+
+#text-area {
+    padding-left: 2%;
+    width: 80%;
+    resize: none;
+}

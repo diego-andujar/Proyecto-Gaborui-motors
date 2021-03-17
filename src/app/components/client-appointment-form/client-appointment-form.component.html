@@ -1,9 +1,12 @@
 <div class="auth-form">
     <div class="auth-form-wrapper">
-      <h1 class="h1-center">Pida su cita con Gaborui Motors</h1>
+        <div>
+            <h2 class="h1-center">Pida su cita con Gaborui Motors</h2>
+        </div>
+      
       <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
-          <div>
-                <div class="input-container">
+          <div class="wrapper">
+                <div class="inp">
                     <label class="auth-label" for="displayName">Confirme su vehiculo </label>
                     <input
                         type="text"
@@ -13,21 +16,26 @@
                         class="auth-input"
                     />
                 </div>
-                <div class="input-container">
-                    <label class="auth-label" for="email">Escoja la fecha deseada</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="carlos@example.com"
-                        formControlName="appointmentDate"
-                        class="auth-input"
-                    /> 
+                <div class="inp">
+                    
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label class="auth-label">Fecha deseada para la cita</mat-label>
+                        <input [min]="minDate" 
+                        [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker  [startAt]="startDate" #datepicker>
+                            <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
                 </div>
         
         </div>
         <div class="input-container">
-          <label class="auth-label" for="password">Informacion sobre Posible falla y requerimientos del vehiculo</label>
-          <textarea formControlName="diagnostico" name="" id="" cols="30" rows="10"></textarea>
+          <label class="auth-label" id="label" for="password">Informacion sobre Posible falla y requerimientos del vehiculo</label>
+          <textarea formControlName="diagnostico" name="" id="text-area"></textarea>
         </div>
         <div class="button-wrapper">
           <div class="button-container">
