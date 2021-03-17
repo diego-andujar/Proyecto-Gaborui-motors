@@ -76,5 +76,7 @@ export class ClientAppointmentFormComponent implements OnInit {
       diagnosis: formValues.diagnostico?.value,
     }
     this.appointmentService.crearCita(cita);
+    this.authForm.reset()
+    alert("!Tu cita fue creada con exito!\nPronto te llegara informacion para confirmarla")
   }
 }
