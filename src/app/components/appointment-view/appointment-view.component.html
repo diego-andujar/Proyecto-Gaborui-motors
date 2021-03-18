@@ -1,3 +1,4 @@
+<h2>CITAS</h2>
 <mat-paginator [length]="citas.length"
               [pageSize]="pageSize"
               [pageSizeOptions]="[1]"
@@ -5,18 +6,33 @@
     </mat-paginator>
     <ng-container *ngFor="let appointment of (citas | slice: lowValue : highValue)" >
     <mat-card>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-title>{{userApp.name}}</mat-card-title>
+        <mat-card-subtitle>{{car.brand}} - {{car.model}} - {{car.year}}</mat-card-subtitle>
         <mat-card-content>
             <ul>
-                <li>{{appointment.date}}</li>
-                <li>{{appointment.estado}}</li>
-                <li>{{car.brand}}</li>
-                <li>{{userApp.name}}</li>
+                <li>Fecha Propuesta: {{appointment.date}}</li>
+                <li>Estado de la cita: {{appointment.estado}}</li>
             </ul>
         </mat-card-content>
-        <mat-card-actions *ngIf="appointment.estado == 'por confirmar'">
-            <button mat-flat-button>Aceptar Cita</button> 
-            <button mat-flat-button>Cambiar Fecha</button> 
+        <mat-card-actions *ngIf="appointment.estado == 'solicitada'" >
+            <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(appointment)">Aceptar Cita</button> 
+            <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button> 
+            <button mat-flat-button *ngIf="!cambiarFecha">Rechazar Cita</button> 
+            <form [formGroup]="dayForm" *ngIf="cambiarFecha">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
+                    <input [min]="minDate" 
+                    [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker  #datepicker>
+                        <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+                <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyApp(appointment)">confirmar cambio</button> 
+                <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
+            </form>
         </mat-card-actions>
     </mat-card>

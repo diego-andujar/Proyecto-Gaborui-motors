@@ -58,6 +58,11 @@ export class AppointmentServiceService {
     return collection.valueChanges();
   }
 
+  updateDoc(data:any, id:string){
+    const collection = this.database.collection("citas")
+    return  collection.doc(id).update(data);
+  }
+
   async getClientApp(userId: string): Promise<any[]>{
     const collection = this.db.collection("citas");
     let query = collection.where("userId", "==", userId).orderBy('dateCreated', 'desc');
