@@ -23,6 +23,7 @@ export class AppointmentViewComponent implements OnInit {
   car!: any;
   userApp!: any;
   date!: any;
+  @Input() isManager: boolean = false;
   user!: firebase.User;
   lowValue: number = 0;
   highValue: number = 1;
@@ -38,14 +39,14 @@ export class AppointmentViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(!Array.isArray(this.citasInput) || !this.citasInput.length){
+    if(!this.isManager){
       this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
       console.log("entras " + this.citas)
     } else {
       this.getApps();
       this.getCars(0);
+      this.getUser(0);
     }
-    
   }
 
   getCars(num: number){
