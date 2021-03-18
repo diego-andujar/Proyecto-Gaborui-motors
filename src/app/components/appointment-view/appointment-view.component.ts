@@ -7,6 +7,7 @@ import { Appointment } from 'src/app/models/appointment';
 import { Car } from 'src/app/models/car';
 import { DatePipe } from '@angular/common';
 import firebase from "firebase";
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-appointment-view',
@@ -17,8 +18,10 @@ export class AppointmentViewComponent implements OnInit {
 
   appointment!: Appointment;
   citas!: Array<Appointment>;
+  @Input() citasInput: Array<Appointment> = [];
   cars!: Array<Car>;
   car!: any;
+  userApp!: any;
   date!: any;
   user!: firebase.User;
   lowValue: number = 0;
@@ -35,15 +38,19 @@ export class AppointmentViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getApps();
-    this.getCars(0);
-    console.log("hola")
+    if(!Array.isArray(this.citasInput) || !this.citasInput.length){
+      this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
+      console.log("entras " + this.citas)
+    } else {
+      this.getApps();
+      this.getCars(0);
+    }
+    
   }
 
   getCars(num: number){
     this.carService.getDoc(this.citas[num].car).subscribe((car) => {
       this.car = car;
-      console.log(car + " hola")
     })
   }
 
@@ -56,8 +63,14 @@ export class AppointmentViewComponent implements OnInit {
   getCar(){
     this.carService.getAppointmentsCar(this.appointment.car).subscribe( res => {
       this.car = res;
-      console.log(res + " hola")
     })
+  }
+
+  getUser(num: number){
+    this.userService.getDoc(this.citas[num].userid).subscribe( res => {
+      this.userApp = res;
+    })
+    console.log(this.userApp.name)
   }
 
   getApps(){
@@ -73,6 +86,7 @@ export class AppointmentViewComponent implements OnInit {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
     this.getCars(event.pageIndex);
+    this.getUser(event.pageIndex);
     return event;
   }
 }

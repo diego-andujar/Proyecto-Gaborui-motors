@@ -75,7 +75,7 @@ export class NewCarFormComponent implements OnInit {
       registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
     };
     this.createNewCar(newCar);
-    
+    this.carForm.reset();
     alert("¡Felicitaciones su vehiculo fue agregado exitosamente!\nRecargue la pagina para que lo pueda ver");
   }
 

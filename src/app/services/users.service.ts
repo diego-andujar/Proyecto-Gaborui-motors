@@ -1,3 +1,4 @@
+import { FirestoreService } from './firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { Car } from './../models/car';
@@ -23,12 +24,24 @@ export class UsersService {
     private auth: AuthService,
     private afsAuth: AngularFireAuth,
     public database: AngularFirestore,
+    private fireService: FirestoreService,
     ) { 
       this.getUser(localStorage.getItem("user"))
   }
 
   getDoc(id:string){
     const collection = this.database.collection("users")
+    return  collection.doc(id).valueChanges();
+  }
+
+  createDoc(user: User){
+    const id = this.fireService.getId();
+    user.refId = id;
+    return this.db.collection("citas").doc(id).set(user);
+  }
+
+  getDocId(id:string){
+    const collection = this.database.collection("cars")
     return  collection.doc(id).valueChanges();
   }
 
@@ -58,6 +71,7 @@ export class UsersService {
   creatingUserInLocalStorage(doc: any){
     this.user = {
       id: doc.data().id,
+      refId: doc.data().refId,
       name: doc.data().name,
       email: doc.data().email,
       cedula: doc.data().cedula,

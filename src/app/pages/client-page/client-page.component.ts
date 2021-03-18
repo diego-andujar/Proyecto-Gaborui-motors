@@ -41,7 +41,6 @@ export class ClientPageComponent implements OnInit {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
       this.carList = this.carService.getUserCars(user.uid)
-      this.appointmentsList = this.appointService.getUserAppointments(user.uid);
     })
   }
 

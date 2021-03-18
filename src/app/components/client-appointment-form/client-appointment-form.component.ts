@@ -72,7 +72,7 @@ export class ClientAppointmentFormComponent implements OnInit {
     let cita: Appointment = {
       car: formValues.selectedCar?.value.carId,
       date: formValues.appointmentDate,
-      userid: localStorage.getItem("user"),
+      userid: localStorage.getItem("UserFireId"),
       estado: "solicitada",
       diagnosis: formValues.diagnostico?.value,
       dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy"),

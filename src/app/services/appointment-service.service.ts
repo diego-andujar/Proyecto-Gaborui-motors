@@ -58,6 +58,15 @@ export class AppointmentServiceService {
     return collection.valueChanges();
   }
 
+  async getClientApp(userId: string): Promise<any[]>{
+    const collection = this.db.collection("citas");
+    let query = collection.where("userId", "==", userId).orderBy('dateCreated', 'desc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
   getUserAppointments(userId: string): Array<Appointment>{
     const list: Array<Appointment> = [];
     const usersRef = this.db.collection('citas')
