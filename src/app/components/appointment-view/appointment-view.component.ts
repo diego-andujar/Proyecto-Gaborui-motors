@@ -15,7 +15,7 @@ import firebase from "firebase";
 })
 export class AppointmentViewComponent implements OnInit {
 
-  @Input() appointment!: Appointment;
+  appointment!: Appointment;
   citas!: Array<Appointment>;
   cars!: Array<Car>;
   car: Car | undefined;
@@ -35,13 +35,19 @@ export class AppointmentViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("aqui " + this.appointment)
     this.getApps();
+  }
+
+  getValores(carId: string){
+    this.carService.getAppointmentsCar(carId).subscribe( res => {
+      this.car = res;
+    })
   }
 
   getCar(){
     this.carService.getAppointmentsCar(this.appointment.car).subscribe( res => {
       this.car = res;
+      console.log(res + " hola")
     })
   }
 
@@ -54,7 +60,7 @@ export class AppointmentViewComponent implements OnInit {
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
-    
+    console.log(event.pageIndex + this.citas[event.pageIndex].car)
     return event;
   }
 }

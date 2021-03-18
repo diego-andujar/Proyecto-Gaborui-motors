@@ -25,10 +25,6 @@ export class ManagerPageComponent implements OnInit {
   isLoading = true;
   carToUpdate!: Car;
   citas: Array<Appointment> = [];
-  lowValue: number = 0;
-  highValue: number = 1;
-  pageSize: number = 1;
-  pageNumber: number = 1;
 
   carList: Array<Car> = [];
   showFiller = false;
@@ -44,13 +40,6 @@ export class ManagerPageComponent implements OnInit {
       this.user = user;
     })
     this.getApps();
-  }
-
-  public getPaginatorData(event: PageEvent): PageEvent {
-    this.lowValue = event.pageIndex * event.pageSize;
-    this.highValue = this.lowValue + event.pageSize;
-    
-    return event;
   }
 
   getApps(){
