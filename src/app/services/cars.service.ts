@@ -29,6 +29,11 @@ export class CarsService {
     this.db.collection('cars').orderBy('brand');
   }
 
+  getDoc(id:string){
+    const collection = this.database.collection("cars")
+    return  collection.doc(id).valueChanges();
+  }
+
   getAppointmentsCar(carId: string){
     const collection = this.database.collection<Car>("cars").doc(carId);
     return collection.valueChanges();

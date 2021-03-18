@@ -22,8 +22,14 @@ export class UsersService {
     private firestore: AngularFirestore,
     private auth: AuthService,
     private afsAuth: AngularFireAuth,
+    public database: AngularFirestore,
     ) { 
       this.getUser(localStorage.getItem("user"))
+  }
+
+  getDoc(id:string){
+    const collection = this.database.collection("users")
+    return  collection.doc(id).valueChanges();
   }
 
   /**

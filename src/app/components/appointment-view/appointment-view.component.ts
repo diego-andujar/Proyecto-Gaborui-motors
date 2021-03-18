@@ -18,7 +18,7 @@ export class AppointmentViewComponent implements OnInit {
   appointment!: Appointment;
   citas!: Array<Appointment>;
   cars!: Array<Car>;
-  car: Car | undefined;
+  car!: any;
   date!: any;
   user!: firebase.User;
   lowValue: number = 0;
@@ -36,6 +36,15 @@ export class AppointmentViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getApps();
+    this.getCars(0);
+    console.log("hola")
+  }
+
+  getCars(num: number){
+    this.carService.getDoc(this.citas[num].car).subscribe((car) => {
+      this.car = car;
+      console.log(car + " hola")
+    })
   }
 
   getValores(carId: string){
@@ -54,13 +63,16 @@ export class AppointmentViewComponent implements OnInit {
   getApps(){
     this.firestoreService.getAPP().subscribe( res => {
       this.citas = res;
+      this.carService.getDoc(res[0].car).subscribe((car) => {
+        this.car = car;
+      })
     })
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
-    console.log(event.pageIndex + this.citas[event.pageIndex].car)
+    this.getCars(event.pageIndex);
     return event;
   }
 }
