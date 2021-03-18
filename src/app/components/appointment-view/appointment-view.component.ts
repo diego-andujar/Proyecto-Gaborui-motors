@@ -65,13 +65,13 @@ export class AppointmentViewComponent implements OnInit {
     this.carService.getAppointmentsCar(this.appointment.car).subscribe( res => {
       this.car = res;
     })
+
   }
 
   getUser(num: number){
     this.userService.getDoc(this.citas[num].userid).subscribe( res => {
       this.userApp = res;
     })
-    console.log(this.userApp.name)
   }
 
   getApps(){
@@ -79,6 +79,9 @@ export class AppointmentViewComponent implements OnInit {
       this.citas = res;
       this.carService.getDoc(res[0].car).subscribe((car) => {
         this.car = car;
+      })
+      this.userService.getDoc(res[0].userid).subscribe((user) => {
+        this.userApp = user;
       })
     })
   }
