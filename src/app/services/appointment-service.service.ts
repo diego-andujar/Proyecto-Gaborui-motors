@@ -1,8 +1,9 @@
-import { Appointment } from './../models/appointment';
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import firebase from "firebase";
 import { FirestoreService } from './firestore.service';
+import { Observable } from 'rxjs';
+import { Appointment } from '../models/appointment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AppointmentServiceService {
 
   constructor(
     private fireService: FirestoreService,
+    public database: AngularFirestore,
   ) { }
 
   getCitasDeterminadas(estado: string): Array<Appointment> {
@@ -35,6 +37,27 @@ export class AppointmentServiceService {
     return list;
   }
 
+  /*getCarsWaiting(): Observable<Appointment[]> {
+    const list: Array<Appointment> = [];
+    return this.db.collection('citas')
+    .where("estado", "==", "solicitada").get()
+    .then((querySnapshot) =>{
+      return querySnapshot.forEach(doc => ({
+          car: doc.get("car"),
+          date: doc.get("date"),
+          userid: doc.get("userid"),
+          estado: doc.get("estado"),
+          diagnosis: doc.get("diagnosis"),
+          appId: doc.get("appId"),
+        })
+      })
+  }*/
+
+  getAPP(){
+    const collection = this.database.collection<Appointment>("citas");
+    return collection.valueChanges();
+  }
+
   getUserAppointments(userId: string): Array<Appointment>{
     const list: Array<Appointment> = [];
     const usersRef = this.db.collection('citas')
@@ -49,9 +72,7 @@ export class AppointmentServiceService {
           diagnosis: doc.get("diagnosis"),
           appId: doc.get("appId"),
         })
-        if (cita.estado != "cerrada"){
-          list.push(cita);
-        }
+        list.push(cita);
       })
     });
     return list;

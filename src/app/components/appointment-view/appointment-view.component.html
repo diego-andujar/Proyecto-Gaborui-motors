@@ -1,14 +1,22 @@
-<mat-card>
-    <mat-card-title>cita</mat-card-title>
-    <mat-card-content>
-        <ul>
-            <li>{{cars[0].brand}} - {{cars[0].model}} - {{cars[0].year}} - {{cars[0].plate}}</li>
-            <li>{{appointment.date}}</li>
-            <li>{{appointment.estado}}</li>
-        </ul>
-    </mat-card-content>
-    <mat-card-actions *ngIf="appointment.estado == 'por confirmar'">
-        <button mat-flat-button>Aceptar Cita</button> 
-        <button mat-flat-button>Cambiar Fecha</button> 
-    </mat-card-actions>
-</mat-card>
+<mat-paginator [length]="citas.length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[1]"
+              (page)="getPaginatorData($event)">
+    </mat-paginator>
+    <ng-container *ngFor="let appointment of (citas | slice: lowValue : highValue)">
+    <mat-card>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-content>
+            <ul>
+                <li>{{appointment.date}}</li>
+                <li>{{appointment.estado}}</li>
+                <li>{{appointment.diagnosis}}</li>
+            </ul>
+        </mat-card-content>
+        <mat-card-actions *ngIf="appointment.estado == 'por confirmar'">
+            <button mat-flat-button>Aceptar Cita</button> 
+            <button mat-flat-button>Cambiar Fecha</button> 
+        </mat-card-actions>
+    </mat-card>
+</ng-container>

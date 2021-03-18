@@ -1,6 +1,5 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
-import { userInfo } from 'node:os';
 import { Car } from './../models/car';
 import { User } from './../models/user';
 import { Injectable } from '@angular/core';
@@ -8,9 +7,6 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase';
-import { query } from '@angular/animations';
-import { snapshotChanges } from '@angular/fire/database';
-import { isPromise } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -202,6 +198,15 @@ export class UsersService {
     })
   }
 
+  getUserByUid(userId: string) {
+    this.db.collection("users")
+    .where("id", "==", userId).get()
+    .then(querySnapshot => {
+      console.log("hola " + querySnapshot);
+      return querySnapshot.docs[0];
+    })
+  }
+
   /**
    * UPDATE car BY ID
    * @param carId
@@ -209,12 +214,6 @@ export class UsersService {
    */
   updateUser(userId: string, userData: User): Promise<void> {
     return this.userCollection.doc<User>(userId).update(userData);
-  }
-
-  updateUserCar(userId: string, userCar: Car): Promise<void> {
-    return this.userCollection.doc<User>(userId).update({
-      cars: thisfirestore.FieldValue.arrayUnion(userCar)
-    });
   }
 
   /**

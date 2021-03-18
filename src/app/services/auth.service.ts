@@ -22,6 +22,7 @@ export class AuthService {
    * Log in with Google account
    */
   async loginWithGoogle(): Promise<firebase.User> {
+    
     try {
       let primeraVez: boolean = false;
       const response = await this.angularFireAuth.signInWithPopup(

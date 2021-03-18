@@ -1,3 +1,5 @@
+import { FirestoreService } from './../../services/firestore.service';
+import { AppointmentServiceService } from 'src/app/services/appointment-service.service';
 import { AuthService } from './../../services/auth.service';
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../models/car';
@@ -6,6 +8,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from "firebase";
 import { UsersService } from 'src/app/services/users.service';
+import { Appointment } from 'src/app/models/appointment';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-manager-page',
@@ -17,19 +21,20 @@ export class ManagerPageComponent implements OnInit {
   selectedValue!: string;
   selectedCar!: string;
   user!: firebase.User;
-  carForm!: FormGroup;
+  userType: string = "manager";
   isLoading = true;
   carToUpdate!: Car;
+  citas: Array<Appointment> = [];
+  lowValue: number = 0;
+  highValue: number = 1;
+  pageSize: number = 1;
+  pageNumber: number = 1;
 
   carList: Array<Car> = [];
   showFiller = false;
   constructor(
-    private fb: FormBuilder,
-    private carService: CarsService,
-    private router: Router,
-    private route: ActivatedRoute,
     private authService: AuthService,
-    private authUsers: UsersService,
+    private firestoreService: AppointmentServiceService,
   ) { }
 
 
@@ -38,33 +43,21 @@ export class ManagerPageComponent implements OnInit {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
     })
-    this.carService.getAllCars().subscribe((cars) => {
-      this.carList = cars;
+    this.getApps();
+  }
+
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    
+    return event;
+  }
+
+  getApps(){
+    this.firestoreService.getAPP().subscribe( res => {
+      this.citas = res;
     })
-    this.getUrlParams();
   }
-
-  getUrlParams(): void {
-    this.route.paramMap.subscribe((params) => {
-      const carId = params.get('postId');
-
-      if (carId) {
-        this.carService.getCarById(carId).subscribe((post) => {
-          this.carToUpdate = post;
-          this.carForm.patchValue({
-            brand: this.carToUpdate.brand,
-            model: this.carToUpdate.model,
-            yera: this.carToUpdate.year,
-            plate: this.carToUpdate.plate,
-          });
-          this.isLoading = false;
-        });
-        return;
-      }
-      this.isLoading = false;
-    });
-  }
-
 
 
 }

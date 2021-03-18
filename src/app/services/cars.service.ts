@@ -24,22 +24,35 @@ export class CarsService {
     private fireService: FirestoreService,
     private firestore: AngularFirestore,
     private authService: AuthService,
+    public database: AngularFirestore,
     ) { 
     this.db.collection('cars').orderBy('brand');
+  }
+
+  getAppointmentsCar(carId: string){
+    const collection = this.database.collection<Car>("cars").doc(carId);
+    return collection.valueChanges();
   }
 
   /**
    * GET ALL POSTS
    */
-  getAllCars(): Observable<Car[]> {
-    return this.carCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((car) => ({
-          id: car.payload.doc.id,
-          ...car.payload.doc.data(),
-        }));
+  getAllCars(): Array<Car> {
+    const list: Array<Car> = [];
+    const usersRef = this.db.collection('cars').get()
+    .then((querySnapshot) =>{
+      querySnapshot.forEach(doc => {
+        let car = ({
+          brand: doc.get("brand"),
+          model: doc.get("model"),
+          year: doc.get("year"),
+          plate: doc.get("plate"),
+          carId: doc.get("carId"),
+        })
+        list.push(car);
       })
-    );
+    });
+    return list;
   }
 
   /**

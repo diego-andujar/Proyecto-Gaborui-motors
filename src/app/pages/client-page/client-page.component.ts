@@ -42,7 +42,6 @@ export class ClientPageComponent implements OnInit {
       this.user = user;
       this.carList = this.carService.getUserCars(user.uid)
       this.appointmentsList = this.appointService.getUserAppointments(user.uid);
-      localStorage.setItem("UserCars", JSON.stringify(this.carService.getUserCars(user.uid)));
     })
   }
 
