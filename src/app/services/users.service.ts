@@ -30,9 +30,13 @@ export class UsersService {
   }
 
   getDoc(id:string){
-    console.log(id)
     const collection = this.database.collection("users")
     return  collection.doc(id).valueChanges();
+  }
+
+  getDBUser(id:string): Promise<any>{
+    const collection = this.db.collection("users").where("id", "==", id)
+    return collection.get()
   }
 
   createDoc(user: User){

@@ -1,7 +1,8 @@
 <div class="form-container">
     <div class="auth-form-wrapper">
         <div class="photo">
-            <button id="boton-editar" (click)="editar()">editar datos</button>
+            <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
+            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
         </div>
         <form [formGroup]="authForm" (ngSubmit)="validateForm() && onSubmit()">   
         <div class="wrapper">
@@ -12,7 +13,7 @@
                     type="text"
                     placeholder="Carlos Garcia"
                     formControlName="name"
-                    class="auth-input"
+                    class="auth-input active"
                     *ngIf="!userFire.name"
                 />
                 <input
@@ -33,7 +34,7 @@
                 id="email"
                 placeholder="carlos@example.com"
                 formControlName="email"
-                class="auth-input"
+                class="auth-input active"
                 *ngIf="!userFire.email"
                 />
                 <input
@@ -47,7 +48,7 @@
                 />
             </div>
             <div class="input-container">
-                <mat-form-field *ngIf="!userFire.birthDate || editarForm" class="example-full-width" appearance="fill">
+                <mat-form-field *ngIf="!userFire.birthDate" class="example-full-width" appearance="fill">
                     <mat-label class="auth-label">Fecha de nacimiento</mat-label>
                     <input [min]="minDate" 
                     [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker" />
@@ -59,14 +60,14 @@
                         </mat-datepicker-actions>
                     </mat-datepicker>
                 </mat-form-field>
-                <label *ngIf="userFire.birthDate && !editarForm" class="auth-label" for="displayName">Fecha de Nacimiento</label>
+                <label *ngIf="userFire.birthDate" class="auth-label" for="displayName">Fecha de Nacimiento</label>
                 <input
                     type="text"
                     autocomplete="off"
                     formControlName="birthDate"
                     class="auth-input"
                     readonly
-                    *ngIf="userFire.birthDate && !editarForm"
+                    *ngIf="userFire.birthDate"
                 />
             </div>
             <div class="input-container" >
@@ -77,7 +78,7 @@
                     id="displayName"
                     placeholder="Carlos Garcia"
                     formControlName="cedula"
-                    class="auth-input"
+                    class="auth-input active"
                     *ngIf="!userFire.cedula"
                 />
                 <input
@@ -98,7 +99,7 @@
                     id="displaName"
                     placeholder="4140000000"
                     formControlName="phone"
-                    class="auth-input"
+                    class="auth-input active"
                     *ngIf="!userFire.phoneNumber || editarForm"
                 />
                 <input
@@ -140,7 +141,7 @@
                     id="passwor"
                     placeholder=""
                     formControlName="direccion"
-                    class="auth-input"
+                    class="auth-input active"
                     *ngIf="!userFire.address"
                 />
                 <input
@@ -161,7 +162,7 @@
                     id="passwor"
                     placeholder=""
                     formControlName="ciudad"
-                    class="auth-input"
+                    class="auth-input active"
                     *ngIf="!userFire.city"
                 />
                 <input
@@ -182,7 +183,7 @@
                     id="passwo"
                     placeholder=""
                     formControlName="estado"
-                    class="auth-input"
+                    class="auth-input active"
                     *ngIf="!userFire.state"
                 />
                 <input
@@ -203,7 +204,7 @@
                     id="passw"
                     placeholder=""
                     formControlName="postal"
-                    class="auth-input"
+                    class="auth-input active"
                     *ngIf="!userFire.postalCode"
                 />
                 <input
@@ -218,7 +219,7 @@
             </div>
             <div class="button-wrapper">
                 <div class="button-container">
-                  <button type="submit" class="submit-button">seguir</button>
+                  <button type="submit" class="submit-button">Guardar Cambios</button>
                 </div>
             </div>
         </div>

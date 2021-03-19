@@ -9,4 +9,7 @@ export interface Appointment {
     qrCode?: string;
     diagnosis?: string;
     appId?: string;
+    carInfo?: string;
+    userName?: string;
+    carPhoto?: string;
 }

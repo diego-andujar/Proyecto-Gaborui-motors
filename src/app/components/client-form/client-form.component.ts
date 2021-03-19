@@ -91,7 +91,7 @@ export class ClientFormComponent implements OnInit {
       alert("Por favor todos los campos son requeridos!");
     } else {
       const formValues = {
-        birthDate: this.datePipe.transform(this.authForm.get('birthDate')?.value, "dd-MM-yyyy"),
+        birthDate: this.authForm.get("birthDate"),
         cedula: this.authForm.get('cedula'),
         phone: this.authForm.get('phone'),
         genero: this.authForm.get('genero'),
@@ -108,9 +108,10 @@ export class ClientFormComponent implements OnInit {
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({cedula: formValues.cedula?.value})
       }
-      if ((this.userFire.phoneNumber === undefined || this.userFire.phoneNumber === null) && formValues.phone?.value != null){
+      if (formValues.phone?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({phoneNumber: formValues.phone?.value})
+        console.log("hola")
       }
       if ((this.userFire.genero === undefined || this.userFire.genero === null) && formValues.genero?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
@@ -133,6 +134,9 @@ export class ClientFormComponent implements OnInit {
         userRef.update({postalCode: formValues.postal?.value})
       }
       this.userService.getUser(this.userFire.id);
+      this.userService.getDoc(this.userFire.refId).subscribe((user) => {
+        this.userFire = user;
+      })
     }
   }
 
@@ -147,7 +151,6 @@ export class ClientFormComponent implements OnInit {
 
   editar(){
     this.editarForm = !this.editarForm;
-    console.log(this.editarForm)
   }
 
 }
