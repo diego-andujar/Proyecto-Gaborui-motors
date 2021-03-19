@@ -59,6 +59,7 @@ import { ClientAppointmentFormComponent } from './components/client-appointment-
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppointmentViewComponent } from './components/appointment-view/appointment-view.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -130,6 +131,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatFormFieldModule,
     MatDialogModule,
     MatCardModule,
+    MatTableModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

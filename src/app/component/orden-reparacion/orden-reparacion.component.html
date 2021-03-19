@@ -1,10 +1,10 @@
 <div class="form-container">
-    <form>
-        <div class="title-wrapper">
-            <div>
-                <h2>orden de reparacion</h2>
-            </div>
+    <div class="title-wrapper">
+        <div>
+            <h2>orden de reparacion</h2>
         </div>
+    </div>
+    <form [formGroup]="orderForm">
         <div class="form-wrapper">
             <div class="data-wrapper">
                 <div class="input-data-container">
@@ -13,7 +13,7 @@
                     type="text"
                     id="displayName"
                     placeholder="Carlos Garcia"
-                    formControlName="displayName"
+                    formControlName="ownerName"
                     class="auth-input"
                     />
                 </div>
@@ -23,7 +23,7 @@
                     type="text"
                     id="displayName"
                     placeholder="Carlos Garcia"
-                    formControlName="displayName"
+                    formControlName="mechanicName"
                     class="auth-input"
                     />
                 </div>
@@ -33,7 +33,7 @@
                     type="text"
                     id="displayName"
                     placeholder="Carlos Garcia"
-                    formControlName="displayName"
+                    formControlName="managerName"
                     class="auth-input"
                     />
                 </div>
@@ -51,17 +51,14 @@
                             <label for="displayName">diagnostico </label>
                         </div>
                         <textarea
-                        cols="100"
                         type="text"
                         id="displayName"
-                        formControlName="displayName"
+                        formControlName="diagnosis"
                         ></textarea>
                         <div class="text-costos">
-                            <textarea cols="60" rows="5"
-                            cols="20"
+                            <textarea 
                             type="text"
-                            id="displayName"
-                            formControlName="displayName"
+                            id="diagnosis"
                             ></textarea>
                         </div>
                     </div>
@@ -70,17 +67,14 @@
                             <label for="displayName">repuestos comprados </label>
                         </div>
                         <textarea
-                        cols="100"
                         type="text"
                         id="displayName"
-                        formControlName="displayName"
+                        formControlName="partsNeeded"
                         ></textarea>
                         <div class="text-costos">
-                            <textarea cols="60" rows="5"
-                            cols="20"
+                            <textarea 
                             type="text"
                             id="displayName"
-                            formControlName="displayName"
                             ></textarea>
                         </div>
                     </div>
@@ -88,18 +82,15 @@
                         <div class="auth-label-largo" >
                             <label for="displayName">procedimiento aplicado </label>
                         </div>
-                        <textarea cols="60" rows="5"
-                        cols="20"
+                        <textarea 
                         type="text"
                         id="displayName"
-                        formControlName="displayName"
+                        formControlName="processes"
                         ></textarea>
                         <div class="text-costos">
-                            <textarea cols="60" rows="5"
-                            cols="20"
+                            <textarea 
                             type="text"
                             id="displayName"
-                            formControlName="displayName"
                             ></textarea>
                         </div>
                         
@@ -110,7 +101,7 @@
                         type="text"
                         id="displayName"
                         placeholder="$1230.00"
-                        formControlName="displayName"
+                        formControlName="finalCost"
                         class="auth-input"
                         />
                     </div>

@@ -1,5 +1,4 @@
 import { UsersService } from 'src/app/services/users.service';
-import { User } from './../../models/user';
 import { CarsService } from 'src/app/services/cars.service';
 import { AppointmentServiceService } from './../../services/appointment-service.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -9,12 +8,21 @@ import { DatePipe } from '@angular/common';
 import firebase from "firebase";
 import { PageEvent } from '@angular/material/paginator';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-appointment-view',
   templateUrl: './appointment-view.component.html',
-  styleUrls: ['./appointment-view.component.scss']
+  styleUrls: ['./appointment-view.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
+
 export class AppointmentViewComponent implements OnInit {
 
   citas!: Array<Appointment>;
@@ -34,6 +42,9 @@ export class AppointmentViewComponent implements OnInit {
   maxDate = new Date(2021, 12, 31);
   today = new Date();
   dayForm!: FormGroup;
+  dataSource: Appointment[] = [];
+  columnsToDisplay = ['car', 'userid', 'dateCreated', 'date'];
+  expandedElement!: Appointment;
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -91,9 +102,20 @@ export class AppointmentViewComponent implements OnInit {
     })
   }
 
+  getCarAndUser(app: Appointment){
+    console.log("hola")
+    this.carService.getDoc(app.car).subscribe((car) => {
+      this.car = car;
+    })
+    this.userService.getDoc(app.userid).subscribe( res => {
+      this.userApp = res;
+    })
+  }
+
   getApps(){
     this.firestoreService.getAPP().subscribe( res => {
       this.citas = res;
+      this.dataSource = res;
       this.carService.getDoc(res[0].car).subscribe((car) => {
         this.car = car;
       })
@@ -117,12 +139,29 @@ export class AppointmentViewComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
   }
 
+  aceptAppClient(cita: Appointment){
+    const estado = {estado: "confirmada"};
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+  }
+
   modifyApp(cita: Appointment){
     const formValues = {
       appDate:  this.datePipe.transform(this.dayForm.get('appointmentDate')?.value, "dd-MM-yyyy"),
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "por confirmar"};
+    this.appointService.updateDoc(date, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.dayForm.reset();
+    this.selecDate();
+  }
+
+  modifyAppClient(cita: Appointment){
+    const formValues = {
+      appDate:  this.datePipe.transform(this.dayForm.get('appointmentDate')?.value, "dd-MM-yyyy"),
+    };
+    const date = {date: formValues.appDate};
+    const estado = {estado: "solicitada"};
     this.appointService.updateDoc(date, this.citas[this.actualPage].appId);
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
     this.dayForm.reset();

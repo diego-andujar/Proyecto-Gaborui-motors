@@ -9,7 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 })
 export class OrdenReparacionComponent implements OnInit {
 
-  authForm!: FormGroup;
+  orderForm!: FormGroup;
   constructor(private fb: FormBuilder,) { }
 
   ngOnInit(): void {
@@ -17,10 +17,15 @@ export class OrdenReparacionComponent implements OnInit {
   }
 
   createForm(): void {
-    this.authForm = this.fb.group({
-      displayName: '' ,
-      email: '',
-      password: '',
+    this.orderForm = this.fb.group({
+      ownerName: '' ,
+      mechanicName: '',
+      managerName: '',
+      diagnosis: '',
+      partsNeeded: '',
+      prices: '',
+      processes: '',
+      finalCost: '',
       date: "",
     });
   }

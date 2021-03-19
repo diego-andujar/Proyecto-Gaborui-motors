@@ -3,7 +3,7 @@
               [pageSize]="pageSize"
               [pageSizeOptions]="[1]"
               (page)="getPaginatorData($event)">
-    </mat-paginator>
+</mat-paginator>
     <ng-container *ngFor="let appointment of (citas | slice: lowValue : highValue)" >
     <mat-card>
         <mat-card-title>{{userApp.name}}</mat-card-title>
@@ -14,25 +14,91 @@
                 <li>Estado de la cita: {{appointment.estado}}</li>
             </ul>
         </mat-card-content>
-        <mat-card-actions *ngIf="appointment.estado == 'solicitada'" >
-            <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(appointment)">Aceptar Cita</button> 
-            <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button> 
-            <button mat-flat-button *ngIf="!cambiarFecha">Rechazar Cita</button> 
-            <form [formGroup]="dayForm" *ngIf="cambiarFecha">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
-                    <input [min]="minDate" 
-                    [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
-                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker  #datepicker>
-                        <mat-datepicker-actions>
-                        <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
-                </mat-form-field>
-                <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyApp(appointment)">confirmar cambio</button> 
-                <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
-            </form>
-        </mat-card-actions>
+        <div *ngIf="isManager">
+            <mat-card-actions *ngIf="appointment.estado == 'solicitada'" >
+                <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(appointment)">Aceptar Cita</button> 
+                <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button> 
+                <button mat-flat-button *ngIf="!cambiarFecha">Rechazar Cita</button> 
+                <form [formGroup]="dayForm" *ngIf="cambiarFecha">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
+                        <input [min]="minDate" 
+                        [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker  #datepicker>
+                            <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                    <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyApp(appointment)">confirmar cambio</button> 
+                    <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
+                </form>
+            </mat-card-actions>
+        </div>
+        <div *ngIf="!isManager">
+            <mat-card-actions *ngIf="appointment.estado == 'solicitada'" >
+                <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptAppClient(appointment)">Confirmar cita</button> 
+                <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Solicitar cambiar Fecha</button> 
+                <button mat-flat-button *ngIf="!cambiarFecha">Rechazar Cita</button> 
+                <form [formGroup]="dayForm" *ngIf="cambiarFecha">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
+                        <input [min]="minDate" 
+                        [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker  #datepicker>
+                            <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                    <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyAppClient(appointment)">confirmar cambio</button> 
+                    <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
+                </form>
+            </mat-card-actions>
+        </div>
+        
     </mat-card>
+</ng-container>
+<!--<div class="table-wrapper">
+    <table mat-table
+        [dataSource]="dataSource" multiTemplateDataRows
+        class="mat-elevation-z8">
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        
+    </ng-container>
+
+     Expanded Content Column - The detail row is made up of this one column that spans across all columns
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+            <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div class="example-element-diagram">
+                    <div class="example-element-position"> {{userApp.name}} </div>
+                    <div class="example-element-symbol"> {{car.brand}} - {{car.model}} - {{car.year}}</div>
+                    <div class="example-element-name"> {{element.estado}} </div>
+                    <div class="example-element-weight">  </div>
+                </div>
+                <div class="example-element-description">
+                    {{element.diagnosis}}
+                    <span class="example-element-description-attribution"> -- Wikipedia </span>
+                </div>
+                
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element ; getCarAndUser(element)">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</div>-->
