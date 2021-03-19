@@ -60,6 +60,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppointmentViewComponent } from './components/appointment-view/appointment-view.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import { DinamicCarViewComponent } from './components/dinamic-car-view/dinamic-car-view.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -100,6 +101,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ClientFormComponent,
     ClientAppointmentFormComponent,
     AppointmentViewComponent,
+    DinamicCarViewComponent,
   ],
   imports: [
     MatCardModule,

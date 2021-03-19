@@ -8,8 +8,6 @@ import {
   AngularFirestoreCollection,
   DocumentReference,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -39,6 +37,17 @@ export class CarsService {
     return collection.valueChanges();
   }
 
+  getUsCars(id:string): Array<Car>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        lista.push(doc.data())
+      })
+    })
+    return lista;
+  }
+
   /**
    * GET ALL POSTS
    */
@@ -66,18 +75,7 @@ export class CarsService {
    */
   getCarById(carId: string): Array<Car> {
     const list: Array<Car> = [];
-    const carRef = this.db.collection("cars").doc(carId); 
-    carRef.get().then().then((querySnapshot) =>{
-        let car = ({
-          brand: querySnapshot.get("brand"),
-          model: querySnapshot.get("model"),
-          year: querySnapshot.get("year"),
-          plate: querySnapshot.get("plate"),
-          carId: querySnapshot.get("carId"),
-        })
-        list.push(car);
-      })
-    return list;
+    return this.db.collection("cars").doc(carId).valuechanges(); 
   }
 
   getUserCars(userId: string): Array<Car> {
@@ -107,17 +105,6 @@ export class CarsService {
     const id = this.fireService.getId();
     newCar.carId = id;
     return this.db.collection("cars").doc(id).set(newCar);
-  }
-
-  /**
-   * UPDATE car BY ID
-   * @param carId
-   * @param carData
-   */
-  updateCar(carId: string, postData: Car): Promise<void> {
-    return this.carCollection.doc<Car>(carId).update(postData).then(
-      
-    );
   }
 
   /**

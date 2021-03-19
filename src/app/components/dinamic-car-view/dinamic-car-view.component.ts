@@ -1,22 +1,27 @@
-import { UsersService } from 'src/app/services/users.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Car } from 'src/app/models/car';
-import { AuthService } from 'src/app/services/auth.service';
 import { CarsService } from 'src/app/services/cars.service';
 import firebase from "firebase";
+import { AuthService } from 'src/app/services/auth.service';
+import { FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-new-car-form',
-  templateUrl: './new-car-form.component.html',
-  styleUrls: ['./new-car-form.component.scss']
+  selector: 'app-dinamic-car-view',
+  templateUrl: './dinamic-car-view.component.html',
+  styleUrls: ['./dinamic-car-view.component.scss']
 })
-export class NewCarFormComponent implements OnInit {
+export class DinamicCarViewComponent implements OnInit {
 
+  verSolicitud = false;
+  crearCarro: boolean = true;
+  userType: string = "client";
+  lowValue: number = 0;
+  highValue: number = 1;
+  user!: firebase.User;
+  carList: Array<Car> = [];
   selectedValue!: string;
-  selectedCar!: string;
   carBrands: any[] = [
     {value: 'volvo', viewValue: 'Volvo'},
     {value: 'saab', viewValue: 'Saab'},
@@ -29,39 +34,31 @@ export class NewCarFormComponent implements OnInit {
     {value: 'Hyundai', viewValue: 'Hyundai'},
     {value: 'tesla', viewValue: 'Tesla'},
   ];
-  user!: firebase.User;
   carForm!: FormGroup;
-  isLoading = true;
-  carToUpdate!: Car;
   today = new Date();
 
-  showFiller = false;
-
   constructor(
-    private fb: FormBuilder,
-    private carService: CarsService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthService,
-    private userService: UsersService,
     private datePipe : DatePipe,
+    private authService: AuthService,
+    private carService: CarsService,
   ) { }
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
+      this.carList = this.carService.getUsCars(user.uid)
     })
-    this.buildForm();
   }
 
-  buildForm(): void {
-    this.carForm = this.fb.group({
-      brand: '',
-      model: '',
-      year: '',
-      plate: '',
-      serialMotor: "",
-    });
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    
+    return event;
+  }
+
+  getCars(){
+    this.carList = this.carService.getUsCars(this.user.uid)
   }
 
   onSubmit(): void {
@@ -83,11 +80,8 @@ export class NewCarFormComponent implements OnInit {
     this.carService.createNewCar(newCar);
     //this.router.navigate(['/']);
   } 
+  
 
-  updateCar(carData: Car): void {
-    this.carService.updateCar(this.carToUpdate.brand, carData).then(() => {
-      this.router.navigate(['/']);
-    });
-  }
-
+  pageSize: number = 1;
+  pageNumber: number = 1;
 }
