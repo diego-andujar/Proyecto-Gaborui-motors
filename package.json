@@ -27,6 +27,7 @@
     "firebase": "^8.2.7",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
+    "i": "^0.3.6",
     "ngx-gallery": "^5.10.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
