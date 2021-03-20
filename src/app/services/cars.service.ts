@@ -37,15 +37,42 @@ export class CarsService {
     return collection.valueChanges();
   }
 
-  getUsCars(id:string): Array<Car>{
+  async getUsCars(id:string): Promise<Car[]>{
     const lista: Array<Car> = [];
     const collection = this.db.collection("cars").where("userid", "==", id).get()
-    collection.then(snapshot => {
+    await collection.then(snapshot => {
       snapshot.docs.forEach( doc => {
         lista.push(doc.data())
       })
     })
     return lista;
+  }
+
+  async getUsCarsNoApp(id:string): Promise<Car[]>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).where("inAppointment", "==", false).get()
+    await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        lista.push(doc.data())
+      })
+    })
+    return lista;
+  }
+
+  carForAppointment(id: string, bool: boolean){
+    const collection = this.database.collection("cars")
+    return  collection.doc(id).update({inAppointment: bool});
+  }
+
+  async checkIfCarExists(serialMotor: string): Promise<boolean>{
+    let existe: boolean = false;
+    const collection = this.db.collection("cars").where("serialMotor", "==", serialMotor).get()
+    return collection.then( doc => {
+      if (doc.size > 0){
+        existe = true;
+      }
+      return existe
+    })
   }
 
   getUsCarsApp(id:string): Array<Car>{

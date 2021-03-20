@@ -48,7 +48,9 @@ export class DinamicCarViewComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
-      this.carList = this.carService.getUsCars(user.uid)
+      this.carService.getUsCars(user.uid).then( doc => {
+        this.carList = doc;
+      })
     })
     this.buildForm()
   }
@@ -71,12 +73,14 @@ export class DinamicCarViewComponent implements OnInit {
   }
 
   getCars(){
-    this.carList = this.carService.getUsCars(this.user.uid)
+    this.carService.getUsCars(this.user.uid).then( doc => {
+      this.carList = doc;
+    })
   }
 
-  onSubmit(): void {
-    console.log("hola")
+  async onSubmit(){
     const newCar: Car = {
+      inAppointment: false,
       userid: this.user.uid,
       brand: this.carForm.get("brand")?.value,
       model: this.carForm.get("model")?.value,
@@ -86,11 +90,22 @@ export class DinamicCarViewComponent implements OnInit {
       registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
       photo: "https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png",
     }
-    this.createNewCar(newCar);
-    this.carForm.reset();
-    alert("!Se ha creado con exito tu carro!")
-    this.getCars();
-    this.crearCarro = !this.crearCarro;
+    let existe: boolean = false;
+    await this.carService.checkIfCarExists(newCar.serialMotor).then( doc => {
+      existe = doc;
+    })
+    console.log(existe)
+    if (!existe){
+      this.createNewCar(newCar);
+      this.carForm.reset();
+      alert("!Se ha creado con exito tu carro!\nYa puedes pedir una cita para el")
+      this.getCars();
+      this.crearCarro = !this.crearCarro;
+    } else {
+      this.carForm.reset();
+      alert("!Se ha detectado otro vehiculo con este serial de motor!\nNo pueden exister los mismos vehiculos entre distintos usuarios")
+    }
+    
   }
 
   createNewCar(newCar: Car): void {

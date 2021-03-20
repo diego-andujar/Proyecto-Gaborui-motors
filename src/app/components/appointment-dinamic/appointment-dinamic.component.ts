@@ -56,14 +56,16 @@ export class AppointmentDinamicComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe((user) => {
-      this.user = user;
-      this.carList = this.carService.getUsCars(user.uid)
-    })
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
     this.name = (JSON.parse(localStorage.getItem("CurrentUser"))).name;
     if(!this.isManager){
+      this.authService.getCurrentUser().subscribe((user) => {
+        this.user = user;
+        this.carService.getUsCarsNoApp(user.uid).then( doc => {
+          this.carList = doc;
+        })
+      })
       this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
       this.createForm();
     } else {
@@ -72,7 +74,9 @@ export class AppointmentDinamicComponent implements OnInit {
   }
 
   getCars(){
-    this.carList = this.carService.getUsCars(this.user.uid)
+    this.carService.getUsCarsNoApp(this.user.uid).then( doc => {
+      this.carList = doc;
+    })
   }
 
   selecDate(){
@@ -90,25 +94,9 @@ export class AppointmentDinamicComponent implements OnInit {
     });
   }
 
-  getValores(carId: string){
-    this.carService.getAppointmentsCar(carId).subscribe( res => {
-      this.car = res;
-    })
-  }
-
   dateFilter = date => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }
-
-  getCarAndUser(app: Appointment){
-    console.log("hola")
-    this.carService.getDoc(app.car).subscribe((car) => {
-      this.car = car;
-    })
-    this.userService.getDoc(app.userid).subscribe( res => {
-      this.userApp = res;
-    })
   }
 
   getApps(){
@@ -121,7 +109,6 @@ export class AppointmentDinamicComponent implements OnInit {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
     this.actualPage = event.pageIndex;
-    this.getUser(event.pageIndex);
     return event;
   }
 
@@ -159,6 +146,14 @@ export class AppointmentDinamicComponent implements OnInit {
     this.selecDate();
   }
 
+  async deleteApp(id: string, car: string){
+    this.carService.carForAppointment(car, false);
+    this.firestoreService.deleteApp(id);
+    alert("!Se elimino su cita con exito!")
+    this.getCars();
+    this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
+  }
+
 
 
   async onSubmit() {
@@ -178,8 +173,9 @@ export class AppointmentDinamicComponent implements OnInit {
       diagnosis: formValues.diagnostico?.value,
       dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy"),
       carPhoto: formValues.selectedCar?.value.photo,
-      
     }
+    console.log(cita.dateCreated + " " + cita.date)
+    this.carService.carForAppointment(formValues.selectedCar?.value.carId, true);
     this.firestoreService.crearCita(cita);
     this.authForm.reset()
     this.getCars();

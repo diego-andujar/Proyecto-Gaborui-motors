@@ -143,4 +143,8 @@ export class AppointmentServiceService {
     appointment.appId = id;
     return this.db.collection("citas").doc(id).set(appointment);
   }
+
+  deleteApp(id: string): any {
+    return this.db.collection("citas").doc(id).delete();
+  }
 }
