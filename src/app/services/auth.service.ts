@@ -52,6 +52,7 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       localStorage.removeItem('user');
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
       return null;
     }
   }
@@ -74,11 +75,11 @@ export class AuthService {
       const response = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
       const { user } = response;
       localStorage.setItem('user', user.uid);
-      
       return user;
     } catch (err) {
       console.log(err);
       localStorage.removeItem('user');
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
       return null;
     }
   }
@@ -108,6 +109,7 @@ export class AuthService {
           'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
       });
       let userDB: User = {
+        photoUrl: user?.photoURL,
         name: actualUser.displayName,
         email: actualUser.email,
         phoneNumber: actualUser.phoneNumber,
@@ -118,10 +120,12 @@ export class AuthService {
       }
       const id = this.database.createId()
       userDB.refId = id;
-      firebase.firestore().collection("citas").doc(id).set(userDB);
+      console.log(userDB)
+      firebase.firestore().collection("users").doc(id).set(userDB);
       return actualUser;
     } catch (err) {
       localStorage.removeItem('user');
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
       return null;
     }
   }

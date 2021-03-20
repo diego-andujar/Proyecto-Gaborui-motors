@@ -91,7 +91,7 @@ export class ClientFormComponent implements OnInit {
       alert("Por favor todos los campos son requeridos!");
     } else {
       const formValues = {
-        birthDate: this.authForm.get("birthDate"),
+        birthDate: this.datePipe.transform(this.authForm.get("birthDate")?.value, "dd-MM-yyyy"),
         cedula: this.authForm.get('cedula'),
         phone: this.authForm.get('phone'),
         genero: this.authForm.get('genero'),

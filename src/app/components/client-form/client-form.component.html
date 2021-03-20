@@ -4,7 +4,7 @@
             <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
             <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
         </div>
-        <form [formGroup]="authForm" (ngSubmit)="validateForm() && onSubmit()">   
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
         <div class="wrapper">
             <div class="input-container">
                 <label class="auth-label" for="displayName">Nombre Completo</label>

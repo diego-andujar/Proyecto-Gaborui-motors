@@ -4,7 +4,7 @@ import { Car } from 'src/app/models/car';
 import { CarsService } from 'src/app/services/cars.service';
 import firebase from "firebase";
 import { AuthService } from 'src/app/services/auth.service';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -38,6 +38,7 @@ export class DinamicCarViewComponent implements OnInit {
   today = new Date();
 
   constructor(
+    private fb: FormBuilder,
     private datePipe : DatePipe,
     private authService: AuthService,
     private carService: CarsService,
@@ -48,6 +49,17 @@ export class DinamicCarViewComponent implements OnInit {
       this.user = user;
       this.carList = this.carService.getUsCars(user.uid)
     })
+    this.buildForm()
+  }
+
+  buildForm(): void {
+    this.carForm = this.fb.group({
+      brand: '',
+      model: '',
+      year: '',
+      plate: '',
+      serialMotor: "",
+    });
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
@@ -62,6 +74,7 @@ export class DinamicCarViewComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log("hola")
     const newCar: Car = {
       userid: this.user.uid,
       brand: this.carForm.get("brand")?.value,
@@ -76,6 +89,7 @@ export class DinamicCarViewComponent implements OnInit {
     this.carForm.reset();
     alert("!Se ha creado con exito tu carro!")
     this.getCars();
+    this.crearCarro = !this.crearCarro;
   }
 
   createNewCar(newCar: Car): void {

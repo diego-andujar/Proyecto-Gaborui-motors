@@ -85,18 +85,18 @@
                         <div>
                             <div class="span button-wrapper">
                                 <div class="button-container">
-                                <button class="submit-button">Aceptar solicitud</button>
+                                <button class="submit-button" type="button">Aceptar solicitud</button>
                             </div>
                             </div>
                             
                             <div class="span button-wrapper">
                                 <div class="button-container">
-                                    <button class="submit-button">Modificar solicitud</button>
+                                    <button class="submit-button" type="button">Modificar solicitud</button>
                                 </div>
                             </div>
                             <div class="span button-wrapper">
                                 <div class="button-container">
-                                    <button class="submit-button">Rechazar solicitud</button>
+                                    <button class="submit-button" type="button">Rechazar solicitud</button>
                                 </div>
                             </div>
                         </div>
@@ -110,20 +110,17 @@
     </div>
     <div class="span button-wrapper">
         <div class="button-container">
-        <button class="submit-button" (click)="!crearCarro = !crearCarro">añadir vehiculo</button>
+        <button class="submit-button" (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button>
     </div>
     </div>
 </div>
-
 <div *ngIf="crearCarro" class="auth-form form-column">
     <div class="auth-form-wrapper">
-            <h1 class="h1-center">Añadir Un Nuevo Vehiculo</h1>
-            <form
-            [formGroup]="carForm"
+        <h1 class="h1-center">Añadir Un Nuevo Vehiculo</h1>
+        <form  [formGroup]="carForm"
             class="form-container"
             (ngSubmit)="onSubmit()"
-            >
-            <!-- POST TITLE -->
+        >
             
 
             <div class="input-container">
@@ -135,7 +132,6 @@
                 </mat-select>
             </div>
 
-            <!-- POST SUMMARY -->
             <div class="input-container">
                 <label class="auth-label" for="summary">modelo:</label>
                 <input
@@ -147,7 +143,6 @@
                 >
             </div>
 
-            <!-- POST DESCRIPTION -->
             <div class="input-container">
                 <label class="auth-label" for="description">año:</label>
                 <input
@@ -159,7 +154,6 @@
                 >
             </div>
 
-            <!-- POST PHOTO -->
             <div class="input-container">
                 <label class="auth-label" for="photo">placa:</label>
                 <input
@@ -183,14 +177,12 @@
             </div>
             <div class="btn-wrapper">
                 <div class="butto-container">
-                    <button class="submi-button" (click)="!crearCarro = !crearCarro">crear vehiculo</button>
+                    <button class="submi-button" type="submit">crear vehiculo</button>
                 </div>
-                    <div class="butto-container">
-                        <button class="submi-button" (click)="!crearCarro = !crearCarro">volver</button>
-                    </div>
+                <div class="butto-container">
+                    <button class="submi-button" (click)="!crearCarro = !crearCarro" type="button">volver</button>
+                </div>
             </div>
-            
-            <!-- POST CATEGORY -->
         </form>
     </div>
 </div>
