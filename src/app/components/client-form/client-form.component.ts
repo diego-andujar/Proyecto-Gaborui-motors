@@ -89,7 +89,7 @@ export class ClientFormComponent implements OnInit {
     this.editarForm = false;
     if (this.authForm.pristine) {
       alert("Por favor todos los campos son requeridos!");
-    } else {
+    } else if (this.authForm.get("birthDate")?.value != this.userFire.birthDate){
       const formValues = {
         birthDate: this.datePipe.transform(this.authForm.get("birthDate")?.value, "dd-MM-yyyy"),
         cedula: this.authForm.get('cedula'),
@@ -111,7 +111,49 @@ export class ClientFormComponent implements OnInit {
       if (formValues.phone?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({phoneNumber: formValues.phone?.value})
-        console.log("hola")
+      }
+      if ((this.userFire.genero === undefined || this.userFire.genero === null) && formValues.genero?.value != null){
+        const userRef = this.db.collection("users").doc(this.userFireId);
+        userRef.update({genero: formValues.genero?.value})
+      }
+      if ((this.userFire.address === undefined || this.userFire.address === null) && formValues.direccion?.value != null){
+        const userRef = this.db.collection("users").doc(this.userFireId);
+        userRef.update({address: formValues.direccion?.value})
+      }
+      if ((this.userFire.state === undefined || this.userFire.state === null) && formValues.estado?.value != null){
+        const userRef = this.db.collection("users").doc(this.userFireId);
+        userRef.update({state: formValues.estado?.value})
+      }
+      if ((this.userFire.city === undefined || this.userFire.city === null) && formValues.ciudad?.value != null){
+        const userRef = this.db.collection("users").doc(this.userFireId);
+        userRef.update({city: formValues.ciudad?.value})
+      }
+      if ((this.userFire.postalCode === undefined || this.userFire.postalCode === null) && formValues.postal?.value != null){
+        const userRef = this.db.collection("users").doc(this.userFireId);
+        userRef.update({postalCode: formValues.postal?.value})
+      }
+      this.userService.getUser(this.userFire.id);
+      this.userService.getDoc(this.userFire.refId).subscribe((user) => {
+        this.userFire = user;
+      })
+    }
+    else {
+      const formValues = {
+        cedula: this.authForm.get('cedula'),
+        phone: this.authForm.get('phone'),
+        genero: this.authForm.get('genero'),
+        direccion: this.authForm.get('direccion'),
+        estado: this.authForm.get('estado'),
+        ciudad: this.authForm.get('ciudad'),
+        postal: this.authForm.get('postal'),
+      };
+      if ((this.userFire.cedula === undefined || this.userFire.cedula === null) && formValues.cedula?.value != null){
+        const userRef = this.db.collection("users").doc(this.userFireId);
+        userRef.update({cedula: formValues.cedula?.value})
+      }
+      if (formValues.phone?.value != null){
+        const userRef = this.db.collection("users").doc(this.userFireId);
+        userRef.update({phoneNumber: formValues.phone?.value})
       }
       if ((this.userFire.genero === undefined || this.userFire.genero === null) && formValues.genero?.value != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
