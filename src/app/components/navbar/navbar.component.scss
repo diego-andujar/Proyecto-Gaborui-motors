@@ -17,6 +17,7 @@
     @include small-phone {
         width: 100%;
         height: 8%;
+        align-items: center;
     }
     // LOGO
     .logo {
@@ -31,15 +32,22 @@
             height: 150%;
         }
     }
+    .logo2 {
+        display: none;
+        @include small-phone {
+            display: flex;
+            height: 50%;
+            width: 10%;
+            margin-right: 50%;
+        }
+    }
     // NAVBAR
     .navbar {
         display: flex;
         align-items: center;
         font-size: 1.5em;
         @include small-phone {
-            // background-color: yellow;
-            // justify-content: flex-start;
-            width: 50%;
+            display: none;
         }
         li {
             margin-bottom: 0;
@@ -120,4 +128,12 @@
 
 .logoutfoto {
     fill: $third-color
+}
+
+.menucito {
+    display: none;
+    @include small-phone {
+        display: flex;
+        margin-right: 10%;
+    }
 }
