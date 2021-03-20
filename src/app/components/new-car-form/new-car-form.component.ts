@@ -83,11 +83,4 @@ export class NewCarFormComponent implements OnInit {
     this.carService.createNewCar(newCar);
     //this.router.navigate(['/']);
   } 
-
-  updateCar(carData: Car): void {
-    this.carService.updateCar(this.carToUpdate.brand, carData).then(() => {
-      this.router.navigate(['/']);
-    });
-  }
-
 }
