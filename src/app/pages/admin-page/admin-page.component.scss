@@ -161,3 +161,153 @@
         padding-left: 50px;
         margin-top: 5px;
     }
+    
+    @media only screen and (max-width:375px) {
+        .todo {
+            margin-top: 104px;
+            height: 100%;
+            width: 100%;
+            .bloques {
+                width: 100%;
+                list-style: none;
+                color: inherit;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+                background-color: blue;
+                margin-left: 5px;
+                .bloque {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    height: 60%;
+                }
+                .bloquea {
+                    width: 100%;
+                    border-bottom-right-radius: 200px;
+                    border-bottom-left-radius: 200px;
+                    background-color: #1C1A1A;
+                    height: 300px;
+                    margin-top: -18px;
+                }
+                .bloqueb {
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 2%;
+                    //background-color: white;
+                    // border: 2px solid black;
+                }
+            }
+        }
+        .folder {
+            display: flex;
+            background-color: $secondary-color;
+            width: 100%;
+            height: 5%;
+            padding: 0.5%;
+            border-radius: 5px;
+            // flex-direction: row;
+            // justify-content: space-around;
+            // align-items: flex-end;
+        }
+        .botonesumg {
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-end;
+            width: 100%;
+            // height: 100%;
+            list-style: none;
+            color: inherit;
+            display: flex;
+            flex-direction: row;
+        }
+        .valores {
+            list-style: none;
+            color: inherit;
+            margin-top: 5%;
+            display: flex;
+            justify-content: space-between;
+            // border-bottom: black;
+        }
+        .nuevoguardar {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 2%;
+            background-color: white;
+        }
+        .editdelete {
+            margin-right: 4%;
+        }
+        .username-bar {
+            background-color: $primary-color;
+        }
+        .formulario-contacto {
+            display: flex;
+            list-style: none;
+            color: inherit;
+            justify-content: center;
+            font-family: $primary-font;
+            width: 100%;
+        }
+        .loco {
+            width: 321px;
+            height: 402px;
+            background-color: $secondary-color;
+            border: 1px solid $primary-color;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            color: $third-color;
+            font-size: 1.2em;
+            line-height: 24px;
+            .informaciondecontacto {
+                color: $third-color;
+                line-height: 44px;
+                font-size: 1.55em;
+                text-align: center;
+            }
+        }
+        .loco2 {
+            width: 100%;
+            height: 100%;
+            /* background-color: #F9F9F9; */
+            /* border: 1px solid #1C1A1A; */
+            display: flex;
+        }
+        .form-control {
+            background-color: $third-color;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-self: space-around;
+            margin-left: 80px;
+            margin-top: 10px;
+            width: 100%;
+            &.ng-touched.ng-invalid {
+                border: 2px solid red;
+            }
+        }
+        #comment {
+            resize: none;
+        }
+        .contactdiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+            // height: 100%;
+            background-color: $primary-color;
+            color: $third-color;
+        }
+        .alert {
+            margin-left: 80px;
+            background-color: rgba(255, 2, 2, 0.4);
+            border-radius: 10px;
+            padding-left: 50px;
+            margin-top: 5px;
+        }
+    }

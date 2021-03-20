@@ -84,10 +84,10 @@ export class NewCarFormComponent implements OnInit {
 
   onSubmit(): void {
     const newCar: Car = {
-      brand: this.carForm.get('brand').value,
-      model: this.carForm.get('model').value,
-      year: this.carForm.get('year').value,
-      plate: this.carForm.get('plate').value,
+      // brand: this.carForm.get('brand').value,
+      // model: this.carForm.get('model').value,
+      // year: this.carForm.get('year').value,
+      // plate: this.carForm.get('plate').value,
     };
     this.createNewCar(newCar, this.user.uid);
   }
