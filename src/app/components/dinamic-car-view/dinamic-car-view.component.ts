@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 export class DinamicCarViewComponent implements OnInit {
 
   verSolicitud = false;
+  name = JSON.parse(localStorage.getItem("CurrentUser")).name;
   crearCarro: boolean = false;
   userType: string = "client";
   lowValue: number = 0;

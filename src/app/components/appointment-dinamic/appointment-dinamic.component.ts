@@ -183,6 +183,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.firestoreService.crearCita(cita);
     this.authForm.reset()
     this.getCars();
+    this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
     alert("!Tu cita fue creada con exito!\nPronto te llegara informacion para confirmarla")
   }
 
