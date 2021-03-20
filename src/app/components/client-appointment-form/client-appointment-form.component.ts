@@ -56,14 +56,6 @@ export class ClientAppointmentFormComponent implements OnInit {
     });
   }
 
-  async googleLogin() {
-    const user = await this.authService.loginWithGoogle();
-    if (user) {
-      this.router.navigate(['/']);
-    }
-
-  }
-
   async onSubmit() {
     const formValues = {
       selectedCar: this.authForm.get('selectedCar'),

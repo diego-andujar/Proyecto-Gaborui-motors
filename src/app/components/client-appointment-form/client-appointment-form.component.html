@@ -18,7 +18,7 @@
                     
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label class="auth-label">Fecha deseada para la cita</mat-label>
-                        <input [min]="minDate" 
+                        <input [min]="minDate"
                         [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
                         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                         <mat-datepicker  #datepicker>

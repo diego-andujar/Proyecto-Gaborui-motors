@@ -48,6 +48,17 @@ export class CarsService {
     return lista;
   }
 
+  getUsCarsApp(id:string): Array<Car>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        lista.push(doc.data())
+      })
+    })
+    return lista;
+  }
+
   /**
    * GET ALL POSTS
    */

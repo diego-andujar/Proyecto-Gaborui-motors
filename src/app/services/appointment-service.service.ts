@@ -85,10 +85,51 @@ export class AppointmentServiceService {
           estado: doc.get("estado"),
           diagnosis: doc.get("diagnosis"),
           appId: doc.get("appId"),
+          carPhoto: doc.get("carPhoto"),
+          carInfo: doc.get("carInfo"),
+          userName: doc.get("userName")
         })
         list.push(cita);
       })
     });
+    return list;
+  }
+
+  getUserAppoint(userId: string): Array<Appointment>{
+    const list: Array<Appointment> = [];
+    const usersRef = this.db.collection('citas')
+    .where("userid", "==", userId).onSnapshot(querySnap => {
+      querySnap.forEach(doc => {
+        let cita: Appointment = ({
+          car: doc.get("car"),
+          date: doc.get("date"),
+          userid: doc.get("userid"),
+          estado: doc.get("estado"),
+          diagnosis: doc.get("diagnosis"),
+          appId: doc.get("appId"),
+          carPhoto: doc.get("carPhoto"),
+          carInfo: doc.get("carInfo"),
+          userName: doc.get("userName")
+        })
+        list.push(cita);
+      })
+    });/*.get()
+    .then((querySnapshot) =>{
+      querySnapshot.forEach(doc => {
+        let cita: Appointment = ({
+          car: doc.get("car"),
+          date: doc.get("date"),
+          userid: doc.get("userid"),
+          estado: doc.get("estado"),
+          diagnosis: doc.get("diagnosis"),
+          appId: doc.get("appId"),
+          carPhoto: doc.get("carPhoto"),
+          carInfo: doc.get("carInfo"),
+          userName: doc.get("userName")
+        })
+        list.push(cita);
+      })
+    });*/
     return list;
   }
 

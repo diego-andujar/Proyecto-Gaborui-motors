@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
 export class DinamicCarViewComponent implements OnInit {
 
   verSolicitud = false;
-  crearCarro: boolean = true;
+  crearCarro: boolean = false;
   userType: string = "client";
   lowValue: number = 0;
   highValue: number = 1;
@@ -70,10 +70,12 @@ export class DinamicCarViewComponent implements OnInit {
       plate: this.carForm.get("plate")?.value,
       serialMotor: this.carForm.get("serialMotor")?.value,
       registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+      photo: "https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png",
     }
     this.createNewCar(newCar);
     this.carForm.reset();
     alert("!Se ha creado con exito tu carro!")
+    this.getCars();
   }
 
   createNewCar(newCar: Car): void {
