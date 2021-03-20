@@ -1,9 +1,15 @@
     @import "../../../styles/Lib/variables.scss";
     @import "../../../styles/components/buttons.scss";
+    @import "../../../styles/Lib/mixins.scss";
     .todo {
         margin-top: 120px;
         height: 85%;
         width: 100%;
+        @include tablet {
+            margin-top: 16%;
+            height: 85%;
+            width: 100%;
+        }
     }
     
     .bloques {
@@ -17,6 +23,7 @@
         // background-color: $secondary-color;
         font-family: $primary-font;
         font-size: 1.5em;
+        @include tablet {}
         .bloque {
             border: 0px;
             // background-color: #6AB8E3;
@@ -24,12 +31,19 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            @include tablet {
+                // background-color: yellow;
+            }
         }
         .bloquea {
             width: 20%;
             border-bottom-right-radius: 200px;
             height: 60%;
             background-color: $secondary-color;
+            @include tablet {
+                width: 25%;
+                height: 50%;
+            }
         }
         .bloqueb {
             display: flex;
@@ -37,6 +51,9 @@
             border-radius: 2%;
             //background-color: white;
             // border: 2px solid black;
+            @include tablet {
+                background-color: blue;
+            }
         }
     }
     
@@ -47,6 +64,9 @@
         height: 5%;
         padding: 0.5%;
         border-radius: 5px;
+        @include tablet {
+            // background-color: blue;
+        }
         // flex-direction: row;
         // justify-content: space-around;
         // align-items: flex-end;
@@ -62,6 +82,9 @@
         color: inherit;
         display: flex;
         flex-direction: row;
+        @include tablet {
+            // background-color: blue;
+        }
     }
     
     .valores {
@@ -70,6 +93,9 @@
         margin-top: 5%;
         display: flex;
         justify-content: space-between;
+        @include tablet {
+            // background-color: blue;
+        }
         // border-bottom: black;
     }
     
@@ -78,14 +104,23 @@
         justify-content: space-evenly;
         padding: 2%;
         background-color: white;
+        @include tablet {
+            // background-color: blue;
+        }
     }
     
     .editdelete {
+        @include tablet {
+            // background-color: blue;
+        }
         margin-right: 4%;
     }
     
     .username-bar {
-        background-color: $primary-color;
+        @include tablet {
+            background-color: blue;
+        }
+        // background-color: $primary-color;
     }
     
     .formulario-contacto {
@@ -95,6 +130,9 @@
         justify-content: center;
         font-family: $primary-font;
         width: 100%;
+        @include tablet {
+            // background-color: blue;
+        }
     }
     
     .loco {
@@ -109,11 +147,17 @@
         color: $third-color;
         font-size: 1.2em;
         line-height: 24px;
+        @include tablet {
+            // background-color: blue;
+        }
         .informaciondecontacto {
             color: $third-color;
             line-height: 44px;
             font-size: 1.55em;
             text-align: center;
+            @include tablet {
+                // background-color: blue;
+            }
         }
     }
     
@@ -123,6 +167,9 @@
         /* background-color: #F9F9F9; */
         /* border: 1px solid #1C1A1A; */
         display: flex;
+        @include tablet {
+            // background-color: blue;
+        }
     }
     
     .form-control {
@@ -135,6 +182,9 @@
         margin-left: 80px;
         margin-top: 10px;
         width: 100%;
+        @include tablet {
+            background-color: blue;
+        }
         &.ng-touched.ng-invalid {
             border: 2px solid red;
         }
@@ -152,6 +202,9 @@
         // height: 100%;
         background-color: $primary-color;
         color: $third-color;
+        @include tablet {
+            background-color: blue;
+        }
     }
     
     .alert {
@@ -164,20 +217,15 @@
     
     @media only screen and (max-width:475px) {
         .todo {
-            margin-top: 104px;
+            margin-top: 29%;
             height: 100%;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* display: none;*/
             .bloques {
-                width: 100%;
-                list-style: none;
-                color: inherit;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                height: 100%;
-                width: 100%;
-                background-color: blue;
-                margin-left: 5px;
+                // display: flex;
+                // flex-direction: column;
                 .bloque {
                     width: 100%;
                     display: flex;

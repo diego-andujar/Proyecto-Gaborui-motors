@@ -19,6 +19,11 @@
         height: 8%;
         align-items: center;
     }
+    @include tablet {
+        width: 100%;
+        height: 10%;
+        align-items: center;
+    }
     // LOGO
     .logo {
         display: flex;
@@ -30,6 +35,10 @@
         @include small-phone {
             width: 40%;
             height: 150%;
+        }
+        @include tablet {
+            width: 15%;
+            height: 100%;
         }
     }
     .logo2 {
@@ -45,9 +54,12 @@
     .navbar {
         display: flex;
         align-items: center;
-        font-size: 1.5em;
+        font-size: 1.6em;
         @include small-phone {
             display: none;
+        }
+        @include tablet {
+            margin-right: 50%;
         }
         li {
             margin-bottom: 0;
@@ -60,6 +72,14 @@
                 margin-left: 10px;
                 padding-bottom: 6px;
                 width: 5%;
+            }
+            @include tablet {
+                // margin-bottom: 0;
+                list-style: none;
+                margin-left: 4%;
+                // margin-right: 1%;
+                // padding-bottom: 6px;
+                width: 45%;
             }
             a {
                 text-decoration: none;
@@ -75,6 +95,14 @@
                 padding: 0.1em 0.2em;
                 border-radius: 5px;
                 text-align: center;
+                @include tablet {
+                    background-color: #6AB8E3;
+                    color: #F9F9F9;
+                    margin-left: 10%;
+                    padding: 0.1em 0.2em;
+                    border-radius: 5px;
+                    text-align: center;
+                }
             }
             &.sign-up {
                 background-color: $secondary-color;
@@ -84,6 +112,16 @@
                 margin-left: 10px;
                 margin-right: 30px;
                 text-align: center;
+                @include tablet {
+                    background-color: #F9F9F9;
+                    color: black;
+                    width: 4em;
+                    padding: 0.1em;
+                    border-radius: 5px;
+                    /* margin-left: -50%; */
+                    /* margin-right: 30%; */
+                    text-align: center;
+                }
             }
             &.user-info {
                 display: flex;
