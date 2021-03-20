@@ -66,7 +66,9 @@ export class AppointmentDinamicComponent implements OnInit {
           this.carList = doc;
         })
       })
-      this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
+      this.appointService.getUserAppoint(localStorage.getItem("UserFireId")).then( doc => {
+        this.citas = doc;
+      })
       this.createForm();
     } else {
       
@@ -151,7 +153,9 @@ export class AppointmentDinamicComponent implements OnInit {
     this.firestoreService.deleteApp(id);
     alert("!Se elimino su cita con exito!")
     this.getCars();
-    this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
+    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")).then( doc => {
+      this.citas = doc;
+    })
   }
 
 
@@ -179,7 +183,9 @@ export class AppointmentDinamicComponent implements OnInit {
     this.firestoreService.crearCita(cita);
     this.authForm.reset()
     this.getCars();
-    this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
+    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")).then( doc => {
+      this.citas = doc;
+    })
     alert("!Tu cita fue creada con exito!\nPronto te llegara informacion para confirmarla")
   }
 }

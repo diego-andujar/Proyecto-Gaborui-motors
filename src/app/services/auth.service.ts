@@ -16,7 +16,6 @@ export class AuthService {
   user!: firebase.User | null;
   userId!: string;
   constructor(
-    private angularFireAuth: AngularFireAuth,
     private afsAuth: AngularFireAuth,
     public database: AngularFirestore,
     ) { }
@@ -26,8 +25,8 @@ export class AuthService {
   async loginWithGoogle(): Promise<firebase.User> {
     
     try {
-      let primeraVez: boolean = false;
-      const response = await this.angularFireAuth.signInWithPopup(
+      let primeraVez: boolean | undefined = false;
+      const response = await this.afsAuth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()
       )
       const { user } = response;
@@ -72,7 +71,7 @@ export class AuthService {
     password: string
   ): Promise<firebase.User> {
     try {
-      const response = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
+      const response = await this.afsAuth.signInWithEmailAndPassword(email, password);
       const { user } = response;
       localStorage.setItem('user', user.uid);
       return user;
@@ -89,18 +88,19 @@ export class AuthService {
    * @param email
    * @param password
    */
-  async signUpWithEmail(
+   async signUpWithEmail(
     displayName: string,
     email: string,
     password: string
   ): Promise<firebase.User> {
     try {
-      const response = await this.angularFireAuth.createUserWithEmailAndPassword(
+      const response = await this.afsAuth.createUserWithEmailAndPassword(
         email,
         password
       );
       const { user } = response;
       localStorage.setItem('user', user.uid);
+      
       // Setting up user name and last name
       const actualUser: any = user;
       await actualUser.updateProfile({
@@ -120,21 +120,44 @@ export class AuthService {
       }
       const id = this.database.createId()
       userDB.refId = id;
-      console.log(userDB)
       firebase.firestore().collection("users").doc(id).set(userDB);
-      return actualUser;
+      return user;
     } catch (err) {
       localStorage.removeItem('user');
       alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
       return null;
     }
   }
+  /*async signUpWithEmail(
+    displayName: string,
+    email: string,
+    password: string
+  ): Promise<firebase.User> {
+    try {
+      const res = await this.afsAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      const { user } = res;
+      localStorage.setItem('user', user.uid);
+      // Setting up user name and last name
+      await user.updateProfile({
+        displayName,
+        photoURL:
+          'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
+      });
+      return user;
+    } catch (err) {
+      localStorage.removeItem('user');
+      return null;
+    }
+  }*/
 
   /**
    * GET CURRENT LOGGED IN USER
    */
   getCurrentUser(): Observable<firebase.User> {
-    const actualUser: any = this.angularFireAuth.user;
+    const actualUser: any = this.afsAuth.user;
     return actualUser;
   }
 
@@ -148,7 +171,7 @@ export class AuthService {
    */
   async logout(): Promise<void> {
     try {
-      await this.angularFireAuth.signOut();
+      await this.afsAuth.signOut();
       localStorage.removeItem('user');
     } catch (e) {
       localStorage.removeItem('user');
