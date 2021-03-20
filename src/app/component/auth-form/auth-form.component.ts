@@ -51,6 +51,7 @@ export class AuthFormComponent implements OnInit {
       email: this.authForm.get('email').value,
       password: this.authForm.get('password').value,
     };
+    this.authForm.reset();
     this.sendFormEvent.emit(formValues);
   }
 

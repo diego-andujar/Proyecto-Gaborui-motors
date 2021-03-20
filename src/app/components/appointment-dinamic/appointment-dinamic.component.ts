@@ -186,6 +186,4 @@ export class AppointmentDinamicComponent implements OnInit {
     this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
     alert("!Tu cita fue creada con exito!\nPronto te llegara informacion para confirmarla")
   }
-
-  
 }
