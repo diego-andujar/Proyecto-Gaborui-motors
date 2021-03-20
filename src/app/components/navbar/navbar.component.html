@@ -1,3 +1,6 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <nav class="menu">
     <!--id="navbarContainer"-->
     <a [routerLink]="['/']" class="logo">
@@ -10,7 +13,7 @@
             <a [routerLink]="['/']">Home</a>
         </li>
         <li *ngIf="user">
-            <a *ngIf="userFire.rol.client" [routerLink]="['/perfil', user.uid]">Perfil</a>
+            <a [routerLink]="['/perfil', user.uid]">Perfil</a>
             <a *ngIf="userFire.rol.manager" [routerLink]="['/manager', user.uid]">Perfil</a>
         </li>
         <li *ngIf="user">

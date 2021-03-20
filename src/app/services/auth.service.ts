@@ -1,9 +1,10 @@
+import { UsersService } from 'src/app/services/users.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import  firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
-import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -17,11 +18,13 @@ export class AuthService {
   constructor(
     private angularFireAuth: AngularFireAuth,
     private afsAuth: AngularFireAuth,
+    public database: AngularFirestore,
     ) { }
   /**
    * Log in with Google account
    */
   async loginWithGoogle(): Promise<firebase.User> {
+    
     try {
       let primeraVez: boolean = false;
       const response = await this.angularFireAuth.signInWithPopup(
@@ -41,7 +44,9 @@ export class AuthService {
             client: true,
           }
         }
-        firebase.firestore().collection("users").add(userDB)
+        const id = this.database.createId()
+        userDB.refId = id;
+        firebase.firestore().collection("users").doc(id).set(userDB);
       }
       return user;
     } catch (err) {
@@ -111,7 +116,9 @@ export class AuthService {
           client: true,
         }
       }
-      firebase.firestore().collection("users").add(userDB)
+      const id = this.database.createId()
+      userDB.refId = id;
+      firebase.firestore().collection("citas").doc(id).set(userDB);
       return actualUser;
     } catch (err) {
       localStorage.removeItem('user');

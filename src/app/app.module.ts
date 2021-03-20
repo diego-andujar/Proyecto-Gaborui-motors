@@ -42,13 +42,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-gnrl-manager.component';
 import { ClientPageComponent } from './pages/client-page/client-page.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { FormularioComponent } from './usuario/formulario/formulario.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BotonComponent } from './usuario/boton/boton.component';
 import { UsuarioCalendarioComponent } from './usuario-calendario/usuario-calendario.component';
-import {MatCardModule} from '@angular/material/card';
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { UsernameComponent } from './username/username.component';
@@ -59,6 +57,8 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
 import { DatePipe } from '@angular/common';
 import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AppointmentViewComponent } from './components/appointment-view/appointment-view.component';
+import {MatCardModule} from '@angular/material/card';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -90,7 +90,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     VistaGnrlManagerComponent,
     ClientPageComponent,
     UsuarioComponent,
-    FormularioComponent,
     BotonComponent,
     UsuarioCalendarioComponent,
     UsernameComponent,
@@ -99,6 +98,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MechanicPageComponent,
     ClientFormComponent,
     ClientAppointmentFormComponent,
+    AppointmentViewComponent,
   ],
   imports: [
     MatCardModule,
@@ -129,6 +129,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatCardModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

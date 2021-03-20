@@ -12,6 +12,9 @@
 <div class="seccion-pagina">
     <app-client-appointment-form [carList]="carList"></app-client-appointment-form>
 </div>
-
+<div>
+        <app-appointment-view></app-appointment-view>
+        <button (click)="deleteApp(appointment)">Eliminar solicitud de cita</button>
+</div>
 
 <app-usuario-calendario></app-usuario-calendario>

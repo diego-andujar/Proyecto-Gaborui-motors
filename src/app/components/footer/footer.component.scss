@@ -78,3 +78,34 @@ a{
     height: 100%;
 }
 
+@media only screen and (max-width: 768px) {
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $primary-color;
+        color: $third-color;
+        width: 105%;
+        height: 32%;
+        margin: 0px;
+        font-size: 20px;
+        letter-spacing: 2.5px;
+    }
+    
+    .normal{ 
+        font-size: 12.5px;
+        line-height: 20px;
+        font-weight: 500;
+        font-family: $secondary-font;
+        align-items: center;
+        text-align: left;
+    
+        &.image-media{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3%;
+        }
+    }
+}

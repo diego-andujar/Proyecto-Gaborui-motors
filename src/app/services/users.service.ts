@@ -1,6 +1,6 @@
+import { FirestoreService } from './firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
-import { userInfo } from 'node:os';
 import { Car } from './../models/car';
 import { User } from './../models/user';
 import { Injectable } from '@angular/core';
@@ -8,9 +8,6 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase';
-import { query } from '@angular/animations';
-import { snapshotChanges } from '@angular/fire/database';
-import { isPromise } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +23,27 @@ export class UsersService {
     private firestore: AngularFirestore,
     private auth: AuthService,
     private afsAuth: AngularFireAuth,
+    public database: AngularFirestore,
+    private fireService: FirestoreService,
     ) { 
       this.getUser(localStorage.getItem("user"))
+  }
+
+  getDoc(id:string){
+    console.log(id)
+    const collection = this.database.collection("users")
+    return  collection.doc(id).valueChanges();
+  }
+
+  createDoc(user: User){
+    const id = this.fireService.getId();
+    user.refId = id;
+    return this.db.collection("citas").doc(id).set(user);
+  }
+
+  getDocId(id:string){
+    const collection = this.database.collection("cars")
+    return  collection.doc(id).valueChanges();
   }
 
   /**
@@ -56,6 +72,7 @@ export class UsersService {
   creatingUserInLocalStorage(doc: any){
     this.user = {
       id: doc.data().id,
+      refId: doc.data().refId,
       name: doc.data().name,
       email: doc.data().email,
       cedula: doc.data().cedula,
@@ -202,6 +219,15 @@ export class UsersService {
     })
   }
 
+  getUserByUid(userId: string) {
+    this.db.collection("users")
+    .where("id", "==", userId).get()
+    .then(querySnapshot => {
+      console.log("hola " + querySnapshot);
+      return querySnapshot.docs[0];
+    })
+  }
+
   /**
    * UPDATE car BY ID
    * @param carId
@@ -209,12 +235,6 @@ export class UsersService {
    */
   updateUser(userId: string, userData: User): Promise<void> {
     return this.userCollection.doc<User>(userId).update(userData);
-  }
-
-  updateUserCar(userId: string, userCar: Car): Promise<void> {
-    return this.userCollection.doc<User>(userId).update({
-      cars: thisfirestore.FieldValue.arrayUnion(userCar)
-    });
   }
 
   /**

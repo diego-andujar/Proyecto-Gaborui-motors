@@ -1,5 +1,4 @@
 import { UsersService } from 'src/app/services/users.service';
-import { FirestoreService } from './../../servicios/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -53,7 +52,6 @@ export class NewCarFormComponent implements OnInit {
       this.user = user;
     })
     this.buildForm();
-    this.getUrlParams();
   }
 
   buildForm(): void {
@@ -66,29 +64,20 @@ export class NewCarFormComponent implements OnInit {
     });
   }
 
-  getUrlParams(): void {
-    this.route.paramMap.subscribe((params) => {
-      const carId = params.get('postId');
-      if (carId) {
-        this.carService.getCarById(carId).subscribe((post) => {
-          this.carToUpdate = post;
-          this.carForm.patchValue({
-            brand: this.carToUpdate.brand,
-            model: this.carToUpdate.model,
-            yera: this.carToUpdate.year,
-            plate: this.carToUpdate.plate,
-            serialMotor: this.carToUpdate.serialMotor,
-            registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
-          });
-          this.isLoading = false;
-        });
-        return;
-      }
-      this.isLoading = false;
-    });
+  onSubmit(): void {
+    const newCar: Car = {
+      userid: this.user.uid,
+      brand: this.carForm.get('brand').value,
+      model: this.carForm.get('model').value,
+      year: this.carForm.get('year').value,
+      plate: this.carForm.get('plate').value,
+      serialMotor: this.carForm.get('serialMotor').value,
+      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+    };
+    this.createNewCar(newCar);
+    this.carForm.reset();
+    alert("¡Felicitaciones su vehiculo fue agregado exitosamente!\nRecargue la pagina para que lo pueda ver");
   }
-
- 
 
   createNewCar(newCar: Car): void {
     this.carService.createNewCar(newCar);

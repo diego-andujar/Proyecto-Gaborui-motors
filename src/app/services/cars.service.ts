@@ -24,40 +24,60 @@ export class CarsService {
     private fireService: FirestoreService,
     private firestore: AngularFirestore,
     private authService: AuthService,
+    public database: AngularFirestore,
     ) { 
     this.db.collection('cars').orderBy('brand');
+  }
+
+  getDoc(id:string){
+    const collection = this.database.collection("cars")
+    return  collection.doc(id).valueChanges();
+  }
+
+  getAppointmentsCar(carId: string){
+    const collection = this.database.collection<Car>("cars").doc(carId);
+    return collection.valueChanges();
   }
 
   /**
    * GET ALL POSTS
    */
-  getAllCars(): Observable<Car[]> {
-    return this.carCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((car) => ({
-          id: car.payload.doc.id,
-          ...car.payload.doc.data(),
-        }));
+  getAllCars(): Array<Car> {
+    const list: Array<Car> = [];
+    const usersRef = this.db.collection('cars').get()
+    .then((querySnapshot) =>{
+      querySnapshot.forEach(doc => {
+        let car = ({
+          brand: doc.get("brand"),
+          model: doc.get("model"),
+          year: doc.get("year"),
+          plate: doc.get("plate"),
+          carId: doc.get("carId"),
+        })
+        list.push(car);
       })
-    );
+    });
+    return list;
   }
 
   /**
    * GET car BY ID
    * @param carId
    */
-  getCarById(carId: string): Observable<Car> {
-    return this.carCollection
-      .doc<Car>(carId)
-      .snapshotChanges()
-      .pipe(
-        map((car) => {
-          return {
-            id: car.payload.id,
-            ...car.payload.data(),
-          };
+  getCarById(carId: string): Array<Car> {
+    const list: Array<Car> = [];
+    const carRef = this.db.collection("cars").doc(carId); 
+    carRef.get().then().then((querySnapshot) =>{
+        let car = ({
+          brand: querySnapshot.get("brand"),
+          model: querySnapshot.get("model"),
+          year: querySnapshot.get("year"),
+          plate: querySnapshot.get("plate"),
+          carId: querySnapshot.get("carId"),
         })
-      );
+        list.push(car);
+      })
+    return list;
   }
 
   getUserCars(userId: string): Array<Car> {

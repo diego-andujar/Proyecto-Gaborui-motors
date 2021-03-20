@@ -22,6 +22,7 @@ export class ClientAppointmentFormComponent implements OnInit {
   minDate = new Date();
   maxDate = new Date(2021, 12, 31);
   today = new Date();
+  selectedValue!: any;
   car!: Car;
   
 
@@ -71,10 +72,13 @@ export class ClientAppointmentFormComponent implements OnInit {
     let cita: Appointment = {
       car: formValues.selectedCar?.value.carId,
       date: formValues.appointmentDate,
-      userid: localStorage.getItem("user"),
+      userid: localStorage.getItem("UserFireId"),
       estado: "solicitada",
       diagnosis: formValues.diagnostico?.value,
+      dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy"),
     }
     this.appointmentService.crearCita(cita);
+    this.authForm.reset()
+    alert("!Tu cita fue creada con exito!\nPronto te llegara informacion para confirmarla")
   }
 }
