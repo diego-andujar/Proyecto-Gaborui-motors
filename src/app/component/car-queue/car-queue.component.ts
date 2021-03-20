@@ -1,8 +1,7 @@
-import { Car } from './../../models/car';
 import { CarsService } from './../../services/cars.service';
 import { Car } from '../../models/car';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Component, Input, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -12,6 +11,9 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 })
 export class CarQueueComponent implements OnInit {
 
+  @Input() carList: Array<Car> = [];
+  @Input()
+  userType!: string;
   lowValue: number = 0;
   highValue: number = 1;
 
@@ -28,6 +30,7 @@ export class CarQueueComponent implements OnInit {
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
+    
     return event;
   }
   

@@ -1,0 +1,29 @@
+<div>
+    <app-client-form></app-client-form>
+</div>
+
+<div class="car-list-wrapper">
+    <app-dinamic-car-view></app-dinamic-car-view>
+</div>
+
+<!--<div class="car-list-wrapper">
+        <app-car-queue [carList]="carList" [userType]="userType" *ngIf="carList.length > 0 && !newCar"></app-car-queue>
+        <app-new-car-form *ngIf="newCar || carList.length == 0"></app-new-car-form>
+</div>
+<div class="button-container">
+    <button class="submit-button" (click)="newCarButton()" *ngIf="!newCar && carList.length > 0">añadir carro</button>
+    <button class="submit-button" (click)="newCarButton()" *ngIf="newCar && carList.length > 0">vista vehiculos</button>
+</div>
+<button mat-raised-button (click)="onCreate()">Pida una Cita</button>-->
+<div class="seccion-pagina">
+    <app-appointment-dinamic [isManager]=false></app-appointment-dinamic>
+</div>
+<!--<div class="seccion-pagina">
+    <app-client-appointment-form [carList]="carList"></app-client-appointment-form>
+</div>
+<div>
+        <app-appointment-view></app-appointment-view>
+        <button (click)="deleteApp(appointment)">Eliminar solicitud de cita</button>
+</div>-->
+
+<app-usuario-calendario></app-usuario-calendario>

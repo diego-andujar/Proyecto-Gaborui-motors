@@ -1,0 +1,46 @@
+<div class="auth-form">
+    <div class="auth-form-wrapper">
+        <div>
+            <h2 class="h1-center">Pida su cita con Gaborui Motors</h2>
+        </div>
+      
+      <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
+          <div class="wrapper">
+                <div class="inp">
+                    <mat-label class="auth-label">Confirme su vehiculo</mat-label>
+                    <mat-select placeholder="vehiculos" formControlName="selectedCar" [(ngModel)]="selectedValue" name="car">
+                    <mat-option  *ngFor="let car of carList" [value]="car">
+                        {{car.brand}}  {{car.model}} {{car.year}} {{car.plate}}
+                    </mat-option>
+                    </mat-select>
+                </div>
+                <div class="inp">
+                    
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label class="auth-label">Fecha deseada para la cita</mat-label>
+                        <input [min]="minDate"
+                        [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker  #datepicker>
+                            <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+        
+        </div>
+        <div class="input-container">
+          <label class="auth-label" id="label" for="password">Informacion sobre Posible falla y requerimientos del vehiculo</label>
+          <textarea formControlName="diagnostico" name="" id="text-area"></textarea>
+        </div>
+        <div class="button-wrapper">
+          <div class="button-container">
+            <button type="submit" class="submit-button">enviar solicitud de cita</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -6,20 +6,26 @@
     width: 80em;
 }
 
+
+
 mat-grid-list {
+    display: flex;
     justify-content: center;
     align-items: center;
+    height: 90%;
+    width: 95%;
+    margin-left: 4%;
 }
 
 .grid-wrapper {
     width: 95%;
-    margin-left: 2.5%;
+    height: 50%;
 }
 
 .title-wrapper {
-    display: flex;
-    flex-direction: column;
     text-align: center;
+    padding: 0%;
+    margin: 0%;
 }
 
 .image-wrapper {
@@ -38,7 +44,7 @@ h2 {
 }
 
 .input-data-container {
-    padding: 1em ;
+    padding: 0% 1%;
     width: 33%;
 }
 
@@ -46,23 +52,30 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    height: 2em;
+    width: 100%;
     text-align: central;
     text-transform: capitalize;
     border: 2px solid $primary-color;
+    padding: 1% 0%;
+    margin: 0%;
 
     &.longer {
-        height: 5em;
+        height: 40%;
+        padding-bottom: 2%;
+        
     }
 }
 
 .data-wrapper {
     display: flex;
-    width: 90%;
+    flex-direction: row;
     text-align: left;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    width: 90%;
+    height: 80%;
+    padding: 0%;
+    margin: 0%;
 }
 
 .grid-flex {
@@ -72,13 +85,14 @@ h2 {
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    height: 100%;
 }
 
 mat-grid-tile {
     display: flex;
     align-content: center;
     border: 2px solid $primary-color;
-    height: 60%;
+    height: 32%;
 }
 
 .confirmar-cita {
@@ -91,8 +105,10 @@ mat-grid-tile {
 
 .container-texto {
     display: flex;
+    text-align: center;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 32em;
+    width: 100%;
+    height: 90%;
+    padding: 0%;
+    margin: 0%;
 }

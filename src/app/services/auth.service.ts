@@ -1,31 +1,64 @@
+import { UsersService } from 'src/app/services/users.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import  firebase from 'firebase';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   
-  
-  constructor(private angularFireAuth: AngularFireAuth ) { }
+  userCollection!: AngularFirestoreCollection<User>;
+  user!: firebase.User | null;
+  userId!: string;
+  constructor(
+    private angularFireAuth: AngularFireAuth,
+    private afsAuth: AngularFireAuth,
+    public database: AngularFirestore,
+    ) { }
   /**
    * Log in with Google account
    */
   async loginWithGoogle(): Promise<firebase.User> {
+    
     try {
+      let primeraVez: boolean = false;
       const response = await this.angularFireAuth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()
-      );
+      )
       const { user } = response;
       localStorage.setItem('user', user.uid);
+      const actualUser = user;
+      primeraVez = response.additionalUserInfo?.isNewUser;
+      if (primeraVez){
+        let userDB: User = {
+          name: actualUser.displayName,
+          email: actualUser.email,
+          phoneNumber: actualUser.phoneNumber,
+          id: actualUser.uid,
+          rol: {
+            client: true,
+          }
+        }
+        const id = this.database.createId()
+        userDB.refId = id;
+        firebase.firestore().collection("users").doc(id).set(userDB);
+      }
       return user;
     } catch (err) {
       console.log(err);
       localStorage.removeItem('user');
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
       return null;
     }
+  }
+
+  isAuth() {
+    return this.afsAuth.authState.pipe(map(auth => auth));
   }
 
 
@@ -46,6 +79,7 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       localStorage.removeItem('user');
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
       return null;
     }
   }
@@ -74,9 +108,24 @@ export class AuthService {
         photoURL:
           'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
       });
+      let userDB: User = {
+        photoUrl: user?.photoURL,
+        name: actualUser.displayName,
+        email: actualUser.email,
+        phoneNumber: actualUser.phoneNumber,
+        id: actualUser.uid,
+        rol: {
+          client: true,
+        }
+      }
+      const id = this.database.createId()
+      userDB.refId = id;
+      console.log(userDB)
+      firebase.firestore().collection("users").doc(id).set(userDB);
       return actualUser;
     } catch (err) {
       localStorage.removeItem('user');
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
       return null;
     }
   }
@@ -87,6 +136,11 @@ export class AuthService {
   getCurrentUser(): Observable<firebase.User> {
     const actualUser: any = this.angularFireAuth.user;
     return actualUser;
+  }
+
+  getCurrentUserId(): string{
+    const actualUser: any = firebase.auth().currentUser;
+    return actualUser.uid;
   }
 
   /**

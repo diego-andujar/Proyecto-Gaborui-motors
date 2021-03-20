@@ -1,0 +1,74 @@
+@import "../../../styles/Lib/variables.scss";
+
+table {
+    width: 100%;
+  }
+  
+mat-card-title {
+  font-family: $primary-font;
+  text-transform: capitalize;
+  font-weight: 500;
+  letter-spacing: 0.2vw;
+}
+
+mat-card-subtitle {
+  font-family: $secondary-font;
+  text-transform: capitalize;
+  letter-spacing: 0.2vw;
+  font-weight: 500;
+}
+
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    max-width: 15vw;
+    max-height: 20vh;
+  }
+
+  .container-info {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .car-image{
+    max-width: 12vw;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+    max-width: 5%;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }

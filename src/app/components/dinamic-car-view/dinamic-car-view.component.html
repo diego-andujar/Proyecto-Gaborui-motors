@@ -1,0 +1,189 @@
+<div *ngIf="!crearCarro" class="component-container">
+    <div class="paginator">
+        <mat-paginator 
+        [length]="carList.length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[1]"
+        (page)="getPaginatorData($event)">
+    </mat-paginator>
+    <h2 *ngIf="userType === 'manager'">Solicitudes Pendientes</h2>
+    <h2 *ngIf="userType === 'client'">Vehiculos Activos</h2>
+    </div>
+    <div class="ngcont" >
+        <ng-container *ngFor="let car of (carList | slice: lowValue : highValue)">
+            <mat-grid-list cols="4">
+                <mat-grid-tile colspan="1">
+                    <div class="image-wrapper">
+                        <img class="image" src="https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png" alt="">
+                        <div class="title-wrapper">
+                            <span>usuario dueño</span>
+                            <h2>{{name}}</h2>
+                        </div>
+                    </div>
+                    
+                </mat-grid-tile>
+                <mat-grid-tile colspan="2">
+                    <div class="grid-flex">
+                        <div class="title-wrapper">
+                            <h2>datos del vehiculo</h2>
+                        </div>
+                        <div class="data-wrapper">
+                            <div class="input-data-container">
+                                <h3 class="auth-label">marca</h3>
+                                <span class="input-container-data">{{car.brand}}</span>
+                            </div>
+                            <div class="input-data-container">
+                                <h3 class="auth-label">placa</h3>
+                                <span class="input-container-data">{{car.plate}}</span>
+                            </div>
+                            <div class="input-data-container">
+                                <h3 class="auth-label">modelo</h3>
+                                <span class="input-container-data">{{car.model}}</span>
+                            </div>
+                            <div class="input-data-container">
+                                <h3 class="auth-label">año</h3>
+                                <span class="input-container-data">{{car.year}}</span>
+                            </div>
+                            <div class="input-data-container container-texto" *ngIf="userType == 'manager'">
+                                <h3 class="auth-label">motivo de la cita</h3>
+                                <span class="input-container-data longer">{{car.year}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1" *ngIf="userType == 'manager'">
+                    <div class="confirmar-cita">
+                        <div class="span">
+                            <span>Fecha Propuesta 10/03/2021</span>
+                        </div>
+                        <div>
+                            <div class="span button-wrapper">
+                                <div class="button-container">
+                                <button class="submit-button">Aceptar solicitud</button>
+                            </div>
+                            </div>
+                            
+                            <div class="span button-wrapper">
+                                <div class="button-container">
+                                    <button class="submit-button">Modificar solicitud</button>
+                                </div>
+                            </div>
+                            <div class="span button-wrapper">
+                                <div class="button-container">
+                                    <button class="submit-button">Rechazar solicitud</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1" *ngIf="userType == 'client'">
+                    <div class="confirmar-cita">
+                        <div class="span">
+                            <span>Fecha Propuesta 10/03/2021</span>
+                        </div>
+                        <div>
+                            <div class="span button-wrapper">
+                                <div class="button-container">
+                                <button class="submit-button" type="button">Aceptar solicitud</button>
+                            </div>
+                            </div>
+                            
+                            <div class="span button-wrapper">
+                                <div class="button-container">
+                                    <button class="submit-button" type="button">Modificar solicitud</button>
+                                </div>
+                            </div>
+                            <div class="span button-wrapper">
+                                <div class="button-container">
+                                    <button class="submit-button" type="button">Rechazar solicitud</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </mat-grid-tile>
+            </mat-grid-list>
+            
+    </ng-container>
+    
+    </div>
+    <div class="span button-wrapper">
+        <div class="button-container">
+        <button class="submit-button" (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button>
+    </div>
+    </div>
+</div>
+<div *ngIf="crearCarro" class="auth-form form-column">
+    <div class="auth-form-wrapper">
+        <h1 class="h1-center">Añadir Un Nuevo Vehiculo</h1>
+        <form  [formGroup]="carForm"
+            class="form-container"
+            (ngSubmit)="onSubmit()"
+        >
+            
+
+            <div class="input-container">
+                <mat-label class="auth-label">marca:</mat-label>
+                <mat-select placeholder="Honda" formControlName="brand" [(ngModel)]="selectedValue" name="car">
+                <mat-option  *ngFor="let car of carBrands" [value]="car.value">
+                    {{car.viewValue}}
+                </mat-option>
+                </mat-select>
+            </div>
+
+            <div class="input-container">
+                <label class="auth-label" for="summary">modelo:</label>
+                <input
+                type="text"
+                id="summary"
+                placeholder="Fiesta"
+                formControlName="model"
+                class="auth-input"
+                >
+            </div>
+
+            <div class="input-container">
+                <label class="auth-label" for="description">año:</label>
+                <input
+                type="text"
+                id="description"
+                placeholder="2010"
+                formControlName="year"
+                class="auth-input"
+                >
+            </div>
+
+            <div class="input-container">
+                <label class="auth-label" for="photo">placa:</label>
+                <input
+                type="text"
+                id="photo"
+                placeholder="aaa11a"
+                formControlName="plate"
+                class="auth-input"
+                />
+            </div>
+
+            <div class="input-container">
+                <label class="auth-label" for="photo">Serial del motor:</label>
+                <input
+                type="text"
+                id="photo"
+                placeholder="aaa11a"
+                formControlName="serialMotor"
+                class="auth-input"
+                />
+            </div>
+            <div class="btn-wrapper">
+                <div class="butto-container">
+                    <button class="submi-button" type="submit">crear vehiculo</button>
+                </div>
+                <div class="butto-container">
+                    <button class="submi-button" (click)="!crearCarro = !crearCarro" type="button">volver</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

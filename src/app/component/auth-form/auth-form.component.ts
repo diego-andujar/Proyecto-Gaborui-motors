@@ -1,8 +1,10 @@
+import { User } from './../../models/user';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -19,7 +21,8 @@ export class AuthFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private userService: UsersService,
   ) {}
 
   ngOnInit(): void {
@@ -39,14 +42,17 @@ export class AuthFormComponent implements OnInit {
     if (user) {
       this.router.navigate(['/']);
     }
+
   }
 
   async onSubmit() {
     const formValues = {
-      displayName: this.authForm.get('displayName').value,
-      email: this.authForm.get('email').value,
-      password: this.authForm.get('password').value,
+      displayName: this.authForm.get('displayName'),
+      email: this.authForm.get('email'),
+      password: this.authForm.get('password'),
     };
+    this.authForm.reset();
     this.sendFormEvent.emit(formValues);
   }
+
 }

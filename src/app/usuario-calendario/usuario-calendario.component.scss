@@ -1,0 +1,54 @@
+.usuario-calendario{
+    background: #6AB8E3;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.mensaje{
+    position: flex;
+    align-items: center;
+    width: 30%;
+    top: 34%;
+    margin-left: 12%;
+    font-family: 'Poppins';
+}
+.calendario{
+    width: 38%;
+    position: absolute;
+    right: 5%;
+    margin-top: 11%;
+    font-family: 'Poppins';
+}
+.fc-direction-ltr{
+    background: #fff;
+    height: 301px;
+}
+.mensaje-label{
+    background: #1C1A1A;
+    text-align: center;
+    border-radius: 8px;
+    color: #fff;
+}
+.calendario-label{
+    background: #1C1A1A;
+    text-align: center;
+    border-radius: 8px;
+    color: #fff;
+}
+
+@media screen and (max-width: 720px){
+    .mensaje{
+        position: absolute;
+        width: 88%;
+        top: 11%;
+        margin-left: 7%;
+        font-family: 'Poppins';
+    }
+    .calendario{
+        width: 88%;
+        position: absolute;
+        right: 5%;
+        margin-top: 121%;
+        font-family: 'Poppins';
+    }
+}

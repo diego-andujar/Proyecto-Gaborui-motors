@@ -4,6 +4,11 @@ mat-paginator {
     background-color: $secondary-color;
     font-family: $third-font;
     font-size: small;
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

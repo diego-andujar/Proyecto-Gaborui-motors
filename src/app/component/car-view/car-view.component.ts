@@ -16,6 +16,8 @@ export interface Tile {
 export class CarViewComponent implements OnInit {
 
   @Input() car = {} as Car;
+  @Input() userType!: string;
+  verSolicitud = false;
   
   constructor() { }
 

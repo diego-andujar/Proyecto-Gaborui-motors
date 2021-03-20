@@ -9,6 +9,16 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { CarruselComponent } from './components/carrusel/carrusel.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { MapsComponent } from './components/maps/maps.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { GallerygridComponent } from './components/gallerygrid/gallerygrid.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { QuienesComponent } from './components/quienes/quienes.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { AuthFormComponent } from './component/auth-form/auth-form.component';
@@ -29,12 +39,48 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-gnrl-manager.component';
+import { ClientPageComponent } from './pages/client-page/client-page.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { BotonComponent } from './usuario/boton/boton.component';
+import { UsuarioCalendarioComponent } from './usuario-calendario/usuario-calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { UsernameComponent } from './username/username.component';
+import { NewCarFormComponent } from './components/new-car-form/new-car-form.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { MechanicPageComponent } from './pages/mechanic-page/mechanic-page.component';
+import { ClientFormComponent } from './components/client-form/client-form.component'; // a plugin
+import { DatePipe } from '@angular/common';
+import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AppointmentViewComponent } from './components/appointment-view/appointment-view.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import { DinamicCarViewComponent } from './components/dinamic-car-view/dinamic-car-view.component';
+import { AppointmentDinamicComponent } from './components/appointment-dinamic/appointment-dinamic.component';
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+]);
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
+    HomePageComponent,
+    CarruselComponent,
+    ContactComponent,
+    MapsComponent,
+    GalleryComponent,
+    GallerygridComponent,
+    FooterComponent,
+    QuienesComponent,
+    CarruselComponent,
+    ImageSliderComponent,
     SignUpPageComponent,
     LogInPageComponent,
     AuthFormComponent,
@@ -45,8 +91,22 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     SideNavComponent,
     OrdenReparacionComponent,
     VistaGnrlManagerComponent,
+    ClientPageComponent,
+    UsuarioComponent,
+    BotonComponent,
+    UsuarioCalendarioComponent,
+    UsernameComponent,
+    NewCarFormComponent,
+    AdminPageComponent,
+    MechanicPageComponent,
+    ClientFormComponent,
+    ClientAppointmentFormComponent,
+    AppointmentViewComponent,
+    DinamicCarViewComponent,
+    AppointmentDinamicComponent,
   ],
   imports: [
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -56,7 +116,7 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatPaginatorModule,
     MatGridListModule,
@@ -67,8 +127,19 @@ import { VistaGnrlManagerComponent } from './component/vista-gnrl-manager/vista-
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatInputModule,
+    MatIconModule,
+    MatProgressBarModule,
+    NoopAnimationsModule,
+    FullCalendarModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatCardModule,
+    MatTableModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [DatePipe],
+  bootstrap: [AppComponent],
+  entryComponents: [ClientAppointmentFormComponent],
 })
 export class AppModule { }
+

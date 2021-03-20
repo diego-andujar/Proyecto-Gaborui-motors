@@ -3,6 +3,11 @@
 @import "../car-view/car-view.component.scss";
 @import "../../../styles/Lib/variables.scss";
 
+
+.form-container{
+    height: 200vh;
+}
+
 .input-data-container {
     display: flex;
     flex-direction: column;
@@ -34,7 +39,8 @@
 .data-wrapper {
     padding: 2em;
     border: solid 1px $primary-color;
-    background-color: white;
+    background-color: blue;
+    height: 100%;
 }
 
 .form-container {

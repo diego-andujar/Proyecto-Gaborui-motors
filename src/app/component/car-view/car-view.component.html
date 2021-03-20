@@ -32,15 +32,40 @@
                         <h3 class="auth-label">año</h3>
                         <span class="input-container-data">{{car.year}}</span>
                     </div>
-                    <div class="input-data-container container-texto">
-                        <h3 class="auth-label">falla identificada</h3>
+                    <div class="input-data-container container-texto" *ngIf="userType == 'manager'">
+                        <h3 class="auth-label">motivo de la cita</h3>
                         <span class="input-container-data longer">{{car.year}}</span>
                     </div>
                 </div>
             </div>
             
         </mat-grid-tile>
-        <mat-grid-tile colspan="1">
+        <mat-grid-tile colspan="1" *ngIf="userType == 'manager'">
+            <div class="confirmar-cita">
+                <div class="span">
+                    <span>Fecha Propuesta 10/03/2021</span>
+                </div>
+                <div>
+                    <div class="span button-wrapper">
+                        <div class="button-container">
+                        <button class="submit-button">Aceptar solicitud</button>
+                    </div>
+                    </div>
+                    
+                    <div class="span button-wrapper">
+                        <div class="button-container">
+                            <button class="submit-button">Modificar solicitud</button>
+                        </div>
+                    </div>
+                    <div class="span button-wrapper">
+                        <div class="button-container">
+                            <button class="submit-button">Rechazar solicitud</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" *ngIf="userType == 'client'">
             <div class="confirmar-cita">
                 <div class="span">
                     <span>Fecha Propuesta 10/03/2021</span>

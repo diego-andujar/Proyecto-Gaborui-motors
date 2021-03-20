@@ -1,0 +1,103 @@
+@import "../../../styles/Lib/variables.scss";
+
+body{
+    margin: 0;
+    padding-top: 4%;
+    height: 91%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $primary-color;
+  }
+
+.ahora {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  transition: 1s;
+}
+
+h2 {
+    font-family: $primary-font;
+    color: $third-color;
+   font-size: 4em; 
+   text-transform: uppercase;
+   font-weight: 800;
+   letter-spacing: 3px;
+   text-shadow: 4px 4px 10px $primary-color;
+}
+
+  .slider{
+      position: relative;
+    width: 85%;
+    height: 94%;
+    border-radius: 0px;
+    overflow: hidden;
+  }
+  
+  .slides{
+    width: 600%;
+    height: 500px;
+    display: flex;
+  }
+  
+  .slides input{
+    display: none;
+  }
+  
+  .slide{
+    width: 20%;
+    transition: 2s;
+  }
+  
+  .slide img{
+    width: 85%;
+    height: 120%;
+    filter: brightness(80%);
+  }
+  
+  /*css for manual slide navigation*/
+  
+  .navigation-manual{
+      position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .manual-btn{
+    border: 3px solid $primary-color;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+  }
+  
+  .manual-btn:not(:last-child){
+    margin-right: 40px;
+  }
+  
+  .manual-btn:hover{
+    border: 3px solid $secondary-color;
+    background: $secondary-color;
+  }
+  
+  #radio1:checked ~ .first{
+    margin-left: 0;
+  }
+  
+  #radio2:checked ~ .first{
+    margin-left: -20%;
+  }
+  
+  #radio3:checked ~ .first{
+    margin-left: -40%;
+  }
+  
+  #radio4:checked ~ .first{
+    margin-left: -60%;
+  }
+  
+  

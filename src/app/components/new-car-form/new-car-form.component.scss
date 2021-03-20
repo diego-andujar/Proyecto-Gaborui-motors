@@ -1,0 +1,50 @@
+@import "../../../styles/components/text-boxes.scss";
+@import "../../../styles/components/buttons.scss";
+
+mat-select {
+    width: 47%;
+}
+
+.btn {
+    width: 50%;
+}
+
+.auth-form {
+    margin: 0;
+    padding: 0;
+    height: 90%;
+}
+
+.auth-form-wrapper {
+    padding: 0% 3%;
+}
+
+.datos-manager-wrapper {
+    height: 96.5%;
+}
+
+.form-new {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.car-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 44em;
+    background-color: $secondary-color;
+}

@@ -1,0 +1,103 @@
+@import "../../../styles/Lib/variables.scss";
+
+form{
+    padding: 0px;
+}
+
+input {
+    font-family: $secondary-font;
+    
+}
+
+mat-select {
+    width: 59%;
+    background-color: white;
+    border: 0.5px solid $primary-color;
+    font-family: $secondary-font;
+}
+
+img {
+    width: 90%;
+}
+
+.photo {
+    width: 50%;
+}
+
+label {
+    width: 30%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+.auth-form-wrapper {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 80vh;
+    border: 0px;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: $third-color;
+}
+
+.auth-label {
+    font-family: $primary-font;
+    color: $primary-color;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    
+}
+
+.auth-input {
+    display: flex;
+    justify-content: right;
+    margin-left: 1.5em;
+    font-family: $secondary-font;
+    font-weight: 400;
+    width: 19em;
+    text-align: center;
+    text-transform: capitalize;
+    &.correo {
+        text-transform: lowercase;
+    }
+    &.active {
+        background-color: powderblue;
+    }
+}
+
+.input {
+    width: 50%;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    padding: 0px 5%;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.no-acc-text {
+    width: 70%;
+    text-decoration: none;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    font-family: $primary-font;
+    color: $primary-color;
+}
