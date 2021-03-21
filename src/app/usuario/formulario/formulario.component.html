@@ -1,129 +1,101 @@
-<div class="form">
-    <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
-        <input type="text" formControlName="name" placeholder="Your Name">
-        <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
-          <div class="container-error-message" *ngIf="name.errors.required">
-            Name is required
-          </div>
-          <div class="container-error-message" *ngIf="address.errors.minlength">
-            address must be at least 5 characters long.
-          </div>
-        </div>
+<button (click)="open(content)">
+  Agregar Datos de Uusario
+</button>
+<div class="form1">
+<table class="table">
+  <thead>
+    <tr>
+      <th>nombre:</th>
+      <th>email:</th>
+      <th>user:</th>
+      <th>age:</th>
+    </tr>
+    <tr *ngFor="let item of collection.data ">
+      <td>{{item.nombre}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.user}}</td>
+      <td>{{item.age}}</td>
+    </tr>
+    <tr>
+      <th>ci:</th>
+      <th>gender:</th>
+      <th>address:</th>
+      <th>cp:</th>
+    </tr> 
+    <tr *ngFor="let item of collection.data ">
+      <td>{{item.ci}}</td>
+      <td>{{item.gender}}</td>
+      <td>{{item.address}}</td>
+      <td>{{item.cp}}</td>
+      <!-- <td>
+        <button type="button"  (click)="openEditar(content,item)">Editar</button>
+        <button type="button"  (click)="eliminar(item)">Eliminar</button>
+      </td> -->
+    </tr>  
+    <tr *ngFor="let item of collection.data ">
+      <td>
+        <button type="button" class="button-edi"  (click)="openEditar(content,item)">Editar Datos de Usuario</button>
+        <button type="button" class="button-eli"  (click)="eliminar(item)">Eliminar Datos de Usuario</button>
+      </td>
+    </tr>  
+     
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
-        <input type="text" formControlName="email" placeholder="Your email">
-    
-        <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-          <div class="container-error-message" *ngIf="email.errors.required">
-            Email is required
+      <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="container-error-message" *ngIf="email.errors.minlength">
-            Email must be at least 5 characters long.
-          </div>
-          <div class="container-error-message"
-            *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
-            Value has to be a valid email address.
-          </div>
-        </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
 
-        <input type="text" formControlName="user" placeholder="Your user">
-        <div class="alert-danger" *ngIf="user.invalid && (user.dirty || user.touched)">
-          <div class="container-error-message" *ngIf="user.errors.required">
-            user is required
-          </div>
-          <div class="container-error-message" *ngIf="address.errors.minlength">
-            address must be at least 5 characters long.
-          </div>
-        </div>
+                <form [formGroup]="userForm">
+                  <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>email</label>
+                    <input type="text" formControlName="email" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>user</label>
+                    <input type="text" formControlName="user" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>age</label>
+                    <input type="number" formControlName="age" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>ci</label>
+                    <input type="number" formControlName="ci" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>gender</label>
+                    <input type="text" formControlName="gender" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>address</label>
+                    <input type="text" formControlName="address" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>cp</label>
+                    <input type="number" formControlName="cp" class="form-control">
+                  </div>
 
-        <input type="text" formControlName="age" placeholder="Your age">
-        <div class="alert-danger" *ngIf="age.invalid && (age.dirty || age.touched)">
-          <div class="container-error-message" *ngIf="age.errors.required">
-            age is required
+                </form>
+              </div>
+            </form>
           </div>
-          <div class="container-error-message" *ngIf="address.errors.minlength">
-            address must be at least 5 characters long.
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="guardarUser()" *ngIf="!actualizar">Save</button>
+            <button type="button" class="btn btn-outline-dark" (click)="actualizarUser()" *ngIf="actualizar">Actualizar</button>
           </div>
-        </div>
-
-        <input type="text" formControlName="ci" placeholder="Your ci">
-        <div class="alert-danger" *ngIf="ci.invalid && (ci.dirty || ci.touched)">
-          <div class="container-error-message" *ngIf="ci.errors.required">
-            ci is required
-          </div>
-          <div class="container-error-message" *ngIf="address.errors.minlength">
-            address must be at least 5 characters long.
-          </div>
-        </div>
-
-        <input type="text" formControlName="gender" placeholder="Your gender">
-        <div class="alert-danger" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
-          <div class="container-error-message" *ngIf="gender.errors.required">
-            gender is required
-          </div>
-          <div class="container-error-message" *ngIf="address.errors.minlength">
-            address must be at least 5 characters long.
-          </div>
-        </div>
-
-        <input type="text" formControlName="address" placeholder="Your address">
-        <div class="alert-danger" *ngIf="address.invalid && (address.dirty || address.touched)">
-          <div class="container-error-message" *ngIf="address.errors.required">
-            address is required
-          </div>
-          <div class="container-error-message" *ngIf="address.errors.minlength">
-            address must be at least 5 characters long.
-          </div>
-        </div>
-
-        <input type="text" formControlName="cp" placeholder="Your cp">
-        <div class="alert-danger" *ngIf="cp.invalid && (cp.dirty || cp.touched)">
-          <div class="container-error-message" *ngIf="cp.errors.required">
-            cp is required
-          </div>
-          <div class="container-error-message" *ngIf="email.errors.minlength">
-            Email must be at least 5 characters long.
-          </div>
-        </div>
-        <button type="submit" class="btn-send" >Send</button>
-      </form>
-      
+        </ng-template>
 </div>
-
-<!-- <div class="form">
-    <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
-      <input type="text" formControlName="name" placeholder="Your Name">
-      <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
-        <div class="container-error-message" *ngIf="name.errors.required">
-          Name is required
-        </div>
-        <div class="container-error-message" *ngIf="name.errors.minlength">
-          Name must be at least 5 characters long.
-        </div>
-      </div>
-  
-      <input type="text" formControlName="email" placeholder="Your email">
-  
-      <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div class="container-error-message" *ngIf="email.errors.required">
-          Email is required
-        </div>
-        <div class="container-error-message" *ngIf="email.errors.minlength">
-          Email must be at least 5 characters long.
-        </div>
-        <div class="container-error-message"
-          *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
-          Value has to be a valid email address.
-        </div>
-      </div>
-      <textarea formControlName="message" placeholder="Type your message"></textarea>
-      <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
-        <div class="container-error-message" *ngIf="message.errors.required">
-          Message is required
-        </div>
-        <div class="container-error-message" *ngIf="message.errors.minlength">
-          Message must be at least 10 characters long.
-        </div>
-      </div>
-      <button type="submit" class="btn-send" [disabled]="!contactForm.valid">Send</button>
-    </form>
-  </div> -->

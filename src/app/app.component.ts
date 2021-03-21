@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
 
 @Component({
   selector: 'app-root',

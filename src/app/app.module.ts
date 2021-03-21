@@ -4,24 +4,36 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+// import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsuarioComponent } from './usuario/usuario.component';
-import { FormularioComponent } from './usuario/formulario/formulario.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { BotonComponent } from './usuario/boton/boton.component';
-import { UsuarioCalendarioComponent } from './usuario-calendario/usuario-calendario.component';
 import {MatCardModule} from '@angular/material/card';
+
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { UsernameComponent } from './username/username.component'; // a plugin
 
+import { UsuarioComponent } from './usuario/usuario.component';
+import { FormularioComponent } from './usuario/formulario/formulario.component';
+import { BotonComponent } from './usuario/boton/boton.component';
+import { UsuarioCalendarioComponent } from './usuario-calendario/usuario-calendario.component';
+import { UsernameComponent } from './username/username.component';
+import { GerenteComponent } from './gerente/gerente.component';
+import { GerenteReportesComponent } from './gerente/gerente-reportes/gerente-reportes.component';
+import { UsernameGerenteComponent } from './gerente/gerente-reportes/username-gerente/username-gerente.component';
+import { GerenteStatusComponent } from './gerente/gerente-status/gerente-status.component';
+import { GerenteFormularioComponent } from './gerente/gerente-formulario/gerente-formulario.component'; // a plugin
+
+import { DataService } from './services/data.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -35,12 +47,18 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BotonComponent,
     UsuarioCalendarioComponent,
     UsernameComponent,
+    GerenteComponent,
+    GerenteReportesComponent,
+    UsernameGerenteComponent,
+    GerenteStatusComponent,
+    GerenteFormularioComponent,
   ],
   imports: [
     MatCardModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -50,9 +68,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatIconModule,
     MatProgressBarModule,
     NoopAnimationsModule,
-    FullCalendarModule 
+    FullCalendarModule,
+    NgbModule ,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
