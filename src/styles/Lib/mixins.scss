@@ -4,8 +4,19 @@
     }
 }
 
+// @mixin ipad {
+//     @media (min-width: 475px) {
+//         @content;
+//     }
+// }
 @mixin tablet {
-    @media (max-width: 1025px) {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin ipad-pro {
+    @media (min-width: 1024px) {
         @content;
     }
 }

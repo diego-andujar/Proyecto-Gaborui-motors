@@ -23,6 +23,13 @@
         width: 100%;
         height: 10%;
         align-items: center;
+        // background-color: red;
+    }
+    @include ipad-pro {
+        width: 100%;
+        height: 10%;
+        align-items: center;
+        // background-color: red;
     }
     // LOGO
     .logo {
@@ -40,6 +47,10 @@
             width: 15%;
             height: 100%;
         }
+        @include ipad-pro {
+            width: 15%;
+            height: 100%;
+        }
     }
     .logo2 {
         display: none;
@@ -53,13 +64,21 @@
     // NAVBAR
     .navbar {
         display: flex;
+        // justify-content: center;
         align-items: center;
         font-size: 1.6em;
         @include small-phone {
             display: none;
         }
         @include tablet {
-            margin-right: 50%;
+            font-size: 1.3em;
+            margin-right: 20%;
+            margin-left: -3%;
+        }
+        @include ipad-pro {
+            font-size: 1.7em;
+            margin-right: 15%;
+            margin-left: -3%;
         }
         li {
             margin-bottom: 0;
@@ -96,9 +115,9 @@
                 border-radius: 5px;
                 text-align: center;
                 @include tablet {
-                    background-color: #6AB8E3;
-                    color: #F9F9F9;
-                    margin-left: 10%;
+                    background-color: $secondary-color;
+                    color: $third-color;
+                    margin-left: 5%;
                     padding: 0.1em 0.2em;
                     border-radius: 5px;
                     text-align: center;
@@ -114,13 +133,13 @@
                 text-align: center;
                 @include tablet {
                     background-color: #F9F9F9;
-                    color: black;
-                    width: 4em;
-                    padding: 0.1em;
+                    color: #1C1A1A;
+                    padding: 0.3em;
                     border-radius: 5px;
-                    /* margin-left: -50%; */
-                    /* margin-right: 30%; */
                     text-align: center;
+                    /* width: 200%; */
+                    display: flex;
+                    flex: none;
                 }
             }
             &.user-info {
