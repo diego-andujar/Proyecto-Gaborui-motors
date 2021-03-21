@@ -19,7 +19,7 @@ import { stringify } from '@angular/compiler/src/util';
 })
 export class OrdenReparacionComponent implements OnInit {
 
-  displayedColumns = ['item', 'cost'];
+  displayedColumns = ['item', 'cost', 'actions'];
   appointment: Appointment | undefined;
   transactions: Part[] = [];
   orderForm!: FormGroup;
@@ -52,12 +52,15 @@ export class OrdenReparacionComponent implements OnInit {
   }
 
   onCodeResult(resultString: string) {
+    this.transactions = [];
     this.qrResultString = resultString;
     this.getCar(resultString);
     this.orderService.getOrder(resultString).then( doc => {
         this.orden = doc[0];
         this.transactions = this.orden.parts;
       })
+    this.verOrden = true;
+    alert("!Se ha encontrado la orden!")
   }
 
   public scanSuccessHandler($event: any){
@@ -89,6 +92,20 @@ export class OrdenReparacionComponent implements OnInit {
       this.orden = doc[0];
       this.transactions = this.orden.parts;
     })
+  }
+
+  onEdit(row){
+    const index = this.transactions.indexOf(row, 0);
+    if(index > -1){
+      this.transactions.splice(index,1);
+      const parts = {parts: this.transactions};
+      this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
+      this.orderService.getOrder(this.appointment?.appId).then( doc => {
+        this.orden = doc[0];
+        this.transactions = this.orden.parts;
+      })
+    }
+    alert("!se ha eliminado el repuesto con exito!")
   }
 
   createForm(): void {

@@ -148,7 +148,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ZXingScannerModule,
     MatButtonModule,
     MatSortModule,
-
+    MatIconModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

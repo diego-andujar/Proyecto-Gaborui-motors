@@ -130,15 +130,17 @@
             </section>
         </div>
     </div>
-    <button (click)="verOrden = !verOrden; escanear = !escanear">Ver orden</button>
-    <button (click)="newPart()" *ngIf="verOrden">Añadir repuesto</button>
-        <app-new-part-form *ngIf="addPart" [order]="orden" [app]="appointment"></app-new-part-form>
+    <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Ver orden</button>
+    <button *ngIf="appointment && verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Escanear otro qr</button>
     <div class="list-wrapper" *ngIf="verOrden">
         <p>{{appointment.userName}}</p>
         <p>{{car.brand}}</p>
         <p>{{car.model}}</p>
         <p>{{car.year}}</p>
         <p>{{car.plate}}</p>
+        <h2>repuestos</h2>
+        <button (click)="newPart()" *ngIf="verOrden">Añadir repuesto</button>
+        <app-new-part-form *ngIf="addPart" [order]="orden" [app]="appointment"></app-new-part-form>
         <div class="example-container mat-elevation-z8">
             <table mat-table [dataSource]="transactions">
                 <!-- Item Column -->
@@ -153,6 +155,14 @@
                     <th mat-header-cell *matHeaderCellDef> Costo </th>
                     <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
                     <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button (click)="onEdit(row)"><mat-icon>delete_outline</mat-icon></button>
+                    </td>
+                    <td mat-footer-cell *matFooterCellDef></td>
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

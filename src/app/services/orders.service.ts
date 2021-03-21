@@ -33,8 +33,8 @@ export class OrdersService {
     return lista;
   }
 
-  updateOrder(data: any, id: string | undefined, idOrder: string | undefined){
-    const collection = this.db.collection("citas").doc(id).collection("orden")
+  updateOrder(data: any, idApp: string | undefined, idOrder: string | undefined){
+    const collection = this.db.collection("citas").doc(idApp).collection("orden")
     return  collection.doc(idOrder).update(data);
   }
 
