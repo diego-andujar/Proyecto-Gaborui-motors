@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MechanicsPageComponent implements OnInit {
 
+  public clickedEvent: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  childEventClicked(event: string){
+    this.clickedEvent = event;
   }
 
 }

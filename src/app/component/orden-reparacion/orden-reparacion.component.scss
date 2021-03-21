@@ -3,8 +3,43 @@
 @import "../car-view/car-view.component.scss";
 @import "../../../styles/Lib/variables.scss";
 
+.content-wrapper {
+    padding-top: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-.form-container{
+.example-container {
+height: 270px;
+overflow: auto;
+}
+
+table {
+width: 100%;
+}
+
+tr.mat-footer-row {
+font-weight: bold;
+}
+
+.mat-table-sticky {
+border-top: 1px solid #e0e0e0;
+}
+
+
+
+.comp-wrapper{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.results {
+    margin: 3%;
+}
+
+/*.form-container{
     height: 200vh;
 }
 
@@ -98,4 +133,4 @@ textarea {
     display: flex;
     align-items: center;
     height: 20em;
-}
+}*/

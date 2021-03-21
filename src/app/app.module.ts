@@ -65,6 +65,8 @@ import { MechanicsPageComponent } from './pages/mechanics-page/mechanics-page.co
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -142,6 +144,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatTableModule,
     NgxQRCodeModule,
     ZXingScannerModule,
+    MatButtonModule,
+    MatSortModule,
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

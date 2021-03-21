@@ -1,7 +1,7 @@
 import { AppointmentServiceService } from 'src/app/services/appointment-service.service';
 import { Appointment } from 'src/app/models/appointment';
 import { CarsService } from 'src/app/services/cars.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Car } from 'src/app/models/car';
 
 @Component({
@@ -17,6 +17,8 @@ export class QrScannerComponent implements OnInit {
   appointment!: any;
   qrResultString: string | null = "";
   information: string = "No se ha detectado informacion de ningun codigo. Muestre un Qr para que sea escaneado"
+  @Output() qrRead = new EventEmitter<string>();
+
   constructor(
     private cd: ChangeDetectorRef,
     private carService: CarsService,
@@ -34,6 +36,7 @@ export class QrScannerComponent implements OnInit {
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
     this.getCar(resultString)
+    this.qrRead.emit(resultString);
   }
 
   public scanSuccessHandler($event: any){
@@ -50,7 +53,6 @@ export class QrScannerComponent implements OnInit {
     this.appService.getSpecificApp(id).subscribe( doc => {
       this.carService.getCarById(doc.car).subscribe( doc => {
         this.car = doc;
-        console.log(id + " " + doc.brand)
       })
     })
   }
