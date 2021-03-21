@@ -52,6 +52,7 @@
         width: 108%;
         align-items: center;
         background-color: white;
+        border: 0.1em solid white;
     }
     .bloque {
         border: 0px;
@@ -282,8 +283,8 @@
     color: $third-color;
     @include tablet {
         width: 100%;
-        background-color: #1C1A1A;
-        color: #F9F9F9;
+        background-color: $primary-color;
+        color: $third-color;
         border-radius: 1em;
     }
     @include small-phone {
@@ -316,6 +317,21 @@
     // font-weight: 5em;
     background-color: $third-color;
     color: $secondary-color;
+}
+
+.botoncitoumg {
+    background-color: $secondary-color;
+    border: 0em solid $secondary-color;
+    font-family: $primary-font;
+    width: 100%;
+    font-size: 0.75em;
+    padding-top: 1%;
+}
+
+.botoncitoumg:hover {
+    font-size: 0.9em;
+    padding-top: 1%;
+    border-bottom: 0.2em solid black;
 }
 
 // @media only screen and (max-width:475px) {
