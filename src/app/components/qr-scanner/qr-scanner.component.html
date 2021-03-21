@@ -1,0 +1,17 @@
+<p>qr-scanner works!</p>
+<div class="scan-wrapper">
+    <button *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
+    <button *ngIf="escanear" (click)="escanear = false">Cerrar camara</button>
+    <div class="scanner-image">
+        <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+    </div>
+    
+
+    <section class="results" *ngIf="qrResultString">
+    <div class="scanner-image">
+        <small>Result</small>
+        <strong>{{ qrResultString }}</strong>
+    </div>
+    <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+</div>

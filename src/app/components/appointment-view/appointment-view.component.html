@@ -23,12 +23,25 @@
                 <span class="example-element-description-attribution"> Motivo de la cita -- </span>
                 {{appointment.diagnosis}}
             </div>
+            <div class="container" *ngIf="appointment.estado === 'por confirmar'">
+                <h3>QRCode de la cita</h3>
+            </div>
+            <div *ngIf="appointment.estado === 'por confirmar'">
+                <ngx-qrcode
+                    [elementType]="elementType"
+                    [errorCorrectionLevel]="correctionLevel"
+                    value={{appointment.appId}}
+                    cssClass="coolQRCode">
+                </ngx-qrcode>
+                <button (click)="downloadQRCode(appointment)">Download QRCode</button>
+             </div>
         </mat-card-content>
         <div *ngIf="isManager">
-            <mat-card-actions *ngIf="appointment.estado == 'solicitada'" >
+            <mat-card-actions *ngIf="appointment.estado === 'solicitada'" >
                 <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(appointment)">Aceptar Cita</button> 
                 <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button> 
                 <button mat-flat-button *ngIf="!cambiarFecha">Rechazar Cita</button> 
+                
                 <form [formGroup]="dayForm" *ngIf="cambiarFecha">
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>

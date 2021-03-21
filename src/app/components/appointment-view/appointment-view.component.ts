@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { UsersService } from 'src/app/services/users.service';
 import { CarsService } from 'src/app/services/cars.service';
 import { AppointmentServiceService } from './../../services/appointment-service.service';
@@ -10,6 +11,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode'
 
 @Component({
   selector: 'app-appointment-view',
@@ -46,7 +48,10 @@ export class AppointmentViewComponent implements OnInit {
   dataSource: Appointment[] = [];
   columnsToDisplay = ['Detalles del carro ', 'Usuario', 'Fecha solicitada', 'Fecha de la cita', 'estado de la cita'];
   expandedElement!: Appointment;
-  @ViewChild('picker') datePicker: MatDatepicker<Date>;
+  @ViewChild('picker')
+  datePicker!: MatDatepicker<Date>;
+  public elementType = NgxQrcodeElementTypes.URL;
+  public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -174,4 +179,24 @@ export class AppointmentViewComponent implements OnInit {
   onClick(){
     this.datePicker.open();
   }
+
+  public downloadQRCode(appointment: Appointment) {
+    const fileNameToDownload = 'cita#' + appointment.appId;
+    const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
+    fetch(base64Img)
+       .then(res => res.blob())
+       .then((blob) => {
+          // IE
+          if (window.navigator && window.navigator.msSaveOrOpenBlob){
+             window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
+          } else { // Chrome
+             const url = window.URL.createObjectURL(blob);
+             const link = document.createElement('a');
+             link.href = url;
+             link.download = fileNameToDownload;
+             link.click();
+          }
+       })
+ }
+
 }

@@ -52,7 +52,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { UsernameComponent } from './username/username.component';
 import { NewCarFormComponent } from './components/new-car-form/new-car-form.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
-import { MechanicPageComponent } from './pages/mechanic-page/mechanic-page.component';
 import { ClientFormComponent } from './components/client-form/client-form.component'; // a plugin
 import { DatePipe } from '@angular/common';
 import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';
@@ -62,6 +61,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import { DinamicCarViewComponent } from './components/dinamic-car-view/dinamic-car-view.component';
 import { AppointmentDinamicComponent } from './components/appointment-dinamic/appointment-dinamic.component';
+import { MechanicsPageComponent } from './pages/mechanics-page/mechanics-page.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -98,12 +101,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UsernameComponent,
     NewCarFormComponent,
     AdminPageComponent,
-    MechanicPageComponent,
     ClientFormComponent,
     ClientAppointmentFormComponent,
     AppointmentViewComponent,
     DinamicCarViewComponent,
     AppointmentDinamicComponent,
+    MechanicsPageComponent,
+    QrScannerComponent,
   ],
   imports: [
     MatCardModule,
@@ -136,6 +140,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatDialogModule,
     MatCardModule,
     MatTableModule,
+    NgxQRCodeModule,
+    ZXingScannerModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
