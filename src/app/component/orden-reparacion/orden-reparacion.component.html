@@ -131,7 +131,9 @@
         </div>
     </div>
     <button (click)="verOrden = !verOrden; escanear = !escanear">Ver orden</button>
-    <div *ngIf="verOrden">
+    <button (click)="newPart()" *ngIf="verOrden">Añadir repuesto</button>
+        <app-new-part-form *ngIf="addPart" [order]="orden" [app]="appointment"></app-new-part-form>
+    <div class="list-wrapper" *ngIf="verOrden">
         <p>{{appointment.userName}}</p>
         <p>{{car.brand}}</p>
         <p>{{car.model}}</p>

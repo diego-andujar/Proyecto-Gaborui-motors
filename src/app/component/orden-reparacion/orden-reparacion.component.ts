@@ -1,3 +1,5 @@
+import { NewPartFormComponent } from './../../components/new-part-form/new-part-form.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Appointment } from 'src/app/models/appointment';
 import { Car } from 'src/app/models/car';
 import { Order } from './../../models/order';
@@ -8,6 +10,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Part } from 'src/app/models/part';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-orden-reparacion',
@@ -28,6 +31,7 @@ export class OrdenReparacionComponent implements OnInit {
   qrResultString: string | null = "";
   information: string = "No se ha detectado informacion de ningun codigo. Muestre un Qr para que sea escaneado"
   verOrden: boolean = false;
+  addPart: boolean = false;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -35,6 +39,7 @@ export class OrdenReparacionComponent implements OnInit {
     private appService: AppointmentServiceService,
     private carService: CarsService,
     private orderService: OrdersService,
+    private dialog: MatDialog,
     ) { }
 
   ngOnInit(): void {
@@ -76,6 +81,14 @@ export class OrdenReparacionComponent implements OnInit {
 
   getTotalCost() {
     return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  }
+
+  newPart(){
+    this.addPart = !this.addPart;
+    this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orden = doc[0];
+      this.transactions = this.orden.parts;
+    })
   }
 
   createForm(): void {

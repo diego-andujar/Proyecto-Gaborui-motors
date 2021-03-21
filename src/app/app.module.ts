@@ -67,6 +67,7 @@ import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
+import { NewPartFormComponent } from './components/new-part-form/new-part-form.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -110,6 +111,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppointmentDinamicComponent,
     MechanicsPageComponent,
     QrScannerComponent,
+    NewPartFormComponent,
   ],
   imports: [
     MatCardModule,
@@ -150,7 +152,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [ClientAppointmentFormComponent],
+  entryComponents: [ClientAppointmentFormComponent, NewPartFormComponent],
 })
 export class AppModule { }
 

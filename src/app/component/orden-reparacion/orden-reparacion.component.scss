@@ -7,25 +7,40 @@
     padding-top: 10%;
     width: 100%;
     display: flex;
+    justify-content: center;
     flex-direction: column;
 }
 
+.list-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .example-container {
-height: 270px;
-overflow: auto;
+    display: flex;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    overflow: auto;
 }
 
 table {
-width: 100%;
+    width: 80%;
 }
 
 tr.mat-footer-row {
-font-weight: bold;
+    font-weight: bold;
 }
 
 .mat-table-sticky {
-border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
 }
+
+.example-container{
+    
+}
+
 
 
 
@@ -38,6 +53,7 @@ border-top: 1px solid #e0e0e0;
 .results {
     margin: 3%;
 }
+
 
 /*.form-container{
     height: 200vh;
