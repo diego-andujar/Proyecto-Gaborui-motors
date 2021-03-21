@@ -8,6 +8,7 @@ import {
   AngularFirestoreCollection,
   DocumentReference,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -111,9 +112,14 @@ export class CarsService {
    * GET car BY ID
    * @param carId
    */
-  getCarById(carId: string): Array<Car> {
-    const list: Array<Car> = [];
-    return this.db.collection("cars").doc(carId).valuechanges(); 
+  getCarById(carId: string) {
+    const collection = this.database.collection("cars")
+    return collection.doc(carId).valueChanges();
+  }
+
+  updateCar(data:any, id:string){
+    const collection = this.database.collection("cars")
+    return  collection.doc(id).update(data);
   }
 
   getUserCars(userId: string): Array<Car> {

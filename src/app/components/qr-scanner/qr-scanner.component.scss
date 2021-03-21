@@ -1,11 +1,11 @@
-.scan-wrapper {
-    width: 100vw;
-    height: 80vh;
+body{
     padding-top: 5%;
 }
 
-.scanner-image{
+.comp-wrapper{
     width: 40%;
-    height: auto;
-    border: 5px solid black;
+}
+
+.results {
+    margin: 3%;
 }

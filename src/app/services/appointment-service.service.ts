@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import firebase from "firebase";
 import { FirestoreService } from './firestore.service';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { Appointment } from '../models/appointment';
 
 @Injectable({
@@ -61,6 +61,11 @@ export class AppointmentServiceService {
   updateDoc(data:any, id:string){
     const collection = this.database.collection("citas")
     return  collection.doc(id).update(data);
+  }
+
+  getSpecificApp(id:string){
+    const collection = this.database.collection("citas")
+    return  collection.doc(id).valueChanges();
   }
 
   async getClientApp(userId: string): Promise<any[]>{

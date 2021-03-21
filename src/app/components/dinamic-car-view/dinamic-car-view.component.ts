@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 export class DinamicCarViewComponent implements OnInit {
 
   verSolicitud = false;
+  editarCarro = false;
   name = JSON.parse(localStorage.getItem("CurrentUser")).name;
   crearCarro: boolean = false;
   userType: string = "client";
@@ -78,6 +79,26 @@ export class DinamicCarViewComponent implements OnInit {
     })
   }
 
+  async activateCar(car: Car){
+    const bool: boolean = !car.active;
+    const active = {active: bool}
+    await this.carService.updateCar(active, car.carId)
+    this.getCars()
+    if (bool){
+      alert("!Has reactivado este vehiculo con exito!\nAprovecha nuestros servicios");
+    } else {
+      alert("!Ha desactivado este vehiculo con exito!");
+    }
+    
+  }
+
+  /*async deActivateCar(car: Car){
+    const active = {active: false}
+    await this.carService.updateCar(active, car.carId)
+    this.getCars()
+    alert("!Ha desactivado este vehiculo con exito!")
+  }*/
+
   async onSubmit(){
     const newCar: Car = {
       inAppointment: false,
@@ -89,6 +110,7 @@ export class DinamicCarViewComponent implements OnInit {
       serialMotor: this.carForm.get("serialMotor")?.value,
       registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
       photo: "https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png",
+      active: true,
     }
     let existe: boolean = false;
     await this.carService.checkIfCarExists(newCar.serialMotor).then( doc => {
