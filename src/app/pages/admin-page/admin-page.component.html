@@ -41,8 +41,8 @@
 
             <div class="contactdiv">
                 <div class="nuevoguardar">
-                    <button (click)="nuevo()">Nuevo</button>
-                    <button class="btn btn-primary" (click)="guardarUsuario()">                      Guardar
+                    <button (click)="nuevo()" class="botonng">Nuevo</button>
+                    <button class="botonng" (click)="guardarUsuario()">                      Guardar
 
                         </button>
                 </div>
@@ -50,7 +50,7 @@
                     <li class="loco2">
                         <form>
                             <div *ngIf="enablenewUsuario" class="formu">
-                                <button (click)="enablenewUsuario=false" class="x">X</button>
+                                <button (click)="enablenewUsuario=false" class="botonng">X</button>
                                 <div class="form-group">
                                     <label for="nombre">Nombre y apellido</label>
                                     <input [(ngModel)]="newUsuario.name" class="firstName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
