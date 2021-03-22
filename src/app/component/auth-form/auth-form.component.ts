@@ -54,4 +54,14 @@ export class AuthFormComponent implements OnInit {
     this.authForm.reset()
   }
 
+  holaprueba(){
+    const currentEmailToResetPassword = this.authForm.get('email')?.value;
+    console.log(currentEmailToResetPassword)
+    // en currentEmailToResetPassword yo tengo email que quiero mandar al servicio
+    this.authService.resetPassword(currentEmailToResetPassword)
+    const mensaje = "Hemos enviado un formulario para cambiar tu contraseña al correo  " + currentEmailToResetPassword;
+    window.alert( mensaje )
+    console.log(currentEmailToResetPassword, " es tu correo")
+  
+  }
 }

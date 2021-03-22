@@ -70,6 +70,8 @@ import { DinamicCarViewComponent } from './components/dinamic-car-view/dinamic-c
 import { AppointmentDinamicComponent } from './components/appointment-dinamic/appointment-dinamic.component';
 import { MechanicsPageComponent } from './pages/mechanics-page/mechanics-page.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+// import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+// import {NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MatButtonModule } from '@angular/material/button';
@@ -164,6 +166,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatCardModule,
     MatTableModule,
     NgxQRCodeModule,
+    // NgxQRCodeModule,
     ZXingScannerModule,
     MatButtonModule,
     MatSortModule,

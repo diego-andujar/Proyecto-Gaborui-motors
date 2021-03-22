@@ -22,6 +22,15 @@ export class AuthService {
   /**
    * Log in with Google account
    */
+  
+  async resetPassword(email:string):Promise<void>{
+    try {
+      return this.afsAuth.sendPasswordResetEmail(email)
+    } catch (error) {
+      console.log("error mano")
+    }
+  }
+
   async loginWithGoogle(): Promise<firebase.User> {
     
     try {

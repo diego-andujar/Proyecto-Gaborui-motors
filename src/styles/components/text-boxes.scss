@@ -1,10 +1,19 @@
 @import "../Lib/variables.scss";
+@import "../Lib/mixins.scss";
 .auth-form {
     display: flex;
-    background-color: $third-color;
+    background-color: white;
     padding: 100px 0;
     display: flex;
     justify-content: center;
+    @include small-phone {
+        // background-color: yellow;
+        margin-right: -10%;
+    }
+    @include tablet {
+        // background-color: yellow;
+        margin-top: 10%;
+    }
 }
 
 .auth-form-wrapper {
@@ -12,6 +21,15 @@
     width: 38%;
     padding: 1.6em 2em 3em 2em;
     border: 2px solid $primary-color;
+    @include small-phone {
+        // background-color: red;
+        width: 60%;
+        margin-top: 5%;
+    }
+    @include tablet {
+        width: 60%;
+        margin-top: 5%;
+    }
 }
 
 .auth-label {
@@ -19,6 +37,12 @@
     color: $primary-color;
     letter-spacing: 0.6px;
     text-transform: uppercase;
+    @include small-phone {
+        margin-left: 1%;
+    }
+    @include tablet {
+        font-size: 1.3em;
+    }
 }
 
 .auth-input {
@@ -27,6 +51,21 @@
     margin-left: 1.5em;
     font-family: $secondary-font;
     width: 19em;
+    @include small-phone {
+        border: 0em solid;
+        border-bottom: 0.2em solid $primary-color;
+        width: 70%;
+        padding: 1%;
+        font-size: 0.7em;
+    }
+    @include tablet {
+        border: 0em solid;
+        border-bottom: 0.2em solid $primary-color;
+        width: 70%;
+        align-content: center;
+        margin-bottom: 5%;
+        font-size: 1.15em;
+    }
 }
 
 .input-container {
@@ -35,24 +74,51 @@
     width: 100%;
     padding: 0px;
     margin: 1.5em 0;
+    @include small-phone {
+        // margin-left: 1%;
+    }
 }
 
 .form-container {
     width: 100%;
+    @include small-phone {
+        margin-left: -6%;
+    }
 }
 
 .no-acc-text {
     width: 70%;
     text-decoration: none;
     text-align: center;
+    @include small-phone {
+        border: 0.1em solid $primary-color;
+        border-radius: 0.6em;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+    }
+    @include tablet {
+        // border: 0.1em solid;
+        // border-bottom: 0.2em solid $primary-color;
+        // width: 70%;
+        // align-content: center;
+        // margin-bottom: 5%;
+        border: 0.2em solid black;
+        height: 150%;
+        border-radius: 0.6em;
+    }
 }
 
 .h1-center {
     text-align: center;
     letter-spacing: 2px;
     font-family: $primary-font;
-    color: $primary-color;
+    color: $secondary-color;
     padding-bottom: 0.2em;
+    @include small-phone {
+        // color: $secondary-color;
+        margin-top: -2%;
+    }
 }
 
 a {
