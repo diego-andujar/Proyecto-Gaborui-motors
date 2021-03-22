@@ -19,6 +19,8 @@ export class NewPartFormComponent implements OnInit {
   @Output() sendFormEvent = new EventEmitter();
   @Input() app: Appointment | undefined;
   @Input() order!: Order;
+  @Input() isProcess: boolean = false;
+  @Input() list: Array<any> = [];
 
   constructor(
     private fb: FormBuilder,
@@ -42,10 +44,20 @@ export class NewPartFormComponent implements OnInit {
       item: this.authForm.get('displayName')?.value,
       cost: this.authForm.get('cost')?.value,
     };
-    this.order.parts?.push(part);
-    const parts = {parts: this.order.parts}
-    this.orderService.updateOrder(parts, this.app?.appId, this.order.refId);
-    this.authForm.reset();
-    alert("Se ha agregado con exito el repuesto");
+    if (!this.isProcess){
+      this.list.push(part);
+      const parts = {parts: this.list}
+      this.orderService.updateOrder(parts, this.app?.appId, this.order.refId);
+      this.authForm.reset();
+      alert("Se ha agregado con exito el repuesto");
+    } else {
+      console.log("hola")
+      this.list.push(part);
+      const procc = {processes: this.list}
+      this.orderService.updateOrder(procc, this.app?.appId, this.order.refId);
+      this.authForm.reset();
+      alert("Se ha agregado con exito el procedimiento");
+    }
+    
   }
 }

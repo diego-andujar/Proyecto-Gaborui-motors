@@ -22,6 +22,7 @@ export class OrdenReparacionComponent implements OnInit {
   displayedColumns = ['item', 'cost', 'actions'];
   appointment: Appointment | undefined;
   transactions: Part[] = [];
+  procesos: Part[] = [];
   orderForm!: FormGroup;
   @Input() event: string = "hola";
   orden!: Order;
@@ -32,6 +33,7 @@ export class OrdenReparacionComponent implements OnInit {
   information: string = "No se ha detectado informacion de ningun codigo. Muestre un Qr para que sea escaneado"
   verOrden: boolean = false;
   addPart: boolean = false;
+  addProcess: boolean = false;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -57,7 +59,11 @@ export class OrdenReparacionComponent implements OnInit {
     this.getCar(resultString);
     this.orderService.getOrder(resultString).then( doc => {
         this.orden = doc[0];
-        this.transactions = this.orden.parts;
+        if (this.orden.parts != undefined){
+          this.transactions = this.orden.parts;
+        } if (this.orden.processes != undefined){
+          this.procesos = this.orden.processes;
+        }
       })
     this.verOrden = true;
     alert("!Se ha encontrado la orden!")
@@ -86,11 +92,34 @@ export class OrdenReparacionComponent implements OnInit {
     return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
   }
 
+  getTotalProcessCost() {
+    if(this.procesos == undefined || this.procesos.length < 1){
+      return 0;
+    }
+    return this.procesos.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  }
+
   newPart(){
+    this.addPart = !this.addPart;
+  }
+
+  newProcess(){
+    this.addProcess = !this.addProcess;
+  }
+
+  reLoadPartsList(){
     this.addPart = !this.addPart;
     this.orderService.getOrder(this.appointment?.appId).then( doc => {
       this.orden = doc[0];
       this.transactions = this.orden.parts;
+    })
+  }
+
+  reLoadProcessList(){
+    this.addProcess = !this.addProcess;
+    this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orden = doc[0];
+      this.procesos = this.orden.processes;
     })
   }
 
@@ -106,6 +135,20 @@ export class OrdenReparacionComponent implements OnInit {
       })
     }
     alert("!se ha eliminado el repuesto con exito!")
+  }
+
+  onEditProcess(row){
+    const index = this.procesos.indexOf(row, 0);
+    if(index > -1){
+      this.procesos.splice(index,1);
+      const parts = {parts: this.procesos};
+      this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
+      this.orderService.getOrder(this.appointment?.appId).then( doc => {
+        this.orden = doc[0];
+        this.procesos = this.orden.processes;
+      })
+    }
+    alert("!se ha eliminado el procedimiento con exito!")
   }
 
   createForm(): void {
