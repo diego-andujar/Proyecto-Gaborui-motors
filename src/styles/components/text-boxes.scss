@@ -96,17 +96,22 @@
         // width: 70%;
         // align-content: center;
         // margin-bottom: 5%;
-        border: 0.2em solid black;
-        height: 150%;
-        border-radius: 0.6em;
+        // height: 100%;
+        // border: 0.2em solid black;
+        // // height: 150%;
+        // border-radius: 0.6em;
+        margin-right: 2%;
+        font-size: 0.9em;
     }
     @include small-phone {
-        border: 0.1em solid $primary-color;
+        border: 0.1em solid #1C1A1A;
         border-radius: 0.6em;
-        font-size: 0.9em;
+        font-size: 0.7em;
         display: flex;
         align-items: center;
         height: 100%;
+        width: 100%;
+        margin-right: 10%;
     }
 }
 
