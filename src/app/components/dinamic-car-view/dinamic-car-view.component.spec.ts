@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MechanicPageComponent } from './mechanic-page.component';
+import { DinamicCarViewComponent } from './dinamic-car-view.component';
 
-describe('MechanicPageComponent', () => {
-  let component: MechanicPageComponent;
-  let fixture: ComponentFixture<MechanicPageComponent>;
+describe('DinamicCarViewComponent', () => {
+  let component: DinamicCarViewComponent;
+  let fixture: ComponentFixture<DinamicCarViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MechanicPageComponent ]
+      declarations: [ DinamicCarViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MechanicPageComponent);
+    fixture = TestBed.createComponent(DinamicCarViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

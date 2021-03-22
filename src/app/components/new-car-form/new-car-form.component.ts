@@ -6,6 +6,7 @@ import { Car } from 'src/app/models/car';
 import { AuthService } from 'src/app/services/auth.service';
 import { CarsService } from 'src/app/services/cars.service';
 import firebase from "firebase";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-car-form',
@@ -32,6 +33,7 @@ export class NewCarFormComponent implements OnInit {
   carForm!: FormGroup;
   isLoading = true;
   carToUpdate!: Car;
+  today = new Date();
 
   showFiller = false;
 
@@ -42,6 +44,7 @@ export class NewCarFormComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private userService: UsersService,
+    private datePipe : DatePipe,
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +52,6 @@ export class NewCarFormComponent implements OnInit {
       this.user = user;
     })
     this.buildForm();
-    this.getUrlParams();
   }
 
   buildForm(): void {
@@ -58,49 +60,36 @@ export class NewCarFormComponent implements OnInit {
       model: '',
       year: '',
       plate: '',
-    });
-  }
-
-  getUrlParams(): void {
-    this.route.paramMap.subscribe((params) => {
-      const carId = params.get('postId');
-
-      if (carId) {
-        this.carService.getCarById(carId).subscribe((post) => {
-          this.carToUpdate = post;
-          this.carForm.patchValue({
-            brand: this.carToUpdate.brand,
-            model: this.carToUpdate.model,
-            yera: this.carToUpdate.year,
-            plate: this.carToUpdate.plate,
-          });
-          this.isLoading = false;
-        });
-        return;
-      }
-      this.isLoading = false;
+      serialMotor: "",
     });
   }
 
   onSubmit(): void {
     const newCar: Car = {
+<<<<<<< HEAD
       // brand: this.carForm.get('brand').value,
       // model: this.carForm.get('model').value,
       // year: this.carForm.get('year').value,
       // plate: this.carForm.get('plate').value,
     };
     this.createNewCar(newCar, this.user.uid);
+=======
+      userid: this.user.uid,
+      brand: this.carForm.get("brand")?.value,
+      model: this.carForm.get("model")?.value,
+      year: this.carForm.get("year")?.value,
+      plate: this.carForm.get("plate")?.value,
+      serialMotor: this.carForm.get("serialMotor")?.value,
+      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+    }
+    this.createNewCar(newCar);
+    this.carForm.reset();
+    alert("!Se ha creado con exito tu carro!")
+>>>>>>> origin/fuenmayor
   }
 
-  createNewCar(newCar: Car, id: string): void {
-    this.userService.createUserCar(newCar, id);
+  createNewCar(newCar: Car): void {
+    this.carService.createNewCar(newCar);
     //this.router.navigate(['/']);
   } 
-
-  updateCar(carData: Car): void {
-    this.carService.updateCar(this.carToUpdate.id, carData).then(() => {
-      this.router.navigate(['/']);
-    });
-  }
-
 }

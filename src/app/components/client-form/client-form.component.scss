@@ -4,6 +4,11 @@ form{
     padding: 0px;
 }
 
+input {
+    font-family: $secondary-font;
+    
+}
+
 mat-select {
     width: 59%;
     background-color: white;
@@ -58,9 +63,16 @@ label {
     justify-content: right;
     margin-left: 1.5em;
     font-family: $secondary-font;
+    font-weight: 400;
     width: 19em;
+    text-align: center;
     text-transform: capitalize;
-
+    &.correo {
+        text-transform: lowercase;
+    }
+    &.active {
+        background-color: powderblue;
+    }
 }
 
 .input {
@@ -87,6 +99,5 @@ label {
 a {
     text-decoration: none;
     font-family: $primary-font;
-    
     color: $primary-color;
 }

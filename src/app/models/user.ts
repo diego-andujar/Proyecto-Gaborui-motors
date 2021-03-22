@@ -16,4 +16,5 @@ export interface User {
     birthDate?: string,
     rol?: Roles,
     genero?: string,
+    refId?: string,
 }
