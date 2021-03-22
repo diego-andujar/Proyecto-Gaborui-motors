@@ -58,7 +58,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { UsernameComponent } from './username/username.component';
 import { NewCarFormComponent } from './components/new-car-form/new-car-form.component';
-import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+// import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { ClientFormComponent } from './components/client-form/client-form.component'; // a plugin
 import { DatePipe } from '@angular/common';
 import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';

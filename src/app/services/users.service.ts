@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { User } from 'src/app/models/user';
-=======
 import { FirestoreService } from './firestore.service';
->>>>>>> origin/fuenmayor
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { Car } from './../models/car';
