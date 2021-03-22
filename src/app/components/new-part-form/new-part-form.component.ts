@@ -21,6 +21,7 @@ export class NewPartFormComponent implements OnInit {
   @Input() order!: Order;
   @Input() isProcess: boolean = false;
   @Input() list: Array<any> = [];
+  @Output() submited = new EventEmitter<boolean>();
 
   constructor(
     private fb: FormBuilder,
@@ -49,13 +50,14 @@ export class NewPartFormComponent implements OnInit {
       const parts = {parts: this.list}
       this.orderService.updateOrder(parts, this.app?.appId, this.order.refId);
       this.authForm.reset();
+      this.submited.emit(true);
       alert("Se ha agregado con exito el repuesto");
     } else {
-      console.log("hola")
       this.list.push(part);
       const procc = {processes: this.list}
       this.orderService.updateOrder(procc, this.app?.appId, this.order.refId);
       this.authForm.reset();
+      this.submited.emit(false);
       alert("Se ha agregado con exito el procedimiento");
     }
     

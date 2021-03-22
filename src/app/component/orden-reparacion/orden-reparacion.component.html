@@ -146,7 +146,7 @@
             <h2>repuestos</h2>
             <button (click)="newPart()" *ngIf="verOrden && !addPart">Añadir repuesto</button>
             <button (click)="reLoadPartsList()" *ngIf="verOrden">recargar</button>
-            <app-new-part-form *ngIf="addPart" [list]="transactions" [order]="orden" [app]="appointment"></app-new-part-form>
+            <app-new-part-form *ngIf="addPart" (submited)="onSubmitedPart($event)" [list]="transactions" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="transactions">
                     <!-- Item Column -->
@@ -183,7 +183,7 @@
             <h2>procedimientos aplicados</h2>
             <button (click)="newProcess()" *ngIf="verOrden && !addProcess">Añadir procedimiento</button>
             <button (click)="reLoadProcessList()" *ngIf="verOrden">recargar</button>
-            <app-new-part-form *ngIf="addProcess" [isProcess]="true" [list]="procesos" [order]="orden" [app]="appointment"></app-new-part-form>
+            <app-new-part-form *ngIf="addProcess" (submited)="onSubmitedPart($event)" [isProcess]="true" [list]="procesos" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="procesos">
                     <!-- Item Column -->
@@ -217,14 +217,8 @@
 
 
         <!--TEXTAREA DIAGNOSTICO-->
-        <div class="textarea-container">
-            <div class="auth-label-largo" >
-                <h2>diagnostico</h2>
-            </div>
-            <textarea 
-            type="text"
-            id="displayName"
-            ></textarea>
+        <div>
+            <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
         
     </div>

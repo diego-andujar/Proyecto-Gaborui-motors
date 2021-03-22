@@ -68,6 +68,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { NewPartFormComponent } from './components/new-part-form/new-part-form.component';
+import { DiagnosisFormComponent } from './components/diagnosis-form/diagnosis-form.component';
+import { ItemsListComponent } from './components/items-list/items-list.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -112,6 +114,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MechanicsPageComponent,
     QrScannerComponent,
     NewPartFormComponent,
+    DiagnosisFormComponent,
+    ItemsListComponent,
   ],
   imports: [
     MatCardModule,

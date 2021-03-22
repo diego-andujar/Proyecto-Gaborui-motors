@@ -22,7 +22,7 @@ export class OrdersService {
     });
   }
 
-  async getOrder(id: string){
+  async getOrder(id: string | undefined){
     const lista: Array<Order> = [];
     const collection = this.db.collection("citas").doc(id).collection("orden").get()
     await collection.then(snapshot => {
