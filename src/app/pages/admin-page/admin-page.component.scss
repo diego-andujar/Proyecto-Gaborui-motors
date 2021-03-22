@@ -114,13 +114,16 @@
     padding: 0.5%;
     border-radius: 5px;
     @include tablet {
-        // background-color: blue;
         width: 99%;
         display: flex;
-        // align-content: center;
+        height: 10%;
+        justify-content: flex-end;
     }
     @include small-phone {
         height: 15%;
+    }
+    @include ipad-pro {
+        height: 8%;
     }
     // flex-direction: row;
     // justify-content: space-around;
@@ -281,6 +284,7 @@
     // height: 100%;
     background-color: $primary-color;
     color: $third-color;
+    border-radius: 0.3em;
     @include tablet {
         width: 100%;
         background-color: $primary-color;
@@ -294,6 +298,13 @@
 }
 
 .botonng {
+    border-radius: 1em;
+    width: 35%;
+    padding: 0.5em;
+    font-family: $primary-font;
+    font-size: 0.7em;
+    background-color: $third-color;
+    color: $secondary-color;
     @include tablet {
         border-radius: 1em;
         width: 35%;
@@ -332,6 +343,11 @@
     font-size: 0.9em;
     padding-top: 1%;
     border-bottom: 0.2em solid black;
+    @include tablet {
+        font-size: 0.8em;
+        padding-top: 0.5%;
+        border-bottom: 0.2em solid black;
+    }
 }
 
 // @media only screen and (max-width:475px) {
