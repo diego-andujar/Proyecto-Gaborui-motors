@@ -75,17 +75,17 @@
         letter-spacing: 0.8px;
         text-transform: uppercase;
         color: white;
-        @include small-phone {
+        @include tablet {
             background-color: $secondary-color;
-            width: 60%;
+            width: 40%;
             border-radius: 0.8em;
             border: 0em;
             padding: 1%;
             font-size: 1.1em;
         }
-        @include tablet {
+        @include small-phone {
             background-color: $secondary-color;
-            width: 40%;
+            width: 80%;
             border-radius: 0.8em;
             border: 0em;
             padding: 1%;

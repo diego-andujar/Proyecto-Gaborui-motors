@@ -51,13 +51,6 @@
     margin-left: 1.5em;
     font-family: $secondary-font;
     width: 19em;
-    @include small-phone {
-        border: 0em solid;
-        border-bottom: 0.2em solid $primary-color;
-        width: 70%;
-        padding: 1%;
-        font-size: 0.7em;
-    }
     @include tablet {
         border: 0em solid;
         border-bottom: 0.2em solid $primary-color;
@@ -65,6 +58,13 @@
         align-content: center;
         margin-bottom: 5%;
         font-size: 1.15em;
+    }
+    @include small-phone {
+        border: 0em solid;
+        border-bottom: 0.2em solid $primary-color;
+        width: 70%;
+        padding: 1%;
+        font-size: 0.9em;
     }
 }
 
@@ -90,13 +90,6 @@
     width: 70%;
     text-decoration: none;
     text-align: center;
-    @include small-phone {
-        border: 0.1em solid $primary-color;
-        border-radius: 0.6em;
-        font-size: 0.9em;
-        display: flex;
-        align-items: center;
-    }
     @include tablet {
         // border: 0.1em solid;
         // border-bottom: 0.2em solid $primary-color;
@@ -106,6 +99,14 @@
         border: 0.2em solid black;
         height: 150%;
         border-radius: 0.6em;
+    }
+    @include small-phone {
+        border: 0.1em solid $primary-color;
+        border-radius: 0.6em;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        height: 100%;
     }
 }
 
