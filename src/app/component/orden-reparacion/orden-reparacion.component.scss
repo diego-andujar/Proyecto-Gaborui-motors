@@ -11,15 +11,15 @@
     justify-content: center;
     flex-direction: column;
     @include small-phone {
-        background-color: yellow;
-        margin-top: 18%;
+        // background-color: yellow;
+        margin-top: 20%;
         font-family: 'Poppins';
         display: flex;
     }
 }
 
 p {
-    word-spacing: 1em;
+    word-spacing: 0.8em;
 }
 
 .list-wrapper {
@@ -222,7 +222,7 @@ textarea {
         border: 0em;
         padding: 1%;
         font-size: 1.1em;
-        margin-left: 10%;
+        // margin-left: 10%;
     }
 }
 
@@ -236,6 +236,7 @@ textarea {
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 2%;
+    align-items: center;
 }
 
 .otroqr {
