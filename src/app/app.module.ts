@@ -70,6 +70,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { NewPartFormComponent } from './components/new-part-form/new-part-form.component';
 import { DiagnosisFormComponent } from './components/diagnosis-form/diagnosis-form.component';
 import { ItemsListComponent } from './components/items-list/items-list.component';
+import { CarFormComponent } from './components/car-form/car-form.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -116,6 +117,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NewPartFormComponent,
     DiagnosisFormComponent,
     ItemsListComponent,
+    CarFormComponent,
   ],
   imports: [
     MatCardModule,
