@@ -9,10 +9,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MecanicoComponent } from './mecanico/mecanico.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MecanicoComponent
   ],
   imports: [
     BrowserModule,
