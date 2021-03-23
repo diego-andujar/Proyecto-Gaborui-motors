@@ -1,9 +1,22 @@
-.formrepa{
-position: absolute;
-  border: solid;
-  width: 50%;
-  margin-left: 25%;
-  margin-top: -24%;
-  padding: 1%;
+form{
+    position: absolute;
+    border: 1px solid azure;
+    width: 25%;
+    margin: 50px;
+    padding: 20px;
 }
 
+
+.formulario{
+    position: absolute;
+    border: 1px solid azure;
+    width: 25%;
+    margin: 50px;
+    padding: 20px;
+
+}
+    input{
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 10px;
+    }
