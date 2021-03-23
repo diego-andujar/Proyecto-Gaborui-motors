@@ -4,18 +4,29 @@
 @import "../../../styles/Lib/variables.scss";
 @import "../../../styles/Lib/mixins.scss";
 .content-wrapper {
-    padding-top: 10%;
+    margin-top: 7%;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    @include small-phone {
+        background-color: yellow;
+        margin-top: 18%;
+        font-family: 'Poppins';
+        display: flex;
+    }
+}
+
+p {
+    word-spacing: 1em;
 }
 
 .list-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: $primary-color;
     @include small-phone {
         margin-left: 5%;
         width: 90%;
@@ -154,6 +165,71 @@ textarea {
 
 .scan-wrapper {
     margin-top: -10%;
+}
+
+.submit-button {
+    background-color: $primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    font-family: $primary-font;
+    font-weight: 500;
+    width: 20%;
+    border-radius: 0.3em;
+    padding: 0.2em;
+    @include small-phone {
+        // background-color: burlywood;
+    }
+    cursor: pointer;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: white;
+    @include tablet {
+        background-color: $secondary-color;
+        width: 40%;
+        border-radius: 0.8em;
+        border: 0em;
+        padding: 1%;
+        font-size: 1.1em;
+    }
+    @include small-phone {
+        background-color: $secondary-color;
+        width: 80%;
+        border-radius: 0.8em;
+        border: 0em;
+        padding: 1%;
+        font-size: 1.1em;
+        margin-left: 10%;
+    }
+}
+
+.addrecargar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.addrecargarhijo {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 2%;
+}
+
+.otroqr {
+    display: flex;
+    justify-content: center;
+}
+
+.datoscliente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.2em;
+    margin-top: 1%;
+    font-family: $primary-font;
+    word-spacing: 50%;
 }
 
 

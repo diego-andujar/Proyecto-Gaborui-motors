@@ -130,22 +130,32 @@
             </section>
         </div>
     </div>
-    <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Ver orden</button>
-    <button *ngIf="appointment && verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Escanear otro qr</button>
+    <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Ver orden</button>
+    <div class="otroqr">
+
+        <button *ngIf="appointment && verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Escanear otro qr</button>
+    </div>
     <div class="list-wrapper" *ngIf="verOrden">
-        <div>
-            <p>{{appointment.userName}}</p>
-            <p>{{car.brand}}</p>
-            <p>{{car.model}}</p>
-            <p>{{car.year}}</p>
-            <p>{{car.plate}}</p>
+        <div class="datoscliente">
+            <h2>Datos de la cita</h2>
+            <p>Cliente: {{appointment.userName}}</p>
+            <p>Marca: {{car.brand}}</p>
+            <p>Modelo: {{car.model}}</p>
+            <p>Año: {{car.year}}</p>
+            <p>Placa: {{car.plate}}</p>
         </div>
 
         <!--LISTA REPUESTOS-->
         <div>
-            <h2>repuestos</h2>
-            <button (click)="newPart()" *ngIf="verOrden && !addPart">Añadir repuesto</button>
-            <button (click)="reLoadPartsList()" *ngIf="verOrden">recargar</button>
+            <div class="addrecargar">
+
+                <h2>repuestos</h2>
+                <div class="addrecargarhijo">
+
+                    <button (click)="newPart()" *ngIf="verOrden && !addPart" class="submit-button">Añadir repuesto</button>
+                    <button (click)="reLoadPartsList()" *ngIf="verOrden" class="submit-button">recargar</button>
+                </div>
+            </div>
             <app-new-part-form *ngIf="addPart" (submited)="onSubmitedPart($event)" [list]="transactions" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="transactions">
@@ -180,9 +190,15 @@
 
         <!--LISTA PROCEDIMIENTOS-->
         <div>
-            <h2>procedimientos aplicados</h2>
-            <button (click)="newProcess()" *ngIf="verOrden && !addProcess">Añadir procedimiento</button>
-            <button (click)="reLoadProcessList()" *ngIf="verOrden">recargar</button>
+            <div class="addrecargar">
+
+                <h2>procedimientos aplicados</h2>
+                <div class="addrecargarhijo">
+
+                    <button (click)="newProcess()" *ngIf="verOrden && !addProcess" class="submit-button">Añadir procedimiento</button>
+                    <button (click)="reLoadProcessList()" *ngIf="verOrden" class="submit-button">recargar</button>
+                </div>
+            </div>
             <app-new-part-form *ngIf="addProcess" (submited)="onSubmitedPart($event)" [isProcess]="true" [list]="procesos" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="procesos">

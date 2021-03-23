@@ -73,6 +73,8 @@
         font-family: $primary-font;
         font-weight: 500;
         width: 20%;
+        padding: 0.2em;
+        border-radius: 0.5em;
         @include small-phone {
             // background-color: burlywood;
         }
