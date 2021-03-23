@@ -34,9 +34,28 @@ p {
     }
 }
 
+.verorden {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: -10%;
+}
+
+.resultclass {
+    // background-color: red;
+    margin-top: 2%;
+}
+
+.sectionresult {
+    // background-color: blue;
+}
+
 .video {
     border-radius: 2em;
-    margin-top: 5%;
+    margin-top: 2.5%;
+    display: flex;
+    justify-content: center;
+    width: 90%;
     // @include ipad-pro {
     //     width: 2em;
     // }
@@ -92,6 +111,7 @@ tr.mat-footer-row {
     margin-left: 5%;
     margin-top: 5%;
     height: 30%;
+    flex-direction: column;
 }
 
 .results {
@@ -139,7 +159,7 @@ textarea {
     color: white;
     margin-top: 65%;
     @include ipad-pro {
-        margin-top: 70%;
+        margin-top: 30%;
         font-size: 3.5em;
     }
     @include tablet {
@@ -153,6 +173,7 @@ textarea {
         @include ipad-pro {
             // margin-top: 70%;
             font-size: 2.5em;
+            margin-top: 5%;
         }
         @include tablet {
             margin-top: 20%;
@@ -230,6 +251,12 @@ textarea {
     margin-top: 1%;
     font-family: $primary-font;
     word-spacing: 50%;
+}
+
+.scanner-image {
+    height: 90%;
+    display: flex;
+    justify-content: center;
 }
 
 
