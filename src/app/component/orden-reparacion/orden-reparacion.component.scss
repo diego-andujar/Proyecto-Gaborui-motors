@@ -26,6 +26,9 @@
 .video {
     border-radius: 2em;
     margin-top: 5%;
+    // @include ipad-pro {
+    //     width: 2em;
+    // }
     // margin-bottom: -3%;
 }
 
@@ -124,11 +127,25 @@ textarea {
     font-size: 2em;
     color: white;
     margin-top: 65%;
+    @include ipad-pro {
+        margin-top: 70%;
+        font-size: 3.5em;
+    }
+    @include tablet {
+        margin-top: 100%;
+    }
     @include small-phone {
         margin-top: 85%;
     }
     &.camara {
         margin-top: -15%;
+        @include ipad-pro {
+            // margin-top: 70%;
+            font-size: 2.5em;
+        }
+        @include tablet {
+            margin-top: 20%;
+        }
         @include small-phone {
             margin-top: 20%;
         }
