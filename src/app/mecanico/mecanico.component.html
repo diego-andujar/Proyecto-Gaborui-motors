@@ -1,31 +1,42 @@
     <h2>FORMULARIO DE REPARACION</h2>
-    <div>
+    <div class="formrepa"> 
         <form>
             <div class="formulario">
             Marca:
             <input type="text" placeholder="Ingresa la marca del Vehiculo">
-            </div>    
+            </div>
+
             <div class="formulario">
             Modelo:
             <input type="text" placeholder="Ingresa el modelo del Vehiculo">
             </div>
+
             <div class="formulario">
             Año:
             <input type="number" placeholder="Ingresa el año del Vehiculo">
             </div> 
+
             <div class="formulario">
             Placa:
             <input type="text" placeholder="Ingresa la placa del Vehiculo">
             </div> 
+
             <divclass="formulario">
             Serial del motor:
             <input type="number" placeholder="Ingresa el serial del Vehiculo">
-            </divclass=> 
+            </div>
+            
+            <div class="formulario">
             Color:
             <input type="text" placeholder="Ingresa el color del Vehiculo">
+            </div>
+
+            <div class="formulario">
             Kilometraje al llegar:
             <input type="number" placeholder="Ingresa el kilometraje del Vehiculo">
+            </div>
 
+            <div class="formulario">
             Nivel tanque de gasolina:
             Indique su nivel (1/4, 1/2, Full):
             <input type="range" name="rango"
@@ -35,18 +46,29 @@
             <option value="2" label="1/2 Tanque">
             <option value="3" label="Tanque full">
             </datalist>
+            </div>
             
+            <div class="formulario">
             Fecha de ingreso: 
             <input type="date" name="fecha">
+            </div>
+
+            <div class="formulario">
             Servicio Anterior:
             <textarea name="texto" rows="4" cols="50" placeholder="Indique el servicio realizado anteriormente"></textarea>
+            </div>
+            
+            <div class="formulario">
             Accesorios:
             <input type="checkbox">Caucho de Respuesto
             <input type="checkbox">Llaves
             <input type="checkbox">Herramientas
             <input type="checkbox">Gato
+            Otros:
             <textarea name="texto" rows="4" cols="20"></textarea>
             <input type="button" value="Guardar cambios">
             <input type="button" value="Editar">
+            </div>
+
         </form>
 </div>
