@@ -96,10 +96,10 @@ export class AppointmentDinamicComponent implements OnInit {
     });
   }
 
-  dateFilter = date => {
+  /*dateFilter = date => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }
+  }*/
 
   getApps(){
     this.firestoreService.getAPP().subscribe( res => {

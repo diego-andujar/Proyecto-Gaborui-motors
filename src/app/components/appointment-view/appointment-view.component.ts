@@ -99,10 +99,10 @@ export class AppointmentViewComponent implements OnInit {
     })
   }
 
-  dateFilter = date => {
+  /*dateFilter = date => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }
+  }*/
 
   getUser(num: number){
     this.userService.getDoc(this.citas[num].userid!).subscribe( res => {

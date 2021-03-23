@@ -43,10 +43,10 @@ export class ClientAppointmentFormComponent implements OnInit {
     this.name = (JSON.parse(localStorage.getItem("CurrentUser") || '{}')).name;
   }
 
-  dateFilter = date => {
+  /*dateFilter = date => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }
+  }*/
 
   createForm(): void {
     this.authForm = this.fb.group({

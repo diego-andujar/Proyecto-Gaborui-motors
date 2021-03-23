@@ -42,7 +42,7 @@
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
                                     <input [min]="minDate" 
-                                    [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                                    [max]="maxDate"  formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
                                     <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                                     <mat-datepicker  #datepicker>
                                         <mat-datepicker-actions>
@@ -65,7 +65,7 @@
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
                                     <input [min]="minDate" 
-                                    [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                                    [max]="maxDate"  formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
                                     <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                                     <mat-datepicker  #datepicker>
                                         <mat-datepicker-actions>
@@ -78,7 +78,7 @@
                                 <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
                             </form>
                         </mat-card-actions>
-                        <button mat-flat-button (click)="deleteApp(appointment.appId, appointment.car)">Eliminar Cita</button> 
+                        <button mat-flat-button (click)="deleteApp(appointment.appId!, appointment.car!)">Eliminar Cita</button> 
                     </div>
                     
                 </mat-card>
@@ -108,7 +108,7 @@
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label class="auth-label">Fecha deseada para la cita</mat-label>
                         <input [min]="minDate" 
-                        [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                        [max]="maxDate"  formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
                         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                         <mat-datepicker  #datepicker>
                             <mat-datepicker-actions>
