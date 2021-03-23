@@ -2,7 +2,7 @@
 @import "../../../styles/components/buttons.scss";
 @import "../car-view/car-view.component.scss";
 @import "../../../styles/Lib/variables.scss";
-
+@import "../../../styles/Lib/mixins.scss";
 .content-wrapper {
     padding-top: 10%;
     width: 100%;
@@ -12,23 +12,34 @@
     flex-direction: column;
 }
 
-.list-wrapper{
+.list-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include small-phone {
+        margin-left: 5%;
+        width: 90%;
+        // background-color: green;
+    }
 }
 
-button{
+.video {
+    border-radius: 2em;
+    margin-top: 5%;
+    // margin-bottom: -3%;
+}
+
+button {
     width: auto;
 }
 
-.add-btn{
+.add-btn {
     display: flex;
     align-items: center;
     padding: 0% 2%;
 }
 
-h2{
+h2 {
     text-align: center;
     padding-top: 4%;
 }
@@ -42,7 +53,7 @@ h2{
     overflow: auto;
 }
 
-.form-container{
+.form-container {
     height: auto;
 }
 
@@ -58,14 +69,15 @@ tr.mat-footer-row {
     border-top: 1px solid #e0e0e0;
 }
 
-
-
-
-
-.comp-wrapper{
+.comp-wrapper {
     width: 90%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 30%;
 }
 
 .results {
@@ -87,6 +99,7 @@ textarea {
     width: 75%;
     height: 90%;
     font-size: large;
+    // margin-bottom: 10%;
 }
 
 .text-container {
@@ -96,6 +109,34 @@ textarea {
     justify-content: center;
     padding: 5% 0%;
     height: 50%;
+}
+
+.botonqr {
+    background-color: #6AB8E3;
+    /* width: 80%; */
+    border-radius: 0.8em;
+    border: 0em;
+    padding: 1.1em;
+    font-size: 1.1em;
+    width: 100%;
+    height: 10%;
+    height: 100%;
+    font-size: 2em;
+    color: white;
+    margin-top: 65%;
+    @include small-phone {
+        margin-top: 85%;
+    }
+    &.camara {
+        margin-top: -15%;
+        @include small-phone {
+            margin-top: 20%;
+        }
+    }
+}
+
+.scan-wrapper {
+    margin-top: -10%;
 }
 
 
