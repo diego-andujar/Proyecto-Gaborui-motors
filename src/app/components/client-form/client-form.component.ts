@@ -47,11 +47,11 @@ export class ClientFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.editarForm = false;
-    this.userFire = JSON.parse(localStorage.getItem("CurrentUser"))
+    this.userFire = JSON.parse(localStorage.getItem("CurrentUser") || "{}")
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
     })
-    this.userFireId = localStorage.getItem("UserFireId");
+    this.userFireId = localStorage.getItem("UserFireId")!;
   
     this.createForm();
     this.validateUsers();

@@ -39,23 +39,27 @@ export class ItemsListComponent implements OnInit {
   }
 
   getCar(id: string){
+    let app: any;
+    let carr: any;
     this.appService.getSpecificApp(id).subscribe( doc => {
-      this.appointment = doc;
-      this.carService.getCarById(doc.car).subscribe( doc => {
-        this.car = doc;
+      app = doc;
+      this.appointment = app;
+      this.carService.getCarById(this.appointment!.car!).subscribe( doc => {
+        carr = doc;
+        this.car = carr;
       })
     })
   }
 
   getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.transactions.map(t => t.cost).reduce((acc, value) => acc! + value!, 0);
   }
 
   getTotalProcessCost() {
     if(this.procesos == undefined || this.procesos.length < 1){
       return 0;
     }
-    return this.procesos.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.procesos.map(t => t.cost).reduce((acc, value) => acc! + value!, 0);
   }
 
   newPart(){
@@ -70,7 +74,7 @@ export class ItemsListComponent implements OnInit {
     this.addPart = !this.addPart;
     this.orderService.getOrder(this.appointment?.appId).then( doc => {
       this.orden = doc[0];
-      this.transactions = this.orden.parts;
+      this.transactions = this.orden.parts!;
     })
   }
 
@@ -78,11 +82,11 @@ export class ItemsListComponent implements OnInit {
     this.addProcess = !this.addProcess;
     this.orderService.getOrder(this.appointment?.appId).then( doc => {
       this.orden = doc[0];
-      this.procesos = this.orden.processes;
+      this.procesos = this.orden.processes!;
     })
   }
 
-  onEdit(row){
+  onEdit(row: Part){
     const index = this.transactions.indexOf(row, 0);
     if(index > -1){
       this.transactions.splice(index,1);
@@ -90,13 +94,13 @@ export class ItemsListComponent implements OnInit {
       this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
       this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
-        this.transactions = this.orden.parts;
+        this.transactions = this.orden.parts!;
       })
     }
     alert("!se ha eliminado el repuesto con exito!")
   }
 
-  onEditProcess(row){
+  onEditProcess(row: Part){
     const index = this.procesos.indexOf(row, 0);
     if(index > -1){
       this.procesos.splice(index,1);
@@ -104,7 +108,7 @@ export class ItemsListComponent implements OnInit {
       this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
       this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
-        this.procesos = this.orden.processes;
+        this.procesos = this.orden.processes!;
       })
     }
     alert("!se ha eliminado el procedimiento con exito!")

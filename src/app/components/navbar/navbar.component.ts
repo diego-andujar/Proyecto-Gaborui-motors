@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
     })
-    this.userFire = JSON.parse(localStorage.getItem("CurrentUser"))
+    this.userFire = JSON.parse(localStorage.getItem("CurrentUser") || "{}")
   }
 
   async logOutUser(){

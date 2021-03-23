@@ -40,7 +40,7 @@ export class ClientAppointmentFormComponent implements OnInit {
     this.createForm();
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
-    this.name = (JSON.parse(localStorage.getItem("CurrentUser"))).name;
+    this.name = (JSON.parse(localStorage.getItem("CurrentUser") || '{}')).name;
   }
 
   dateFilter = date => {
@@ -67,11 +67,11 @@ export class ClientAppointmentFormComponent implements OnInit {
       car: formValues.selectedCar?.value.carId,
       carInfo: formValues.selectedCar?.value.brand + " - " + formValues.selectedCar?.value.model + " - " + formValues.selectedCar?.value.year,
       userName: this.name,
-      date: formValues.appointmentDate,
-      userid: localStorage.getItem("UserFireId"),
+      date: formValues.appointmentDate!,
+      userid: localStorage.getItem("UserFireId")!,
       estado: "solicitada",
       diagnosis: formValues.diagnostico?.value,
-      dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+      dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy")!,
       carPhoto: "https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png"
     }
     this.appointmentService.crearCita(cita);

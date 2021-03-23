@@ -69,7 +69,7 @@ export class AppointmentViewComponent implements OnInit {
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
     if(!this.isManager){
-      this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId"));
+      this.citas =  this.appointService.getUserAppointments(localStorage.getItem("UserFireId")!);
     } else {
       this.getApps();
       this.getCars(0);
@@ -88,7 +88,7 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   getCars(num: number){
-    this.carService.getDoc(this.citas[num].car).subscribe((car) => {
+    this.carService.getDoc(this.citas[num].car!).subscribe((car) => {
       this.car = car;
     })
   }
@@ -105,17 +105,17 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   getUser(num: number){
-    this.userService.getDoc(this.citas[num].userid).subscribe( res => {
+    this.userService.getDoc(this.citas[num].userid!).subscribe( res => {
       this.userApp = res;
     })
   }
 
   getCarAndUser(app: Appointment){
     console.log("hola")
-    this.carService.getDoc(app.car).subscribe((car) => {
+    this.carService.getDoc(app.car!).subscribe((car) => {
       this.car = car;
     })
-    this.userService.getDoc(app.userid).subscribe( res => {
+    this.userService.getDoc(app.userid!).subscribe( res => {
       this.userApp = res;
     })
   }
@@ -124,10 +124,10 @@ export class AppointmentViewComponent implements OnInit {
     this.firestoreService.getAPP().subscribe( res => {
       this.citas = res;
       this.dataSource = res;
-      this.carService.getDoc(res[0].car).subscribe((car) => {
+      this.carService.getDoc(res[0].car!).subscribe((car) => {
         this.car = car;
       })
-      this.userService.getDoc(res[0].userid).subscribe((user) => {
+      this.userService.getDoc(res[0].userid!).subscribe((user) => {
         this.userApp = user;
       })
     })
@@ -144,12 +144,12 @@ export class AppointmentViewComponent implements OnInit {
 
   aceptApp(cita: Appointment){
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
   }
 
   modifyApp(cita: Appointment){
@@ -158,8 +158,8 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
   }
@@ -170,8 +170,8 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "solicitada"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
   }
@@ -182,21 +182,6 @@ export class AppointmentViewComponent implements OnInit {
 
   public downloadQRCode(appointment: Appointment) {
     const fileNameToDownload = 'cita#' + appointment.appId;
-    const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
-    fetch(base64Img)
-       .then(res => res.blob())
-       .then((blob) => {
-          // IE
-          if (window.navigator && window.navigator.msSaveOrOpenBlob){
-             window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
-          } else { // Chrome
-             const url = window.URL.createObjectURL(blob);
-             const link = document.createElement('a');
-             link.href = url;
-             link.download = fileNameToDownload;
-             link.click();
-          }
-       })
  }
 
 }

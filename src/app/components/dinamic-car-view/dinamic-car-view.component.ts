@@ -16,7 +16,7 @@ export class DinamicCarViewComponent implements OnInit {
 
   verSolicitud = false;
   editarCarro = false;
-  name = JSON.parse(localStorage.getItem("CurrentUser")).name;
+  name = JSON.parse(localStorage.getItem("CurrentUser")!).name;
   crearCarro: boolean = false;
   userType: string = "client";
   lowValue: number = 0;
@@ -82,7 +82,7 @@ export class DinamicCarViewComponent implements OnInit {
   async activateCar(car: Car){
     const bool: boolean = !car.active;
     const active = {active: bool}
-    await this.carService.updateCar(active, car.carId)
+    await this.carService.updateCar(active, car.carId!)
     this.getCars()
     if (bool){
       alert("!Has reactivado este vehiculo con exito!\nAprovecha nuestros servicios");
@@ -101,19 +101,19 @@ export class DinamicCarViewComponent implements OnInit {
 
   async onSubmit(){
     const newCar: Car = {
-      inAppointment: false,
       userid: this.user.uid,
       brand: this.carForm.get("brand")?.value,
       model: this.carForm.get("model")?.value,
       year: this.carForm.get("year")?.value,
       plate: this.carForm.get("plate")?.value,
       serialMotor: this.carForm.get("serialMotor")?.value,
-      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy")!,
       photo: "https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png",
       active: true,
     }
+    newCar.inAppointment = false;
     let existe: boolean = false;
-    await this.carService.checkIfCarExists(newCar.serialMotor).then( doc => {
+    await this.carService.checkIfCarExists(newCar.serialMotor!).then( doc => {
       existe = doc;
     })
     console.log(existe)

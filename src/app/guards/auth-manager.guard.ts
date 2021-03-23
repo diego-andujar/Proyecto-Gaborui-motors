@@ -18,7 +18,7 @@ export class AuthManagerGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let user: any = JSON.parse(localStorage.getItem("CurrentUser"))
+    let user: any = JSON.parse(localStorage.getItem("CurrentUser") || '{}')
     if (user.rol.manager == true){
       return true;
     } else {

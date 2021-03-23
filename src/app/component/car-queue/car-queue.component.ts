@@ -22,9 +22,7 @@ export class CarQueueComponent implements OnInit {
   constructor(private carsService: CarsService) { }
 
   ngOnInit(): void {
-    this.carsService.getAllCars().subscribe((cars) => {
-      this.cars = cars;
-    })
+    this.cars = this.carsService.getAllCars();
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {

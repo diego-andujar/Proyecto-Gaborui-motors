@@ -72,7 +72,7 @@ export class NewCarFormComponent implements OnInit {
       year: this.carForm.get("year")?.value,
       plate: this.carForm.get("plate")?.value,
       serialMotor: this.carForm.get("serialMotor")?.value,
-      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy")!,
     }
     this.createNewCar(newCar);
     this.carForm.reset();

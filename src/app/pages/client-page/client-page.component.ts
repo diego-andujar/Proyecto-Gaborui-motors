@@ -40,7 +40,9 @@ export class ClientPageComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
-      this.carList = this.carService.getUsCars(user.uid)
+      this.carService.getUsCars(this.user.uid).then( doc => {
+        this.carList = doc;
+      });
     })
   }
 
@@ -60,7 +62,9 @@ export class ClientPageComponent implements OnInit {
   }
 
   getCars(){
-    this.carList = this.carService.getUsCars(this.user.uid)
+    this.carService.getUsCars(this.user.uid).then( doc => {
+      this.carList = doc;
+    });
   }
 
   onCreate(){
@@ -72,8 +76,8 @@ export class ClientPageComponent implements OnInit {
   }
 
   deleteApp(appointment: Appointment){
-    this.appointService.deleteAppointment(appointment.appId);
-    this.appointmentsList = this.appointService.getUserAppointments(localStorage.getItem("user"));
+    this.appointService.deleteAppointment(appointment.appId!);
+    this.appointmentsList = this.appointService.getUserAppointments(localStorage.getItem("user")!);
     alert("!Su cita ha sido eliminado con exito!\nPor favor refresque la pagina")
   }
 
