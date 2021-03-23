@@ -76,13 +76,8 @@ export class NewCarFormComponent implements OnInit {
     }
     this.createNewCar(newCar);
     this.carForm.reset();
-<<<<<<< HEAD
     alert("¡Felicitaciones su vehiculo fue agregado exitosamente!\nRecargue la pagina para que lo pueda ver");
   }*/
-=======
-    alert("!Se ha creado con exito tu carro!")
-  }
->>>>>>> origin/fuenmayor
 
   createNewCar(newCar: Car): void {
     this.carService.createNewCar(newCar);
