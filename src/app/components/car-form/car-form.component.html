@@ -14,7 +14,7 @@
                     required
                     type="text"
                     placeholder="Carlos Garcia"
-                    formControlName="name"
+                    formControlName="brand"
                     class="auth-input active"
                     *ngIf="!car.brand"
                 />
@@ -22,7 +22,7 @@
                     type="text"
                     value= "hola"
                     autocomplete="off"
-                    formControlName="name"
+                    formControlName="brand"
                     class="auth-input"
                     readonly
                     *ngIf="car.brand"
@@ -35,18 +35,18 @@
                 type="text"
                 id="email"
                 placeholder="carlos@example.com"
-                formControlName="email"
+                formControlName="model"
                 class="auth-input active"
-                *ngIf="!car.model"
+                *ngIf="editarForm"
                 />
                 <input
                 readonly
                 type="text"
                 id="email"
                 placeholder="carlos@example.com"
-                formControlName="email"
+                formControlName="model"
                 class="auth-input"
-                *ngIf="car.model"
+                *ngIf="!editarForm"
                 />
             </div>
             <div class="input-container">
@@ -56,37 +56,37 @@
                     type="text"
                     id="email"
                     placeholder="carlos@example.com"
-                    formControlName="email"
+                    formControlName="year"
                     class="auth-input active"
-                    *ngIf="!car.year"
+                    *ngIf="editarForm"
                 />
                 <input
                     type="text"
                     autocomplete="off"
-                    formControlName="birthDate"
+                    formControlName="year"
                     class="auth-input"
                     readonly
-                    *ngIf="car.year"
+                    *ngIf="!editarForm"
                 />
             </div>
             <div class="input-container" >
                 <label class="auth-label" for="displayName">color </label>
                 <input
                     required
-                    type="number"
+                    type="text"
                     id="displayName"
                     placeholder="Carlos Garcia"
-                    formControlName="cedula"
+                    formControlName="color"
                     class="auth-input active"
-                    *ngIf="!car.color"
+                    *ngIf="editarForm"
                 />
                 <input
-                    type="number"
+                    type="text"
                     id="displayName"
                     placeholder="Carlos Garcia"
-                    formControlName="cedula"
+                    formControlName="color"
                     class="auth-input"
-                    *ngIf="car.color"
+                    *ngIf="!editarForm"
                     readonly
                 />
             </div>
@@ -94,40 +94,40 @@
                 <label class="auth-label" for="displayName">placa</label>
                 <input
                     required
-                    type="number"
+                    type="text"
                     id="displaName"
                     placeholder="4140000000"
-                    formControlName="phone"
+                    formControlName="plate"
                     class="auth-input active"
-                    *ngIf="!car.plate || editarForm"
+                    *ngIf="editarForm"
                 />
                 <input
                     readonly
-                    type="number"
+                    type="text"
                     id="displaName"
                     placeholder="Carlos Garcia"
-                    formControlName="phone"
+                    formControlName="plate"
                     class="auth-input"
-                    *ngIf="car.plate  && !editarForm"
+                    *ngIf="!editarForm"
                 />
             </div>
-            <div class="input-container" *ngIf="!userFire.genero">
+            <div class="input-container" *ngIf="editarForm">
                     <mat-label class="auth-label">tanque de gasolina:</mat-label>
-                    <mat-select placeholder="Masculino" formControlName="genero" [(ngModel)]="selectedValue" name="car">
+                    <mat-select placeholder="1/2 tanque" formControlName="tank" [(ngModel)]="selectedValue" name="car">
                     <mat-option  *ngFor="let car of tankLevels" [value]="car.value">
                         {{car.viewValue}}
                     </mat-option>
                     </mat-select>
             </div>
-            <div class="input-container" *ngIf="userFire.genero">
-                    <label class="auth-label" for="displayName">genero </label>
+            <div class="input-container" *ngIf="car.gasTankWhenIn && !editarForm">
+                    <label class="auth-label" for="displayName">tanque de gasolina:</label>
                     <input
                     type="text"
                     id="displName"
                     placeholder="Carlos Garcia"
-                    formControlName="genero"
+                    formControlName="tank"
                     class="auth-input"
-                    *ngIf="car.gasTankWhenIn"
+                    *ngIf="!editarForm"
                     readonly
                     />
                 
@@ -139,17 +139,17 @@
                     type="text"
                     id="passwor"
                     placeholder=""
-                    formControlName="direccion"
+                    formControlName="km"
                     class="auth-input active"
-                    *ngIf="!car.kmWhenIn"
+                    *ngIf="editarForm"
                 />
                 <input
                     type="text"
                     id="passwor"
                     placeholder=""
-                    formControlName="direccion"
+                    formControlName="km"
                     class="auth-input"
-                    *ngIf="car.kmWhenIn"
+                    *ngIf="!editarForm"
                     readonly
                 />
             </div>
@@ -160,22 +160,22 @@
                     type="text"
                     id="passwor"
                     placeholder=""
-                    formControlName="ciudad"
+                    formControlName="accesories"
                     class="auth-input active"
-                    *ngIf="!car.accesories"
+                    *ngIf="editarForm"
                 />
                 <input
                     type="text"
                     id="passwor"
                     placeholder=""
-                    formControlName="ciudad"
+                    formControlName="accesories"
                     class="auth-input"
-                    *ngIf="car.accesories"
+                    *ngIf="!editarForm"
                     readonly
                 />
             </div>
             
-            <div class="button-wrapper">
+            <div *ngIf="editarForm" class="button-wrapper">
                 <div class="button-container">
                   <button type="submit" class="submit-button">Guardar Cambios</button>
                 </div>

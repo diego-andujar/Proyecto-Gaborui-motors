@@ -1,5 +1,5 @@
+import { CarsService } from 'src/app/services/cars.service';
 import { OrdersService } from './../../services/orders.service';
-import { CarsService } from './../../services/cars.service';
 import { Appointment } from './../../models/appointment';
 import { Car } from './../../models/car';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -37,34 +37,26 @@ export class CarFormComponent implements OnInit {
   
 
   constructor(
-    private datePipe : DatePipe,
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private userService: UsersService,
+    private carService: CarsService,
   ) {}
 
   ngOnInit(): void {
     this.editarForm = false;
-    this.userFire = JSON.parse(localStorage.getItem("CurrentUser"))
-    this.authService.getCurrentUser().subscribe((user) => {
-      this.user = user;
-    })
-    this.userFireId = localStorage.getItem("UserFireId");
-  
     this.createForm();
   }
 
   createForm(): void {
     this.authForm = this.fb.group({
-      name: this.car.brand,
-      email: this.car.model,
-      birthDate: this.car.year,
-      cedula: this.car.color,
-      phone: this.car.plate,
-      genero: this.car.kmWhenIn,
-      direccion: this.car.gasTankWhenIn,
-      ciudad: this.car.accesories,
+      brand: this.car.brand,
+      model: this.car.model,
+      year: this.car.year,
+      color: this.car.color,
+      plate: this.car.plate,
+      km: this.car.kmWhenIn,
+      tank: this.car.gasTankWhenIn,
+      accesories: this.car.accesories,
     });
   }
 
@@ -74,14 +66,17 @@ export class CarFormComponent implements OnInit {
       alert("Por favor todos los campos son requeridos!");
     } else {
       const formValues = {
-        birthDate: this.datePipe.transform(this.authForm.get("birthDate")?.value, "dd-MM-yyyy"),
-        cedula: this.authForm.get('cedula'),
-        phone: this.authForm.get('phone'),
-        genero: this.authForm.get('genero'),
-        direccion: this.authForm.get('direccion'),
-        ciudad: this.authForm.get('ciudad'),
+        brand: this.authForm.get("brand"),
+        model: this.authForm.get('model'),
+        year: this.authForm.get('year'),
+        color: this.authForm.get('color'),
+        plate: this.authForm.get('plate'),
+        tank: this.authForm.get('tank'),
+        km: this.authForm.get('km'),
+        accesories: this.authForm.get('accesories'),
       };
-      if ((this.userFire.birthDate === undefined || this.userFire.birthDate.length === 0) && formValues.birthDate?.valueOf != null){
+      /*
+      if (formValues.birthDate?.valueOf != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({birthDate: formValues.birthDate}) 
       }
@@ -108,7 +103,19 @@ export class CarFormComponent implements OnInit {
       this.userService.getUser(this.userFire.id);
       this.userService.getDoc(this.userFire.refId).subscribe((user) => {
         this.userFire = user;
-      })
+      })*/
+      if (formValues.tank?.value != undefined){
+        this.car.gasTankWhenIn = formValues.tank?.value;
+      } 
+      this.car.brand = formValues.brand?.value;
+      this.car.model = formValues.model?.value;
+      this.car.year = formValues.year?.value;
+      this.car.color = formValues.color?.value;
+      this.car.plate = formValues.plate?.value;
+      this.car.kmWhenIn = formValues.km?.value;
+      this.car.accesories = formValues.accesories?.value;
+      this.carService.updateEntireCar(this.car, this.car.carId!);
+      this.createForm();
     }
     
   }
