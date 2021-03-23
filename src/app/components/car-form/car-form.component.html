@@ -9,15 +9,15 @@
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
         <div class="wrapper">
             <div class="input-container">
-                <label class="auth-label" for="displayName">marca</label>
-                <input
-                    required
-                    type="text"
-                    placeholder="Carlos Garcia"
-                    formControlName="brand"
-                    class="auth-input active"
-                    *ngIf="!car.brand"
-                />
+                <div class="input-container" *ngIf="editarForm">
+                    <mat-label class="auth-label">marca:</mat-label>
+                    <mat-select placeholder={{car.brand}} formControlName="brand" [(ngModel)]="selectedValue" name="car">
+                    <mat-option  *ngFor="let cars of carBrands" [value]="cars.value">
+                        {{cars.viewValue}}
+                    </mat-option>
+                    </mat-select>
+                </div>
+                <label class="auth-label" *ngIf="!editarForm" for="email">marca</label>
                 <input
                     type="text"
                     value= "hola"
@@ -25,7 +25,7 @@
                     formControlName="brand"
                     class="auth-input"
                     readonly
-                    *ngIf="car.brand"
+                    *ngIf="!editarForm"
                 />
             </div>
             <div class="input-container">
@@ -114,8 +114,8 @@
             <div class="input-container" *ngIf="editarForm">
                     <mat-label class="auth-label">tanque de gasolina:</mat-label>
                     <mat-select placeholder="1/2 tanque" formControlName="tank" [(ngModel)]="selectedValue" name="car">
-                    <mat-option  *ngFor="let car of tankLevels" [value]="car.value">
-                        {{car.viewValue}}
+                    <mat-option  *ngFor="let level of tankLevels" [value]="level.value">
+                        {{level.viewValue}}
                     </mat-option>
                     </mat-select>
             </div>

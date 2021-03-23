@@ -26,6 +26,49 @@ export class CarFormComponent implements OnInit {
   userFireId!: string ;
   editarForm = false;
 
+  carBrands: any[] = [
+    {value: 'aston martin', viewValue: 'Aston Martin'},
+    {value: 'audi', viewValue: 'Audi'},
+    {value: 'bentley', viewValue: 'Bentley'},
+    {value: 'bmw', viewValue: 'BMW'},
+    {value: 'buick', viewValue: 'Buick'},
+    {value: 'chery', viewValue: 'Chery'},
+    {value: 'chevrolet', viewValue: 'Chevrolet'},
+    {value: 'chrysler', viewValue: 'Chrysler'},
+    {value: 'citroen', viewValue: 'Citroen'},
+    {value: 'daewoo', viewValue: 'Daewoo'},
+    {value: 'dodge', viewValue: 'Dodge'},
+    {value: 'ferrari', viewValue: 'Ferrari'},
+    {value: 'fiat', viewValue: 'Fiat'},
+    {value: 'ford', viewValue: 'Ford'},
+    {value: 'gmc', viewValue: 'GMC'},
+    {value: 'honda', viewValue: 'Honda'},
+    {value: 'hyundai', viewValue: 'Hyundai'},
+    {value: 'jaguar', viewValue: 'Jaguar'},
+    {value: 'jeep', viewValue: 'Jeep'},
+    {value: 'kia', viewValue: 'Kia'},
+    {value: 'lamborghini', viewValue: 'Lamborghini'},
+    {value: 'land rover', viewValue: 'Land Rover'},
+    {value: 'lexus', viewValue: 'Lexus'},
+    {value: 'maserati', viewValue: 'Maserati'},
+    {value: 'mazda', viewValue: 'Mazda'},
+    {value: 'mclaren', viewValue: 'Mclaren'},
+    {value: 'mercedes', viewValue: 'Mercedes'},
+    {value: 'mitsubishi', viewValue: 'Mitsubishi'},
+    {value: 'nissan', viewValue: 'Nissan'},
+    {value: 'peugeot', viewValue: 'peugeot'},
+    {value: 'pontiac', viewValue: 'Pontiac'},
+    {value: 'porsche', viewValue: 'Porsche'},
+    {value: 'renault', viewValue: 'Renault'},
+    {value: 'saab', viewValue: 'Saab'},
+    {value: 'seat', viewValue: 'Seat'},
+    {value: 'subaru', viewValue: 'Subaru'},
+    {value: 'suzuki', viewValue: 'Suzuki'},
+    {value: 'toyota', viewValue: 'Toyota'},
+    {value: 'tesla', viewValue: 'Tesla'},
+    {value: 'volkswagen', viewValue: 'Volkswagen'},
+    {value: 'volvo', viewValue: 'Volvo'},
+  ];
   selectedValue!: string;
   selectedCar!: string;
   tankLevels: any[] = [
@@ -61,6 +104,7 @@ export class CarFormComponent implements OnInit {
   }
 
   async onSubmit() {
+    console.log("en BD " + this.car.brand);
     this.editarForm = false;
     if (this.authForm.pristine) {
       alert("Por favor todos los campos son requeridos!");
@@ -106,14 +150,16 @@ export class CarFormComponent implements OnInit {
       })*/
       if (formValues.tank?.value != undefined){
         this.car.gasTankWhenIn = formValues.tank?.value;
+      } if (formValues.brand?.value != undefined){
+        this.car.brand = formValues.brand?.value;
       } 
-      this.car.brand = formValues.brand?.value;
       this.car.model = formValues.model?.value;
       this.car.year = formValues.year?.value;
       this.car.color = formValues.color?.value;
       this.car.plate = formValues.plate?.value;
       this.car.kmWhenIn = formValues.km?.value;
       this.car.accesories = formValues.accesories?.value;
+      console.log(formValues.brand?.value + " y en BD " + this.car.brand)
       this.carService.updateEntireCar(this.car, this.car.carId!);
       this.createForm();
     }
