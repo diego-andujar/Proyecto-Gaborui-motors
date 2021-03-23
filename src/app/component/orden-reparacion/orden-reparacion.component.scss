@@ -242,6 +242,9 @@ textarea {
 .otroqr {
     display: flex;
     justify-content: center;
+    @include tablet {
+        margin-top: 10%;
+    }
 }
 
 .datoscliente {
