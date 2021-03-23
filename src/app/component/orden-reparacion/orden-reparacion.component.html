@@ -134,7 +134,6 @@
     <button *ngIf="appointment && verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Escanear otro qr</button>
     <div class="list-wrapper" *ngIf="verOrden">
         <div>
-            <p>{{appointment.userName}}</p>
             <app-car-form *ngIf="car.brand" [car]="car"></app-car-form>
             <p>{{car.brand}}</p>
             <p>{{car.model}}</p>
