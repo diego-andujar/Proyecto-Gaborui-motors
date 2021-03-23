@@ -15,4 +15,5 @@ export interface Car {
     mechanicPictures?: Array<string>;
     accesories?: Array<string>;
     carId?: string;
+    inAppointment?: boolean;
 }

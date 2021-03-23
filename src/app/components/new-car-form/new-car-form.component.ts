@@ -67,27 +67,25 @@ export class NewCarFormComponent implements OnInit {
   /**onSubmit(): void {
     const newCar: Car = {
       userid: this.user.uid,
-      brand: this.carForm.get('brand').value,
-      model: this.carForm.get('model').value,
-      year: this.carForm.get('year').value,
-      plate: this.carForm.get('plate').value,
-      serialMotor: this.carForm.get('serialMotor').value,
+      brand: this.carForm.get("brand")?.value,
+      model: this.carForm.get("model")?.value,
+      year: this.carForm.get("year")?.value,
+      plate: this.carForm.get("plate")?.value,
+      serialMotor: this.carForm.get("serialMotor")?.value,
       registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
-    };
+    }
     this.createNewCar(newCar);
     this.carForm.reset();
+<<<<<<< HEAD
     alert("¡Felicitaciones su vehiculo fue agregado exitosamente!\nRecargue la pagina para que lo pueda ver");
   }*/
+=======
+    alert("!Se ha creado con exito tu carro!")
+  }
+>>>>>>> origin/fuenmayor
 
   createNewCar(newCar: Car): void {
     this.carService.createNewCar(newCar);
     //this.router.navigate(['/']);
   } 
-
-  updateCar(carData: Car): void {
-    this.carService.updateCar(this.carToUpdate.brand, carData).then(() => {
-      this.router.navigate(['/']);
-    });
-  }
-
 }

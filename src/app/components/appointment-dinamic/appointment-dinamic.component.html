@@ -1,0 +1,134 @@
+<div *ngIf="!nuevaCita">
+    <div class="btn">
+        <h2>CITAS</h2>
+    </div>
+    
+    <div class="btn">
+        <button mat-flat-button (click)="nuevaCita = !nuevaCita ; getCars()">pedir nueva cita</button>
+    </div>
+     
+    <mat-paginator [length]="citas.length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[1]"
+                (page)="getPaginatorData($event)">
+    </mat-paginator>
+        <ng-container *ngFor="let appointment of (citas | slice: lowValue : highValue)" >
+            <div class="ngcontainer" >
+                <mat-card>
+                    <mat-card-title>{{appointment.userName}}</mat-card-title>
+                    <mat-card-subtitle>{{appointment.carInfo}} </mat-card-subtitle>
+                    <mat-card-content class="container-info">
+                        <div>
+                            <img class="car-image" src={{appointment.carPhoto}} alt="">
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Fecha Solicitada: {{appointment.dateCreated}}</li>
+                                <li>Fecha Propuesta: {{appointment.date}}</li>
+                                <li>Estado de la cita: {{appointment.estado}}</li>
+                            </ul>
+                        </div>
+                        <div class="example-element-description">
+                            <span class="example-element-description-attribution"> Motivo de la cita -- </span>
+                            {{appointment.diagnosis}}
+                        </div>
+                    </mat-card-content>
+                    <div *ngIf="isManager">
+                        <mat-card-actions *ngIf="appointment.estado == 'solicitada'" >
+                            <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(appointment)">Aceptar Cita</button> 
+                            <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button> 
+                            <button mat-flat-button *ngIf="!cambiarFecha">Rechazar Cita</button> 
+                            <form [formGroup]="dayForm" *ngIf="cambiarFecha">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
+                                    <input [min]="minDate" 
+                                    [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker  #datepicker>
+                                        <mat-datepicker-actions>
+                                        <button mat-button matDatepickerCancel>Cancel</button>
+                                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                        </mat-datepicker-actions>
+                                    </mat-datepicker>
+                                </mat-form-field>
+                                <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyApp(appointment)">confirmar cambio</button> 
+                                <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
+                            </form>
+                        </mat-card-actions>
+                    </div>
+                    <div *ngIf="!isManager">
+                        <mat-card-actions *ngIf="appointment.estado == 'por confirmar'" >
+                            <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptAppClient(appointment)">Confirmar cita</button> 
+                            <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button> 
+                        
+                            <form [formGroup]="dayForm" *ngIf="cambiarFecha">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
+                                    <input [min]="minDate" 
+                                    [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker  #datepicker>
+                                        <mat-datepicker-actions>
+                                        <button mat-button matDatepickerCancel>Cancel</button>
+                                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                        </mat-datepicker-actions>
+                                    </mat-datepicker>
+                                </mat-form-field>
+                                <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyAppClient(appointment)">confirmar cambio</button> 
+                                <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
+                            </form>
+                        </mat-card-actions>
+                        <button mat-flat-button (click)="deleteApp(appointment.appId, appointment.car)">Eliminar Cita</button> 
+                    </div>
+                    
+                </mat-card>
+            </div>
+        
+    </ng-container>
+</div>
+
+
+
+<div class="auth-form" *ngIf="!isManager && nuevaCita">
+    <div class="auth-form-wrapper">
+        <div>
+            <h2 class="h1-center">Pida su cita con Gaborui Motors</h2>
+        </div>
+        <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
+            <div class="wrapper">
+                <div class="inp">
+                    <mat-label class="auth-label">Confirme su vehiculo</mat-label>
+                    <mat-select placeholder="vehiculos" formControlName="selectedCar" [(ngModel)]="selectedValue" name="car">
+                    <mat-option  *ngFor="let car of carList" [value]="car">
+                        {{car.brand}}  {{car.model}} {{car.year}} {{car.plate}}
+                    </mat-option>
+                    </mat-select>
+                </div>
+                <div class="inp">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label class="auth-label">Fecha deseada para la cita</mat-label>
+                        <input [min]="minDate" 
+                        [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker  #datepicker>
+                            <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="input-container">
+            <label class="auth-label" id="label" for="password">Motivo de la cita</label>
+            <textarea formControlName="diagnostico" name="" id="text-area"></textarea>
+            </div>
+            <div class="button-wrapper">
+            <div class="button-container">
+                <button type="submit" class="submit-button">enviar solicitud de cita</button>
+                <button type="submit" (click)="nuevaCita = !nuevaCita">volver</button>
+            </div>
+            </div>
+        </form>
+    </div>
+  </div>

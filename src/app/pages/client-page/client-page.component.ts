@@ -40,12 +40,12 @@ export class ClientPageComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
-      this.carList = this.carService.getUserCars(user.uid)
+      this.carList = this.carService.getUsCars(user.uid)
     })
   }
 
   async onSubmit() {
-    this.carList = this.authUsers.getUserCars(this.user.uid);
+    this.getCars()
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
@@ -57,6 +57,10 @@ export class ClientPageComponent implements OnInit {
 
   newCarButton(){
     this.newCar = !this.newCar;
+  }
+
+  getCars(){
+    this.carList = this.carService.getUsCars(this.user.uid)
   }
 
   onCreate(){

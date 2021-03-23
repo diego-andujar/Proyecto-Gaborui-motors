@@ -9,7 +9,6 @@ import {
   DocumentReference,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -39,6 +38,55 @@ export class CarsService {
     return collection.valueChanges();
   }
 
+  async getUsCars(id:string): Promise<Car[]>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        lista.push(doc.data())
+      })
+    })
+    return lista;
+  }
+
+  async getUsCarsNoApp(id:string): Promise<Car[]>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).where("inAppointment", "==", false).get()
+    await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        lista.push(doc.data())
+      })
+    })
+    return lista;
+  }
+
+  carForAppointment(id: string, bool: boolean){
+    const collection = this.database.collection("cars")
+    return  collection.doc(id).update({inAppointment: bool});
+  }
+
+  async checkIfCarExists(serialMotor: string): Promise<boolean>{
+    let existe: boolean = false;
+    const collection = this.db.collection("cars").where("serialMotor", "==", serialMotor).get()
+    return collection.then( doc => {
+      if (doc.size > 0){
+        existe = true;
+      }
+      return existe
+    })
+  }
+
+  getUsCarsApp(id:string): Array<Car>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        lista.push(doc.data())
+      })
+    })
+    return lista;
+  }
+
   /**
    * GET ALL POSTS
    */
@@ -64,20 +112,14 @@ export class CarsService {
    * GET car BY ID
    * @param carId
    */
-  getCarById(carId: string): Array<Car> {
-    const list: Array<Car> = [];
-    const carRef = this.db.collection("cars").doc(carId); 
-    carRef.get().then().then((querySnapshot) =>{
-        let car = ({
-          brand: querySnapshot.get("brand"),
-          model: querySnapshot.get("model"),
-          year: querySnapshot.get("year"),
-          plate: querySnapshot.get("plate"),
-          carId: querySnapshot.get("carId"),
-        })
-        list.push(car);
-      })
-    return list;
+  getCarById(carId: string) {
+    const collection = this.database.collection("cars")
+    return collection.doc(carId).valueChanges();
+  }
+
+  updateCar(data:any, id:string){
+    const collection = this.database.collection("cars")
+    return  collection.doc(id).update(data);
   }
 
   getUserCars(userId: string): Array<Car> {
@@ -107,17 +149,6 @@ export class CarsService {
     const id = this.fireService.getId();
     newCar.carId = id;
     return this.db.collection("cars").doc(id).set(newCar);
-  }
-
-  /**
-   * UPDATE car BY ID
-   * @param carId
-   * @param carData
-   */
-  updateCar(carId: string, postData: Car): Promise<void> {
-    return this.carCollection.doc<Car>(carId).update(postData).then(
-      
-    );
   }
 
   /**
