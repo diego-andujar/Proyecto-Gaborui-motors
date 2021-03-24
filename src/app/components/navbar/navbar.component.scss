@@ -98,6 +98,21 @@
     }
 }
 
+.perfil-button {
+    padding: 0%;
+    background-color: $primary-color;
+    color: $third-color;
+    font-family: $primary-font;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: 0px;
+    &:hover{
+        color: $secondary-color;
+        border-bottom: 3px solid $secondary-color;
+    }
+}
+
 .logoutfoto {
     fill: $third-color
 }

@@ -7,43 +7,41 @@
     <ul class="navbar" >
 
         <li class="active">
-            <a [routerLink]="['/']">Home</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">home</button>
         </li>
         <li *ngIf="user">
-            <button (click)="click()">hola</button>
-            <a  (click)="click()">Perfil</a>
-            <a  *ngIf="isManager" [routerLink]="['/manager', user.uid]">Perfil</a>
+            <button mat-button class="perfil-button" (click)="click()">perfil</button>
         </li>
         <li *ngIf="user">
-            <a [routerLink]="['/']">Vehiculos</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">vehiculos</button>
         </li>
         <li *ngIf="user">
-            <a [routerLink]="['/']">Citas</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">citas</button>
         </li>
         <!--
         <li *ngIf="user-meca">
-            <a [routerLink]="['/user/posts']">Vehiculos</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">Vehiculos</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Citas</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">citas</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Calendario</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">calendario</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Ordenes</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">ordenes</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Reportes</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">reportes</button>
         </li> -->
         <li *ngIf="!user">
-            <a [routerLink]="['/categories']">Nosotros</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">nosotros</button>
         </li>
         <li *ngIf="!user">
-            <a [routerLink]="['/contact']">Contacto</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">contacto</button>
         </li>
         <li *ngIf="!user">
-            <a [routerLink]="['/contact']">Ubicación</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">ubicacion</button>
         </li>
         <li class="login" *ngIf="!user">
             <a [routerLink]="['/log-in']">Login</a>

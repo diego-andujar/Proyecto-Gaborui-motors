@@ -78,7 +78,7 @@
                                 <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
                             </form>
                         </mat-card-actions>
-                        <button mat-flat-button (click)="deleteApp(appointment.appId, appointment.car)">Eliminar Cita</button> 
+                        <button mat-flat-button (click)="deleteApp(appointment.appId!, appointment.car!)">Eliminar Cita</button> 
                     </div>
                     
                 </mat-card>
