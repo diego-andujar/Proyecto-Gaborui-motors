@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { FirestoreService } from './firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
@@ -91,6 +92,20 @@ export class UsersService {
     }
     localStorage.setItem("CurrentUser", JSON.stringify(this.user))
     localStorage.setItem("UserFireId", doc.id)
+  }
+
+  async updateEntireUser(user: User, userId: string){
+    const collection = this.database.collection("users");
+    return await collection.doc(userId).set({
+      birthDate: user.birthDate,
+      cedula: user.cedula,
+      phoneNumber: user.phoneNumber,
+      genero: user.genero,
+      address: user.address,
+      state: user.state,
+      city: user.city,
+      postalCode: user.postalCode,
+    }, {merge: true});
   }
 
 

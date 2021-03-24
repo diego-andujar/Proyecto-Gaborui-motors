@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,7 +18,7 @@ export class ClientFormComponent implements OnInit {
   authForm!: FormGroup;
   @Input() isRegister: boolean = false;
   email = new FormControl('', [Validators.required, Validators.email]);
-  userFire: any;
+  userFire!: User;
   user!: firebase.User;
   db = firebase.firestore();
   userFireId!: string ;
@@ -89,17 +90,47 @@ export class ClientFormComponent implements OnInit {
     this.editarForm = false;
     if (this.authForm.pristine) {
       alert("Por favor todos los campos son requeridos!");
-    } else if (this.authForm.get("birthDate")?.value != this.userFire.birthDate){
+    } else {
+      let birthDat;
+      let sex;
+      if (typeof this.authForm.get("birthDate")?.value != "string" && typeof this.authForm.get("birthDate")?.value != "undefined"){
+        birthDat = this.datePipe.transform(this.authForm.get("birthDate")?.value, "dd-MM-yyyy");
+      }
+      if (typeof this.authForm.get("genero")?.value === "string" && typeof this.authForm.get("genero")?.value != "undefined"){
+        sex = this.authForm.get("genero")?.value;
+      }
       const formValues = {
-        birthDate: this.datePipe.transform(this.authForm.get("birthDate")?.value, "dd-MM-yyyy"),
         cedula: this.authForm.get('cedula'),
         phone: this.authForm.get('phone'),
-        genero: this.authForm.get('genero'),
         direccion: this.authForm.get('direccion'),
         estado: this.authForm.get('estado'),
         ciudad: this.authForm.get('ciudad'),
         postal: this.authForm.get('postal'),
       };
+      if (birthDat != undefined){
+        this.userFire.birthDate = birthDat;
+      }
+      if (sex != undefined){
+        this.userFire.genero = sex;
+      }
+      this.userFire.cedula = formValues.cedula?.value;
+      this.userFire.phoneNumber = formValues.phone?.value;
+      this.userFire.address = formValues.direccion?.value;
+      this.userFire.state = formValues.estado?.value;
+      this.userFire.city = formValues.ciudad?.value;
+      this.userFire.postalCode = formValues.postal?.value;
+      await this.userService.updateEntireUser(this.userFire, this.userFire.refId!);
+      this.userService.getDoc(this.userFire.refId!).subscribe((user) => {
+        this.userFire = user as User;
+        localStorage.setItem("CurrentUser", JSON.stringify(user));
+      })
+      if (birthDat != undefined){
+        this.createForm();
+      }
+      
+      
+      
+      /*
       if ((this.userFire.birthDate === undefined || this.userFire.birthDate.length === 0) && formValues.birthDate?.valueOf != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({birthDate: formValues.birthDate}) 
@@ -178,7 +209,7 @@ export class ClientFormComponent implements OnInit {
       this.userService.getUser(this.userFire.id);
       this.userService.getDoc(this.userFire.refId).subscribe((user) => {
         this.userFire = user;
-      })
+      })*/
     }
   }
 
