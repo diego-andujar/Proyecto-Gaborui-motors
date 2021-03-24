@@ -1,3 +1,4 @@
+// import { User } from './../../models/user';
 import { UsersService } from 'src/app/services/users.service';
 import { Roles } from '../../models/roles';
 import { Hijo } from './../../modelos';
@@ -16,7 +17,8 @@ import { User } from 'src/app/models/user';
 
 
 export class AdminPageComponent implements OnInit {
-
+  
+  username!:User;
   selectedValue!: string;
   selectedRol!:string;
 
@@ -58,6 +60,7 @@ export class AdminPageComponent implements OnInit {
    }
   ngOnInit(): void {
     this.getUsuarios();
+    this.username=JSON.parse(localStorage.getItem("CurrentUser")!)
   }
 
   guardarUsuario(){

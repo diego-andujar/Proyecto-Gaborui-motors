@@ -1,12 +1,11 @@
 @import "../../../styles/Lib/variables.scss";
-
-form{
+@import "../../../styles/Lib/mixins.scss";
+form {
     padding: 0px;
 }
 
 input {
     font-family: $secondary-font;
-    
 }
 
 mat-select {
@@ -55,7 +54,6 @@ label {
     color: $primary-color;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    
 }
 
 .auth-input {
@@ -88,6 +86,10 @@ label {
 
 .form-container {
     width: 100%;
+    @include small-phone {
+        background-color: yellow;
+        width: 200%;
+    }
 }
 
 .no-acc-text {

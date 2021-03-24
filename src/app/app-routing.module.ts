@@ -1,3 +1,4 @@
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 // import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.component';
 import { AuthManagerGuard } from './guards/auth-manager.guard';
 import { ClientPageComponent } from './pages/client-page/client-page.component';
@@ -9,6 +10,8 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { AuthClientGuard } from './guards/auth-client.guard';
 import { MechanicsPageComponent } from './pages/mechanics-page/mechanics-page.component';
+import { AuthMechanicGuard } from './guards/auth-mechanic.guard';
+import { AuthAdminGuard } from './guards/auth-admin.guard';
 
 const routes: Routes = [
   // { path: "", component: HomePageComponent},
@@ -18,7 +21,11 @@ const routes: Routes = [
   { path: "log-in", component: LogInPageComponent },
   { path: "manager", component: ManagerPageComponent },
   { path: "perfil/:userID", canActivate: [AuthClientGuard], pathMatch: "full", component: ClientPageComponent},
-  { path: "manager/:userID", canActivate: [AuthManagerGuard], pathMatch: "full", component: ManagerPageComponent}
+  { path: "manager/:userID", canActivate: [AuthManagerGuard], pathMatch: "full", component: ManagerPageComponent},
+  { path: "admin/:userID", canActivate: [AuthAdminGuard], pathMatch: "full", component: AdminPageComponent},
+  { path: "mechanic/:userID", canActivate: [AuthMechanicGuard], pathMatch: "full", component: MechanicsPageComponent},
+
+  
 ];
 
 @NgModule({

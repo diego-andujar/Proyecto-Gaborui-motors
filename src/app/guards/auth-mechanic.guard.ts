@@ -22,7 +22,7 @@ export class AuthMechanicGuard implements CanActivate {
     if (user.rol.mechanic == true){
       return true;
     } else {
-      return this.router.parseUrl("/log-in");
+      return this.router.parseUrl("/");
     }
   }
 }
