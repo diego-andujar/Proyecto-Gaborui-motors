@@ -6,6 +6,10 @@ import { FirestoreService } from './../../servicios/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
+// import { Component, OnInit } from '@angular/core';
+import firebase from "firebase";
+import { AuthService } from "src/app/services/auth.service";
 
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // -------TODO ESTO ES PARA EL ADMIN Y HACER CRUD EN CLIENTE, MECA Y GERENTE JHOEL--------
@@ -17,7 +21,8 @@ import { User } from 'src/app/models/user';
 
 
 export class AdminPageComponent implements OnInit {
-  
+  user!: firebase.User;
+  userFire!: any;
   username!:User;
   selectedValue!: string;
   selectedRol!:string;
@@ -55,12 +60,16 @@ export class AdminPageComponent implements OnInit {
   enablenewUsuario=false;
   
   private path ='users/';
-  constructor(public firestoreService: FirestoreService, private userService: UsersService ) {
+  constructor(public firestoreService: FirestoreService, private userService: UsersService,private authService: AuthService ) {
     
    }
   ngOnInit(): void {
     this.getUsuarios();
-    this.username=JSON.parse(localStorage.getItem("CurrentUser")!)
+    this.username=JSON.parse(localStorage.getItem("CurrentUser")!);
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+    })
+    this.userFire = JSON.parse(localStorage.getItem("CurrentUser")!);
   }
 
   guardarUsuario(){

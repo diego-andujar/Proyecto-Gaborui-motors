@@ -5,10 +5,15 @@
 <div class="todo">
     <ul class="bloques">
         <li class="bloque bloquea">
-            <div>
-                <p>Email:{{username.email}}</p>
-                <p>Nombre:{{username.name}}</p>
-                <p>Rol:Momento Admin</p>
+            <div class="userInfo">
+                <img [src]="
+            user.photoURL
+              ? user.photoURL
+              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'
+          " class="photo" />
+                <p>Email: {{username.email}}</p>
+                <p>Nombre: {{username.name}}</p>
+                <p>Rol: Admin</p>
             </div>
         </li>
 
