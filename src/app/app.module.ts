@@ -71,6 +71,7 @@ import { NewPartFormComponent } from './components/new-part-form/new-part-form.c
 import { DiagnosisFormComponent } from './components/diagnosis-form/diagnosis-form.component';
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { CarFormComponent } from './components/car-form/car-form.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -155,6 +156,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatButtonModule,
     MatSortModule,
     MatIconModule,
+    MatCheckboxModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

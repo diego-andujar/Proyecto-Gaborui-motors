@@ -134,11 +134,11 @@
     <button *ngIf="appointment && verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Escanear otro qr</button>
     <div class="list-wrapper" *ngIf="verOrden">
         <div>
-            <app-car-form *ngIf="car.brand != undefined" [car]="car"></app-car-form>
+            <app-car-form *ngIf="car != undefined" [car]="car"></app-car-form>
         </div>
 
         <!--LISTA REPUESTOS-->
-        <div>
+        <div *ngIf="car != undefined">
             <h2>repuestos</h2>
             <button (click)="newPart()" *ngIf="verOrden && !addPart">Añadir repuesto</button>
             <button (click)="reLoadPartsList()" *ngIf="verOrden">recargar</button>
@@ -175,7 +175,7 @@
         </div>
 
         <!--LISTA PROCEDIMIENTOS-->
-        <div>
+        <div *ngIf="car != undefined">
             <h2>procedimientos aplicados</h2>
             <button (click)="newProcess()" *ngIf="verOrden && !addProcess">Añadir procedimiento</button>
             <button (click)="reLoadProcessList()" *ngIf="verOrden">recargar</button>
@@ -213,7 +213,7 @@
 
 
         <!--TEXTAREA DIAGNOSTICO-->
-        <div>
+        <div *ngIf="car != undefined">
             <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
         

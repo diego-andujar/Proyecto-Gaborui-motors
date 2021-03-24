@@ -11,7 +11,7 @@
             <div class="input-container">
                 <div class="input-container" *ngIf="editarForm">
                     <mat-label class="auth-label">marca:</mat-label>
-                    <mat-select placeholder={{car.brand}} formControlName="brand" [(ngModel)]="selectedValue" name="car">
+                    <mat-select placeholder={{car.brand}} formControlName="brand" [(ngModel)]="selectdValue" name="car">
                     <mat-option  *ngFor="let cars of carBrands" [value]="cars.value">
                         {{cars.viewValue}}
                     </mat-option>
@@ -114,7 +114,7 @@
             <div class="input-container" *ngIf="editarForm">
                     <mat-label class="auth-label">tanque de gasolina:</mat-label>
                     <mat-select placeholder="1/2 tanque" formControlName="tank" [(ngModel)]="selectedValue" name="car">
-                    <mat-option  *ngFor="let level of tankLevels" [value]="level.value">
+                    <mat-option  *ngFor="let level of tankLevels" [value]="level.level">
                         {{level.viewValue}}
                     </mat-option>
                     </mat-select>
@@ -141,7 +141,7 @@
                     placeholder=""
                     formControlName="km"
                     class="auth-input active"
-                    *ngIf="editarForm"
+                    *ngIf="editarForm "
                 />
                 <input
                     type="text"
@@ -154,25 +154,18 @@
                 />
             </div>
             <div class="input-container">
-                <label class="auth-label" for="password">accesories</label>
-                <input
-                    required
-                    type="text"
-                    id="passwor"
-                    placeholder=""
-                    formControlName="accesories"
-                    class="auth-input active"
-                    *ngIf="editarForm"
-                />
-                <input
-                    type="text"
-                    id="passwor"
-                    placeholder=""
-                    formControlName="accesories"
-                    class="auth-input"
-                    *ngIf="!editarForm"
-                    readonly
-                />
+                <label class="auth-label" for="password">accesorios</label>
+                <span class="example-list-section"  >
+                    <ul>
+                      <li *ngFor="let accesorie of accesories">
+                        <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="accesorie.marked"
+                                      (ngModelChange)="updateAccesoriesList(accesorie)">
+                          {{accesorie.name}}
+                        </mat-checkbox>
+                      </li>
+                    </ul>
+                  </span>
+                
             </div>
             
             <div *ngIf="editarForm" class="button-wrapper">

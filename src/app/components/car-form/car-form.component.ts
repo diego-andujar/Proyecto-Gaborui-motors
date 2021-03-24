@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import firebase from "firebase";
 
+export interface Accesorie {
+  name: string;
+  marked: boolean;
+}
+
 @Component({
   selector: 'app-car-form',
   templateUrl: './car-form.component.html',
@@ -25,6 +30,13 @@ export class CarFormComponent implements OnInit {
   db = firebase.firestore();
   userFireId!: string ;
   editarForm = false;
+  accesories: Array<Accesorie> = [
+    {name: "caucho de repuesto", marked: false},
+    {name: "llaves", marked: false},
+    {name: "gato", marked: false},
+    {name: "heramientas", marked: false},
+    {name: "reproductor", marked: false},
+  ];
 
   carBrands: any[] = [
     {value: 'aston martin', viewValue: 'Aston Martin'},
@@ -70,12 +82,13 @@ export class CarFormComponent implements OnInit {
     {value: 'volvo', viewValue: 'Volvo'},
   ];
   selectedValue!: string;
+  selectdValue!: string;
   selectedCar!: string;
   tankLevels: any[] = [
-    {value: '0.25', viewValue: '1/4 de taqnue'},
-    {value: '0.5', viewValue: '1/2 tanque'},
-    {value: '0.75', viewValue: '3/4 de tanque'},
-    {value: '1', viewValue: 'Tanque lleno'},
+    {level: '1/4 de taqnue', viewValue: '1/4 de taqnue'},
+    {level: '1/2 tanque', viewValue: '1/2 tanque'},
+    {level: '3/4 de tanque', viewValue: '3/4 de tanque'},
+    {level: 'tanque lleno', viewValue: 'Tanque lleno'},
   ];
   
 
@@ -86,11 +99,14 @@ export class CarFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.editarForm = false;
+    if(this.car.accesories != undefined && this.car.accesories.length >0){
+      this.accesories = this.car.accesories;
+    }
     this.createForm();
   }
 
   createForm(): void {
+    this.car.gasTankWhenIn = "tanque lleno",
     this.authForm = this.fb.group({
       brand: this.car.brand,
       model: this.car.model,
@@ -99,12 +115,20 @@ export class CarFormComponent implements OnInit {
       plate: this.car.plate,
       km: this.car.kmWhenIn,
       tank: this.car.gasTankWhenIn,
-      accesories: this.car.accesories,
     });
+    console.log(this.car.gasTankWhenIn)
+  }
+
+  updateAccesoriesList(accesorie: Accesorie){
+    const index = this.accesories.indexOf(accesorie, 0);
+    if(index > -1){
+      this.accesories[index].marked = accesorie.marked;
+      const parts = {accesories: this.accesories};
+      this.carService.updateCar(parts, this.car.carId!);
+    }
   }
 
   async onSubmit() {
-    console.log("en BD " + this.car.brand);
     this.editarForm = false;
     if (this.authForm.pristine) {
       alert("Por favor todos los campos son requeridos!");
@@ -117,7 +141,6 @@ export class CarFormComponent implements OnInit {
         plate: this.authForm.get('plate'),
         tank: this.authForm.get('tank'),
         km: this.authForm.get('km'),
-        accesories: this.authForm.get('accesories'),
       };
       /*
       if (formValues.birthDate?.valueOf != null){
@@ -158,8 +181,7 @@ export class CarFormComponent implements OnInit {
       this.car.color = formValues.color?.value;
       this.car.plate = formValues.plate?.value;
       this.car.kmWhenIn = formValues.km?.value;
-      this.car.accesories = formValues.accesories?.value;
-      console.log(formValues.brand?.value + " y en BD " + this.car.brand)
+      this.car.accesories = this.accesories;
       this.carService.updateEntireCar(this.car, this.car.carId!);
       this.createForm();
     }
