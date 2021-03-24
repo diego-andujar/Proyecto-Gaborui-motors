@@ -13,7 +13,16 @@
             <button mat-button class="perfil-button" [routerLink]="['/']">home</button>
         </li>
         <li *ngIf="user">
+<<<<<<< HEAD
             <button mat-button class="perfil-button" (click)="click()">perfil</button>
+=======
+<<<<<<< HEAD
+            <a [routerLink]="['/perfil', user.uid]">Perfil</a>
+            <a *ngIf="userFire.rol.manager" [routerLink]="['/manager', user.uid]">Perfil</a>
+=======
+            <button mat-button class="perfil-button" (click)="click()">perfil</button>
+>>>>>>> origin/fuenmayor
+>>>>>>> origin/andujar
         </li>
         <li *ngIf="user">
             <button mat-button class="perfil-button" [routerLink]="['/']">vehiculos</button>

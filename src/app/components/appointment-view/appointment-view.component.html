@@ -13,31 +13,39 @@
                 <mat-card-title>{{appointment.userName}}</mat-card-title>
                 <mat-card-subtitle>{{appointment.carInfo}} </mat-card-subtitle>
                 <mat-card-content class="container-info">
-                    <div>
-                        <img class="car-image" src={{appointment.carPhoto}} alt="">
-                    </div>
-                    <div>
-                        <ul>
-                            <li>Fecha Solicitada: {{appointment.dateCreated}}</li>
-                            <li>Fecha Propuesta: {{appointment.date}}</li>
-                            <li>Estado de la cita: {{appointment.estado}}</li>
-                        </ul>
-                    </div>
-                    <div class="example-element-description">
-                        <span class="example-element-description-attribution"> Motivo de la cita -- </span>
-                        {{appointment.diagnosis}}
-                    </div>
-                    <div class="container" *ngIf="appointment.estado === 'por confirmar'">
-                        <h3>QRCode de la cita</h3>
-                    </div>
-                    <div *ngIf="appointment.estado === 'por confirmar'">
-                        <ngx-qrcode
-                            [elementType]="elementType"
-                            [errorCorrectionLevel]="correctionLevel"
-                            value={{appointment.appId}}
-                            cssClass="coolQRCode">
-                        </ngx-qrcode>
-                        <button (click)="downloadQRCode(appointment)">Download QRCode</button>
+                    <div class="columna">
+                        <div>
+                            <img class="car-image" src={{appointment.carPhoto}} alt="">
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Fecha Solicitada: {{appointment.dateCreated}}</li>
+                                <li>Fecha Propuesta: {{appointment.date}}</li>
+                                <li>Estado de la cita: {{appointment.estado}}</li>
+                            </ul>
+                        </div>
+                        <div class="font">
+                            <div class="example-element-description">
+                                <span class="example-element-description-attribution"> Motivo de la cita -- </span>
+                                {{appointment.diagnosis}}
+                            </div>
+                        </div>
+                        <div class="container" *ngIf="appointment.estado === 'por confirmar'">
+                            <h3 class="font">QRCode de la cita</h3>
+                        </div>
+                        <div *ngIf="appointment.estado === 'por confirmar'">
+                            <div class="grandeqr">
+                                <ngx-qrcode
+                                    [elementType]="elementType"
+                                    [errorCorrectionLevel]="correctionLevel"
+                                    value={{appointment.appId}}
+                                    cssClass="coolQRCode">
+                                </ngx-qrcode>
+                            </div>
+                            <div class="centro">
+                                <button (click)="downloadQRCode(appointment)">Download QRCode</button>
+                            </div>
+                        </div>
                     </div>
                 </mat-card-content>
                 <div *ngIf="isManager">
