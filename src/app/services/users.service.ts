@@ -14,7 +14,7 @@ import firebase from 'firebase';
 })
 export class UsersService {
 
-  userCollection: AngularFirestoreCollection<User>;
+  userCollection!: AngularFirestoreCollection<User>;
   db = firebase.firestore();
   user!: User;
   bool!: Promise<boolean>;
@@ -26,7 +26,7 @@ export class UsersService {
     public database: AngularFirestore,
     private fireService: FirestoreService,
     ) { 
-      this.getUser(localStorage.getItem("user"))
+      this.getUser(localStorage.getItem("user")!)
   }
 
   getDoc(id:string){
@@ -65,7 +65,7 @@ export class UsersService {
   }
 
   getFireUserId(): string {
-    return JSON.parse(localStorage.getItem("CurrentUser"))
+    return JSON.parse(localStorage.getItem("CurrentUser")!)
   }
 
 
@@ -99,7 +99,7 @@ export class UsersService {
     this.db.collection("users").where("id", "==", userId).get().then(snapshot => {
       snapshot.docs.forEach(doc => {
         localStorage.setItem("UserFireId", doc.id)
-        user = this.creatingUserInLocalStorage(doc)
+        user = this.creatingUserInLocalStorage(doc);
       })
     })
   }

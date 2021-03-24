@@ -16,7 +16,7 @@ export class DinamicCarViewComponent implements OnInit {
 
   verSolicitud = false;
   editarCarro = false;
-  name = JSON.parse(localStorage.getItem("CurrentUser")).name;
+  name = JSON.parse(localStorage.getItem("CurrentUser")!).name;
   crearCarro: boolean = false;
   userType: string = "client";
   lowValue: number = 0;
