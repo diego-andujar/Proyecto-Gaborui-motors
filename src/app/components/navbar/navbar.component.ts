@@ -1,3 +1,6 @@
+import { User } from 'src/app/models/user';
+import { Roles } from './../../models/roles';
+import { UsersService } from './../../services/users.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import firebase from "firebase";
@@ -11,19 +14,46 @@ import { AuthService } from "src/app/services/auth.service";
 export class NavbarComponent implements OnInit {
 
   user!: firebase.User;
-  userFire!: any;
+  userFire!: User;
+  isClient: boolean = false;
+  isManager: boolean = false;
+  isMechanic: boolean = false;
+  isAdmin: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService, 
+    private userService: UsersService, 
+    private router: Router
+    ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
     })
-    this.userFire = JSON.parse(localStorage.getItem("CurrentUser"))
+  }
+
+  async getUser(){
+    this.userFire = await JSON.parse(localStorage.getItem("CurrentUser")!);
+    if (this.userFire.rol?.client){
+      this.isClient = true;
+    } if (this.userFire.rol?.manager){
+      this.isManager = true;
+    }
+  }
+
+  click(){
+    this.userFire = JSON.parse(localStorage.getItem("CurrentUser")!);
+    console.log(this.userFire.rol);
+    if(this.userFire.rol?.client){
+      this.router.navigate(['/perfil', this.user.uid])
+    } else if (this.userFire.rol?.manager){
+      this.router.navigate(['/manager', this.user.uid])
+    }
   }
 
   async logOutUser(){
     await this.authService.logout();
+    localStorage.removeItem("CurrentUser");
     this.router.navigate(["/"]);
   }
 

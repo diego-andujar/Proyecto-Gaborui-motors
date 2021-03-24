@@ -113,12 +113,26 @@ export class CarsService {
    * @param carId
    */
   getCarById(carId: string) {
-    const collection = this.database.collection("cars")
+    const collection = this.database.collection("cars");
     return collection.doc(carId).valueChanges();
   }
 
+  async updateEntireCar(car: Car, carId: string){
+    const collection = this.database.collection("cars");
+    return await collection.doc(carId).set({
+      brand: car.brand,
+      model: car.model,
+      year: car.year,
+      plate: car.plate,
+      color: car.color,
+      kmWhenIn: car.kmWhenIn,
+      gasTankWhenIn: car.gasTankWhenIn,
+      accesories: car.accesories,
+    }, {merge: true});
+  }
+
   updateCar(data:any, id:string){
-    const collection = this.database.collection("cars")
+    const collection = this.database.collection("cars");
     return  collection.doc(id).update(data);
   }
 

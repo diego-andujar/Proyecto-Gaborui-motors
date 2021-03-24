@@ -40,7 +40,7 @@ export class ClientAppointmentFormComponent implements OnInit {
     this.createForm();
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
-    this.name = (JSON.parse(localStorage.getItem("CurrentUser"))).name;
+    this.name = (JSON.parse(localStorage.getItem("CurrentUser")!)).name;
   }
 
   dateFilter = date => {

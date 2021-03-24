@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { FirestoreService } from './firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,7 +15,7 @@ import firebase from 'firebase';
 })
 export class UsersService {
 
-  userCollection: AngularFirestoreCollection<User>;
+  userCollection!: AngularFirestoreCollection<User>;
   db = firebase.firestore();
   user!: User;
   bool!: Promise<boolean>;
@@ -26,7 +27,7 @@ export class UsersService {
     public database: AngularFirestore,
     private fireService: FirestoreService,
     ) { 
-      this.getUser(localStorage.getItem("user"))
+      this.getUser(localStorage.getItem("user")!)
   }
 
   getDoc(id:string){
@@ -65,7 +66,7 @@ export class UsersService {
   }
 
   getFireUserId(): string {
-    return JSON.parse(localStorage.getItem("CurrentUser"))
+    return JSON.parse(localStorage.getItem("CurrentUser")!)
   }
 
 
@@ -93,13 +94,27 @@ export class UsersService {
     localStorage.setItem("UserFireId", doc.id)
   }
 
+  async updateEntireUser(user: User, userId: string){
+    const collection = this.database.collection("users");
+    return await collection.doc(userId).set({
+      birthDate: user.birthDate,
+      cedula: user.cedula,
+      phoneNumber: user.phoneNumber,
+      genero: user.genero,
+      address: user.address,
+      state: user.state,
+      city: user.city,
+      postalCode: user.postalCode,
+    }, {merge: true});
+  }
+
 
   getUser(userId: string) {
     let user: User;
     this.db.collection("users").where("id", "==", userId).get().then(snapshot => {
       snapshot.docs.forEach(doc => {
         localStorage.setItem("UserFireId", doc.id)
-        user = this.creatingUserInLocalStorage(doc)
+        user = this.creatingUserInLocalStorage(doc);
       })
     })
   }
