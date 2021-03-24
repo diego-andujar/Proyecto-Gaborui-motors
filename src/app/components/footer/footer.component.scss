@@ -136,3 +136,29 @@ a{
     }
 
 }
+
+@media only screen and (width: 320px) {
+    
+    footer {
+        background-color: $primary-color;
+        width: 225%;
+    }
+    
+    .normal{ 
+        font-size: 95%;
+        line-height: 100%;
+        font-weight: 30%;
+        font-family: $secondary-font;
+        align-items: center;
+        text-align: left;
+    
+        &.image-media{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3%;
+        }
+    }
+
+}

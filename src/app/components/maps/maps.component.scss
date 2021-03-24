@@ -84,3 +84,34 @@
     }
     
 }
+
+@media only screen and (max-width: 320px) {
+
+    .mapsdiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 225%;
+        height: 90%;
+        background-color: $secondary-color;
+        font-size: 3em;
+        font-family: $primary-font;
+    }
+    
+    .ulcosa {
+        width: 100%;
+        height: 100%;
+        list-style: none;
+        color: inherit;
+        line-height: 130px;
+        text-align: center;
+    }
+    
+    .mapadegoogle {
+        display: flex;
+        justify-self: center;
+        width: 95%;
+        height: 300px;
+    }
+    
+}
