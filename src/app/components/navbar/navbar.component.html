@@ -1,3 +1,6 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <nav class="menu">
     <!--id="navbarContainer"-->
     <a [routerLink]="['/']" class="logo">
@@ -10,7 +13,12 @@
             <button mat-button class="perfil-button" [routerLink]="['/']">home</button>
         </li>
         <li *ngIf="user">
+<<<<<<< HEAD
             <button mat-button class="perfil-button" (click)="click()">perfil</button>
+=======
+            <a [routerLink]="['/perfil', user.uid]">Perfil</a>
+            <a *ngIf="userFire.rol.manager" [routerLink]="['/manager', user.uid]">Perfil</a>
+>>>>>>> origin/diego2
         </li>
         <li *ngIf="user">
             <button mat-button class="perfil-button" [routerLink]="['/']">vehiculos</button>
