@@ -50,8 +50,10 @@ export class QrScannerComponent implements OnInit {
   }
 
   getCar(id: string){
+    let app: Appointment;
     this.appService.getSpecificApp(id).subscribe( doc => {
-      this.carService.getCarById(doc.car).subscribe( doc => {
+      app = doc as Appointment;
+      this.carService.getCarById(app.car).subscribe( doc => {
         this.car = doc;
       })
     })

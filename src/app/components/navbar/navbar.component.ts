@@ -48,6 +48,10 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/perfil', this.user.uid])
     } else if (this.userFire.rol?.manager){
       this.router.navigate(['/manager', this.user.uid])
+    } else if (this.userFire.rol?.admin){
+      this.router.navigate(['/admin', this.user.uid])
+    } else if (this.userFire.rol?.mechanic){
+      this.router.navigate(['/mechanic', this.user.uid])
     }
   }
 

@@ -112,7 +112,7 @@ export class CarsService {
    * GET car BY ID
    * @param carId
    */
-  getCarById(carId: string) {
+  getCarById(carId: any) {
     const collection = this.database.collection("cars");
     return collection.doc(carId).valueChanges();
   }

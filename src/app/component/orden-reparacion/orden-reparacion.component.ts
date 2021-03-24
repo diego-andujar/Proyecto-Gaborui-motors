@@ -20,13 +20,13 @@ import { stringify } from '@angular/compiler/src/util';
 export class OrdenReparacionComponent implements OnInit {
 
   displayedColumns = ['item', 'cost', 'actions'];
-  appointment: Appointment | undefined;
+  appointment: Appointment | any;
   transactions: Part[] = [];
   procesos: Part[] = [];
   orderForm!: FormGroup;
   @Input() event: string = "hola";
   orden!: Order;
-  car!: Car;
+  car!: any;
   scannerEnabled: boolean = true;
   escanear: boolean = false;
   qrResultString: string | null = "";
@@ -82,21 +82,21 @@ export class OrdenReparacionComponent implements OnInit {
   getCar(id: string){
     this.appService.getSpecificApp(id).subscribe( doc => {
       this.appointment = doc;
-      this.carService.getCarById(doc.car).subscribe( doc => {
+      this.carService.getCarById(this.appointment.car).subscribe( doc => {
         this.car = doc;
       })
     })
   }
 
   getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.transactions.map(t => t.cost).reduce((acc, value) => acc! + value!, 0);
   }
 
   getTotalProcessCost() {
     if(this.procesos == undefined || this.procesos.length < 1){
       return 0;
     }
-    return this.procesos.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.procesos.map(t => t.cost).reduce((acc, value) => acc! + value!, 0);
   }
 
   newPart(){
@@ -110,18 +110,18 @@ export class OrdenReparacionComponent implements OnInit {
   reLoadPartsList(){
     this.orderService.getOrder(this.appointment?.appId).then( doc => {
       this.orden = doc[0];
-      this.transactions = this.orden.parts;
+      this.transactions = this.orden.parts!;
     })
   }
 
   reLoadProcessList(){
     this.orderService.getOrder(this.appointment?.appId).then( doc => {
       this.orden = doc[0];
-      this.procesos = this.orden.processes;
+      this.procesos = this.orden.processes!;
     })
   }
 
-  onEdit(row){
+  onEdit(row: Part){
     const index = this.transactions.indexOf(row, 0);
     if(index > -1){
       this.transactions.splice(index,1);
@@ -129,13 +129,13 @@ export class OrdenReparacionComponent implements OnInit {
       this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
       this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
-        this.transactions = this.orden.parts;
+        this.transactions = this.orden.parts!;
       })
     }
     alert("!se ha eliminado el repuesto con exito!")
   }
 
-  onEditProcess(row){
+  onEditProcess(row: Part){
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);
@@ -144,7 +144,7 @@ export class OrdenReparacionComponent implements OnInit {
       this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
       this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
-        this.procesos = this.orden.processes;
+        this.procesos = this.orden.processes!;
       })
     }
     alert("!se ha eliminado el procedimiento con exito!")
@@ -156,13 +156,13 @@ export class OrdenReparacionComponent implements OnInit {
       this.addPart = !this.addPart;
       await this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
-        this.transactions = this.orden.parts;
+        this.transactions = this.orden.parts!;
       })
     } else {
       this.addProcess = !this.addProcess;
       await this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
-        this.procesos = this.orden.processes;
+        this.procesos = this.orden.processes!;
       })
     }
   }
