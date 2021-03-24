@@ -34,7 +34,7 @@
                 required
                 type="text"
                 id="email"
-                placeholder="carlos@example.com"
+                placeholder="fiesta"
                 formControlName="model"
                 class="auth-input active"
                 *ngIf="editarForm"
@@ -43,7 +43,7 @@
                 readonly
                 type="text"
                 id="email"
-                placeholder="carlos@example.com"
+                placeholder="fiesta"
                 formControlName="model"
                 class="auth-input"
                 *ngIf="!editarForm"
@@ -55,7 +55,7 @@
                     required
                     type="text"
                     id="email"
-                    placeholder="carlos@example.com"
+                    placeholder="2011"
                     formControlName="year"
                     class="auth-input active"
                     *ngIf="editarForm"
@@ -65,6 +65,7 @@
                     autocomplete="off"
                     formControlName="year"
                     class="auth-input"
+                    placeholder="2011"
                     readonly
                     *ngIf="!editarForm"
                 />
@@ -75,7 +76,7 @@
                     required
                     type="text"
                     id="displayName"
-                    placeholder="Carlos Garcia"
+                    placeholder="Rojo"
                     formControlName="color"
                     class="auth-input active"
                     *ngIf="editarForm"
@@ -83,7 +84,7 @@
                 <input
                     type="text"
                     id="displayName"
-                    placeholder="Carlos Garcia"
+                    placeholder="Rojo"
                     formControlName="color"
                     class="auth-input"
                     *ngIf="!editarForm"
@@ -96,7 +97,7 @@
                     required
                     type="text"
                     id="displaName"
-                    placeholder="4140000000"
+                    placeholder="aaa00a"
                     formControlName="plate"
                     class="auth-input active"
                     *ngIf="editarForm"
@@ -105,7 +106,7 @@
                     readonly
                     type="text"
                     id="displaName"
-                    placeholder="Carlos Garcia"
+                    placeholder="aaa00a"
                     formControlName="plate"
                     class="auth-input"
                     *ngIf="!editarForm"
@@ -119,12 +120,12 @@
                     </mat-option>
                     </mat-select>
             </div>
-            <div class="input-container" *ngIf="car.gasTankWhenIn && !editarForm">
+            <div class="input-container" *ngIf="!editarForm">
                     <label class="auth-label" for="displayName">tanque de gasolina:</label>
                     <input
                     type="text"
                     id="displName"
-                    placeholder="Carlos Garcia"
+                    placeholder="Tanque lleno"
                     formControlName="tank"
                     class="auth-input"
                     *ngIf="!editarForm"
@@ -138,7 +139,7 @@
                     required
                     type="text"
                     id="passwor"
-                    placeholder=""
+                    placeholder="50000"
                     formControlName="km"
                     class="auth-input active"
                     *ngIf="editarForm "
@@ -148,6 +149,7 @@
                     id="passwor"
                     placeholder=""
                     formControlName="km"
+                    placeholder="50000"
                     class="auth-input"
                     *ngIf="!editarForm"
                     readonly
