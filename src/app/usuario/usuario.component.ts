@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './../services/data.service';
 import { AngularFireStorage } from '@angular/fire/storage'
-import  firebase from 'firebase/app';
+import  firebase from 'firebase';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 
 interface FeaturedPhotosUrls{

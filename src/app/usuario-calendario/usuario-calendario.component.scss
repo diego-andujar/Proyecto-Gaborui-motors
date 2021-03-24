@@ -32,6 +32,11 @@
     border-radius: 8px;
     color: #fff;
 }
+.tabla{
+    overflow: scroll;
+    height: 117px;
+    background: #F9F9F9;
+}
 
 @media screen and (max-width: 720px){
     .mensaje{
@@ -45,7 +50,7 @@
         width: 88%;
         position: absolute;
         right: 5%;
-        margin-top: 121%;
+        margin-top: 92%;
         font-family: 'Poppins';
     }
 }

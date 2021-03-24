@@ -17,9 +17,12 @@ import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FullCalendarModule } from '@fullcalendar/angular'; 
+import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
+
 
 import { UsuarioComponent } from './usuario/usuario.component';
 import { FormularioComponent } from './usuario/formulario/formulario.component';
@@ -35,8 +38,13 @@ import { GerenteFormularioComponent } from './gerente/gerente-formulario/gerente
 import { DataService } from './services/data.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
+import { NgCalendarModule } from 'ionic2-calendar'
+
+import * as $ from 'jquery'
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
+  interactionPlugin
 ]);
 
 @NgModule({
@@ -69,7 +77,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatProgressBarModule,
     NoopAnimationsModule,
     FullCalendarModule,
-    NgbModule ,
+    NgbModule,
+    FlexLayoutModule,
+    NgCalendarModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

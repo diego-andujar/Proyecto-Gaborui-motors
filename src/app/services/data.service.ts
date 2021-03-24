@@ -10,6 +10,23 @@ export class DataService {
     private firestore: AngularFirestore
   ) { }
 
+  getUserDate(){
+    return this.firestore.collection('events').snapshotChanges();
+  }
+
+  updateUserDate(id: any, user: any){
+    return this.firestore.collection('events').doc(id).update(user)
+  }
+
+  deleteUserDate(id:any){
+    return this.firestore.collection('events').doc(id).delete();
+
+  }
+
+  createUserDate(user:any){
+    return this.firestore.collection('events').add(user);
+  }
+
   getUser(){
     return this.firestore.collection('datos-usuarios').snapshotChanges();
   }
@@ -26,14 +43,4 @@ export class DataService {
     return this.firestore.collection('datos-usuarios').doc(id).delete();
 
   }
-
-  // private contactCollection: AngularFirestoreCollection<any>;
-
-  // constructor(afs: AngularFirestore) {
-  //   this.contactCollection = afs.collection<any>('datos-usuarios');
-  //  }
-
-  //  saveMessage(newContact: any): void {
-  //    this.contactCollection.add(newContact);
-  //  }
 }
