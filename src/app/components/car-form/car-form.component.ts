@@ -106,7 +106,9 @@ export class CarFormComponent implements OnInit {
   }
 
   createForm(): void {
-    this.car.gasTankWhenIn = "tanque lleno",
+    if (this.car.gasTankWhenIn === undefined){
+      this.car.gasTankWhenIn = "tanque lleno";
+    }
     this.authForm = this.fb.group({
       brand: this.car.brand,
       model: this.car.model,
