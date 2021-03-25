@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import firebase from "firebase";
 
 @Component({
   selector: 'app-vista-gnrl-manager',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VistaGnrlManagerComponent implements OnInit {
 
-  constructor() { }
+  user!: firebase.User;
+  constructor(
+    private authService: AuthService,
+  ) { }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+    })
   }
 
 }
