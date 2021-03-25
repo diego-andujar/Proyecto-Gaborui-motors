@@ -43,5 +43,4 @@ export class DiagnosisFormComponent implements OnInit {
     })
     this.createForm();
   }
-
 }

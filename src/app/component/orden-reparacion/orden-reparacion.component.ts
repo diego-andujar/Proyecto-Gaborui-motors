@@ -80,13 +80,10 @@ export class OrdenReparacionComponent implements OnInit {
   }
 
   getCar(id: string){
-    let app: any;
-    let carr: any;
     this.appService.getSpecificApp(id).subscribe( doc => {
-      app =  doc;
-      this.carService.getCarById(app?.car!).subscribe( doc => {
-        carr = doc;
-        this.car = carr;
+      this.appointment = doc as Appointment;
+      this.carService.getCarById(this.appointment.car).subscribe( doc => {
+        this.car = doc;
       })
     })
   }
@@ -124,32 +121,33 @@ export class OrdenReparacionComponent implements OnInit {
     })
   }
 
-  onEdit(row: Part){
+  async onEdit(row){
     const index = this.transactions.indexOf(row, 0);
     if(index > -1){
       this.transactions.splice(index,1);
       const parts = {parts: this.transactions};
       this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
-      this.orderService.getOrder(this.appointment?.appId).then( doc => {
-        this.orden = doc[0];
-        this.transactions = this.orden.parts!;
-      })
     }
     alert("!se ha eliminado el repuesto con exito!")
+    await this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orden = doc[0];
+      this.transactions = this.orden.parts!;
+    });
   }
 
-  onEditProcess(row: Part){
+  async onEditProcess(row){
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);
+      console.log(this.procesos)
       const procc = {processes: this.procesos};
       this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
-      this.orderService.getOrder(this.appointment?.appId).then( doc => {
-        this.orden = doc[0];
-        this.procesos = this.orden.processes!;
-      })
     }
     alert("!se ha eliminado el procedimiento con exito!")
+    await this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orden = doc[0];
+      this.procesos = this.orden.processes!;
+    })
   }
 
   async onSubmitedPart(bool: boolean){

@@ -181,7 +181,23 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   public downloadQRCode(appointment: Appointment) {
+    console.log("hola")
     const fileNameToDownload = 'cita#' + appointment.appId;
+    const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
+    fetch(base64Img)
+        .then(res => res.blob())
+        .then((blob) => {
+          // IE
+          if (window.navigator && window.navigator.msSaveOrOpenBlob){
+              window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
+          } else { // Chrome
+              const url = window.URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = fileNameToDownload;
+              link.click();
+          }
+        })
  }
 
 }
