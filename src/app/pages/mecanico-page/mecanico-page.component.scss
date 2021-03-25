@@ -1,0 +1,136 @@
+@import "../../../styles/Lib/variables.scss";
+@import "../../../styles/components/car-view.scss";
+@import "../../../styles/components/buttons.scss";
+.mecanicopagina {
+    margin-top: 120px;
+    height: 85%;
+    width: 100%;
+}
+
+.bloques {
+    list-style: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-around;
+    margin-left: -70px;
+    // width: 30%;
+    height: 100%;
+    // background-color: $secondary-color;
+    font-family: $primary-font;
+    font-size: 1.5em;
+    .indv {
+        border: 0px;
+        background-color: $secondary-color;
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .indva {
+        width: 25%;
+        border-bottom-right-radius: 200px;
+    }
+    .indvb {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+    }
+}
+
+// -------------este es el bloque del carro , esto debe ser un componente pero esta todo junto-------------------
+.button-wrapper {
+    width: 80em;
+}
+
+mat-grid-list {
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-wrapper {
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    // margin-top: 10%;
+    margin-bottom: -15%;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.image {
+    width: 100%;
+}
+
+h2 {
+    font-family: $primary-font;
+    text-transform: uppercase;
+}
+
+.input-data-container {
+    padding: 1em;
+    width: 33%;
+}
+
+.input-container-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 2em;
+    text-align: central;
+    text-transform: capitalize;
+    border: 2px solid $primary-color;
+    &.longer {
+        height: 5em;
+    }
+}
+
+.data-wrapper {
+    display: flex;
+    width: 90%;
+    text-align: left;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.grid-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    // color: $third-color;
+}
+
+mat-grid-tile {
+    display: flex;
+    align-content: center;
+    border: 2px solid $primary-color;
+    height: 60%;
+}
+
+.confirmar-cita {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 32em;
+}

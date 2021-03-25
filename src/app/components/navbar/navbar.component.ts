@@ -2,6 +2,7 @@ import { User } from 'src/app/models/user';
 import { Roles } from './../../models/roles';
 import { UsersService } from './../../services/users.service';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import firebase from "firebase";
 import { AuthService } from "src/app/services/auth.service";
