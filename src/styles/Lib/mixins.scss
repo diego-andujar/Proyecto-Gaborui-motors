@@ -1,5 +1,22 @@
 @mixin small-phone {
-    @media (max-width: 375px) {
+    @media (max-width: 475px) {
+        @content;
+    }
+}
+
+// @mixin ipad {
+//     @media (min-width: 475px) {
+//         @content;
+//     }
+// }
+@mixin tablet {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin ipad-pro {
+    @media (min-width: 1024px) {
         @content;
     }
 }

@@ -22,6 +22,15 @@ export class AuthService {
   /**
    * Log in with Google account
    */
+  
+  async resetPassword(email:string):Promise<void>{
+    try {
+      return this.afsAuth.sendPasswordResetEmail(email)
+    } catch (error) {
+      console.log("error mano")
+    }
+  }
+
   async loginWithGoogle(): Promise<firebase.User> {
     
     try {
@@ -155,6 +164,43 @@ export class AuthService {
       return null;
     }
   }*/
+
+  // ------------
+  async signUpWithEmailAdmin(
+    displayName: string,
+    email: string,
+    password: string
+  ){
+    try {
+      const response = await this.afsAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      // const { user } = response;
+      // // localStorage.setItem('user', user.uid);
+      // // Setting up user name and last name
+      // const actualUser: any = user;
+      // await actualUser.updateProfile({
+      //   displayName,
+      //   photoURL:
+      //     'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
+      // });
+      // // let userDB: User = {
+      // //   name: actualUser.displayName,
+      // //   email: actualUser.email,
+      // //   phoneNumber: actualUser.phoneNumber,
+      // //   id: actualUser.uid,
+      // //   rol: {
+      // //     client: true,
+      // //   }
+      // // }
+      // // firebase.firestore().collection("users").add(userDB)
+      // return actualUser;
+    } catch (err) {
+      localStorage.removeItem('user');
+       console.log("noMeGrites");
+    }
+  }
 
   /**
    * GET CURRENT LOGGED IN USER

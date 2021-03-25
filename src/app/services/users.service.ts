@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { FirestoreService } from './firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
@@ -93,13 +94,27 @@ export class UsersService {
     localStorage.setItem("UserFireId", doc.id)
   }
 
+  async updateEntireUser(user: User, userId: string){
+    const collection = this.database.collection("users");
+    return await collection.doc(userId).set({
+      birthDate: user.birthDate,
+      cedula: user.cedula,
+      phoneNumber: user.phoneNumber,
+      genero: user.genero,
+      address: user.address,
+      state: user.state,
+      city: user.city,
+      postalCode: user.postalCode,
+    }, {merge: true});
+  }
+
 
   getUser(userId: string) {
     let user: User | void;
     this.db.collection("users").where("id", "==", userId).get().then(snapshot => {
       snapshot.docs.forEach(doc => {
         localStorage.setItem("UserFireId", doc.id)
-        user = this.creatingUserInLocalStorage(doc)
+        user = this.creatingUserInLocalStorage(doc);
       })
     })
   }
@@ -112,7 +127,110 @@ export class UsersService {
     return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
   }
 
-  
+  getClientUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.client","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId")
+        })
+        console.log(user)
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+  getMechanicUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.mechanic","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId")
+        })
+        console.log(user)
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+  getManagerUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.manager","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId")
+        })
+        console.log(user)
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+  getAdminUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.admin","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId")
+        })
+        console.log(user)
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
   /**
    * GET car BY ID
    * @param carId

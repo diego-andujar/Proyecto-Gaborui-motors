@@ -1,3 +1,6 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <div class="contactdiv">
 
     <ul class="formulario-contacto">
@@ -8,8 +11,8 @@
             <p>taller@gmail.com</p>
 
         </li>
-        <li class="loco2">
-            <form>
+        <!-- <li class="loco2">
+            <form action="https://formspree.io/jhoelanexo@gmail.com" method="POST">
                 <div class="form-group">
                     <label for="firstName">Nombre y apellido</label>
                     <input required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName.value)" class="firstName" type="text" class="form-control">
@@ -45,8 +48,8 @@
                         <div *ngIf="firstName.errors!.maxlength">El mensaje deben ser maximo 10 caracteres</div>
                     </div>
                 </div>
-                <button class="btn btn-primary">ENVIAR</button>
+                <button class="btn btn-primary" action="https://formspree.io/jhoelanexo@gmail.com">ENVIAR</button>
             </form>
-        </li> 
+        </li> -->
     </ul>
 </div>

@@ -20,13 +20,13 @@ import { stringify } from '@angular/compiler/src/util';
 export class OrdenReparacionComponent implements OnInit {
 
   displayedColumns = ['item', 'cost', 'actions'];
-  appointment: Appointment | undefined;
+  appointment!: Appointment;
   transactions: Part[] = [];
   procesos: Part[] = [];
   orderForm!: FormGroup;
   @Input() event: string = "hola";
   orden!: Order;
-  car!: Car;
+  car!: any;
   scannerEnabled: boolean = true;
   escanear: boolean = false;
   qrResultString: string | null = "";
@@ -142,7 +142,6 @@ export class OrdenReparacionComponent implements OnInit {
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);
-      console.log(this.procesos)
       const procc = {processes: this.procesos};
       this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
       this.orderService.getOrder(this.appointment?.appId).then( doc => {
@@ -155,7 +154,6 @@ export class OrdenReparacionComponent implements OnInit {
 
   async onSubmitedPart(bool: boolean){
     if (bool){
-      console.log("hola")
       this.addPart = !this.addPart;
       await this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];

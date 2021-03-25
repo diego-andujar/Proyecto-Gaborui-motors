@@ -114,15 +114,15 @@
 <div class="content-wrapper">
     <div class="comp-wrapper" *ngIf="!verOrden">
         <div class="scan-wrapper">
-            <button *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
-            <button *ngIf="escanear" (click)="escanear = false">Cerrar camara</button>
+            <button class="botonqr" *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
+            <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false">Cerrar cámara</button>
             <div class="scanner-image">
                 <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)"></zxing-scanner>
             </div>
         </div>
-        <div>
-            <section *ngIf="qrResultString">
-            <div class="scanner-image">
+        <div class="resultclass">
+            <section *ngIf="qrResultString" class="sectionresult">
+            <div class="scanner-image2">
                 <small>Result</small>
                 <span>{{ qrResultString }}</span><br>
             </div>
@@ -130,22 +130,24 @@
             </section>
         </div>
     </div>
-    <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Ver orden</button>
-    <button *ngIf="appointment && verOrden" (click)="verOrden = !verOrden; escanear = !escanear">Escanear otro qr</button>
+    <div class="verorden">
+        <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Ver orden</button>
+    </div>
+    <div class="otroqr">
+        <button *ngIf="verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Escanear otro qr</button>
+    </div>
     <div class="list-wrapper" *ngIf="verOrden">
-        <div>
-            <app-car-form *ngIf="car.brand" [car]="car"></app-car-form>
-            <p>{{car.brand}}</p>
-            <p>{{car.model}}</p>
-            <p>{{car.year}}</p>
-            <p>{{car.plate}}</p>
+        <div class="datoscliente">
+            <app-car-form *ngIf="car != undefined" [car]="car"></app-car-form>
         </div>
 
         <!--LISTA REPUESTOS-->
-        <div>
+        <div class="addrecargar" *ngIf="car != undefined">
             <h2>repuestos</h2>
-            <button (click)="newPart()" *ngIf="verOrden && !addPart">Añadir repuesto</button>
-            <button (click)="reLoadPartsList()" *ngIf="verOrden">recargar</button>
+            <div class="addrecargarhijo">
+                <button (click)="newPart()" *ngIf="verOrden && !addPart" class="submit-button">Añadir repuesto</button>
+                <button (click)="reLoadPartsList()" *ngIf="verOrden" class="submit-button">recargar</button>
+            </div>
             <app-new-part-form *ngIf="addPart" (submited)="onSubmitedPart($event)" [list]="transactions" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="transactions">
@@ -179,10 +181,12 @@
         </div>
 
         <!--LISTA PROCEDIMIENTOS-->
-        <div>
+        <div *ngIf="car != undefined" class="addrecargar">
             <h2>procedimientos aplicados</h2>
-            <button (click)="newProcess()" *ngIf="verOrden && !addProcess">Añadir procedimiento</button>
-            <button (click)="reLoadProcessList()" *ngIf="verOrden">recargar</button>
+            <div class="addrecargarhijo">
+                <button (click)="newProcess()" *ngIf="verOrden && !addProcess" class="submit-button">Añadir procedimiento</button>
+                <button (click)="reLoadProcessList()" *ngIf="verOrden" class="submit-button">recargar</button>
+            </div>
             <app-new-part-form *ngIf="addProcess" (submited)="onSubmitedPart($event)" [isProcess]="true" [list]="procesos" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="procesos">
@@ -217,7 +221,7 @@
 
 
         <!--TEXTAREA DIAGNOSTICO-->
-        <div>
+        <div *ngIf="car != undefined">
             <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
         

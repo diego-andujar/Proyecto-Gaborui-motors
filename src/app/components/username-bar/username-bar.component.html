@@ -1,0 +1,17 @@
+<div class="username">
+    <div class="foto">
+        <div class="foto-usuario">
+            <label class="hoverable" for="fileInput">
+                <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+                <div class="hover-text">Choose file</div>
+                <div class="background"></div>
+              </label>
+            <br/>
+            <input id="fileInput" type='file' (change)="onSelectFile($event)">
+        </div>
+        <label for="username">USERNAME</label>
+        <label for="mail">pedro.sanchez@gmail.com</label>
+        <label for="nombre">NOMBRE: Pedro Sanchez</label>
+        <label for="genero">GENERO: Masculino</label>
+        <label for="edad">EDAD: 38</label>
+    </div>

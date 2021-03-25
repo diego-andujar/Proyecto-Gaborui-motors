@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { User } from './../models/user';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthService } from './../services/auth.service';

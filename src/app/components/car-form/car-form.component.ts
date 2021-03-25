@@ -1,5 +1,5 @@
+import { CarsService } from 'src/app/services/cars.service';
 import { OrdersService } from './../../services/orders.service';
-import { CarsService } from './../../services/cars.service';
 import { Appointment } from './../../models/appointment';
 import { Car } from './../../models/car';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -9,6 +9,11 @@ import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import firebase from "firebase";
+
+export interface Accesorie {
+  name: string;
+  marked: boolean;
+}
 
 @Component({
   selector: 'app-car-form',
@@ -25,23 +30,72 @@ export class CarFormComponent implements OnInit {
   db = firebase.firestore();
   userFireId!: string;
   editarForm = false;
+  accesories: Array<Accesorie> = [
+    {name: "caucho de repuesto", marked: false},
+    {name: "llaves", marked: false},
+    {name: "gato", marked: false},
+    {name: "heramientas", marked: false},
+    {name: "reproductor", marked: false},
+  ];
 
+  carBrands: any[] = [
+    {value: 'aston martin', viewValue: 'Aston Martin'},
+    {value: 'audi', viewValue: 'Audi'},
+    {value: 'bentley', viewValue: 'Bentley'},
+    {value: 'bmw', viewValue: 'BMW'},
+    {value: 'buick', viewValue: 'Buick'},
+    {value: 'chery', viewValue: 'Chery'},
+    {value: 'chevrolet', viewValue: 'Chevrolet'},
+    {value: 'chrysler', viewValue: 'Chrysler'},
+    {value: 'citroen', viewValue: 'Citroen'},
+    {value: 'daewoo', viewValue: 'Daewoo'},
+    {value: 'dodge', viewValue: 'Dodge'},
+    {value: 'ferrari', viewValue: 'Ferrari'},
+    {value: 'fiat', viewValue: 'Fiat'},
+    {value: 'ford', viewValue: 'Ford'},
+    {value: 'gmc', viewValue: 'GMC'},
+    {value: 'honda', viewValue: 'Honda'},
+    {value: 'hyundai', viewValue: 'Hyundai'},
+    {value: 'jaguar', viewValue: 'Jaguar'},
+    {value: 'jeep', viewValue: 'Jeep'},
+    {value: 'kia', viewValue: 'Kia'},
+    {value: 'lamborghini', viewValue: 'Lamborghini'},
+    {value: 'land rover', viewValue: 'Land Rover'},
+    {value: 'lexus', viewValue: 'Lexus'},
+    {value: 'maserati', viewValue: 'Maserati'},
+    {value: 'mazda', viewValue: 'Mazda'},
+    {value: 'mclaren', viewValue: 'Mclaren'},
+    {value: 'mercedes', viewValue: 'Mercedes'},
+    {value: 'mitsubishi', viewValue: 'Mitsubishi'},
+    {value: 'nissan', viewValue: 'Nissan'},
+    {value: 'peugeot', viewValue: 'peugeot'},
+    {value: 'pontiac', viewValue: 'Pontiac'},
+    {value: 'porsche', viewValue: 'Porsche'},
+    {value: 'renault', viewValue: 'Renault'},
+    {value: 'saab', viewValue: 'Saab'},
+    {value: 'seat', viewValue: 'Seat'},
+    {value: 'subaru', viewValue: 'Subaru'},
+    {value: 'suzuki', viewValue: 'Suzuki'},
+    {value: 'toyota', viewValue: 'Toyota'},
+    {value: 'tesla', viewValue: 'Tesla'},
+    {value: 'volkswagen', viewValue: 'Volkswagen'},
+    {value: 'volvo', viewValue: 'Volvo'},
+  ];
   selectedValue!: string;
+  selectdValue!: string;
   selectedCar!: string;
   tankLevels: any[] = [
-    {value: '0.25', viewValue: '1/4 de taqnue'},
-    {value: '0.5', viewValue: '1/2 tanque'},
-    {value: '0.75', viewValue: '3/4 de tanque'},
-    {value: '1', viewValue: 'Tanque lleno'},
+    {level: '1/4 de taqnue', viewValue: '1/4 de taqnue'},
+    {level: '1/2 tanque', viewValue: '1/2 tanque'},
+    {level: '3/4 de tanque', viewValue: '3/4 de tanque'},
+    {level: 'tanque lleno', viewValue: 'Tanque lleno'},
   ];
   
 
   constructor(
-    private datePipe : DatePipe,
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private userService: UsersService,
+    private carService: CarsService,
   ) {}
 
   ngOnInit(): void {
@@ -52,20 +106,35 @@ export class CarFormComponent implements OnInit {
     })
     this.userFireId = localStorage.getItem("UserFireId")!;
   
+    if(this.car.accesories != undefined && this.car.accesories.length >0){
+      this.accesories = this.car.accesories;
+    }
     this.createForm();
   }
 
   createForm(): void {
+    if (this.car.gasTankWhenIn === undefined){
+      this.car.gasTankWhenIn = "tanque lleno";
+    }
     this.authForm = this.fb.group({
-      name: this.car.brand,
-      email: this.car.model,
-      birthDate: this.car.year,
-      cedula: this.car.color,
-      phone: this.car.plate,
-      genero: this.car.kmWhenIn,
-      direccion: this.car.gasTankWhenIn,
-      ciudad: this.car.accesories,
+      brand: this.car.brand,
+      model: this.car.model,
+      year: this.car.year,
+      color: this.car.color,
+      plate: this.car.plate,
+      km: this.car.kmWhenIn,
+      tank: this.car.gasTankWhenIn,
     });
+    console.log(this.car.gasTankWhenIn)
+  }
+
+  updateAccesoriesList(accesorie: Accesorie){
+    const index = this.accesories.indexOf(accesorie, 0);
+    if(index > -1){
+      this.accesories[index].marked = accesorie.marked;
+      const parts = {accesories: this.accesories};
+      this.carService.updateCar(parts, this.car.carId!);
+    }
   }
 
   async onSubmit() {
@@ -74,14 +143,16 @@ export class CarFormComponent implements OnInit {
       alert("Por favor todos los campos son requeridos!");
     } else {
       const formValues = {
-        birthDate: this.datePipe.transform(this.authForm.get("birthDate")?.value, "dd-MM-yyyy"),
-        cedula: this.authForm.get('cedula'),
-        phone: this.authForm.get('phone'),
-        genero: this.authForm.get('genero'),
-        direccion: this.authForm.get('direccion'),
-        ciudad: this.authForm.get('ciudad'),
+        brand: this.authForm.get("brand"),
+        model: this.authForm.get('model'),
+        year: this.authForm.get('year'),
+        color: this.authForm.get('color'),
+        plate: this.authForm.get('plate'),
+        tank: this.authForm.get('tank'),
+        km: this.authForm.get('km'),
       };
-      if ((this.userFire.birthDate === undefined || this.userFire.birthDate.length === 0) && formValues.birthDate?.valueOf != null){
+      /*
+      if (formValues.birthDate?.valueOf != null){
         const userRef = this.db.collection("users").doc(this.userFireId);
         userRef.update({birthDate: formValues.birthDate}) 
       }
@@ -108,7 +179,20 @@ export class CarFormComponent implements OnInit {
       this.userService.getUser(this.userFire.id);
       this.userService.getDoc(this.userFire.refId).subscribe((user) => {
         this.userFire = user;
-      })
+      })*/
+      if (formValues.tank?.value != undefined){
+        this.car.gasTankWhenIn = formValues.tank?.value;
+      } if (formValues.brand?.value != undefined){
+        this.car.brand = formValues.brand?.value;
+      } 
+      this.car.model = formValues.model?.value;
+      this.car.year = formValues.year?.value;
+      this.car.color = formValues.color?.value;
+      this.car.plate = formValues.plate?.value;
+      this.car.kmWhenIn = formValues.km?.value;
+      this.car.accesories = this.accesories;
+      this.carService.updateEntireCar(this.car, this.car.carId!);
+      this.createForm();
     }
     
   }
