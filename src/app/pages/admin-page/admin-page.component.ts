@@ -99,7 +99,7 @@ export class AdminPageComponent implements OnInit {
       email:"",
       genero:"",
       name:"",
-      phoneNumber:0,
+      phoneNumber:"",
       postalCode:0,
       rol:({}),
       // rol:Roles,
