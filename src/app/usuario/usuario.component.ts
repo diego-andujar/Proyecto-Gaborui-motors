@@ -49,7 +49,13 @@ export class UsuarioComponent implements OnInit {
     const file: File = event.target.files[0];
     const metaData = {'contentType': file.type};
     const storageRef: firebase.storage.Reference = firebase.storage().ref('/photos/featured/url1');
-    storageRef.put(file, metaData);
+    const uploadTask: firebase.storage.UploadTask =  storageRef.put(file, metaData);
+    console.log("uploading: ", file.name)
+
+    uploadTask.then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
+      console.log("Upload is complete")
+      firebase.database().ref('/photos/featured/url1').set(uploadSnapshot.downloadURL);
+    })
 
 
     // const id = Math.random().toString(36).substring(2);

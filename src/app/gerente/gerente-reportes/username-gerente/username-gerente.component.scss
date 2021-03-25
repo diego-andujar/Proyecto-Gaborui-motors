@@ -5,6 +5,15 @@
     border-bottom-right-radius: 221px;
 }
 
+h3,h6{
+  margin-left: 45%;
+  margin-top: 15%;
+}
+
+.btn {
+  margin-left: 45%;
+}
+
 @keyframes tonext {
     75% {
       left: 0;
@@ -209,6 +218,57 @@
   .carousel__next {
     right: -1rem;
   }
+
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+  .hoverable{
+    display: block;
+    cursor: pointer;
+    height: 109px;
+    width: 109px;
+    border: 5px solid #000;
+    border-radius: 50%;
+  }
+  .hoverable .hover-text{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left:  50%;
+    transform: translate(-50%,-50%);   
+    z-index: 2;
+  }
+  .hoverable .background{
+    position: absolute;
+    display: none;
+    top: 0;
+    left:  0;
+    bottom: 0;
+    right: 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hoverable:hover .hover-text{
+    display: block;
+  }
+  .hoverable:hover .background{
+    display: block;
+  }
+  
+  #fileInput{
+    display: none;
+  }
+
+  .foto{
+    width: 20%;
+    position: absolute;
+    top: 27%;
+    margin-left: 6%;
+}
   
 
 @media screen and (max-width: 1024px){

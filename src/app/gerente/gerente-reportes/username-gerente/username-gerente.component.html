@@ -6,22 +6,82 @@
               tabindex="0"
               class="carousel__slide">
             <div class="carousel__snapper">
+              <div class="foto">
+                <div class="foto-usuario">
+                  <label class="hoverable" for="fileInput">
+                      <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png' "> 
+                      <div class="hover-text">Choose file</div>
+                      <div class="background"></div>
+                    </label>
+                    <br/>
+                    <input id="fileInput" type='file' (change)="onSelectFile($event)">
+                </div>
+              </div>
+              
+              <h3>Jay Cortez</h3>
+              <h6>Cambio de aceite</h6>
+              <button type="button" class="btn btn-primary" >Editar</button>
             </div>
           </li>
           <li id="carousel__slide2"
               tabindex="0"
               class="carousel__slide">
-            <div class="carousel__snapper"><button>hola</button></div>
+            <div class="carousel__snapper">
+              <div class="foto">
+                <div class="foto-usuario">
+                  <label class="hoverable" for="fileInput">
+                      <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png' "> 
+                      <div class="hover-text">Choose file</div>
+                      <div class="background"></div>
+                    </label>
+                    <br/>
+                    <input id="fileInput" type='file' (change)="onSelectFile($event)">
+                </div>
+              </div>
+              <h3>Bad Bunny</h3>
+              <h6>Pintura</h6>
+              <button type="button" class="btn btn-primary" >Editar</button>
+            </div>
           </li>
           <li id="carousel__slide3"
               tabindex="0"
               class="carousel__slide">
-            <div class="carousel__snapper"></div>
+            <div class="carousel__snapper">
+              <div class="foto">
+                <div class="foto-usuario">
+                  <label class="hoverable" for="fileInput">
+                      <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png' "> 
+                      <div class="hover-text">Choose file</div>
+                      <div class="background"></div>
+                    </label>
+                    <br/>
+                    <input id="fileInput" type='file' (change)="onSelectFile($event)">
+                </div>
+              </div>
+              <h3>Tom Brady</h3>
+              <h6>Alineacion</h6>
+              <button type="button" class="btn btn-primary" >Editar</button>
+            </div>
           </li>
           <li id="carousel__slide4"
               tabindex="0"
               class="carousel__slide">
-            <div class="carousel__snapper"></div>
+            <div class="carousel__snapper">
+              <div class="foto">
+                <div class="foto-usuario">
+                  <label class="hoverable" for="fileInput">
+                      <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png' "> 
+                      <div class="hover-text">Choose file</div>
+                      <div class="background"></div>
+                    </label>
+                    <br/>
+                    <input id="fileInput" type='file' (change)="onSelectFile($event)">
+                </div>
+              </div>
+              <h3>CR7</h3>
+              <h6>Pulitura</h6>
+              <button type="button" class="btn btn-primary" >Editar</button>
+            </div>
           </li>
         </ol>
         <aside class="carousel__navigation">
