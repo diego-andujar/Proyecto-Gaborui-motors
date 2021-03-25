@@ -1,4 +1,4 @@
-<button (click)="open(content)">
+<button class="btn btn-primary" (click)="open(content)">
   Agregar Datos de Usario
 </button>
 <div class="form1">
@@ -34,8 +34,8 @@
     </tr>  
     <tr *ngFor="let item of collection.data ">
       <td>
-        <button type="button" class="button-edi"  (click)="openEditar(content,item)">Editar Datos de Usuario</button>
-        <button type="button" class="button-eli"  (click)="eliminar(item)">Eliminar Datos de Usuario</button>
+        <button type="button" class="btn btn-primary" style="margin-top: 0; margin-left: 0%;" (click)="openEditar(content,item)">Editar Datos de Usuario</button>
+        <button type="button" class="btn btn-danger"  (click)="eliminar(item)">Eliminar Datos de Usuario</button>
       </td>
     </tr>  
      
