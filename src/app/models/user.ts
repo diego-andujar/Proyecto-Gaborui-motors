@@ -2,7 +2,6 @@ import { Car } from './car';
 import { Roles } from "./roles"
 
 export interface User {
-    refId?:string,
     id?: string,
     name?: string,
     email?: string,

@@ -50,7 +50,7 @@ export class AdminPageComponent implements OnInit {
     email:"",
     genero:"",
     name:"",
-    phoneNumber:0,
+    phoneNumber:"",
     postalCode:0,
     rol:({}),
     state:"",
@@ -74,7 +74,7 @@ export class AdminPageComponent implements OnInit {
 
   guardarUsuario(){
     
-    this.firestoreService.createDoc(this.newUsuario,this.path,this.newUsuario.refId);
+    this.firestoreService.createDoc(this.newUsuario,this.path,this.newUsuario.refId!);
     console.log(this.newUsuario)
   }
   
@@ -85,7 +85,7 @@ export class AdminPageComponent implements OnInit {
   }
   deleteUsuario(users: User){
     console.log(users.refId);
-    this.firestoreService.deleteDoc(this.path,users.refId)
+    this.firestoreService.deleteDoc(this.path,users.refId!)
     
   }
 
