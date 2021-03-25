@@ -22,6 +22,7 @@ export class AuthAdminGuard implements CanActivate {
     if (user.rol.admin == true){
       return true;
     } else {
+      alert("Usted no tiene permisos para entrar a esta seccion")
       return this.router.parseUrl("/");
     }
   }

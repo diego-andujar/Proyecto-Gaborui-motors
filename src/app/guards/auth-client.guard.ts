@@ -23,6 +23,7 @@ export class AuthClientGuard implements CanActivate {
     if (user.rol.client == true){
       return true;
     } else {
+      alert("Usted no tiene permisos para entrar a esta seccion")
       return this.router.parseUrl("/");
     }
     
