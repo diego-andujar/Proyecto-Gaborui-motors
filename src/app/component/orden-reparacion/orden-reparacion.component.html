@@ -224,6 +224,10 @@
         <div *ngIf="car != undefined">
             <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
+        <div class="addrecargarhijo">
+            <button (click)="endOrder()" *ngIf="verOrden" class="submit-button">cerrar orden</button>
+        </div>
+
         
     </div>
 

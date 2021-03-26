@@ -11,6 +11,11 @@
             value={{order.diagnosis}}
         ></textarea>
     </div>
+    <div class="button-wrapper" *ngIf="!ordenCerrada">
+        <div class="button-container">
+          <button type="submit" class="submit-button">guardar diagnostico</button>
+        </div>
+    </div>
     <div class="text-area" *ngIf="ordenCerrada">
         <textarea 
             readonly
@@ -19,11 +24,6 @@
             formControlName="diagnosis"
             value={{order.diagnosis}}
         ></textarea>
-    </div>
-    <div class="button-wrapper" *ngIf="!ordenCerrada">
-        <div class="button-container">
-          <button type="submit" class="submit-button">seguir</button>
-        </div>
     </div>
     </form>
 </div>

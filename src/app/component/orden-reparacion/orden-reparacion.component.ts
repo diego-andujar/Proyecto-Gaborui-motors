@@ -72,9 +72,13 @@ export class OrdenReparacionComponent implements OnInit {
           return;
         }
         this.verOrden = true;
-        alert("!Se ha encontrado la orden!")
         return;
       })
+
+  }
+
+  endOrder(){
+
   }
 
   public scanSuccessHandler($event: any){
