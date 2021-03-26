@@ -23,6 +23,7 @@ export interface Accesorie {
 export class CarFormComponent implements OnInit {
 
   @Input() car!: Car;
+  @Input() ordenCerrada: boolean = false;
   authForm!: FormGroup;
   @Input() isRegister: boolean = false;
   userFire: any;

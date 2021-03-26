@@ -3,7 +3,7 @@
     <div class="auth-label-largo" >
         <h2>diagnostico</h2>
     </div>
-    <div class="text-area">
+    <div class="text-area" *ngIf="!ordenCerrada">
         <textarea 
             type="text"
             id="displayName"
@@ -11,7 +11,16 @@
             value={{order.diagnosis}}
         ></textarea>
     </div>
-    <div class="button-wrapper">
+    <div class="text-area" *ngIf="ordenCerrada">
+        <textarea 
+            readonly
+            type="text"
+            id="displayName"
+            formControlName="diagnosis"
+            value={{order.diagnosis}}
+        ></textarea>
+    </div>
+    <div class="button-wrapper" *ngIf="!ordenCerrada">
         <div class="button-container">
           <button type="submit" class="submit-button">seguir</button>
         </div>

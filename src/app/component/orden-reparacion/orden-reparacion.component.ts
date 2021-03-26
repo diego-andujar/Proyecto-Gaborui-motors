@@ -34,6 +34,7 @@ export class OrdenReparacionComponent implements OnInit {
   verOrden: boolean = false;
   addPart: boolean = false;
   addProcess: boolean = false;
+  ordenCerrada: boolean = false;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -59,14 +60,21 @@ export class OrdenReparacionComponent implements OnInit {
     this.getCar(resultString);
     this.orderService.getOrder(resultString).then( doc => {
         this.orden = doc[0];
+        console.log(this.orden.endedRepair)
         if (this.orden.parts != undefined){
           this.transactions = this.orden.parts;
         } if (this.orden.processes != undefined){
           this.procesos = this.orden.processes;
         }
+        if (this.orden.endedRepair){
+          this.ordenCerrada = true;
+          alert("!Esta orden ya se cerro, solo el gerente puede editarla!")
+          return;
+        }
+        this.verOrden = true;
+        alert("!Se ha encontrado la orden!")
+        return;
       })
-    this.verOrden = true;
-    alert("!Se ha encontrado la orden!")
   }
 
   public scanSuccessHandler($event: any){
@@ -121,7 +129,7 @@ export class OrdenReparacionComponent implements OnInit {
     })
   }
 
-  async onEdit(row){
+  async onEdit(row: any){
     const index = this.transactions.indexOf(row, 0);
     if(index > -1){
       this.transactions.splice(index,1);
@@ -135,7 +143,7 @@ export class OrdenReparacionComponent implements OnInit {
     });
   }
 
-  async onEditProcess(row){
+  async onEditProcess(row: any){
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);

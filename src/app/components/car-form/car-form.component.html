@@ -3,8 +3,8 @@
         <div class="photo">
             
             <img [src]="car.photo"/>
-            <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
-            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
+            <button *ngIf="!editarForm && !ordenCerrada" id="boton-editar" (click)="editar()">editar datos</button>
+            <button *ngIf="editarForm && !ordenCerrada" id="boton-editar" (click)="editar()">regresar</button>
         </div>
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
         <div class="wrapper">
@@ -155,7 +155,7 @@
                     readonly
                 />
             </div>
-            <div class="input-container">
+            <div class="input-container" *ngIf="!ordenCerrada">
                 <label class="auth-label" for="password">accesorios</label>
                 <span class="example-list-section"  >
                     <ul>
@@ -169,8 +169,24 @@
                   </span>
                 
             </div>
+            <div class="input-container" *ngIf="ordenCerrada">
+                <label class="auth-label" for="password">accesorios</label>
+                <span class="example-list-section"  >
+                    <ul>
+                      <li *ngFor="let accesorie of accesories">
+                        <mat-checkbox   [ngModelOptions]="{standalone: true}" 
+                                        [(ngModel)]="accesorie.marked"
+                                        (ngModelChange)="updateAccesoriesList(accesorie)"
+                                        [disabled]="true">
+                          {{accesorie.name}}
+                        </mat-checkbox>
+                      </li>
+                    </ul>
+                  </span>
+                
+            </div>
             
-            <div *ngIf="editarForm" class="button-wrapper">
+            <div *ngIf="editarForm && !ordenCerrada" class="button-wrapper">
                 <div class="button-container">
                   <button type="submit" class="submit-button">Guardar Cambios</button>
                 </div>

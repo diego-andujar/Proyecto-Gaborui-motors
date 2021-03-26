@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class DiagnosisFormComponent implements OnInit {
 
   @Input() order!: Order;
+  @Input() ordenCerrada: boolean = false;
   @Input() appointment: Appointment | undefined;
   diagnosisForm!: FormGroup;
 
