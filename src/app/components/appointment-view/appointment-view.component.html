@@ -30,10 +30,10 @@
                                 {{appointment.diagnosis}}
                             </div>
                         </div>
-                        <div class="container" *ngIf="appointment.estado === 'por confirmar'">
+                        <div class="container" *ngIf="appointment.estado === 'confirmada'">
                             <h3 class="font">QRCode de la cita</h3>
                         </div>
-                        <div *ngIf="appointment.estado === 'por confirmar'">
+                        <div *ngIf="appointment.estado === 'confirmada'">
                             <div class="grandeqr">
                                 <ngx-qrcode
                                     [elementType]="elementType"

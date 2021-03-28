@@ -7,6 +7,7 @@ export interface Appointment {
     car?: string;
     userid?: string;
     estado?: string; //si esta enviada, por confirmar o confirmada
+    orderOpen?: boolean;
     qrCode?: string;
     diagnosis?: string;
     appId?: string;

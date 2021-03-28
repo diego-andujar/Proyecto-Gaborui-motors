@@ -4,12 +4,9 @@
 <div>
     <app-appointment-view [isManager]=true></app-appointment-view>
 </div>
-<div class="form-new">
-    <app-orden-reparacion></app-orden-reparacion>
-</div>
-<div>
+<div *ngIf="ordenes.length > 0">
     <table mat-table
-       [dataSource]="citas" multiTemplateDataRows
+       [dataSource]="ordenes" multiTemplateDataRows
        class="mat-elevation-z8">
         <ng-container matColumnDef="car">
             <th mat-header-cell *matHeaderCellDef> Carro </th>

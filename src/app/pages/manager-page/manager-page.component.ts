@@ -35,12 +35,13 @@ export class ManagerPageComponent implements OnInit {
   isLoading = true;
   carToUpdate!: Car;
   citas: Array<Appointment> = [];
+  ordenes: Array<any> = [];
 
   carList: Array<Car> = [];
   showFiller = false;
   constructor(
     private authService: AuthService,
-    private firestoreService: AppointmentServiceService,
+    private appService: AppointmentServiceService,
   ) { }
 
 
@@ -50,11 +51,19 @@ export class ManagerPageComponent implements OnInit {
       this.user = user;
     })
     this.getApps();
+    this.getAppsOrders();
   }
 
   getApps(){
-    this.firestoreService.getAPP().subscribe( res => {
+    this.appService.getAPP().subscribe( res => {
       this.citas = res;
+    })
+  }
+
+  getAppsOrders(){
+    this.appService.getAppOrders().then( res => {
+      console.log(res)
+      this.ordenes = res;
     })
   }
 

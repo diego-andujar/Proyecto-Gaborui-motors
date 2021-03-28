@@ -58,6 +58,15 @@ export class AppointmentServiceService {
     return collection.valueChanges();
   }
 
+  async getAppOrders(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderOpen", "==", true);
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
   updateDoc(data:any, id:string){
     const collection = this.database.collection("citas")
     return  collection.doc(id).update(data);

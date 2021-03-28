@@ -1,3 +1,5 @@
+import { OrdersService } from 'src/app/services/orders.service';
+import { Order } from 'src/app/models/order';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
@@ -53,6 +55,7 @@ export class AppointmentDinamicComponent implements OnInit {
     private fb: FormBuilder,
     private renderer:Renderer2,
     private el: ElementRef,
+    private orderService: OrdersService,
   ) { }
 
   ngOnInit(): void {
@@ -117,11 +120,23 @@ export class AppointmentDinamicComponent implements OnInit {
   aceptApp(cita: Appointment){
     const estado = {estado: "por confirmar"};
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.firestoreService.getAPP().subscribe( res => {
+      this.citas = res;
+    })
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    const data = {orderOpen: true};
+    this.appointService.updateDoc(data, this.citas[this.actualPage].appId!);
+    const orden: Order = {
+      endedRepair: false,
+    }
+    this.orderService.createOrder(orden, this.citas[this.actualPage].appId!);
+    this.firestoreService.getAPP().subscribe( res => {
+      this.citas = res;
+    })
   }
 
   modifyApp(cita: Appointment){
