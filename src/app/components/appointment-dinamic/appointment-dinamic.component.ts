@@ -134,9 +134,7 @@ export class AppointmentDinamicComponent implements OnInit {
       endedRepair: false,
     }
     this.orderService.createOrder(orden, this.citas[this.actualPage].appId!);
-    this.firestoreService.getAPP().subscribe( res => {
-      this.citas = res;
-    })
+    this.ngOnInit();
   }
 
   modifyApp(cita: Appointment){
