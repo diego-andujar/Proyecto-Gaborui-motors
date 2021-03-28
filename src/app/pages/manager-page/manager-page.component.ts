@@ -10,14 +10,24 @@ import firebase from "firebase";
 import { UsersService } from 'src/app/services/users.service';
 import { Appointment } from 'src/app/models/appointment';
 import { PageEvent } from '@angular/material/paginator';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-manager-page',
   templateUrl: './manager-page.component.html',
-  styleUrls: ['./manager-page.component.scss']
+  styleUrls: ['./manager-page.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ManagerPageComponent implements OnInit {
 
+  columnsToDisplay = ['car', 'repair state', 'mechanic'];
+  expandedElement!: Appointment | null;
   selectedValue!: string;
   selectedCar!: string;
   user!: firebase.User;

@@ -23,6 +23,7 @@ export class OrderManagerComponent implements OnInit {
   procesos: Part[] = [];
   orderForm!: FormGroup;
   @Input() event: string = "hola";
+  @Input() app!: Appointment;
   orden!: Order;
   car!: Car;
   scannerEnabled: boolean = true;
@@ -46,6 +47,7 @@ export class OrderManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.verOrden = false;
+    this.onCodeResult(this.app.appId!);
     this.createForm();
   }
 
@@ -64,11 +66,11 @@ export class OrderManagerComponent implements OnInit {
         } if (this.orden.processes != undefined){
           this.procesos = this.orden.processes;
         }
-        if (this.orden.endedRepair){
+        /*if (this.orden.endedRepair){
           this.ordenCerrada = true;
           alert("!Esta orden ya se cerro, solo el gerente puede editarla!")
           return;
-        }
+        }*/
         this.verOrden = true;
         return;
       })
