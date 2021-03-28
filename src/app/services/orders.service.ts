@@ -1,5 +1,4 @@
 import { Order } from 'src/app/models/order';
-import { Order } from './../models/order';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from "firebase";
