@@ -91,6 +91,7 @@ export class AppointmentServiceService {
     return await collection.doc(appId).set({
       dateEnded: date,
       estado: status,
+      orderStatus: "terminada",
     }, {merge: true});
   }
 

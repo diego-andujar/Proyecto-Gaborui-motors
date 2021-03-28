@@ -128,6 +128,8 @@ export class AppointmentDinamicComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     const data = {orderOpen: true};
     this.appointService.updateDoc(data, this.citas[this.actualPage].appId!);
+    const orderRep = {orderStatus: "en espera"};
+    this.appointService.updateDoc(orderRep, this.citas[this.actualPage].appId!);
     const orden: Order = {
       endedRepair: false,
     }

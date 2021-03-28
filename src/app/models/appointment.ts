@@ -14,4 +14,7 @@ export interface Appointment {
     carInfo?: string;
     userName?: string;
     carPhoto?: string;
+    orderStatus?: string;
+    mechanicName?: string;
+    mechanicId?: string;
 }
