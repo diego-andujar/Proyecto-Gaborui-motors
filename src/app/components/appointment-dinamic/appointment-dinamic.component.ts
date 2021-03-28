@@ -120,9 +120,7 @@ export class AppointmentDinamicComponent implements OnInit {
   aceptApp(cita: Appointment){
     const estado = {estado: "por confirmar"};
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
-    this.firestoreService.getAPP().subscribe( res => {
-      this.citas = res;
-    })
+    this.ngOnInit();
   }
 
   aceptAppClient(cita: Appointment){
@@ -147,6 +145,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.ngOnInit();
   }
 
   modifyAppClient(cita: Appointment){
@@ -159,6 +158,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.ngOnInit();
   }
 
   async deleteApp(id: string, car: string){
@@ -169,6 +169,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
       this.citas = doc;
     })
+    this.ngOnInit();
   }
 
 
