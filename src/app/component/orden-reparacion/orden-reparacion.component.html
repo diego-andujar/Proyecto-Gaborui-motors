@@ -134,9 +134,9 @@
         <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Ver orden</button>
     </div>-->
     <div class="otroqr">
-        <button *ngIf="verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Escanear otro qr</button>
+        <button *ngIf="verOrden && !ordenCerrada" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Escanear otro qr</button>
     </div>
-    <div class="list-wrapper" *ngIf="verOrden">
+    <div class="list-wrapper" *ngIf="verOrden && !ordenCerrada">
         <div class="datoscliente">
             <app-car-form *ngIf="car != undefined" [car]="car"></app-car-form>
         </div>

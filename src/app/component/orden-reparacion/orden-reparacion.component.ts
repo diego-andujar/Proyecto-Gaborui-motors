@@ -26,7 +26,7 @@ export class OrdenReparacionComponent implements OnInit {
   orderForm!: FormGroup;
   @Input() event: string = "hola";
   orden!: Order;
-  car!: any;
+  car!: Car;
   scannerEnabled: boolean = true;
   escanear: boolean = false;
   qrResultString: string | null = "";
@@ -60,7 +60,6 @@ export class OrdenReparacionComponent implements OnInit {
     this.getCar(resultString);
     this.orderService.getOrder(resultString).then( doc => {
         this.orden = doc[0];
-        console.log(this.orden.endedRepair)
         if (this.orden.parts != undefined){
           this.transactions = this.orden.parts;
         } if (this.orden.processes != undefined){
@@ -78,7 +77,15 @@ export class OrdenReparacionComponent implements OnInit {
   }
 
   endOrder(){
-
+    let data = {
+      endedRepair: true
+    }
+    this.orderService.updateOrder(data, this.appointment.appId, this.orden.refId);
+    this.orderService.getOrder(this.appointment.appId).then( doc => {
+      this.orden = doc[0];
+    });
+    this.ordenCerrada = true;
+    alert("La orden ha sido cerrada y sera verificada por el gerente\nYa no se podra editar desde esta ventana")
   }
 
   public scanSuccessHandler($event: any){
@@ -95,7 +102,7 @@ export class OrdenReparacionComponent implements OnInit {
     this.appService.getSpecificApp(id).subscribe( doc => {
       this.appointment = doc as Appointment;
       this.carService.getCarById(this.appointment.car).subscribe( doc => {
-        this.car = doc;
+        this.car = doc as Car;
       })
     })
   }
