@@ -85,7 +85,7 @@ export class OrdenReparacionComponent implements OnInit {
       this.orden = doc[0];
     });
     this.ordenCerrada = true;
-    alert("La orden ha sido cerrada y sera verificada por el gerente\nYa no se podra editar desde esta ventana")
+    alert("La reparacion ha sido cerrada y la orden sera verificada por el gerente\nYa no se podra editar desde esta ventana")
   }
 
   public scanSuccessHandler($event: any){
