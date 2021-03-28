@@ -77,6 +77,14 @@ export class AppointmentServiceService {
     })
   }
 
+  async endApp(appId: string | undefined, date: string, status: string){
+    const collection = this.database.collection("citas");
+    return await collection.doc(appId).set({
+      dateEnded: date,
+      estado: status,
+    }, {merge: true});
+  }
+
   getUserAppointments(userId: string): Array<Appointment>{
     const list: Array<Appointment> = [];
     const usersRef = this.db.collection('citas')

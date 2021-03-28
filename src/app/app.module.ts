@@ -79,6 +79,7 @@ import { DiagnosisFormComponent } from './components/diagnosis-form/diagnosis-fo
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { CarFormComponent } from './components/car-form/car-form.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { OrderManagerComponent } from './components/order-manager/order-manager.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -131,6 +132,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DiagnosisFormComponent,
     ItemsListComponent,
     CarFormComponent,
+    OrderManagerComponent,
   ],
   imports: [
     MatCardModule,
