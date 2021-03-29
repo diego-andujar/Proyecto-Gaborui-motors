@@ -117,7 +117,7 @@
             <button class="botonqr" *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
             <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false">Cerrar cámara</button>
             <div class="scanner-image">
-                <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+                <!-- <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)"></zxing-scanner> VOLVER A PONER -->
             </div>
         </div>
         <div class="resultclass">
