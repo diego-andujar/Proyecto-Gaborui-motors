@@ -1,126 +1,15 @@
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<div class="mos2">
-    <div class="center">
-        <div class="mat-grid-wrapper"> 
-            <div class="mat-grid-container">
-                <mat-grid-list cols="3" rowHeight="16em">
-                    <mat-grid-tile colspan="1" rowspan="2">
-                        <div class="image-wrapper">
-                            <img class="image" [src]="
-                            user.photoURL
-                              ? user.photoURL
-                              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'" alt="">
-                            <div class="title-wrapper">
-                                <span>gerente</span>
-                                <h2>Javier Fuenmayor</h2>
-                            </div>
-                        </div>
-                        
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="1" rowspan="2">
-                        <div class="confirmar-cita">
-                            <div class="title-wrapper">
-                                <h2>citas</h2>
-                            </div>
-                            <div class="data-wrapper">
-                                <div class="input-data-container">
-                                    <h3 class="auth-label">pendientes</h3>
-                                    <span class="input-container-data">10</span>
-                                </div>
-                                <div class="input-data-container">
-                                    <h3 class="auth-label">por confirmar</h3>
-                                    <span class="input-container-data">2</span>
-                                </div>
-                            </div>
-                        </div>
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="1" rowspan="1">
-                        <div class="grid-flex">
-                            <div class="title-wrapper">
-                                <h2>ordenes de reparacion</h2>
-                            </div>
-                            <div class="moverde">
-                                <div class="data-wrapper">
-                                    <div class="input-data-container">
-                                        <h3 class="auth-label">pendientes</h3>
-                                        <span class="input-container-data">4</span>
-                                    </div>
-                                    <div class="input-data-container">
-                                        <h3 class="auth-label">por confirmar</h3>
-                                        <span class="input-container-data">3</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="1" rowspan="1">
-                        <div class="grid-flex">
-                            <div class="title-wrapper">
-                                <h2 class="centroarriba">reportes</h2>
-                            </div>
-                            <div class="moverde">
-                                <div class="data-wrapper">
-                                    <div class="input-data-container">
-                                        <h3 class="auth-label">pendientes</h3>
-                                        <span class="input-container-data">7</span>
-                                    </div>
-                                    <div class="input-data-container">
-                                        <h3 class="auth-label">solicitudes</h3>
-                                        <span class="input-container-data">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </mat-grid-tile>
-                    
-                </mat-grid-list>
+<div class="seccion-profile-calendario">
+    <ul class="ul-profile-calendario">
+        <li class="li-profile">
+            <img class="img-perfil" [src]="
+            user.photoURL
+              ? user.photoURL
+              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'" alt="">
+            <div class="">
+                <p class="palabra-manager">Manager</p>
+                <h2>{{username.name}}</h2>
             </div>
-        </div>
-    </div>
-</div>
-<!---->
-<!---->
-<!----------------------------------------------------------------------------------------------------------------------->
-
-<div class="mostrar">
-    <div class="block2-2">
-        <div class="center">
-            <div class="block">Javier Fuenmayor</div>
-        </div>
-    </div>
-</div>
-<div class="mostrar">
-    <div class="block2">
-        <div class="center">
-            <div class="titu">Citas</div>
-            <ul>
-                <div>Pendientes<ol class="block3">10</ol></div>
-                <div>Por confirmar<ol class="block3">2</ol></div>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="mostrar">
-    <div class="block2">
-        <div class="center">
-            <div class="titu">Reportes</div>
-            <ul>
-                <div>Pendientes<ol class="block3">10</ol></div>
-                <div>Solicitudes<ol class="block3">2</ol></div>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="margi">
-    <div class="mostrar">
-        <div class="block2">
-            <div class="center">
-                <div class="titu">Ordenes de reparacion</div>
-            </div>
-        </div>
-    </div>
+        </li>
+        <li class="li-profile">Aqui va el calendario</li>
+    </ul>
 </div>
