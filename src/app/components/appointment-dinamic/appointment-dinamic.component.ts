@@ -194,7 +194,6 @@ export class AppointmentDinamicComponent implements OnInit {
       dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy")!,
       carPhoto: formValues.selectedCar?.value.photo,
     }
-    console.log(cita.dateCreated + " " + cita.date)
     this.carService.carForAppointment(formValues.selectedCar?.value.carId, true);
     this.firestoreService.crearCita(cita);
     this.authForm.reset()

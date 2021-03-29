@@ -44,7 +44,6 @@ export class NavbarComponent implements OnInit {
 
   click(){
     this.userFire = JSON.parse(localStorage.getItem("CurrentUser")!);
-    console.log(this.userFire.rol);
     if(this.userFire.rol?.client){
       this.router.navigate(['/perfil', this.user.uid])
     } else if (this.userFire.rol?.manager){

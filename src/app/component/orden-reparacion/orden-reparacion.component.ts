@@ -158,7 +158,6 @@ export class OrdenReparacionComponent implements OnInit {
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);
-      console.log(this.procesos)
       const procc = {processes: this.procesos};
       this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
     }

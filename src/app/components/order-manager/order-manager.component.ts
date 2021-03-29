@@ -146,7 +146,7 @@ export class OrderManagerComponent implements OnInit {
     if(index > -1){
       this.transactions.splice(index,1);
       const parts = {parts: this.transactions};
-      this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
+      await this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
     }
     alert("!se ha eliminado el repuesto con exito!")
     await this.orderService.getOrder(this.appointment?.appId).then( doc => {
@@ -159,9 +159,8 @@ export class OrderManagerComponent implements OnInit {
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);
-      console.log(this.procesos)
       const procc = {processes: this.procesos};
-      this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
+      await this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
     }
     alert("!se ha eliminado el procedimiento con exito!")
     await this.orderService.getOrder(this.appointment?.appId).then( doc => {
@@ -170,16 +169,16 @@ export class OrderManagerComponent implements OnInit {
     })
   }
 
-  async onSubmitedPart(bool: boolean){
+  onSubmitedPart(bool: boolean){
     if (bool){
       this.addPart = !this.addPart;
-      await this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
         this.transactions = this.orden.parts!;
       })
     } else {
       this.addProcess = !this.addProcess;
-      await this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orderService.getOrder(this.appointment?.appId).then( doc => {
         this.orden = doc[0];
         this.procesos = this.orden.processes!;
       })

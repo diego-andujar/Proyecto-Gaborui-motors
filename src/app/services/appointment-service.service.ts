@@ -95,6 +95,42 @@ export class AppointmentServiceService {
     }, {merge: true});
   }
 
+  getEnEsperaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "en espera");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getEnProcesoApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "en proceso");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getTerminadaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "terminada");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getCerradaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "cerrada");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
   getUserAppointments(userId: string): Array<Appointment>{
     const list: Array<Appointment> = [];
     const usersRef = this.db.collection('citas')

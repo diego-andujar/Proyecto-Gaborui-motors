@@ -147,7 +147,6 @@ export class DinamicCarViewComponent implements OnInit {
     await this.carService.checkIfCarExists(newCar.serialMotor!).then( doc => {
       existe = doc;
     })
-    console.log(existe)
     if (!existe){
       this.createNewCar(newCar);
       this.carForm.reset();

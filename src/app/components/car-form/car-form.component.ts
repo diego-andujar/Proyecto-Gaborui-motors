@@ -126,7 +126,6 @@ export class CarFormComponent implements OnInit {
       km: this.car.kmWhenIn,
       tank: this.car.gasTankWhenIn,
     });
-    console.log(this.car.gasTankWhenIn)
   }
 
   updateAccesoriesList(accesorie: Accesorie){

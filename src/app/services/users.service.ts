@@ -146,7 +146,6 @@ export class UsersService {
           state:doc.get("state"),
           refId:doc.get("refId")
         })
-        console.log(user)
         userList.push(user)
       })}
     )
@@ -172,7 +171,6 @@ export class UsersService {
           state:doc.get("state"),
           refId:doc.get("refId")
         })
-        console.log(user)
         userList.push(user)
       })}
     )
@@ -198,7 +196,6 @@ export class UsersService {
           state:doc.get("state"),
           refId:doc.get("refId")
         })
-        console.log(user)
         userList.push(user)
       })}
     )
@@ -224,7 +221,6 @@ export class UsersService {
           state:doc.get("state"),
           refId:doc.get("refId")
         })
-        console.log(user)
         userList.push(user)
       })}
     )
@@ -345,7 +341,6 @@ export class UsersService {
     this.db.collection("users")
     .where("id", "==", userId).get()
     .then(querySnapshot => {
-      console.log("hola " + querySnapshot);
       return querySnapshot.docs[0];
     })
   }

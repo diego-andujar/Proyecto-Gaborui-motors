@@ -4,7 +4,15 @@
 <div>
     <app-appointment-view [isManager]=true></app-appointment-view>
 </div>
-<div *ngIf="ordenes.length > 0">
+<div class="app-list-wrapper" *ngIf="ordenes.length > 0">
+    <h2>ordenes de reparacion</h2>
+    <div class="folder">
+        <ul class="botonesumg">
+            <li class="botonesumghijos"><button class="botoncitoumg" (click)="getAppsToShow(1)">En Espera</button></li>
+            <li class="botonesumghijos"><button class="botoncitoumg" (click)="getAppsToShow(2)">En Proceso</button></li>
+            <li class="botonesumghijos"><button class="botoncitoumg" (click)="getAppsToShow(3)">Terminadas</button></li>
+        </ul>
+    </div>
     <table mat-table
        [dataSource]="ordenes" multiTemplateDataRows
        class="mat-elevation-z8">

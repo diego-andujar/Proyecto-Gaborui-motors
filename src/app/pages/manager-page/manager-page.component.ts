@@ -60,10 +60,40 @@ export class ManagerPageComponent implements OnInit {
     })
   }
 
+  getAppsToShow(num: number){
+    if (num === 1){
+      this.appService.getEnEsperaApp().then( res => {
+        this.ordenes = res;
+        if (this.ordenes.length < 1){
+          this.ordenes.push(null);
+          alert("No hay ordenes en espera actualmente")
+        }
+      })
+    } else if (num === 2){
+      this.appService.getEnProcesoApp().then( res => {
+        this.ordenes = res;
+        if (this.ordenes.length < 1){
+          this.ordenes.push(null);
+          alert("No hay ordenes en proceso actualmente")
+        }
+      })
+    } else if (num === 3){
+      this.appService.getTerminadaApp().then( res => {
+        this.ordenes = res;
+        if (this.ordenes.length < 1){
+          this.ordenes.push(null);
+          alert("No hay ordenes terminadas actualmente")
+        }
+      })
+    }
+  }
+
   getAppsOrders(){
-    this.appService.getAppOrders().then( res => {
-      console.log(res)
+    this.appService.getEnEsperaApp().then( res => {
       this.ordenes = res;
+      if (this.ordenes.length < 1){
+        this.ordenes.push(null);
+      }
     })
   }
 

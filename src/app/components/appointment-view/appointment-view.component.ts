@@ -111,7 +111,6 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   getCarAndUser(app: Appointment){
-    console.log("hola")
     this.carService.getDoc(app.car!).subscribe((car) => {
       this.car = car;
     })
@@ -181,7 +180,6 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   public downloadQRCode(appointment: Appointment) {
-    console.log("hola")
     const fileNameToDownload = 'cita#' + appointment.appId;
     const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
     fetch(base64Img)
