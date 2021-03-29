@@ -10,10 +10,19 @@ h2{
   letter-spacing: 0.8px;
 }
 
+.folder-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .folder {
+  border: 2px solid $primary-color;
+  border-left: 2px solid $primary-color;
+  border-right: 2px solid $primary-color;
   display: flex;
   background-color: $secondary-color;
-  width: 100%;
+  width: 90%;
   height: 5%;
   @include tablet {
       width: 99%;
@@ -84,8 +93,16 @@ h2{
   }
 }
 
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
 .app-list-wrapper {
   padding-bottom: 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 th {
@@ -103,7 +120,7 @@ td {
 }
 
 table {
-    width: 100%;
+    width: 90%;
   }
   
   tr.example-detail-row {
