@@ -1,14 +1,23 @@
 <div class="form-container">
     <div class="auth-form-wrapper">
         <div class="photo">
+            <label class="hoverable" for="fileInput">
+                <img [src]="user.photoURL ? user.photoURL : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg' "> 
+                <div class="hover-text">Choose file</div>
+                <div class="background"></div>
+              </label>
+              <br/>
+              <input id="fileInput" type='file' (change)="onSelectFile($event)">
+              <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
+        <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
             
-            <img [src]="
+            <!-- <img [src]="
             user.photoURL
               ? user.photoURL
               : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'"    
               />
             <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
-            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
+            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button> -->
         </div>
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
         <div class="wrapper">

@@ -217,3 +217,27 @@ mat-select {
         background-color: powderblue;
     }
 }
+
+@media screen and (max-width: 720px){
+    .component-container {
+        display: flex;
+        flex-direction: column;
+        height: 44em;
+        background-color: $secondary-color;
+        margin-top: 290%;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        height: 80%;
+        width: 100%;
+        border-style: outset;
+    }
+    .button-wrapper{
+        width: auto;
+    }
+    .auth-form-wrapper{
+        margin-top: 290%;
+    }
+}
+

@@ -6,6 +6,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import firebase from "firebase";
 import { DatePipe } from '@angular/common';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { AngularFireStorage } from '@angular/fire/storage'
+
+// para fotos con firebase
+interface FeaturedPhotosUrls{
+  url1?: string;
+}
 
 @Component({
   selector: 'app-client-form',
@@ -14,6 +21,9 @@ import { DatePipe } from '@angular/common';
 })
 
 export class ClientFormComponent implements OnInit {
+
+  // para fotos con firebase
+  featuredPhotoStream: AngularFireObject<FeaturedPhotosUrls> | undefined
 
   authForm!: FormGroup;
   @Input() isRegister: boolean = false;
@@ -44,7 +54,13 @@ export class ClientFormComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private userService: UsersService,
-  ) {}
+    // para fotos firebase
+    private storage: AngularFireStorage,
+    private dab: AngularFireDatabase,
+  ) {
+    // para fotos firebase
+    // this.featuredPhotoStream = this.db.object('/photos/imagen');
+  }
 
   ngOnInit(): void {
     this.editarForm = false;
@@ -226,7 +242,23 @@ export class ClientFormComponent implements OnInit {
     this.editarForm = !this.editarForm;
   }
 
+  // para fotos firebase
+  url = '';
+  onSelectFile(event: any) {
+    const file: File = event.target.files[0];
+    const metaData = {'contentType': file.type};
+    const storageRef: firebase.storage.Reference = firebase.storage().ref('/photos/featured/url1');
+    const uploadTask: firebase.storage.UploadTask =  storageRef.put(file, metaData);
+    console.log("uploading: ", file.name)
+
+    uploadTask.then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
+      console.log("Upload is complete")
+      firebase.database().ref('/photos/featured/url1').set(uploadSnapshot.downloadURL);
+    })
+  }
 }
+
+
 
 export const MY_FORMATS = {
   parse: {
