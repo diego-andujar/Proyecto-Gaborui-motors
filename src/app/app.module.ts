@@ -71,7 +71,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 // import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 // import {NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+// import { ZXingScannerModule } from '@zxing/ngx-scanner';VOLVER A PONER
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { NewPartFormComponent } from './components/new-part-form/new-part-form.component';
@@ -79,6 +79,10 @@ import { DiagnosisFormComponent } from './components/diagnosis-form/diagnosis-fo
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { CarFormComponent } from './components/car-form/car-form.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -131,6 +135,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DiagnosisFormComponent,
     ItemsListComponent,
     CarFormComponent,
+    MainNavComponent,
   ],
   imports: [
     MatCardModule,
@@ -166,11 +171,14 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatTableModule,
     NgxQRCodeModule,
     // NgxQRCodeModule,
-    ZXingScannerModule,
+    // ZXingScannerModule,VOLVER A PONER
     MatButtonModule,
     MatSortModule,
     MatIconModule,
     MatCheckboxModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatListModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
