@@ -28,7 +28,7 @@ import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiedi
 
 export class AppointmentViewComponent implements OnInit {
 
-  citas!: Array<Appointment>;
+  citas!: Array<any>;
   @Input() citasInput: Array<Appointment> = [];
   cars!: Array<Car>;
   car!: any;
@@ -46,12 +46,12 @@ export class AppointmentViewComponent implements OnInit {
   today = new Date();
   dayForm!: FormGroup;
   dataSource: Appointment[] = [];
-  columnsToDisplay = ['Detalles del carro ', 'Usuario', 'Fecha solicitada', 'Fecha de la cita', 'estado de la cita'];
-  expandedElement!: Appointment;
   @ViewChild('picker')
   datePicker!: MatDatepicker<Date>;
   public elementType = NgxQrcodeElementTypes.URL;
   public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  columnsToDisplay = ['car', 'order status', 'owner'];
+  expandedElement!: Appointment | null;
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -79,12 +79,41 @@ export class AppointmentViewComponent implements OnInit {
 
   selecDate(){
     this.cambiarFecha = !this.cambiarFecha;
+    
   }
 
   createForm(): void {
     this.dayForm = this.fb.group({
       appointmentDate: "",
     });
+  }
+
+  getAppsToShow(num: number){
+    if (num === 1){
+      this.appointService.getAppSolicitada().then( res => {
+        this.citas = res;
+        if (this.citas.length < 1){
+          this.citas.push();
+          alert("No hay citas solicitadas actualmente")
+        }
+      })
+    } else if (num === 2){
+      this.appointService.getAppPorConfirmar().then( res => {
+        this.citas = res;
+        if (this.citas.length < 1){
+          this.citas.push();
+          alert("No hay citas por confirmar actualmente")
+        }
+      })
+    } else if (num === 3){
+      this.appointService.getAppConfirmada().then( res => {
+        this.citas = res;
+        if (this.citas.length < 1){
+          this.citas.push();
+          alert("No hay citas confirmadas actualmente")
+        }
+      })
+    }
   }
 
   getCars(num: number){
@@ -120,8 +149,11 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   getApps(){
-    this.firestoreService.getAPP().subscribe( res => {
+    this.appointService.getAppSolicitada().then( res => {
       this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push(null);
+      }
       this.dataSource = res;
       this.carService.getDoc(res[0].car!).subscribe((car) => {
         this.car = car;
@@ -144,11 +176,23 @@ export class AppointmentViewComponent implements OnInit {
   aceptApp(cita: Appointment){
     const estado = {estado: "por confirmar"};
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   modifyApp(cita: Appointment){
@@ -161,6 +205,12 @@ export class AppointmentViewComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   modifyAppClient(cita: Appointment){
@@ -173,6 +223,12 @@ export class AppointmentViewComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   onClick(){

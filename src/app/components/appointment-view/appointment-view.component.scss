@@ -1,16 +1,11 @@
 @import "../../../styles/Lib/variables.scss";
+@import "../../pages/manager-page/manager-page.component.scss";
 
-table {
-    width: 100%;
-  }
-
-h2 {
-  font-family: $secondary-font;
-  letter-spacing: 0.1vw;
-  font-weight: 500;
-  text-transform: uppercase;
-}
   
+.all-wrapper {
+  margin: 5% 0%;
+}
+
 .btn{
   background-color: $third-color;
   display: flex;
@@ -23,6 +18,7 @@ h2 {
 }
 
 .ngcontainer {
+  width: 100%;
   display: flex;
   justify-content: center;
   padding: 2% 0% 4%;

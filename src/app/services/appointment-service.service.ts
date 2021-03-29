@@ -131,6 +131,42 @@ export class AppointmentServiceService {
     })
   }
 
+  getAppSolicitada(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "solicitada");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getAppPorConfirmar(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "por confirmar");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getAppConfirmada(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "confirmada");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  /*getCerradaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "cerrada");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }*/
+
   getUserAppointments(userId: string): Array<Appointment>{
     const list: Array<Appointment> = [];
     const usersRef = this.db.collection('citas')
