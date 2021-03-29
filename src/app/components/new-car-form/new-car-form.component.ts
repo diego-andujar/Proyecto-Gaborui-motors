@@ -64,7 +64,7 @@ export class NewCarFormComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  /**onSubmit(): void {
     const newCar: Car = {
       userid: this.user.uid,
       brand: this.carForm.get('brand').value,
@@ -77,7 +77,7 @@ export class NewCarFormComponent implements OnInit {
     this.createNewCar(newCar);
     this.carForm.reset();
     alert("¡Felicitaciones su vehiculo fue agregado exitosamente!\nRecargue la pagina para que lo pueda ver");
-  }
+  }*/
 
   createNewCar(newCar: Car): void {
     this.carService.createNewCar(newCar);

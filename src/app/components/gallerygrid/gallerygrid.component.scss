@@ -8,6 +8,11 @@ mat-grid-tile {
 }
 
 @media only screen and (max-width: 768px) {
+    mat-grid-tile {
+        background: lightblue;
+        width: 100%;
+    }
+
     .gallery {
         padding: 8% 3% 0em ;
         height: 30%;
@@ -17,7 +22,7 @@ mat-grid-tile {
 @media only screen and (max-width: 414px) {
     mat-grid-tile {
         background: lightblue;
-        width: 202%;
+        width: 100%;
     }
     
     .gallery {
