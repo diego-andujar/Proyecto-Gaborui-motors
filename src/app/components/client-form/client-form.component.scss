@@ -160,7 +160,7 @@ img {
         height: 80vh;
         border: 0px;
         padding: 5%;
-        margin-left: auto;
+        margin-left: 5%;
         margin-right: auto;
         border-radius: 5px;
         background-color: $third-color;
@@ -172,6 +172,7 @@ img {
         padding: 0px 5%;
     }
     .form-container{
-        margin-top: 33%;
+        margin-top: -5%;
+        width: 100%;
     }
 }
