@@ -70,9 +70,9 @@
                                 </mat-card-content>
                                 <div *ngIf="isManager">
                                     <mat-card-actions *ngIf="appointment.estado === 'solicitada'">
-                                        <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(appointment)" class="botonesacr">Aceptar Cita</button>
-                                        <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()" class="botonesacr">Cambiar Fecha</button>
-                                        <button mat-flat-button *ngIf="!cambiarFecha" class="botonesacr">Rechazar Cita</button>
+                                        <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(appointment)" class="aceptar">Aceptar Cita</button>
+                                        <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()" class="cambiarfecha">Cambiar Fecha</button>
+                                        <button mat-flat-button *ngIf="!cambiarFecha" class="rechazar">Rechazar Cita</button>
 
                                         <form [formGroup]="dayForm" *ngIf="cambiarFecha">
                                             <mat-form-field class="example-full-width" appearance="fill">

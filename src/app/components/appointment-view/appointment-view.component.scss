@@ -18,10 +18,23 @@
     font-family: $primary-font;
     font-size: 1.2em;
     word-spacing: 0.2em;
+    line-height: 1.8em;
 }
 
 .botonesacr {
-    background-color: green;
+    // background-color: green;
+}
+
+.aceptar:hover {
+    background-color: rgba(61, 248, 101, 0.938);
+}
+
+.cambiarfecha:hover {
+    background-color: rgba(245, 248, 61, 0.938);
+}
+
+.rechazar:hover {
+    background-color: rgba(248, 74, 61, 0.938);
 }
 
 .ngcontainer {
@@ -31,6 +44,12 @@
     padding: 2% 0% 4%;
     background-color: $third-color;
     font-family: $primary-font;
+}
+
+mat-card-actions {
+    // background-color: yellow;
+    display: flex;
+    justify-content: space-around;
 }
 
 mat-paginator {
