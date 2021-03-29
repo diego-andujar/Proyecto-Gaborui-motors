@@ -145,7 +145,7 @@ tr.example-element-row:not(.example-expanded-row):active {
         width: 100%;
     }
     table {
-        width: 100%;
+        width: 90%;
     }
     .btn {
         background-color: $third-color;
@@ -188,6 +188,7 @@ tr.example-element-row:not(.example-expanded-row):active {
     .columna {
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
     tr.example-detail-row {
         height: 0;

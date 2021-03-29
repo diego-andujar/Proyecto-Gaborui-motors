@@ -21,7 +21,8 @@ h2 {
     background-color: $secondary-color;
     width: 80%;
     @include tablet {
-        width: 99%;
+        font-family: $primary-font;
+        width: 90%;
         display: flex;
         height: 10%;
         justify-content: flex-end;
@@ -117,6 +118,9 @@ td {
 
 table {
     width: 80%;
+    @include tablet {
+        width: 90%;
+    }
 }
 
 tr.example-detail-row {
