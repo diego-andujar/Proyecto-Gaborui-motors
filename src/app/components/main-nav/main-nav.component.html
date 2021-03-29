@@ -33,13 +33,14 @@
         <img src="../../../assets/logo ejwhite.png" alt="Gaboruilogo" height="100%" class="logofoto">
     </a>
       <span class="spacer2"></span>
-      <a [routerLink]="['/']">Home</a>
-      <a *ngIf="user" (click)="click()">Perfil</a>
-      <a *ngIf="user" [routerLink]="['/']">Vehiculos</a>
-      <a *ngIf="user" [routerLink]="['/']">Citas</a>
-      <a *ngIf="!user" [routerLink]="['/']">Nosotros</a>
-      <a *ngIf="!user" [routerLink]="['/']">Contacto</a>
-      <a *ngIf="!user" [routerLink]="['/']">Ubicacion</a>
+      <button mat-button class="perfil-button" [routerLink]="['/']"><a>Home</a></button>
+      <button mat-button class="perfil-button" (click)="click()" *ngIf="user"><a>Perfil</a></button>
+      <button mat-button class="perfil-button" [routerLink]="['/']" *ngIf="user"><a>Vehiculos</a></button>
+      <button mat-button class="perfil-button" [routerLink]="['/']" *ngIf="user"><a>Citas</a></button>
+      <button mat-button class="perfil-button" [routerLink]="['/']" *ngIf="!user"><a>Nosotros</a></button>
+      <button mat-button class="perfil-button" [routerLink]="['/']" *ngIf="!user"><a>Contacto</a></button>
+      <button mat-button class="perfil-button" [routerLink]="['/']" *ngIf="!user"><a>Ubicacion</a></button>
+      
       <span class="spacer"></span>
       <a *ngIf="!user" [routerLink]="['/log-in']">Login</a>
       <a *ngIf="!user" [routerLink]="['/sign-up']">Sign Up</a>
