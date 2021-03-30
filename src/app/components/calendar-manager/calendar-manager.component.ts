@@ -16,7 +16,7 @@ export class CalendarManagerComponent implements OnInit {
   calendarEl!: HTMLElement;
   calendar!: Calendar;
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
-  eventsList!: Array<Appointment>;
+  eventsList!: Array<any>;
   calendarOptions: CalendarOptions = {
     locales: [esLocale],
     timeZone: 'America/Venezuela',
@@ -49,7 +49,6 @@ export class CalendarManagerComponent implements OnInit {
       },
     });
     this.llenarLista();
-    this.calendar.render()
   }
 
   transformDateForCalendar(date: string): string{
@@ -59,26 +58,22 @@ export class CalendarManagerComponent implements OnInit {
 
   llenarLista(){
     this.eventsList = [];
-    this.appService.getEnEsperaApp().then( res => {
-      this.eventsList.push(res as Appointment);
+    this.appService.getAppConfirmada().then( doc => {
+      this.eventsList = doc;
+      this.llenarCalendario(doc);
     })
-    this.appService.getEnProcesoApp().then( doc => {
-      this.eventsList.push(doc as Appointment);
-    })
-    this.appService.getTerminadaApp().then( list => {
-      this.eventsList.push(list as Appointment);
-    })
-    this.llenarCalendario();
   }
 
-  llenarCalendario(){
-    this.eventsList.forEach(element => {
+  llenarCalendario(list: Array<any>){
+    console.log(list)
+    list.forEach(element => {
       const date = this.transformDateForCalendar(element.date!);
       this.calendar.addEvent({ // this object will be "parsed" into an Event Object
-      title: element.carInfo, // a property!
-      start: date, // a property!
-    })
+        title: element.userName, // a property!
+        start: date, // a property!
+      })
     });
+    this.calendar.render()
   }
 
   handleDateClick(arg: any) {

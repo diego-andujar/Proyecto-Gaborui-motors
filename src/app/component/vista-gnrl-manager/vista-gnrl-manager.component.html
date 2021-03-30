@@ -8,7 +8,7 @@
                 <mat-grid-list cols="3" rowHeight="16em">
                     <mat-grid-tile colspan="1" rowspan="2">
                         <div class="image-wrapper">
-                            <img class="image" [src]="
+                            <img *ngIf="user.photoURL" class="image" [src]="
                             user.photoURL
                               ? user.photoURL
                               : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'" alt="">
