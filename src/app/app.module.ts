@@ -103,7 +103,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FooterComponent,
     QuienesComponent,
     CarruselComponent,
-<<<<<<< HEAD
     ImageSliderComponent,
     SignUpPageComponent,
     LogInPageComponent,
@@ -129,16 +128,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppointmentDinamicComponent,
     MechanicsPageComponent,
     QrScannerComponent,
-<<<<<<< HEAD
-=======
-
->>>>>>> af7c30ea649213ccf609414c200216fb0e855262
-=======
     NewPartFormComponent,
     DiagnosisFormComponent,
     ItemsListComponent,
     CarFormComponent,
->>>>>>> origin/robert2
   ],
   imports: [
     MatCardModule,
