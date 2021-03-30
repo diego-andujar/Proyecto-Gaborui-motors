@@ -1,48 +1,56 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <nav class="menu">
     <!--id="navbarContainer"-->
     <a [routerLink]="['/']" class="logo">
-        <img src="../../../assets/logo ejwhite.png" alt="Gaboruilogo" height="100%">
+        <img src="../../../assets/logo ejwhite.png" alt="Gaboruilogo" height="100%" class="logofoto">
     </a>
-    
+    <a [routerLink]="['/']" class="logo2">
+        <img src="../../../assets/gaboruimotors white.png" alt="Gaboruilogo" class="logofoto">
+    </a>
+    <a [routerLink]="['/']" class="menucito">
+        <svg height="40pt" fill=white viewBox="0 -53 384 384" width="30pt" xmlns="http://www.w3.org/2000/svg"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
+    </a>
+
     <ul class="navbar">
 
         <li class="active">
-            <a [routerLink]="['/']">Home</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">home</button>
         </li>
         <li *ngIf="user">
-            <a *ngIf="userFire.rol.client" [routerLink]="['/perfil', user.uid]">Perfil</a>
-            <a *ngIf="userFire.rol.manager" [routerLink]="['/manager', user.uid]">Perfil</a>
+            <button mat-button class="perfil-button" (click)="click()">perfil</button>
         </li>
         <li *ngIf="user">
-            <a [routerLink]="['/']">Vehiculos</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">vehiculos</button>
         </li>
         <li *ngIf="user">
-            <a [routerLink]="['/']">Citas</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">citas</button>
         </li>
         <!--
         <li *ngIf="user-meca">
-            <a [routerLink]="['/user/posts']">Vehiculos</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">Vehiculos</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Citas</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">citas</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Calendario</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">calendario</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Ordenes</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">ordenes</button>
         </li>
         <li *ngIf="user-gerente">
-            <a [routerLink]="['/user/posts']">Reportes</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">reportes</button>
         </li> -->
         <li *ngIf="!user">
-            <a [routerLink]="['/categories']">Nosotros</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">nosotros</button>
         </li>
         <li *ngIf="!user">
-            <a [routerLink]="['/contact']">Contacto</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">contacto</button>
         </li>
         <li *ngIf="!user">
-            <a [routerLink]="['/contact']">Ubicación</a>
+            <button mat-button class="perfil-button" [routerLink]="['/']">ubicacion</button>
         </li>
         <li class="login" *ngIf="!user">
             <a [routerLink]="['/log-in']">Login</a>
@@ -65,7 +73,7 @@
                 </svg>
         </button>
         </li>
-         <!--<li class="logout" *ngIf="!user">
+        <!--<li class="logout" *ngIf="!user">
             <button type="button"> (click)="logout() 
           <img src="https://www.wpclipart.com/signs_symbol/alphabets_numbers/outlined_alphabet/white_capitol/capitol_X_white.png" alt="logoutimg" height="100%">
         </button>
@@ -73,4 +81,3 @@
     </ul>
 </nav>
 
-]

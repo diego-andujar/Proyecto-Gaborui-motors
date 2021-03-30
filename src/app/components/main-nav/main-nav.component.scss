@@ -1,0 +1,85 @@
+// html, body{
+//   height: 100%;
+// }
+// body {
+//   margin: 0;
+// }
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-toolbar{
+  background-color: #1C1A1A;
+  // height: 11%;
+  // position: fixed;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+
+.spacer2{
+  margin: 80px;
+}
+
+.mat-toolbar a{
+  display: inline-block;
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mat-toolbar a:hover{
+  display: inline-block;
+  margin: 0 10px;
+  color: #6AB8E3;
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  align-self: center;
+  height: 110%;
+  width: 60px;
+  text-decoration: none;
+  color: inherit;
+
+}
+
+.photo{
+  width: 45px;
+  border-radius: 39px;
+  margin-top: 16%;
+}
+
+
+@media (min-width: 768px){
+  .sidenav{
+    display: none;
+  }
+  
+
+ 
+}
+@media (max-width: 1024px){
+  .mat-toolbar a{
+    display: none;
+  }
+ 
+}
+

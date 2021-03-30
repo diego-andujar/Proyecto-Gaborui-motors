@@ -17,7 +17,7 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUser(localStorage.getItem("user"));
+    this.userService.getUser(localStorage.getItem("user")!);
   }
 
 }

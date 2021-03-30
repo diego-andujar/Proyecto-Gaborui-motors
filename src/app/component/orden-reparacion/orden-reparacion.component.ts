@@ -1,3 +1,5 @@
+import { NewPartFormComponent } from './../../components/new-part-form/new-part-form.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Appointment } from 'src/app/models/appointment';
 import { Car } from 'src/app/models/car';
 import { Order } from './../../models/order';
@@ -8,6 +10,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Part } from 'src/app/models/part';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-orden-reparacion',
@@ -16,18 +19,21 @@ import { Part } from 'src/app/models/part';
 })
 export class OrdenReparacionComponent implements OnInit {
 
-  displayedColumns = ['item', 'cost'];
-  appointment: Appointment | undefined;
+  displayedColumns = ['item', 'cost', 'actions'];
+  appointment!: Appointment;
   transactions: Part[] = [];
+  procesos: Part[] = [];
   orderForm!: FormGroup;
   @Input() event: string = "hola";
   orden!: Order;
-  car!: Car;
+  car!: any;
   scannerEnabled: boolean = true;
   escanear: boolean = false;
   qrResultString: string | null = "";
   information: string = "No se ha detectado informacion de ningun codigo. Muestre un Qr para que sea escaneado"
   verOrden: boolean = false;
+  addPart: boolean = false;
+  addProcess: boolean = false;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -35,6 +41,7 @@ export class OrdenReparacionComponent implements OnInit {
     private appService: AppointmentServiceService,
     private carService: CarsService,
     private orderService: OrdersService,
+    private dialog: MatDialog,
     ) { }
 
   ngOnInit(): void {
@@ -47,12 +54,19 @@ export class OrdenReparacionComponent implements OnInit {
   }
 
   onCodeResult(resultString: string) {
+    this.transactions = [];
     this.qrResultString = resultString;
     this.getCar(resultString);
     this.orderService.getOrder(resultString).then( doc => {
         this.orden = doc[0];
-        this.transactions = this.orden.parts;
+        if (this.orden.parts != undefined){
+          this.transactions = this.orden.parts;
+        } if (this.orden.processes != undefined){
+          this.procesos = this.orden.processes;
+        }
       })
+    this.verOrden = true;
+    alert("!Se ha encontrado la orden!")
   }
 
   public scanSuccessHandler($event: any){
@@ -66,16 +80,92 @@ export class OrdenReparacionComponent implements OnInit {
   }
 
   getCar(id: string){
+    let app: any;
+    let carr: any;
     this.appService.getSpecificApp(id).subscribe( doc => {
-      this.appointment = doc;
-      this.carService.getCarById(doc.car).subscribe( doc => {
-        this.car = doc;
+      app =  doc;
+      this.carService.getCarById(app?.car!).subscribe( doc => {
+        carr = doc;
+        this.car = carr;
       })
     })
   }
 
   getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.transactions.map(t => t.cost).reduce((acc, value) => acc! + value!, 0);
+  }
+
+  getTotalProcessCost() {
+    if(this.procesos == undefined || this.procesos.length < 1){
+      return 0;
+    }
+    return this.procesos.map(t => t.cost).reduce((acc, value) => acc! + value!, 0);
+  }
+
+  newPart(){
+    this.addPart = !this.addPart;
+  }
+
+  newProcess(){
+    this.addProcess = !this.addProcess;
+  }
+
+  reLoadPartsList(){
+    this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orden = doc[0];
+      this.transactions = this.orden.parts!;
+    })
+  }
+
+  reLoadProcessList(){
+    this.orderService.getOrder(this.appointment?.appId).then( doc => {
+      this.orden = doc[0];
+      this.procesos = this.orden.processes!;
+    })
+  }
+
+  onEdit(row: Part){
+    const index = this.transactions.indexOf(row, 0);
+    if(index > -1){
+      this.transactions.splice(index,1);
+      const parts = {parts: this.transactions};
+      this.orderService.updateOrder(parts, this.appointment?.appId, this.orden.refId);
+      this.orderService.getOrder(this.appointment?.appId).then( doc => {
+        this.orden = doc[0];
+        this.transactions = this.orden.parts!;
+      })
+    }
+    alert("!se ha eliminado el repuesto con exito!")
+  }
+
+  onEditProcess(row: Part){
+    const index = this.procesos.indexOf(row, 0);
+    if (index > -1){
+      this.procesos.splice(index,1);
+      const procc = {processes: this.procesos};
+      this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
+      this.orderService.getOrder(this.appointment?.appId).then( doc => {
+        this.orden = doc[0];
+        this.procesos = this.orden.processes!;
+      })
+    }
+    alert("!se ha eliminado el procedimiento con exito!")
+  }
+
+  async onSubmitedPart(bool: boolean){
+    if (bool){
+      this.addPart = !this.addPart;
+      await this.orderService.getOrder(this.appointment?.appId).then( doc => {
+        this.orden = doc[0];
+        this.transactions = this.orden.parts!;
+      })
+    } else {
+      this.addProcess = !this.addProcess;
+      await this.orderService.getOrder(this.appointment?.appId).then( doc => {
+        this.orden = doc[0];
+        this.procesos = this.orden.processes!;
+      })
+    }
   }
 
   createForm(): void {

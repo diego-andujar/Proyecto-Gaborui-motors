@@ -1,5 +1,6 @@
 @import "../../../styles/Lib/variables.scss";
 
+
 .info-wrapper {
     display: flex;
     align-items: center;
@@ -38,4 +39,140 @@
     width: 95%;
     font-size: 17px;
     padding-bottom: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .info-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 76%;
+    }
+    
+    .info-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 10%;
+    }
+    
+    .somos{
+        text-align: center;
+        font-size: $primary-font;
+        padding-top: 50px;
+        font-weight: bold;
+    }
+    .texto {
+        padding-top: 3%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 70%;
+        font-size: 150%;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+    }
+    .servi {
+        padding: 3% 5% 0 5%;
+        width: 95%;
+        font-size: 125%;
+        padding-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+
+    .info-wrapper {
+        display: flex;
+        align-items: center;
+        width: 200%;
+        height: 76%;
+        padding-top: 170px;
+        padding-bottom: 200px;
+    }
+    
+    .info-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 10%;
+    }
+    
+    .somos{
+        margin-top: 50%;
+        text-align: center;
+        font-size: $primary-font;
+        padding-top: 30px;
+        font-weight: bold;
+    }
+    .texto {
+        padding-top: 3%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 70%;
+        font-size: 200%;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+    }
+    .servi {
+        padding: 3% 5% 0 5%;
+        width: 95%;
+        font-size: 170%;
+        padding-bottom: 50px;
+    }
+}
+
+@media only screen and (width: 320px) {
+
+    .info-wrapper {
+        margin-top: 25%;
+        display: flex;
+        align-items: center;
+        width: 225%;
+        height: 76%;
+        padding-top: 170px;
+        padding-bottom: 200px;
+    }
+    
+    .info-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 10%;
+    }
+    
+    .somos{
+        margin-top: 50%;
+        text-align: center;
+        font-size: $primary-font;
+        padding-top: 30px;
+        font-weight: bold;
+    }
+    .texto {
+        padding-top: 3%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 70%;
+        font-size: 200%;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+    }
+    .servi {
+        padding: 3% 5% 0 5%;
+        width: 95%;
+        font-size: 170%;
+        padding-bottom: 50px;
+    }
+
 }

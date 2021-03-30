@@ -5,11 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PaginatorPipe implements PipeTransform {
 
-  transform(array: any[], pageSize: number | string, pageNumber: number): any[] {
+  transform(array: any[], pageSize: number, pageNumber: number): any[] {
     if(!array.length) return[];
-    if(pageSize === "all") {
-      return array;
-    }
     pageSize = pageSize || 1
     pageNumber = pageNumber || 4
     --pageNumber

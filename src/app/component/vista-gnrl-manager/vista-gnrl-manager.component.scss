@@ -56,6 +56,15 @@ span{
     width: 100%;
 }
 
+<<<<<<< HEAD
+=======
+.grid-flex{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+>>>>>>> origin/robert2
 @media only screen and (max-width: 768px) {
     .center {
         display: flex;
@@ -298,7 +307,11 @@ span{
         padding-top: 5%;
         padding-bottom: 5%;
         margin-bottom: 0 1px;
+<<<<<<< HEAD
         margin-top: 15%;
+=======
+        margin-top: 50%;
+>>>>>>> origin/robert2
         font-family: $primary-font;
         font-size: 70%;
     }

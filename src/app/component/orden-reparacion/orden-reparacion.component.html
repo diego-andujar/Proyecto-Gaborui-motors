@@ -114,15 +114,15 @@
 <div class="content-wrapper">
     <div class="comp-wrapper" *ngIf="!verOrden">
         <div class="scan-wrapper">
-            <button *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
-            <button *ngIf="escanear" (click)="escanear = false">Cerrar camara</button>
+            <button class="botonqr" *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
+            <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false">Cerrar cámara</button>
             <div class="scanner-image">
                 <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)"></zxing-scanner>
             </div>
         </div>
-        <div>
-            <section *ngIf="qrResultString">
-            <div class="scanner-image">
+        <div class="resultclass">
+            <section *ngIf="qrResultString" class="sectionresult">
+            <div class="scanner-image2">
                 <small>Result</small>
                 <span>{{ qrResultString }}</span><br>
             </div>
@@ -130,34 +130,101 @@
             </section>
         </div>
     </div>
-    <button (click)="verOrden = !verOrden; escanear = !escanear">Ver orden</button>
-    <div *ngIf="verOrden">
-        <p>{{appointment.userName}}</p>
-        <p>{{car.brand}}</p>
-        <p>{{car.model}}</p>
-        <p>{{car.year}}</p>
-        <p>{{car.plate}}</p>
-        <div class="example-container mat-elevation-z8">
-            <table mat-table [dataSource]="transactions">
-                <!-- Item Column -->
-                <ng-container matColumnDef="item">
-                    <th mat-header-cell *matHeaderCellDef> Repuesto </th>
-                    <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
-                    <td mat-footer-cell *matFooterCellDef> Total </td>
-                </ng-container>
-        
-                <!-- Cost Column -->
-                <ng-container matColumnDef="cost">
-                    <th mat-header-cell *matHeaderCellDef> Costo </th>
-                    <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
-                    <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
-                </ng-container>
-            
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
-            </table>
+    <div class="verorden">
+        <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Ver orden</button>
+    </div>
+    <div class="otroqr">
+        <button *ngIf="verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Escanear otro qr</button>
+    </div>
+    <div class="list-wrapper" *ngIf="verOrden">
+        <div class="datoscliente">
+            <app-car-form *ngIf="car != undefined" [car]="car"></app-car-form>
         </div>
+
+        <!--LISTA REPUESTOS-->
+        <div class="addrecargar" *ngIf="car != undefined">
+            <h2>repuestos</h2>
+            <div class="addrecargarhijo">
+                <button (click)="newPart()" *ngIf="verOrden && !addPart" class="submit-button">Añadir repuesto</button>
+                <button (click)="reLoadPartsList()" *ngIf="verOrden" class="submit-button">recargar</button>
+            </div>
+            <app-new-part-form *ngIf="addPart" (submited)="onSubmitedPart($event)" [list]="transactions" [order]="orden" [app]="appointment"></app-new-part-form>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="transactions">
+                    <!-- Item Column -->
+                    <ng-container matColumnDef="item">
+                        <th mat-header-cell *matHeaderCellDef> Repuesto </th>
+                        <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
+                        <td mat-footer-cell *matFooterCellDef> Total </td>
+                    </ng-container>
+            
+                    <!-- Cost Column -->
+                    <ng-container matColumnDef="cost">
+                        <th mat-header-cell *matHeaderCellDef> Costo </th>
+                        <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
+                        <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button (click)="onEdit(row)"><mat-icon>delete_outline</mat-icon></button>
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                </table>
+            </div>
+        </div>
+
+        <!--LISTA PROCEDIMIENTOS-->
+        <div *ngIf="car != undefined" class="addrecargar">
+            <h2>procedimientos aplicados</h2>
+            <div class="addrecargarhijo">
+                <button (click)="newProcess()" *ngIf="verOrden && !addProcess" class="submit-button">Añadir procedimiento</button>
+                <button (click)="reLoadProcessList()" *ngIf="verOrden" class="submit-button">recargar</button>
+            </div>
+            <app-new-part-form *ngIf="addProcess" (submited)="onSubmitedPart($event)" [isProcess]="true" [list]="procesos" [order]="orden" [app]="appointment"></app-new-part-form>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="procesos">
+                    <!-- Item Column -->
+                    <ng-container matColumnDef="item">
+                        <th mat-header-cell *matHeaderCellDef> procedimiento </th>
+                        <td mat-cell *matCellDef="let procesos"> {{procesos.item}} </td>
+                        <td mat-footer-cell *matFooterCellDef> Total </td>
+                    </ng-container>
+            
+                    <!-- Cost Column -->
+                    <ng-container matColumnDef="cost">
+                        <th mat-header-cell *matHeaderCellDef> Costo </th>
+                        <td mat-cell *matCellDef="let procesos"> {{procesos.cost | currency}} </td>
+                        <td mat-footer-cell *matFooterCellDef> {{getTotalProcessCost() | currency}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button (click)="onEditProcess(row)"><mat-icon>delete_outline</mat-icon></button>
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                </table>
+            </div>
+        </div>
+
+
+        <!--TEXTAREA DIAGNOSTICO-->
+        <div *ngIf="car != undefined">
+            <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
+        </div>
+        
     </div>
     
 </div>

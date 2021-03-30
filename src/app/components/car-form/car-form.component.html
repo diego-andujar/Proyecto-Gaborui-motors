@@ -1,0 +1,347 @@
+<div class="form-container">
+    <div class="auth-form-wrapper">
+        <div class="photo">
+            
+            <img [src]="car.photo"/>
+            <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
+            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
+        </div>
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
+        <div class="wrapper">
+            <div class="input-container">
+                <div class="input-container" *ngIf="editarForm">
+                    <mat-label class="auth-label">marca:</mat-label>
+                    <mat-select placeholder={{car.brand}} formControlName="brand" [(ngModel)]="selectdValue" name="car">
+                    <mat-option  *ngFor="let cars of carBrands" [value]="cars.value">
+                        {{cars.viewValue}}
+                    </mat-option>
+                    </mat-select>
+                </div>
+                <label class="auth-label" *ngIf="!editarForm" for="email">marca</label>
+                <input
+                    type="text"
+                    value= "hola"
+                    autocomplete="off"
+                    formControlName="brand"
+                    class="auth-input"
+                    readonly
+                    *ngIf="!editarForm"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="email">modelo</label>
+                <input
+                required
+                type="text"
+                id="email"
+                placeholder="fiesta"
+                formControlName="model"
+                class="auth-input active"
+                *ngIf="editarForm"
+                />
+                <input
+                readonly
+                type="text"
+                id="email"
+                placeholder="fiesta"
+                formControlName="model"
+                class="auth-input"
+                *ngIf="!editarForm"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="displayName">Año</label>
+                <input
+                    required
+                    type="text"
+                    id="email"
+                    placeholder="2011"
+                    formControlName="year"
+                    class="auth-input active"
+                    *ngIf="editarForm"
+                />
+                <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="year"
+                    class="auth-input"
+                    placeholder="2011"
+                    readonly
+                    *ngIf="!editarForm"
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">color </label>
+                <input
+                    required
+                    type="text"
+                    id="displayName"
+                    placeholder="Rojo"
+                    formControlName="color"
+                    class="auth-input active"
+                    *ngIf="editarForm"
+                />
+                <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Rojo"
+                    formControlName="color"
+                    class="auth-input"
+                    *ngIf="!editarForm"
+                    readonly
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">placa</label>
+                <input
+                    required
+                    type="text"
+                    id="displaName"
+                    placeholder="aaa00a"
+                    formControlName="plate"
+                    class="auth-input active"
+                    *ngIf="editarForm"
+                />
+                <input
+                    readonly
+                    type="text"
+                    id="displaName"
+                    placeholder="aaa00a"
+                    formControlName="plate"
+                    class="auth-input"
+                    *ngIf="!editarForm"
+                />
+            </div>
+            <div class="input-container" *ngIf="editarForm">
+                    <mat-label class="auth-label">tanque de gasolina:</mat-label>
+                    <mat-select placeholder="1/2 tanque" formControlName="tank" [(ngModel)]="selectedValue" name="car">
+                    <mat-option  *ngFor="let level of tankLevels" [value]="level.level">
+                        {{level.viewValue}}
+                    </mat-option>
+                    </mat-select>
+            </div>
+            <div class="input-container" *ngIf="!editarForm">
+                    <label class="auth-label" for="displayName">gasolina:</label>
+                    <input
+                    type="text"
+                    id="displName"
+                    placeholder="Tanque lleno"
+                    formControlName="tank"
+                    class="auth-input"
+                    *ngIf="!editarForm"
+                    readonly
+                    />
+                
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">km al entrar</label>
+                <input
+                    required
+                    type="text"
+                    id="passwor"
+                    placeholder="50000"
+                    formControlName="km"
+                    class="auth-input active"
+                    *ngIf="editarForm "
+                />
+                <input
+                    type="text"
+                    id="passwor"
+                    placeholder=""
+                    formControlName="km"
+                    placeholder="50000"
+                    class="auth-input"
+                    *ngIf="!editarForm"
+                    readonly
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">accesorios</label>
+                <span class="example-list-section"  >
+                    <ul>
+                      <li *ngFor="let accesorie of accesories">
+                        <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="accesorie.marked"
+                                      (ngModelChange)="updateAccesoriesList(accesorie)">
+                          {{accesorie.name}}
+                        </mat-checkbox>
+                      </li>
+                    </ul>
+                  </span>
+                
+            </div>
+            
+            <div *ngIf="editarForm" class="button-wrapper">
+                <div class="button-container">
+                  <button type="submit" class="submit-button">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+    
+
+<!--<div class="form-container">
+    <div class="auth-form-wrapper">
+        <div class="photo">
+            
+            <img [src]="car.photo"    
+              />
+            <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
+            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
+        </div>
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
+        <div class="wrapper">
+            <div class="input-container">
+                <label class="auth-label" for="displayName">brand</label>
+                <input
+                    required
+                    type="text"
+                    placeholder="Carlos Garcia"
+                    formControlName="brand"
+                    class="auth-input active"
+                    *ngIf="!car.brand"
+                />
+                <input
+                    type="text"
+                    value= "hola"
+                    autocomplete="off"
+                    formControlName="brand"
+                    class="auth-input"
+                    readonly
+                    *ngIf="car.brand"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="email">modelo</label>
+                <input
+                required
+                type="text"
+                id="email"
+                placeholder="carlos@example.com"
+                formControlName="model"
+                class="auth-input active"
+                *ngIf="!car.model"
+                />
+                <input
+                readonly
+                type="text"
+                id="email"
+                placeholder="carlos@example.com"
+                formControlName="model"
+                class="auth-input"
+                *ngIf="car.model"
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">year </label>
+                <input
+                    required
+                    type="number"
+                    id="displayName"
+                    placeholder="Carlos Garcia"
+                    formControlName="year"
+                    class="auth-input active"
+                    *ngIf="!car.year"
+                />
+                <input
+                    type="number"
+                    id="displayName"
+                    formControlName="year"
+                    class="auth-input"
+                    *ngIf="car.year"
+                    readonly
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">color</label>
+                <input
+                    required
+                    type="text"
+                    id="displaName"
+                    placeholder="4140000000"
+                    formControlName="color"
+                    class="auth-input active"
+                    *ngIf="!car.color || editarForm"
+                />
+                <input
+                    readonly
+                    type="text"
+                    id="displaName"
+                    formControlName="color"
+                    class="auth-input"
+                    *ngIf="car.color && !editarForm"
+                />
+            </div>
+            <div class="input-container" *ngIf="!car.gasTankWhenIn">
+                    <mat-label class="auth-label">genero:</mat-label>
+                    <mat-select placeholder="Masculino" formControlName="gasTankWhenIn" [(ngModel)]="selectedValue" name="car">
+                    <mat-option  *ngFor="let car of tankLevels" [value]="car.value">
+                        {{car.viewValue}}
+                    </mat-option>
+                    </mat-select>
+            </div>
+            <div class="input-container" *ngIf="car.gasTankWhenIn">
+                    <label class="auth-label" for="displayName">genero </label>
+                    <input
+                    type="text"
+                    id="displName"
+                    formControlName="gasTankWhenIn"
+                    class="auth-input"
+                    *ngIf="car.gasTankWhenIn"
+                    readonly
+                    />
+                
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">km When In</label>
+                <input
+                    required
+                    type="text"
+                    id="passwor"
+                    placeholder=""
+                    formControlName="kmWhenIn"
+                    class="auth-input active"
+                    *ngIf="!car.kmWhenIn"
+                />
+                <input
+                    type="text"
+                    id="passwor"
+                    placeholder=""
+                    formControlName="kmWhenIn"
+                    class="auth-input"
+                    *ngIf="car.kmWhenIn"
+                    readonly
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">accesories</label>
+                <input
+                    required
+                    type="text"
+                    id="passwor"
+                    placeholder=""
+                    formControlName="accesories"
+                    class="auth-input active"
+                    *ngIf="!car.accesories"
+                />
+                <input
+                    type="text"
+                    id="passwor"
+                    placeholder=""
+                    formControlName="accesories"
+                    class="auth-input"
+                    *ngIf="car.accesories"
+                    readonly
+                />
+            </div>
+            <div class="button-wrapper">
+                <div class="button-container">
+                  <button type="submit" class="submit-button">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>-->
+    

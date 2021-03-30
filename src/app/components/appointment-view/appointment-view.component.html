@@ -43,7 +43,11 @@
                                 </ngx-qrcode>
                             </div>
                             <div class="centro">
+<<<<<<< HEAD
                                 <button (click)="downloadQRCode(appointment)">Download QRCode</button>
+=======
+                                <button (click)="downloadQRCode(appointment)">Descarga el codigo QR</button>
+>>>>>>> origin/robert2
                             </div>
                         </div>
                     </div>
@@ -58,7 +62,7 @@
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
                                 <input [min]="minDate" 
-                                [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                                [max]="maxDate"  formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
                                 <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                                 <mat-datepicker  #datepicker>
                                     <mat-datepicker-actions>
@@ -81,7 +85,7 @@
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
                                 <input [min]="minDate" 
-                                [max]="maxDate" [matDatepickerFilter]="dateFilter" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                                [max]="maxDate"  formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
                                 <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                                 <mat-datepicker  #datepicker>
                                     <mat-datepicker-actions>

@@ -1,17 +1,16 @@
 @import "../../../styles/Lib/variables.scss";
-
-form{
+@import "../../../styles/Lib/mixins.scss";
+form {
     padding: 0px;
 }
 
 input {
     font-family: $secondary-font;
-    
 }
 
 mat-select {
     width: 59%;
-    background-color: white;
+    background-color: rgb(237, 249, 250);
     border: 0.5px solid $primary-color;
     font-family: $secondary-font;
 }
@@ -55,7 +54,6 @@ label {
     color: $primary-color;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    
 }
 
 .auth-input {
@@ -71,7 +69,7 @@ label {
         text-transform: lowercase;
     }
     &.active {
-        background-color: powderblue;
+        background-color: rgb(237, 249, 250);
     }
 }
 
@@ -88,6 +86,10 @@ label {
 
 .form-container {
     width: 100%;
+    @include small-phone {
+        background-color: yellow;
+        width: 200%;
+    }
 }
 
 .no-acc-text {
@@ -100,4 +102,76 @@ a {
     text-decoration: none;
     font-family: $primary-font;
     color: $primary-color;
+}
+
+
+
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .hoverable{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+    border: 5px solid #000;
+    border-radius: 50%;
+  }
+  .hoverable .hover-text{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left:  50%;
+    transform: translate(-50%,-50%);   
+    z-index: 2;
+  }
+  .hoverable .background{
+    position: absolute;
+    display: none;
+    top: 0;
+    left:  0;
+    bottom: 0;
+    right: 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hoverable:hover .hover-text{
+    display: block;
+  }
+  .hoverable:hover .background{
+    display: block;
+  }
+  
+  #fileInput{
+    display: none;
+  }
+
+@media screen and (max-width: 720px){
+    .auth-form-wrapper {
+        display: block;
+        align-items: center;
+        width: auto;
+        height: 80vh;
+        border: 0px;
+        padding: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        background-color: $third-color;
+    }
+    .input-container {
+        display: block;
+        justify-content: center;
+        width: 100%;
+        padding: 0px 5%;
+    }
+    .form-container{
+        margin-top: 33%;
+    }
 }

@@ -1,14 +1,23 @@
 <div class="form-container">
     <div class="auth-form-wrapper">
         <div class="photo">
+            <label class="hoverable" for="fileInput">
+                <img [src]="user.photoURL ? user.photoURL : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg' "> 
+                <div class="hover-text">Choose file</div>
+                <div class="background"></div>
+              </label>
+              <br/>
+              <input id="fileInput" type='file' (change)="onSelectFile($event)">
+              <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
+        <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
             
-            <img [src]="
+            <!-- <img [src]="
             user.photoURL
               ? user.photoURL
               : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'"    
               />
             <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
-            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
+            <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button> -->
         </div>
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
         <div class="wrapper">
@@ -40,7 +49,7 @@
                 id="email"
                 placeholder="carlos@example.com"
                 formControlName="email"
-                class="auth-input active"
+                class="auth-input active correo"
                 *ngIf="!userFire.email"
                 />
                 <input
@@ -49,12 +58,12 @@
                 id="email"
                 placeholder="carlos@example.com"
                 formControlName="email"
-                class="auth-input"
+                class="auth-input correo"
                 *ngIf="userFire.email"
                 />
             </div>
             <div class="input-container">
-                <mat-form-field *ngIf="!userFire.birthDate" class="example-full-width" appearance="fill">
+                <mat-form-field *ngIf="editarForm" class="example-full-width" appearance="fill">
                     <mat-label class="auth-label">Fecha de nacimiento</mat-label>
                     <input [min]="minDate" 
                     [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker" />
@@ -66,14 +75,14 @@
                         </mat-datepicker-actions>
                     </mat-datepicker>
                 </mat-form-field>
-                <label *ngIf="userFire.birthDate" class="auth-label" for="displayName">Fecha de Nacimiento</label>
+                <label *ngIf="!editarForm" class="auth-label" for="displayName">Fecha de Nacimiento</label>
                 <input
                     type="text"
                     autocomplete="off"
                     formControlName="birthDate"
                     class="auth-input"
                     readonly
-                    *ngIf="userFire.birthDate"
+                    *ngIf="!editarForm"
                 />
             </div>
             <div class="input-container" >
@@ -82,18 +91,18 @@
                     required
                     type="number"
                     id="displayName"
-                    placeholder="Carlos Garcia"
+                    placeholder="1111111"
                     formControlName="cedula"
                     class="auth-input active"
-                    *ngIf="!userFire.cedula"
+                    *ngIf="editarForm"
                 />
                 <input
                     type="number"
                     id="displayName"
-                    placeholder="Carlos Garcia"
+                    placeholder="1111111"
                     formControlName="cedula"
                     class="auth-input"
-                    *ngIf="userFire.cedula"
+                    *ngIf="!editarForm"
                     readonly
                 />
             </div>
@@ -106,19 +115,19 @@
                     placeholder="4140000000"
                     formControlName="phone"
                     class="auth-input active"
-                    *ngIf="!userFire.phoneNumber || editarForm"
+                    *ngIf="editarForm"
                 />
                 <input
                     readonly
                     type="number"
                     id="displaName"
-                    placeholder="Carlos Garcia"
+                    placeholder="4140000000"
                     formControlName="phone"
                     class="auth-input"
-                    *ngIf="userFire.phoneNumber && !editarForm"
+                    *ngIf="!editarForm"
                 />
             </div>
-            <div class="input-container" *ngIf="!userFire.genero">
+            <div class="input-container" *ngIf="editarForm">
                     <mat-label class="auth-label">genero:</mat-label>
                     <mat-select placeholder="Masculino" formControlName="genero" [(ngModel)]="selectedValue" name="car">
                     <mat-option  *ngFor="let car of generos" [value]="car.value">
@@ -126,15 +135,15 @@
                     </mat-option>
                     </mat-select>
             </div>
-            <div class="input-container" *ngIf="userFire.genero">
+            <div class="input-container" *ngIf="!editarForm">
                     <label class="auth-label" for="displayName">genero </label>
                     <input
                     type="text"
                     id="displName"
-                    placeholder="Carlos Garcia"
+                    placeholder="Masculino"
                     formControlName="genero"
                     class="auth-input"
-                    *ngIf="userFire.genero"
+                    *ngIf="!editarForm"
                     readonly
                     />
                 
@@ -145,18 +154,18 @@
                     required
                     type="text"
                     id="passwor"
-                    placeholder=""
+                    placeholder="1era avenida ..."
                     formControlName="direccion"
                     class="auth-input active"
-                    *ngIf="!userFire.address"
+                    *ngIf="editarForm"
                 />
                 <input
                     type="text"
                     id="passwor"
-                    placeholder=""
+                    placeholder="1era avenida ..."
                     formControlName="direccion"
                     class="auth-input"
-                    *ngIf="userFire.address"
+                    *ngIf="!editarForm"
                     readonly
                 />
             </div>
@@ -166,18 +175,18 @@
                     required
                     type="text"
                     id="passwor"
-                    placeholder=""
+                    placeholder="caracas"
                     formControlName="ciudad"
                     class="auth-input active"
-                    *ngIf="!userFire.city"
+                    *ngIf="editarForm"
                 />
                 <input
                     type="text"
                     id="passwor"
                     placeholder=""
-                    formControlName="ciudad"
+                    placeholder="caracas"
                     class="auth-input"
-                    *ngIf="userFire.city"
+                    *ngIf="!editarForm"
                     readonly
                 />
             </div>
@@ -187,19 +196,19 @@
                     required
                     type="text"
                     id="passwo"
-                    placeholder=""
+                    placeholder="miranda"
                     formControlName="estado"
                     class="auth-input active"
-                    *ngIf="!userFire.state"
+                    *ngIf="editarForm"
                 />
                 <input
                     readonly
                     type="text"
                     id="passwo"
-                    placeholder=""
+                    placeholder="miranda"
                     formControlName="estado"
                     class="auth-input"
-                    *ngIf="userFire.state"
+                    *ngIf="!editarForm"
                 />
             </div>
             <div class="input-container">
@@ -208,22 +217,22 @@
                     required
                     type="number"
                     id="passw"
-                    placeholder=""
+                    placeholder="1060"
                     formControlName="postal"
                     class="auth-input active"
-                    *ngIf="!userFire.postalCode"
+                    *ngIf="editarForm"
                 />
                 <input
                     type="number"
                     id="passw"
-                    placeholder=""
+                    placeholder="1060"
                     formControlName="postal"
                     class="auth-input"
-                    *ngIf="userFire.postalCode"
+                    *ngIf="!editarForm"
                     readonly
                 />
             </div>
-            <div class="button-wrapper">
+            <div *ngIf="editarForm" class="button-wrapper">
                 <div class="button-container">
                   <button type="submit" class="submit-button">Guardar Cambios</button>
                 </div>

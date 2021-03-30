@@ -22,7 +22,7 @@ export class OrdersService {
     });
   }
 
-  async getOrder(id: string){
+  async getOrder(id: string | undefined){
     const lista: Array<Order> = [];
     const collection = this.db.collection("citas").doc(id).collection("orden").get()
     await collection.then(snapshot => {
@@ -33,8 +33,8 @@ export class OrdersService {
     return lista;
   }
 
-  updateOrder(data: any, id: string, idOrder: string | undefined){
-    const collection = this.db.collection("citas").doc(id).collection("orden")
+  updateOrder(data: any, idApp: string | undefined, idOrder: string | undefined){
+    const collection = this.db.collection("citas").doc(idApp).collection("orden")
     return  collection.doc(idOrder).update(data);
   }
 

@@ -16,7 +16,7 @@ export class DinamicCarViewComponent implements OnInit {
 
   verSolicitud = false;
   editarCarro = false;
-  name = JSON.parse(localStorage.getItem("CurrentUser")).name;
+  name = JSON.parse(localStorage.getItem("CurrentUser")!).name;
   crearCarro: boolean = false;
   userType: string = "client";
   lowValue: number = 0;
@@ -25,16 +25,47 @@ export class DinamicCarViewComponent implements OnInit {
   carList: Array<Car> = [];
   selectedValue!: string;
   carBrands: any[] = [
-    {value: 'volvo', viewValue: 'Volvo'},
-    {value: 'saab', viewValue: 'Saab'},
-    {value: 'mercedes', viewValue: 'Mercedes'},
-    {value: 'honda', viewValue: 'Honda'},
-    {value: 'toyota', viewValue: 'Toyota'},
-    {value: 'mitsubishi', viewValue: 'Mitsubishi'},
-    {value: 'renault', viewValue: 'Renault'},
+    {value: 'aston martin', viewValue: 'Aston Martin'},
+    {value: 'audi', viewValue: 'Audi'},
+    {value: 'bentley', viewValue: 'Bentley'},
+    {value: 'bmw', viewValue: 'BMW'},
+    {value: 'buick', viewValue: 'Buick'},
+    {value: 'chery', viewValue: 'Chery'},
+    {value: 'chevrolet', viewValue: 'Chevrolet'},
+    {value: 'chrysler', viewValue: 'Chrysler'},
+    {value: 'citroen', viewValue: 'Citroen'},
+    {value: 'daewoo', viewValue: 'Daewoo'},
+    {value: 'dodge', viewValue: 'Dodge'},
+    {value: 'ferrari', viewValue: 'Ferrari'},
+    {value: 'fiat', viewValue: 'Fiat'},
     {value: 'ford', viewValue: 'Ford'},
-    {value: 'Hyundai', viewValue: 'Hyundai'},
+    {value: 'gmc', viewValue: 'GMC'},
+    {value: 'honda', viewValue: 'Honda'},
+    {value: 'hyundai', viewValue: 'Hyundai'},
+    {value: 'jaguar', viewValue: 'Jaguar'},
+    {value: 'jeep', viewValue: 'Jeep'},
+    {value: 'kia', viewValue: 'Kia'},
+    {value: 'lamborghini', viewValue: 'Lamborghini'},
+    {value: 'land rover', viewValue: 'Land Rover'},
+    {value: 'lexus', viewValue: 'Lexus'},
+    {value: 'maserati', viewValue: 'Maserati'},
+    {value: 'mazda', viewValue: 'Mazda'},
+    {value: 'mclaren', viewValue: 'Mclaren'},
+    {value: 'mercedes', viewValue: 'Mercedes'},
+    {value: 'mitsubishi', viewValue: 'Mitsubishi'},
+    {value: 'nissan', viewValue: 'Nissan'},
+    {value: 'peugeot', viewValue: 'peugeot'},
+    {value: 'pontiac', viewValue: 'Pontiac'},
+    {value: 'porsche', viewValue: 'Porsche'},
+    {value: 'renault', viewValue: 'Renault'},
+    {value: 'saab', viewValue: 'Saab'},
+    {value: 'seat', viewValue: 'Seat'},
+    {value: 'subaru', viewValue: 'Subaru'},
+    {value: 'suzuki', viewValue: 'Suzuki'},
+    {value: 'toyota', viewValue: 'Toyota'},
     {value: 'tesla', viewValue: 'Tesla'},
+    {value: 'volkswagen', viewValue: 'Volkswagen'},
+    {value: 'volvo', viewValue: 'Volvo'},
   ];
   carForm!: FormGroup;
   today = new Date();
@@ -82,7 +113,7 @@ export class DinamicCarViewComponent implements OnInit {
   async activateCar(car: Car){
     const bool: boolean = !car.active;
     const active = {active: bool}
-    await this.carService.updateCar(active, car.carId)
+    await this.carService.updateCar(active, car.carId!)
     this.getCars()
     if (bool){
       alert("!Has reactivado este vehiculo con exito!\nAprovecha nuestros servicios");
@@ -101,19 +132,19 @@ export class DinamicCarViewComponent implements OnInit {
 
   async onSubmit(){
     const newCar: Car = {
-      inAppointment: false,
       userid: this.user.uid,
       brand: this.carForm.get("brand")?.value,
       model: this.carForm.get("model")?.value,
       year: this.carForm.get("year")?.value,
       plate: this.carForm.get("plate")?.value,
       serialMotor: this.carForm.get("serialMotor")?.value,
-      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+      registerDate: this.datePipe.transform(this.today, "dd-MM-yyyy")!,
       photo: "https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png",
       active: true,
     }
+    newCar.inAppointment = false;
     let existe: boolean = false;
-    await this.carService.checkIfCarExists(newCar.serialMotor).then( doc => {
+    await this.carService.checkIfCarExists(newCar.serialMotor!).then( doc => {
       existe = doc;
     })
     console.log(existe)

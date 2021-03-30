@@ -58,7 +58,7 @@ export class AppointmentDinamicComponent implements OnInit {
   ngOnInit(): void {
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
-    this.name = (JSON.parse(localStorage.getItem("CurrentUser"))).name;
+    this.name = (JSON.parse(localStorage.getItem("CurrentUser") || "{}")).name;
     if(!this.isManager){
       this.authService.getCurrentUser().subscribe((user) => {
         this.user = user;
@@ -66,7 +66,7 @@ export class AppointmentDinamicComponent implements OnInit {
           this.carList = doc;
         })
       })
-      this.appointService.getUserAppoint(localStorage.getItem("UserFireId")).then( doc => {
+      this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
         this.citas = doc;
       })
       this.createForm();
@@ -96,10 +96,10 @@ export class AppointmentDinamicComponent implements OnInit {
     });
   }
 
-  dateFilter = date => {
+  /*dateFilter = date => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }
+  }*/
 
   getApps(){
     this.firestoreService.getAPP().subscribe( res => {
@@ -116,12 +116,12 @@ export class AppointmentDinamicComponent implements OnInit {
 
   aceptApp(cita: Appointment){
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
   }
 
   modifyApp(cita: Appointment){
@@ -130,8 +130,8 @@ export class AppointmentDinamicComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
   }
@@ -142,8 +142,8 @@ export class AppointmentDinamicComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "solicitada"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId);
+    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
   }
@@ -153,7 +153,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.firestoreService.deleteApp(id);
     alert("!Se elimino su cita con exito!")
     this.getCars();
-    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")).then( doc => {
+    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
       this.citas = doc;
     })
   }
@@ -171,11 +171,11 @@ export class AppointmentDinamicComponent implements OnInit {
       car: formValues.selectedCar?.value.carId,
       carInfo: formValues.selectedCar?.value.brand + " - " + formValues.selectedCar?.value.model + " - " + formValues.selectedCar?.value.year,
       userName: this.name,
-      date: formValues.appointmentDate,
-      userid: localStorage.getItem("UserFireId"),
+      date: formValues.appointmentDate!,
+      userid: localStorage.getItem("UserFireId")!,
       estado: "solicitada",
       diagnosis: formValues.diagnostico?.value,
-      dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy"),
+      dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy")!,
       carPhoto: formValues.selectedCar?.value.photo,
     }
     console.log(cita.dateCreated + " " + cita.date)
@@ -183,7 +183,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.firestoreService.crearCita(cita);
     this.authForm.reset()
     this.getCars();
-    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")).then( doc => {
+    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
       this.citas = doc;
     })
     alert("!Tu cita fue creada con exito!\nPronto te llegara informacion para confirmarla")

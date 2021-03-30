@@ -63,7 +63,7 @@ export class AppointmentServiceService {
     return  collection.doc(id).update(data);
   }
 
-  getSpecificApp(id:string){
+  getSpecificApp(id:string): Observable<unknown>{
     const collection = this.database.collection("citas")
     return  collection.doc(id).valueChanges();
   }

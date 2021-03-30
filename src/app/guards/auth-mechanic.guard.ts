@@ -18,11 +18,12 @@ export class AuthMechanicGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let user: any = JSON.parse(localStorage.getItem("CurrentUser"))
+    let user: any = JSON.parse(localStorage.getItem("CurrentUser")!)
     if (user.rol.mechanic == true){
       return true;
     } else {
-      return this.router.parseUrl("/log-in");
+      alert("Usted no tiene permisos para entrar a esta seccion")
+      return this.router.parseUrl("/");
     }
   }
 }

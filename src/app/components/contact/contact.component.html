@@ -1,3 +1,6 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <div class="contactdiv">
 
     <ul class="formulario-contacto">
@@ -8,46 +11,45 @@
             <p>taller@gmail.com</p>
 
         </li>
-        <li class="loco2">
-            <form>
+        <!-- <li class="loco2">
+            <form action="https://formspree.io/jhoelanexo@gmail.com" method="POST">
                 <div class="form-group">
                     <label for="firstName">Nombre y apellido</label>
-                    <input required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" class="firstName" type="text" class="form-control">
+                    <input required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName.value)" class="firstName" type="text" class="form-control">
                     <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
-                        <div *ngIf="firstName.errors.required">El nombre y apellido son obligatorios</div>
-                        <div *ngIf="firstName.errors.minlength">El nombre y apellido deben ser minimo 3 caracteres</div>
-                        <div *ngIf="firstName.errors.maxlength">El nombre y apellido deben ser maximo 10 caracteres</div>
+                        <div *ngIf="firstName.errors!.required">El nombre y apellido son obligatorios</div>
+                        <div *ngIf="firstName.errors!.minlength">El nombre y apellido deben ser minimo 3 caracteres</div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="firstName">Correo electronico</label>
-                    <input required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" class="firstName" type="email" class="form-control">
+                    <input required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName.value)" class="firstName" type="email" class="form-control">
                     <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
-                        <div *ngIf="firstName.errors.required">El correo es obligatorio</div>
-                        <div *ngIf="firstName.errors.minlength">El correo deben ser minimo 3 caracteres</div>
-                        <div *ngIf="firstName.errors.maxlength">El correo deben ser maximo 10 caracteres</div>
+                        <div *ngIf="firstName.errors!.required">El correo es obligatorio</div>
+                        <div *ngIf="firstName.errors!.minlength">El correo deben ser minimo 3 caracteres</div>
+                        <div *ngIf="firstName.errors!.maxlength">El correo deben ser maximo 10 caracteres</div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="firstName">Telefono</label>
-                    <input required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" class="firstName" type="text" class="form-control">
+                    <input required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName.value)" class="firstName" type="text" class="form-control">
                     <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
-                        <div *ngIf="firstName.errors.required">El telefono es obligatorio</div>
-                        <div *ngIf="firstName.errors.minlength">El telefono deben ser minimo 3 caracteres</div>
-                        <div *ngIf="firstName.errors.maxlength">El telefono deben ser maximo 10 caracteres</div>
+                        <div *ngIf="firstName.errors!.required">El telefono es obligatorio</div>
+                        <div *ngIf="firstName.errors!.minlength">El telefono deben ser minimo 3 caracteres</div>
+                        <div *ngIf="firstName.errors!.maxlength">El telefono deben ser maximo 10 caracteres</div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="comment">Mensaje</label>
-                    <textarea required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" ngModel name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
+                    <textarea required minlength="3" maxlength="10" pattern="" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName.value)" ngModel name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
                     <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
-                        <div *ngIf="firstName.errors.required">El mensaje son obligatorios</div>
-                        <div *ngIf="firstName.errors.minlength">El mensaje deben ser minimo 3 caracteres</div>
-                        <div *ngIf="firstName.errors.maxlength">El mensaje deben ser maximo 10 caracteres</div>
+                        <div *ngIf="firstName.errors!.required">El mensaje son obligatorios</div>
+                        <div *ngIf="firstName.errors!.minlength">El mensaje deben ser minimo 3 caracteres</div>
+                        <div *ngIf="firstName.errors!.maxlength">El mensaje deben ser maximo 10 caracteres</div>
                     </div>
                 </div>
-                <button class="btn btn-primary">ENVIAR</button>
+                <button class="btn btn-primary" action="https://formspree.io/jhoelanexo@gmail.com">ENVIAR</button>
             </form>
-        </li> 
+        </li> -->
     </ul>
 </div>
