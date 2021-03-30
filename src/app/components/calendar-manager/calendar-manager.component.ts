@@ -65,7 +65,6 @@ export class CalendarManagerComponent implements OnInit {
   }
 
   llenarCalendario(list: Array<any>){
-    console.log(list)
     list.forEach(element => {
       const date = this.transformDateForCalendar(element.date!);
       this.calendar.addEvent({ // this object will be "parsed" into an Event Object

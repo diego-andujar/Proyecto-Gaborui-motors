@@ -79,7 +79,7 @@ export class AppointmentServiceService {
 
   async getClientApp(userId: string): Promise<any[]>{
     const collection = this.db.collection("citas");
-    let query = collection.where("userId", "==", userId).orderBy('dateCreated', 'desc');
+    let query = collection.where("userId", "==", userId).orderBy('dateCreated', 'asc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
@@ -97,7 +97,7 @@ export class AppointmentServiceService {
 
   getEnEsperaApp(): Promise<any[]>{
     const collectio = this.db.collection("citas");
-    let query = collectio.where("orderStatus", "==", "en espera");
+    let query = collectio.where("orderStatus", "==", "en espera").orderBy('date', 'asc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
@@ -106,7 +106,7 @@ export class AppointmentServiceService {
 
   getEnProcesoApp(): Promise<any[]>{
     const collectio = this.db.collection("citas");
-    let query = collectio.where("orderStatus", "==", "en proceso");
+    let query = collectio.where("orderStatus", "==", "en proceso").orderBy('date', 'asc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
@@ -124,7 +124,7 @@ export class AppointmentServiceService {
 
   getCerradaApp(): Promise<any[]>{
     const collectio = this.db.collection("citas");
-    let query = collectio.where("orderStatus", "==", "cerrada");
+    let query = collectio.where("orderStatus", "==", "cerrada").orderBy('date', 'desc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
@@ -133,7 +133,7 @@ export class AppointmentServiceService {
 
   getAppSolicitada(): Promise<any[]>{
     const collectio = this.db.collection("citas");
-    let query = collectio.where("estado", "==", "solicitada");
+    let query = collectio.where("estado", "==", "solicitada").orderBy('dateCreated', 'asc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
@@ -142,7 +142,7 @@ export class AppointmentServiceService {
 
   getAppPorConfirmar(): Promise<any[]>{
     const collectio = this.db.collection("citas");
-    let query = collectio.where("estado", "==", "por confirmar");
+    let query = collectio.where("estado", "==", "por confirmar").orderBy('date', 'asc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
@@ -151,7 +151,7 @@ export class AppointmentServiceService {
 
   getAppConfirmada(): Promise<any[]>{
     const collectio = this.db.collection("citas");
-    let query = collectio.where("estado", "==", "confirmada");
+    let query = collectio.where("estado", "==", "confirmada").orderBy('date', 'asc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
