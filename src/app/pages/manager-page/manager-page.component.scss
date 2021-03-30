@@ -28,7 +28,9 @@ h2 {
         justify-content: flex-end;
     }
     @include small-phone {
-        height: 15%;
+        height: 5%;
+        display: flex;
+        justify-content: center;
     }
     @include ipad-pro {
         height: 8%;
@@ -63,6 +65,10 @@ h2 {
         // flex-direction: row;
         // background-color: blue;
     }
+    @include small-phone {
+        width: 100%;
+        align-items: center;
+    }
 }
 
 .botoncitoumg {
@@ -75,6 +81,12 @@ h2 {
     width: 100%;
     font-size: 0.8em;
     padding-top: 1%;
+    @include small-phone {
+        // background-color: red;
+        font-size: 0.9em;
+        padding-top: 0%;
+        align-items: center;
+    }
 }
 
 .botoncitoumg:hover {
@@ -88,11 +100,24 @@ h2 {
         padding-top: 0.5%;
         border-bottom: 0.2em solid black;
     }
+    @include small-phone {
+        font-size: 1em;
+    }
+}
+
+.botonesumghijos {
+    @include small-phone {
+        font-size: 0.6em;
+    }
 }
 
 .table-container {
     display: flex;
     justify-content: center;
+    @include small-phone {
+        width: 100%;
+        margin-left: 5%;
+    }
 }
 
 .app-list-wrapper {
@@ -121,6 +146,36 @@ table {
     @include tablet {
         width: 90%;
     }
+    @include small-phone {
+        // display: none;
+        width: 5%;
+    }
+}
+
+table.mat-table {
+    @include small-phone {
+        // background-color: brown;
+    }
+}
+
+tr.mat-row {
+    @include small-phone {
+        // background-color: aquamarine;
+        font-size: 0.8em;
+    }
+}
+
+tr.mat-header-row {
+    @include small-phone {
+        height: 40px;
+        // display: flex;
+    }
+}
+
+th.mat-header-cell:first-of-type {
+    @include small-phone {
+        // padding-left: 4px;
+    }
 }
 
 tr.example-detail-row {
@@ -133,6 +188,21 @@ tr.example-element-row:not(.example-expanded-row):hover {
 
 tr.example-element-row:not(.example-expanded-row):active {
     background: #efefef;
+}
+
+th.mat-header-cell {
+    @include small-phone {
+        padding: 0em;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        width: 100%;
+        font-size: 0.8em;
+        font-family: 'Poppins';
+    }
+}
+
+th.mat-header-cell:last-of-type {
+    padding-right: 0px;
 }
 
 .example-element-row td {

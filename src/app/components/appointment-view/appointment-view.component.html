@@ -19,7 +19,7 @@
 
             <!-- Weight Column -->
             <ng-container matColumnDef="order status">
-                <th mat-header-cell *matHeaderCellDef> Estado de la cita</th>
+                <th mat-header-cell *matHeaderCellDef> Estado</th>
                 <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
             </ng-container>
 
@@ -63,7 +63,7 @@
                                                 </ngx-qrcode>
                                             </div>
                                             <div class="centro">
-                                                <button (click)="downloadQRCode(appointment)">Descarga el codigo QR</button>
+                                                <button class="descargar-button" (click)="downloadQRCode(appointment)">Descarga el codigo QR</button>
                                             </div>
                                         </div>
                                     </div>
