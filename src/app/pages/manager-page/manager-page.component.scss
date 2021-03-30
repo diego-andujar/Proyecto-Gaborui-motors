@@ -172,6 +172,16 @@ tr.mat-header-row {
     }
 }
 
+table {
+    // width: 90%;
+    @include small-phone {
+        width: 70%;
+        margin-left: -10%;
+        background-color: yellow;
+        display: none;
+    }
+}
+
 th.mat-header-cell:first-of-type {
     @include small-phone {
         // padding-left: 4px;

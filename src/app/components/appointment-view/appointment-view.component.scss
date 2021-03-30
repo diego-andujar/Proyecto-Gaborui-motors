@@ -177,6 +177,7 @@ thead {
         @include small-phone {
             width: 90%;
             margin-left: -10%;
+            background-color: yellow;
         }
     }
     .btn {
