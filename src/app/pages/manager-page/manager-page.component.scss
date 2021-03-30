@@ -1,6 +1,10 @@
 @import "../../../styles/components/text-boxes.scss";
 @import "../../../styles/components/buttons.scss";
 
+.calendar-wrapper {
+  height: 100%;
+}
+
 h2{
   font-family: $secondary-font;
   color: $primary-color;
@@ -173,8 +177,7 @@ mat-select {
 }
 
 .datos-manager-wrapper {
-    margin-top: 9%;
-    height: 83.5%;
+    margin-top: 10%;
 }
 
 .form-new {
