@@ -1,3 +1,4 @@
+import { NgxMaterialTimepickerComponent } from 'ngx-material-timepicker';
 import { element } from 'protractor';
 import { UsersService } from 'src/app/services/users.service';
 import { CarsService } from 'src/app/services/cars.service';
@@ -13,6 +14,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatDatepicker } from '@angular/material/datepicker';
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-appointment-view',
@@ -29,6 +31,8 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 export class AppointmentViewComponent implements OnInit {
 
+  @Input()
+  ngxTimepicker!: NgxMaterialTimepickerComponent; 
   citas!: Array<any>;
   @Input() citasInput: Array<Appointment> = [];
   cars!: Array<Car>;
@@ -54,6 +58,7 @@ export class AppointmentViewComponent implements OnInit {
   columnsToDisplay = ['car', 'order status', 'owner'];
   expandedElement!: Appointment | null;
   db = firebase.firestore();
+
 
   constructor(
     private appointService: AppointmentServiceService,

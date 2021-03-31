@@ -175,6 +175,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatSortModule,
     MatIconModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
