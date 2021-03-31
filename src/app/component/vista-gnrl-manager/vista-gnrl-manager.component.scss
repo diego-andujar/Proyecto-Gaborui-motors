@@ -38,6 +38,7 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: baseline;
+        height: 100%;
     }
 }
 
@@ -57,13 +58,14 @@
     border-radius: 1em;
     @include tablet {
         // margin-top: 10%;
-        // width: 4%;
+        margin-left: -5%;
+        width: 30%;
     }
     @include small-phone {
         // background-color: beige;
         margin-top: 0%;
         width: 90%;
-        height: 35%;
+        height: 45%;
     }
 }
 
@@ -77,6 +79,17 @@
     align-items: center;
     border: 0.4em solid $secondary-color;
     border-radius: 1em;
+    @include small-phone {
+        // background-color: beige;
+        margin-top: 10%;
+        width: 90%;
+        height: 100%;
+    }
+    @include tablet {
+        margin-top: 0%;
+        width: 60%;
+        height: 80%;
+    }
 }
 
 .img-perfil {
