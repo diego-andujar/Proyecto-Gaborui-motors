@@ -1,7 +1,5 @@
 <div class="datos-manager-wrapper">
-    <div >
-        <app-calendar-manager></app-calendar-manager>
-    </div>
+
     <div>
         <app-vista-gnrl-manager></app-vista-gnrl-manager>
     </div>
@@ -21,35 +19,32 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="table-container">
-        <table mat-table
-            [dataSource]="ordenes" multiTemplateDataRows
-            class="mat-elevation-z8">
+        <table mat-table [dataSource]="ordenes" multiTemplateDataRows class="mat-elevation-z8">
             <ng-container matColumnDef="car">
                 <th mat-header-cell *matHeaderCellDef> Carro </th>
                 <td mat-cell *matCellDef="let element"> {{element.carInfo}} </td>
             </ng-container>
-            
+
             <!-- Weight Column -->
             <ng-container matColumnDef="repair state">
                 <th mat-header-cell *matHeaderCellDef> Estado de la reparacion</th>
                 <td mat-cell *matCellDef="let element"> {{element.orderStatus}} </td>
             </ng-container>
-            
+
             <!-- Symbol Column -->
             <ng-container matColumnDef="mechanic">
                 <th mat-header-cell *matHeaderCellDef> Mecanico </th>
                 <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
             </ng-container>
 
-        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
             <ng-container matColumnDef="expandedDetail">
                 <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-                <div class="example-element-detail"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                    <app-order-manager [app]="element"></app-order-manager>
-                    <!-- <div class="example-element-diagram">
+                    <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        <app-order-manager [app]="element"></app-order-manager>
+                        <!-- <div class="example-element-diagram">
                     <div class="example-element-position"> {{element.estado}} </div>
                     <div class="example-element-symbol"> {{element.estado}} </div>
                     <div class="example-element-name"> {{element.estado}} </div>
@@ -59,20 +54,14 @@
                     {{element.estado}}
                     <span class="example-element-description-attribution"> -- Wikipedia </span> 
                     </div>-->
-                </div>
+                    </div>
                 </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
-                class="example-element-row"
-                [class.example-expanded-row]="expandedElement === element"
-                (click)="expandedElement = expandedElement === element ? null : element">
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row" [class.example-expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element">
             </tr>
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
         </table>
-    </div>  
+    </div>
 </div>
-
-    
-

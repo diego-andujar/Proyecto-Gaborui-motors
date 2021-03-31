@@ -36,7 +36,6 @@
         // background-color: beige;
         flex-direction: column;
         justify-content: space-around;
-        align-items: baseline;
     }
 }
 
@@ -54,16 +53,16 @@
     align-items: center;
     border: 0.4em solid $secondary-color;
     border-radius: 1em;
-    @include tablet {
-        // margin-top: 10%;
-        // width: 4%;
-    }
-    @include small-phone {
-        // background-color: beige;
-        margin-top: 0%;
-        width: 90%;
-        height: 35%;
-    }
+    // @include tablet {
+    //     // margin-top: 10%;
+    //     // width: 4%;
+    // }
+    // @include small-phone {
+    //     // background-color: beige;
+    //     margin-top: 0%;
+    //     width: 90%;
+    //     height: 35%;
+    // }
 }
 
 .li-calendario {
