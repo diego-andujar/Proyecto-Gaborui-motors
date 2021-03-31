@@ -49,6 +49,18 @@ export class CarsService {
     return lista;
   }
 
+  async getUsCarsForManager(id:string): Promise<any[] | void>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    return await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        return doc;
+        //lista.push(doc.data())
+      })
+    })
+    //return lista;
+  }
+
   async getUsCarsNoApp(id:string): Promise<Car[]>{
     const lista: Array<Car> = [];
     const collection = this.db.collection("cars").where("userid", "==", id).where("inAppointment", "==", false).get()

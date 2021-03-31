@@ -22,7 +22,7 @@
         </div>
     </div>
     
-    <div class="table-container">
+    <div class="table-container example-container">
         <table mat-table
             [dataSource]="ordenes" multiTemplateDataRows
             class="mat-elevation-z8">
@@ -72,6 +72,9 @@
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
         </table>
     </div>  
+</div>
+<div>
+    <app-reports-clients></app-reports-clients>
 </div>
 
     

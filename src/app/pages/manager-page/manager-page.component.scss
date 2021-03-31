@@ -5,6 +5,11 @@
   height: 100%;
 }
 
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
 h2{
   font-family: $secondary-font;
   color: $primary-color;
@@ -114,6 +119,7 @@ th {
   font-size: 0.85em;
   text-transform: uppercase;
 }
+
 
 td {
   text-transform: capitalize;

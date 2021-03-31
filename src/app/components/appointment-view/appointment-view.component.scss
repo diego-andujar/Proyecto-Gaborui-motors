@@ -6,6 +6,11 @@
   margin: 5% 0%;
 }
 
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
 .btn{
   background-color: $third-color;
   display: flex;
