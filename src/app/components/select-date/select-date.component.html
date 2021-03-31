@@ -1,0 +1,16 @@
+<form [formGroup]="dayForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
+        <input [matDatepickerFilter]="myFilter" [min]="minDate" 
+        [max]="maxDate"  formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker  #datepicker>
+            <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+        </mat-datepicker>
+    </mat-form-field>
+    <button mat-flat-button (click)="modifyApp(app)">confirmar cambio</button> 
+    <button mat-flat-button (click)="selecDate()">volver</button> 
+</form>

@@ -17,6 +17,11 @@ table {
     width: 100%;
 }
 
+.columna {
+    display: flex;
+    flex: row;
+}
+
 .btn {
     background-color: $third-color;
     display: flex;
@@ -28,6 +33,7 @@ table {
     justify-content: center;
     padding: 2% 0% 4%;
     background-color: $third-color;
+    font-family: $third-font;
 }
 
 mat-paginator {
