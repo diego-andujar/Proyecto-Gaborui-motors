@@ -27,6 +27,7 @@
     list-style: none;
     height: 100%;
     align-items: center;
+    height: 30em;
     // width: 80%;
     // text-align: center;
     @include tablet {
@@ -36,6 +37,7 @@
         // background-color: beige;
         flex-direction: column;
         justify-content: space-around;
+        align-items: baseline;
     }
 }
 
@@ -44,8 +46,8 @@
 }
 
 .li-profile {
-    height: 90%;
-    width: 40%;
+    height: 50%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -53,21 +55,28 @@
     align-items: center;
     border: 0.4em solid $secondary-color;
     border-radius: 1em;
-    // @include tablet {
-    //     // margin-top: 10%;
-    //     // width: 4%;
-    // }
-    // @include small-phone {
-    //     // background-color: beige;
-    //     margin-top: 0%;
-    //     width: 90%;
-    //     height: 35%;
-    // }
+    @include tablet {
+        // margin-top: 10%;
+        // width: 4%;
+    }
+    @include small-phone {
+        // background-color: beige;
+        margin-top: 0%;
+        width: 90%;
+        height: 35%;
+    }
 }
 
 .li-calendario {
-    background-color: green;
-    height: 80%;
+    height: 90%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    line-height: 2em;
+    align-items: center;
+    border: 0.4em solid $secondary-color;
+    border-radius: 1em;
 }
 
 .img-perfil {
