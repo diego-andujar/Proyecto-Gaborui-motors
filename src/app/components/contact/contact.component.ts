@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent  {
 
-  log(x:string){console.log(x); }
+ 
 
 }
