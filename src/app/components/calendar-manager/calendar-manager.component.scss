@@ -10,19 +10,19 @@ full-calendar {
     /* background-color: aquamarine; */
     // height: 50;
     width: 45em;
-    height: 25em;
+    height: 30em;
     padding: 2%;
+    @include tablet {
+        width: 28em;
+        height: 26em;
+        padding: 7%;
+    }
     @include small-phone {
         // background-color: blueviolet;
         width: 15em;
         height: 25em;
         padding: 7%;
         // font-family: 0.1em;
-    }
-    @include tablet {
-        width: 28em;
-        height: 26em;
-        padding: 7%;
     }
 }
 

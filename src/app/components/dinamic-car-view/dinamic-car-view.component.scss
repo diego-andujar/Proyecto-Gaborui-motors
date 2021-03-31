@@ -6,15 +6,22 @@
     width: 100%;
     height: 7%;
     padding-bottom: 2%;
+    // agregue esto porque antes ocupaba el 100% del width
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 
 mat-paginator {
     background-color: $secondary-color;
     font-family: $third-font;
-    font-size: small;
+    font-size: medium;
     display: flex;
     justify-content: center;
     align-items: center;
+    // agregue esto porque antes ocupaba el 100% del width
+    width: 95%;
 }
 
 .button-wrapper {
@@ -70,6 +77,7 @@ mat-grid-list {
 mat-grid-tile {
     border: 2px solid $primary-color;
     height: 20%;
+    // font-family: $primary-font;
 }
 
 .title-wrapper {
