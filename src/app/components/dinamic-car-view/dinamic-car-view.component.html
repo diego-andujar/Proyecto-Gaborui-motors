@@ -121,9 +121,9 @@
                         <div>
                             <div class="span button-wrapper">
                                 <div class="button-container">
-                                <button *ngIf="car.active" class="submit-button" (click)="activateCar(car)">Desactivar Carro</button>
-                                <button *ngIf="!car.active" class="submit-button" (click)="activateCar(car)">Activar Carro</button>
-                            </div>
+                                    <button *ngIf="car.active" class="submit-button" (click)="activateCar(car)">Desactivar Carro</button>
+                                    <button *ngIf="!car.active" class="submit-button" (click)="activateCar(car)">Activar Carro</button>
+                                </div>
                             </div>
                             
                             <div class="span button-wrapper">
@@ -140,10 +140,10 @@
     </ng-container>
     
     </div>
-    <div class="span button-wrapper">
-        <div class="button-container">
-        <button class="submit-button" (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button>
-    </div>
+    <div class="spaning button-wrapper">
+        <div class="button-container button-add-container">
+            <button class="submit-button" (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button>
+        </div>
     </div>
 </div>
 <div *ngIf="crearCarro" class="auth-form form-column">

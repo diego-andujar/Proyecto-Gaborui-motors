@@ -13,6 +13,7 @@ import { CarsService } from 'src/app/services/cars.service';
 import { UsersService } from 'src/app/services/users.service';
 import { PageEvent } from '@angular/material/paginator';
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import firebase from "firebase";
 
 @Component({
   selector: 'app-appointment-dinamic',
@@ -25,6 +26,7 @@ export class AppointmentDinamicComponent implements OnInit {
   nuevaCita: boolean = false;
   @Input() citasInput: Array<Appointment> = [];
   @Input() element!: Appointment;
+  @Input() appointment!: Appointment;
   public elementType = NgxQrcodeElementTypes.URL;
   public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   cars!: Array<Car>;
@@ -43,12 +45,13 @@ export class AppointmentDinamicComponent implements OnInit {
   today = new Date();
   dayForm!: FormGroup;
   authForm!: FormGroup;
-  @Output() sendFormEvent = new EventEmitter();
+  @Output() deleting = new EventEmitter<boolean>(); 
   @Input() isRegister: boolean = false;
   carList: Array<Car> = [];
   selectedValue!: any;
   name: string = "";
   user: any;
+  db = firebase.firestore();
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -209,15 +212,20 @@ export class AppointmentDinamicComponent implements OnInit {
     this.ngOnInit();
   }
 
-  async deleteApp(id: string, car: string){
-    this.carService.carForAppointment(car, false);
-    this.firestoreService.deleteApp(id);
-    alert("!Se elimino su cita con exito!")
+  async deleteApp(app: Appointment){
+    const userIds = app.userid;
+    const value = {
+      inAppointment: false,
+    }
+    this.carService.updateCar(value, app.car!);
+    this.appointService.deleteApp(app.appId!);
     this.getCars();
-    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
+    this.appointService.getUserAppoint(userIds!).then( doc => {
+      console.log(doc)
       this.citas = doc;
     })
-    this.ngOnInit();
+    alert("!Se elimino su cita con exito!")
+    this.deleting.emit(true);
   }
 
 

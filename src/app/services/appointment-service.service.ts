@@ -191,14 +191,12 @@ export class AppointmentServiceService {
   }
 
   async getUserAppoint(userId: string): Promise<Appointment[]>{
-    const lista: Array<Appointment> = [];
-    const collection = this.db.collection("citas").where("userid", "==", userId).get()
-    await collection.then(snapshot => {
-      snapshot.docs.forEach( doc => {
-        lista.push(doc.data())
-      })
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("userid", "==", userId);
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
     })
-    return lista;
   }
     /*.get()
     .then((querySnapshot) =>{
