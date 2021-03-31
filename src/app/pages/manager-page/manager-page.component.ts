@@ -64,6 +64,7 @@ export class ManagerPageComponent implements OnInit {
     if (num === 1){
       this.appService.getEnEsperaApp().then( res => {
         this.ordenes = res;
+        console.log(this.ordenes)
         if (this.ordenes.length < 1){
           this.ordenes.push(null);
           alert("No hay ordenes en espera actualmente")
@@ -91,7 +92,8 @@ export class ManagerPageComponent implements OnInit {
   getAppsOrders(){
     this.appService.getEnEsperaApp().then( res => {
       this.ordenes = res;
-      if (this.ordenes.length < 1){
+      console.log(this.ordenes)
+      if (res.length < 1){
         this.ordenes.push(null);
       }
     })

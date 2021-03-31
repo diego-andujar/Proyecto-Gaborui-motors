@@ -11,7 +11,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatDatepicker } from '@angular/material/datepicker';
-import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode'
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-appointment-view',
@@ -52,6 +53,7 @@ export class AppointmentViewComponent implements OnInit {
   public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   columnsToDisplay = ['car', 'order status', 'owner'];
   expandedElement!: Appointment | null;
+  db = firebase.firestore();
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -92,6 +94,7 @@ export class AppointmentViewComponent implements OnInit {
     if (num === 1){
       this.appointService.getAppSolicitada().then( res => {
         this.citas = res;
+        console.log(this.citas.length)
         if (this.citas.length < 1){
           this.citas.push();
           alert("No hay citas solicitadas actualmente")
@@ -100,6 +103,7 @@ export class AppointmentViewComponent implements OnInit {
     } else if (num === 2){
       this.appointService.getAppPorConfirmar().then( res => {
         this.citas = res;
+        console.log(this.citas[0])
         if (this.citas.length < 1){
           this.citas.push();
           alert("No hay citas por confirmar actualmente")
@@ -108,6 +112,7 @@ export class AppointmentViewComponent implements OnInit {
     } else if (num === 3){
       this.appointService.getAppConfirmada().then( res => {
         this.citas = res;
+        console.log(this.citas[0])
         if (this.citas.length < 1){
           this.citas.push();
           alert("No hay citas confirmadas actualmente")
@@ -173,14 +178,21 @@ export class AppointmentViewComponent implements OnInit {
     return event;
   }
 
-  aceptApp(cita: Appointment){
+  async aceptApp(cita: Appointment){
     const estado = {estado: "por confirmar"};
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
-    this.appointService.getAppSolicitada().then( res => {
-      this.citas = res;
-      if (this.citas.length < 1){
-        this.citas.push();
-      }
+    const user = await this.db.collection("users").doc(cita.userid).get();
+    const email = user.data()!.email;
+    const name = user.data()!.name;
+    const values = {
+      to_name: name,
+      client_email: email,
+    }
+    emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
     });
   }
 
