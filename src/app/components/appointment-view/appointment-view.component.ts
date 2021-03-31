@@ -86,7 +86,6 @@ export class AppointmentViewComponent implements OnInit {
 
   selecDate(){
     this.cambiarFecha = !this.cambiarFecha;
-    
   }
 
   createForm(): void {
@@ -206,6 +205,18 @@ export class AppointmentViewComponent implements OnInit {
     }, function(error) {
         console.log('FAILED...', error);
     });*/
+  }
+
+  onResponse(response: string | boolean){
+    if (response != null){
+      this.selecDate();
+    }
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   aceptAppClient(cita: Appointment){

@@ -81,6 +81,7 @@ import { CarFormComponent } from './components/car-form/car-form.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OrderManagerComponent } from './components/order-manager/order-manager.component';
 import { CalendarManagerComponent } from './components/calendar-manager/calendar-manager.component';
+import { SelectDateComponent } from './components/select-date/select-date.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -135,6 +136,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CarFormComponent,
     OrderManagerComponent,
     CalendarManagerComponent,
+    SelectDateComponent,
   ],
   imports: [
     MatCardModule,

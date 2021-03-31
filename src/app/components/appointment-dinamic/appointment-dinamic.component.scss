@@ -6,6 +6,11 @@ table {
   width: 100%;
 }
 
+.columna {
+  display: flex;
+  flex: row;
+}
+
 
 .btn{
   background-color: $third-color;
@@ -18,14 +23,15 @@ table {
   justify-content: center;
   padding: 2% 0% 4%;
   background-color: $third-color;
+  font-family: $third-font;
 }
 
 mat-paginator{
   background-color: $third-color;
 }
-  
+
 mat-card {
-  width: 80%;
+  width: 100%;
   justify-content: center;
   border-radius: 0px 0px 5px 5px;
   background-color: white;
