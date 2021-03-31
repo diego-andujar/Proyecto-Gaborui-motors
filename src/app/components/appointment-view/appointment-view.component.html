@@ -86,8 +86,8 @@
                                                     </mat-datepicker-actions>
                                                 </mat-datepicker>
                                             </mat-form-field>
-                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyApp(appointment)">confirmar cambio</button>
-                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button>
+                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyApp(appointment)" class="aceptar">Confirmar cambio</button>
+                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()" class="rechazar">Volver</button>
                                         </form>
                                     </mat-card-actions>
                                 </div>
@@ -108,8 +108,8 @@
                                                     </mat-datepicker-actions>
                                                 </mat-datepicker>
                                             </mat-form-field>
-                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyAppClient(appointment)">confirmar cambio</button>
-                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button>
+                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyAppClient(appointment)" class="aceptar">Confirmar cambio</button>
+                                            <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()" class="rechazar">Volver</button>
                                         </form>
                                     </mat-card-actions>
                                 </div>
