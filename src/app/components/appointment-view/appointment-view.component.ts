@@ -95,6 +95,12 @@ export class AppointmentViewComponent implements OnInit {
     });
   }
 
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
+
   getAppsToShow(num: number){
     if (num === 1){
       this.appointService.getAppSolicitada().then( res => {
@@ -184,8 +190,9 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   async aceptApp(cita: Appointment){
+    console.log(cita)
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     const user = await this.db.collection("users").doc(cita.userid).get();
     const email = user.data()!.email;
     const name = user.data()!.name;
@@ -193,17 +200,17 @@ export class AppointmentViewComponent implements OnInit {
       to_name: name,
       client_email: email,
     }
-    emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+    /*emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
         console.log('FAILED...', error);
-    });
+    });*/
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.appointService.getAppSolicitada().then( res => {
       this.citas = res;
       if (this.citas.length < 1){
@@ -218,8 +225,8 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(date, cita.appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.dayForm.reset();
     this.selecDate();
     this.appointService.getAppSolicitada().then( res => {
@@ -236,8 +243,8 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "solicitada"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(date, cita.appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.dayForm.reset();
     this.selecDate();
     this.appointService.getAppSolicitada().then( res => {
