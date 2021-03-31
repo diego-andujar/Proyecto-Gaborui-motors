@@ -2,9 +2,7 @@
 @import "../../../styles/components/car-view.scss";
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
-
-
-.paginator{
+.paginator {
     width: 100%;
     height: 7%;
     padding-bottom: 2%;
@@ -49,7 +47,7 @@ h2 {
     height: 90%;
 }
 
-.boton-crear{
+.boton-crear {
     display: flex;
     justify-content: center;
 }
@@ -74,16 +72,15 @@ mat-grid-tile {
     height: 20%;
 }
 
-
 .title-wrapper {
     text-align: center;
+    font-family: $primary-font;
 }
 
 .grid-flex {
     width: 100%;
     height: auto;
 }
-
 
 .image {
     width: 100%;
@@ -99,11 +96,10 @@ mat-grid-tile {
     border: 2px solid $primary-color;
     padding: 1% 0%;
     margin: 0%;
-
+    font-family: $primary-font;
     &.longer {
         height: 40%;
         padding-bottom: 2%;
-        
     }
 }
 
