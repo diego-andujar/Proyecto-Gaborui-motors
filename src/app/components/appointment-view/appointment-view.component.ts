@@ -1,3 +1,4 @@
+import { NgxMaterialTimepickerComponent } from 'ngx-material-timepicker';
 import { element } from 'protractor';
 import { UsersService } from 'src/app/services/users.service';
 import { CarsService } from 'src/app/services/cars.service';
@@ -11,7 +12,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatDatepicker } from '@angular/material/datepicker';
-import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode'
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-appointment-view',
@@ -28,6 +31,8 @@ import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiedi
 
 export class AppointmentViewComponent implements OnInit {
 
+  @Input()
+  ngxTimepicker!: NgxMaterialTimepickerComponent; 
   citas!: Array<any>;
   @Input() citasInput: Array<Appointment> = [];
   cars!: Array<Car>;
@@ -52,6 +57,8 @@ export class AppointmentViewComponent implements OnInit {
   public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   columnsToDisplay = ['car', 'order status', 'owner'];
   expandedElement!: Appointment | null;
+  db = firebase.firestore();
+
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -88,10 +95,17 @@ export class AppointmentViewComponent implements OnInit {
     });
   }
 
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
+
   getAppsToShow(num: number){
     if (num === 1){
       this.appointService.getAppSolicitada().then( res => {
         this.citas = res;
+        console.log(this.citas.length)
         if (this.citas.length < 1){
           this.citas.push();
           alert("No hay citas solicitadas actualmente")
@@ -100,6 +114,7 @@ export class AppointmentViewComponent implements OnInit {
     } else if (num === 2){
       this.appointService.getAppPorConfirmar().then( res => {
         this.citas = res;
+        console.log(this.citas[0])
         if (this.citas.length < 1){
           this.citas.push();
           alert("No hay citas por confirmar actualmente")
@@ -108,6 +123,7 @@ export class AppointmentViewComponent implements OnInit {
     } else if (num === 3){
       this.appointService.getAppConfirmada().then( res => {
         this.citas = res;
+        console.log(this.citas[0])
         if (this.citas.length < 1){
           this.citas.push();
           alert("No hay citas confirmadas actualmente")
@@ -173,20 +189,28 @@ export class AppointmentViewComponent implements OnInit {
     return event;
   }
 
-  aceptApp(cita: Appointment){
+  async aceptApp(cita: Appointment){
+    console.log(cita)
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
-    this.appointService.getAppSolicitada().then( res => {
-      this.citas = res;
-      if (this.citas.length < 1){
-        this.citas.push();
-      }
-    });
+    this.appointService.updateDoc(estado, cita.appId!);
+    const user = await this.db.collection("users").doc(cita.userid).get();
+    const email = user.data()!.email;
+    const name = user.data()!.name;
+    const values = {
+      to_name: name,
+      client_email: email,
+    }
+    /*emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
+    });*/
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.appointService.getAppSolicitada().then( res => {
       this.citas = res;
       if (this.citas.length < 1){
@@ -201,8 +225,8 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(date, cita.appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.dayForm.reset();
     this.selecDate();
     this.appointService.getAppSolicitada().then( res => {
@@ -219,8 +243,8 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "solicitada"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(date, cita.appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.dayForm.reset();
     this.selecDate();
     this.appointService.getAppSolicitada().then( res => {
