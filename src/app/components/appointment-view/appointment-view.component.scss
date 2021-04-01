@@ -72,6 +72,12 @@ mat-paginator {
     background-color: $third-color;
 }
 
+.pruebatablecontainer {
+    overflow-x: auto;
+    width: 100%;
+    // background-color: yellow;
+}
+
 
 /* 
 mat-card {

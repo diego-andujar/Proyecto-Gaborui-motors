@@ -83,6 +83,7 @@ import { OrderManagerComponent } from './components/order-manager/order-manager.
 import { CalendarManagerComponent } from './components/calendar-manager/calendar-manager.component';
 import { XdComponent } from './components/xd/xd.component';
 import { SelectDateComponent } from './components/select-date/select-date.component';
+// import { EmailJSResponseStatus } from 'emailjs-com';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -181,6 +182,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    
+    // EmailJSResponseStatus
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

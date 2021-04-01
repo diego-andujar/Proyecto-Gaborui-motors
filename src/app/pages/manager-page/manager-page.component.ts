@@ -26,7 +26,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class ManagerPageComponent implements OnInit {
 
-  columnsToDisplay = ['car', 'repair state', 'mechanic'];
+  columnsToDisplay = ['car', 'mechanic'];
   expandedElement!: Appointment | null;
   selectedValue!: string;
   selectedCar!: string;
