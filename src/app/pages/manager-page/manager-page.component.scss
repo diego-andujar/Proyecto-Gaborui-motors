@@ -41,8 +41,8 @@
         }
         @include ipad-pro {
             height: 8%;
+            // flex-direction: row;
         }
-        // flex-direction: row;
         // justify-content: space-around;
         // align-items: flex-end;
     }
