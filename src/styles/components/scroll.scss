@@ -1,0 +1,26 @@
+@import "../Lib/variables.scss";
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: white;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: $secondary-color;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: $secondary-color;
+}
