@@ -75,6 +75,8 @@ mat-paginator {
 .pruebatablecontainer {
     overflow-x: auto;
     width: 100%;
+    display: flex;
+    justify-content: center;
     // background-color: yellow;
 }
 
