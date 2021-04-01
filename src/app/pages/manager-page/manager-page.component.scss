@@ -6,6 +6,11 @@
         height: 100%;
     }
     
+    .example-container {
+        height: 68vh;
+        overflow: auto;
+    }
+    
     h2 {
         font-family: $secondary-font;
         color: $primary-color;

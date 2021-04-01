@@ -84,6 +84,9 @@ import { CalendarManagerComponent } from './components/calendar-manager/calendar
 import { XdComponent } from './components/xd/xd.component';
 import { SelectDateComponent } from './components/select-date/select-date.component';
 // import { EmailJSResponseStatus } from 'emailjs-com';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ReportsClientsComponent } from './components/reports-clients/reports-clients.component';
+import { ManagerClientViewComponent } from './components/manager-client-view/manager-client-view.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -140,6 +143,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendarManagerComponent,
     XdComponent,
     SelectDateComponent,
+    ReportsClientsComponent,
+    ManagerClientViewComponent,
   ],
   imports: [
     MatCardModule,
@@ -184,6 +189,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatNativeDateModule,
     
     // EmailJSResponseStatus
+    ScrollingModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

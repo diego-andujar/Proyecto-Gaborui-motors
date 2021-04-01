@@ -14,6 +14,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { PageEvent } from '@angular/material/paginator';
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import firebase from "firebase";
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-appointment-dinamic',
@@ -52,7 +53,8 @@ export class AppointmentDinamicComponent implements OnInit {
   name: string = "";
   user: any;
   db = firebase.firestore();
-  @Output() sendFormEvent=new EventEmitter();
+  @Output() sendFormEvent = new EventEmitter();
+
   constructor(
     private appointService: AppointmentServiceService,
     private authService: AuthService,
@@ -67,7 +69,6 @@ export class AppointmentDinamicComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.element)
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
     this.name = (JSON.parse(localStorage.getItem("CurrentUser") || "{}")).name;
@@ -164,12 +165,12 @@ export class AppointmentDinamicComponent implements OnInit {
       to_name: name,
       client_email: email,
     }
-    /*emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+    emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
         console.log('FAILED...', error);
-    });*/
+    });
   }
 
   aceptAppClient(cita: Appointment){

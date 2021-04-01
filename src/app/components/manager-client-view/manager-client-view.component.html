@@ -1,0 +1,130 @@
+<!-- <div class="car-view">
+    
+        <div class="grid-wrapper">
+                    <div class="image-wrapper">
+                        <img class="image" src="https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png" alt="">
+                        <div class="title-wrapper">
+                            <span>usuario dueño</span>
+                            <h2>Javier Fuenmayor</h2>
+                            <h2>{{user.name}}</h2>
+                        </div>
+                    </div>
+        </div>
+</div> -->
+
+
+<div class="form-container">
+    <div class="auth-form-wrapper">
+        <div class="photo">
+            
+            <img [src]=" 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'"    
+              />
+        </div>
+        <form [formGroup]="authForm">   
+        <div class="wrapper">
+            <div class="input-container">
+                <label class="auth-label" for="displayName">Nombre Completo</label>
+                <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="name"
+                    class="auth-input"
+                    readonly
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="email">Correo Electronico</label>
+                <input
+                readonly
+                type="email"
+                id="email"
+                formControlName="email"
+                class="auth-input correo"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="displayName">Fecha de Nacimiento</label>
+                <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="birthDate"
+                    class="auth-input"
+                    readonly
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">cedula </label>
+                <input
+                    type="number"
+                    id="displayName"
+                    formControlName="cedula"
+                    class="auth-input"
+                    readonly
+                />
+            </div>
+            <div class="input-container" >
+                <label class="auth-label" for="displayName">numero de telefono </label>
+                <input
+                    readonly
+                    type="number"
+                    id="displaName"
+                    formControlName="phone"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container">
+                    <label class="auth-label" for="displayName">genero </label>
+                    <input
+                    type="text"
+                    id="displName"
+                    formControlName="genero"
+                    class="auth-input"
+                    readonly
+                    />
+                
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">direccion</label>
+                <input
+                    type="text"
+                    id="passwor"
+                    formControlName="direccion"
+                    class="auth-input"
+                    readonly
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">ciudad</label>
+                <input
+                    type="text"
+                    id="passwor"
+                    class="auth-input"
+                    readonly
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">estado</label>
+                <input
+                    readonly
+                    type="text"
+                    id="passwo"
+                    formControlName="estado"
+                    class="auth-input"
+                />
+            </div>
+            <div class="input-container">
+                <label class="auth-label" for="password">codigo postal</label>
+                <input
+                    type="number"
+                    id="passw"
+                    formControlName="postal"
+                    class="auth-input"
+                    readonly
+                />
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+    
+
