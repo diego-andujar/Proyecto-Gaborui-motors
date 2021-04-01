@@ -118,26 +118,29 @@
         <mat-card-title>{{element.userName}}</mat-card-title>
         <mat-card-subtitle>{{element.carInfo}} </mat-card-subtitle>
         <mat-card-content class="container-info">
-            <div class="columna">
-                <div>
-                    <img class="car-image" src={{element.carPhoto}} alt="">
-                </div>
-                <div>
-                    <ul>
-                        <li>Fecha Solicitada: {{element.dateCreated}}</li>
-                        <li>Fecha Propuesta: {{element.date}}</li>
-                        <li>Estado de la cita: {{element.estado}}</li>
-                    </ul>
-                </div>
-                <div class="font">
-                    <div class="example-element-description">
-                        <span class="example-element-description-attribution"> Motivo de la cita -- </span> {{element.diagnosis}}
+            <div class="fila">
+
+                <div class="columna">
+                    <div>
+                        <img class="car-image" src={{element.carPhoto}} alt="">
                     </div>
+                    <div>
+                        <ul>
+                            <li>Fecha Solicitada: {{element.dateCreated}}</li>
+                            <li>Fecha Propuesta: {{element.date}}</li>
+                            <li>Estado de la cita: {{element.estado}}</li>
+                        </ul>
+                    </div>
+                    <div class="font">
+                        <div class="example-element-description">
+                            <span class="example-element-description-attribution"> Motivo de la cita -- </span> {{element.diagnosis}}
+                        </div>
+                    </div>
+                    <!-- <div class="container" *ngIf="element.estado === 'confirmada'">
+                        <h3 class="font">QRCode de la cita</h3>
+                    </div> -->
                 </div>
-                <div class="container" *ngIf="element.estado === 'confirmada'">
-                    <h3 class="font">QRCode de la cita</h3>
-                </div>
-                <div *ngIf="element.estado === 'confirmada'">
+                <div class="divqrdescargar" *ngIf="element.estado === 'confirmada'">
                     <div class="grandeqr">
                         <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" value={{element.appId}} cssClass="coolQRCode">
                         </ngx-qrcode>

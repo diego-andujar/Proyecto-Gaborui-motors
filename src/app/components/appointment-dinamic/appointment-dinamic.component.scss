@@ -125,6 +125,11 @@ tr.example-element-row:not(.example-expanded-row):active {
     align-items: center;
 }
 
+.fila {
+    // display: flex;
+    // justify-content: center;
+}
+
 .button-wrapper {
     width: 100%;
     height: 12%;
@@ -140,9 +145,17 @@ mat-form-field {
     width: 75%;
 }
 
-div {
+.centro {
+    display: flex;
+    align-items: center;
+}
+
+.divqrdescargar {
+    // background-color: yellow;
     padding: 0%;
     margin: 0%;
+    display: flex;
+    justify-content: center;
 }
 
 .auth-form-wrapper {

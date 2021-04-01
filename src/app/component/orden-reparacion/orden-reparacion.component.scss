@@ -262,6 +262,9 @@ textarea {
     margin-top: 1%;
     font-family: $primary-font;
     word-spacing: 50%;
+    @include small-phone {
+        overflow-x: auto;
+    }
 }
 
 .scanner-image {
