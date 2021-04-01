@@ -87,6 +87,8 @@ import { ReportsClientsComponent } from './components/reports-clients/reports-cl
 import { ManagerClientViewComponent } from './components/manager-client-view/manager-client-view.component';
 import { QrGeneratorComponent } from './components/qr-generator/qr-generator.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { ManagerMechanicViewComponent } from './components/manager-mechanic-view/manager-mechanic-view.component';
+import { SelectMechanicComponent } from './components/select-mechanic/select-mechanic.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -145,6 +147,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ReportsClientsComponent,
     ManagerClientViewComponent,
     QrGeneratorComponent,
+    ManagerMechanicViewComponent,
+    SelectMechanicComponent,
   ],
   imports: [
     MatCardModule,

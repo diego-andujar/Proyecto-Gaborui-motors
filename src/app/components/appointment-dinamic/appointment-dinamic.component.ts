@@ -54,6 +54,7 @@ export class AppointmentDinamicComponent implements OnInit {
   user: any;
   db = firebase.firestore();
   @Output() sendFormEvent = new EventEmitter();
+  selectMechanic: boolean = false;
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -114,6 +115,10 @@ export class AppointmentDinamicComponent implements OnInit {
           }
         })
  }*/
+
+  onSubmited(bool: boolean){
+    this.selectMechanic = true;
+  }
 
   getCars(){
     this.carService.getUsCarsNoApp(this.user.uid).then( doc => {

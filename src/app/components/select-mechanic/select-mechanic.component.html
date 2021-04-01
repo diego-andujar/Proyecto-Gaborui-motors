@@ -1,0 +1,18 @@
+<form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
+    <div class="wrappers">
+        <div class="inp">
+            <mat-label class="auth-label">asigne un mecanico</mat-label>
+            <mat-select formControlName="selectedMechanic" [(ngModel)]="selectedValue" name="car">
+            <mat-option  *ngFor="let user of mechanics" [value]="user">
+                {{user.name}}  {{user.phoneNumber}} {{user.email}} {{user.cedula}}
+            </mat-option>
+            </mat-select>
+        </div>
+    </div>
+    <div class="button-wrapper">
+      <div class="button-container">
+          <button type="submit" class="submit-button">asignar Mecanico</button>
+          <button type="submit">volver</button>
+      </div>
+    </div>
+</form>

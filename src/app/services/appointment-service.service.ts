@@ -158,6 +158,15 @@ export class AppointmentServiceService {
     })
   }
 
+  getAppEnCurso(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "confirmada").orderBy('date', 'asc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
   /*getCerradaApp(): Promise<any[]>{
     const collectio = this.db.collection("citas");
     let query = collectio.where("orderStatus", "==", "cerrada");

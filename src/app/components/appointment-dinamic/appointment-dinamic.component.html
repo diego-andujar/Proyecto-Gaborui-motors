@@ -155,7 +155,10 @@
                         <div class="centro">
                             <button (click)="downloadQRCode(element)">Descarga el codigo QR</button>
                         </div>-->
-                        <app-qr-generator [element]="element.appId"></app-qr-generator>
+                        <app-qr-generator [element]="element.appId!"></app-qr-generator>
+                    </div>
+                    <div>
+                        <app-select-mechanic (submited)="onSubmited($event)"></app-select-mechanic>
                     </div>
                 </div>
             </div>
