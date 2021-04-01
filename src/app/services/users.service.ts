@@ -152,6 +152,44 @@ export class UsersService {
     return userList;
     
   }
+
+  async getClientUserr():Promise<User[]>{
+    const userList: User[]=[];
+    await this.db.collection("users").where("rol.client","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId")
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+
+  async getClientUserForManager(): Promise<any[] | void>{
+    const collection = this.db.collection("users").where("rol.client", "==", true).get()
+    return await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        return doc;
+        //lista.push(doc.data())
+      })
+    });
+    
+  }
+
   getMechanicUser():User[]{
     const userList: User[]=[];
     this.db.collection("users").where("rol.mechanic","==",true).get().then(
