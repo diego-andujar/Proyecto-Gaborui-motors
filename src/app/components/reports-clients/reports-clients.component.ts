@@ -30,25 +30,21 @@ export class ReportsClientsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
     this.userService.getClientUserr().then( doc => {
       this.usuarios = doc;
     });
     console.log("hola")
   }
 
-  async fillList(){
-    await this.userService.getClientUserForManager().then( doc => {
-      console.log(doc as Array<User>)
-      this.usuarios = doc;
-    })
-  }
-
   changeList(num: number){
     if (num === 0){
-      this.usuarios = this.userService.getClientUser();
+      this.userService.getClientUserr().then( doc => {
+        this.usuarios = doc;
+      });
     } else if (num == 1) {
-      this.usuarios = this.userService.getMechanicUser();
+      this.userService.getMechanicUserr().then( doc => {
+        this.usuarios = doc;
+      });
     }
   }
 
