@@ -23,9 +23,9 @@ export class CarQueueComponent implements OnInit {
   constructor(private carsService: CarsService) { }
 
   ngOnInit(): void {
-    this.carsService.getUsCarsForManager(this.user.id!).then( doc => {
+    /*this.carsService.getUsCarsForManager(this.user.id!).then( doc => {
       this.carList = doc as Array<Car>;
-    })
+    })*/
     this.cars = this.carsService.getAllCars();
   }
 

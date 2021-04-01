@@ -146,15 +146,16 @@
                 </div>
                 <div *ngIf="element.estado === 'confirmada'">
                     <div class="grandeqr">
-                        <ngx-qrcode
+                        <!--<ngx-qrcode
                             [elementType]="elementType"
                             [errorCorrectionLevel]="correctionLevel"
                             value={{element.appId}}
                             cssClass="coolQRCode">
                         </ngx-qrcode>
-                    </div>
-                    <div class="centro">
-                        <button (click)="downloadQRCode(element)">Descarga el codigo QR</button>
+                        <div class="centro">
+                            <button (click)="downloadQRCode(element)">Descarga el codigo QR</button>
+                        </div>-->
+                        <app-qr-generator [element]="element.appId"></app-qr-generator>
                     </div>
                 </div>
             </div>

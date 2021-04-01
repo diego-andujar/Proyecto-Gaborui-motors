@@ -1,7 +1,12 @@
 @import "../../../styles/components/car-view.scss";
 @import "../../../styles/components/buttons.scss";
+@import "../../components/appointment-dinamic/appointment-dinamic.component.scss";
 
 
+.grid-wrapper {
+    width: 97%;
+}
+/*
 .button-wrapper {
     width: 80em;
 }
@@ -15,11 +20,6 @@ mat-grid-list {
     height: 90%;
     width: 95%;
     margin-left: 4%;
-}
-
-.grid-wrapper {
-    width: 95%;
-    height: 50%;
 }
 
 .title-wrapper {
@@ -111,4 +111,4 @@ mat-grid-tile {
     height: 90%;
     padding: 0%;
     margin: 0%;
-}
+}*/

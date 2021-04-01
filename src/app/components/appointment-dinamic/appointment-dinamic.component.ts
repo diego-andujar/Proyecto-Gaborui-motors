@@ -96,7 +96,7 @@ export class AppointmentDinamicComponent implements OnInit {
     }
   }
 
-  downloadQRCode(appointment: Appointment) {
+  /*downloadQRCode(appointment: Appointment) {
     const fileNameToDownload = 'cita#' + appointment.appId;
     const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
     fetch(base64Img)
@@ -113,7 +113,7 @@ export class AppointmentDinamicComponent implements OnInit {
               link.click();
           }
         })
- }
+ }*/
 
   getCars(){
     this.carService.getUsCarsNoApp(this.user.uid).then( doc => {

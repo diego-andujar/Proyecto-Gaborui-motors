@@ -20,6 +20,7 @@ export class ManagerClientViewComponent implements OnInit {
   lowValue: number = 0;
   highValue: number = 1;
   authForm!: FormGroup;
+  verCarros = false;
 
   constructor(
     private carService: CarsService,
@@ -32,6 +33,7 @@ export class ManagerClientViewComponent implements OnInit {
       console.log(doc)
       this.carList.push(doc as Car);
     })*/
+    //this.getCars();
   }
 
   createForm(): void {
@@ -47,6 +49,13 @@ export class ManagerClientViewComponent implements OnInit {
       estado: this.user.state,
       postal: this.user.postalCode,
     });
+  }
+
+  async getCars(){
+    this.verCarros = true;
+    await this.carService.getUsCars(this.user.id!).then( doc => {
+      this.carList = doc;
+    })
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {

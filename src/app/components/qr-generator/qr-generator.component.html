@@ -1,0 +1,15 @@
+<div class="grandeqr">
+    <!--<a href="url" download>
+        <qrcode
+            qrc-element-type=“img”
+            [errorCorrectionLevel]="correctionLevel"
+            value={{element}}
+            cssClass="coolQRCode">
+        </qrcode>
+    </a>-->
+    <qrcode #qrcode [qrdata]="element" [width]="200" elementType="img" [errorCorrectionLevel]="'M'"></qrcode>
+    <a [href]="link" download><button class="btn btn-block" (click)="dlDataUrlBin()">Descargar</button></a>
+    <!--<div class="centro">
+        <button (click)="downloadQRCode()">Descarga el codigo QR</button>
+    </div>-->
+</div>
