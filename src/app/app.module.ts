@@ -89,6 +89,9 @@ import { QrGeneratorComponent } from './components/qr-generator/qr-generator.com
 import { QRCodeModule } from 'angularx-qrcode';
 import { ManagerMechanicViewComponent } from './components/manager-mechanic-view/manager-mechanic-view.component';
 import { SelectMechanicComponent } from './components/select-mechanic/select-mechanic.component';
+import { MechanicCarImagesComponent } from './components/mechanic-car-images/mechanic-car-images.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -149,6 +152,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     QrGeneratorComponent,
     ManagerMechanicViewComponent,
     SelectMechanicComponent,
+    MechanicCarImagesComponent,
   ],
   imports: [
     MatCardModule,
@@ -193,6 +197,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatNativeDateModule,
     ScrollingModule,
     QRCodeModule,
+    IvyCarouselModule,
+    CarouselModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
