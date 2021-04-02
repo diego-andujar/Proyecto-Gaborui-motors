@@ -3,6 +3,7 @@
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
 @import "../client-form/client-form.component.scss";
+@import "../../../styles/Lib/mixins.scss";
 .paginator {
     width: 100%;
     height: 7%;
@@ -70,6 +71,15 @@ mat-paginator {
     width: 80em;
 }
 
+.añadir-vehiculo-div {
+    @include tablet {
+        // background-color: chocolate;
+        display: flex;
+        justify-content: center;
+        // background-color: beige;
+    }
+}
+
 .auth-label {
     padding: 0%;
     margin: 2%;
@@ -87,6 +97,9 @@ h2 {
     height: 98%;
     display: flex;
     flex-direction: column;
+    @include tablet {
+        // height: 60%;
+    }
 }
 
 .ngcont {
@@ -94,6 +107,12 @@ h2 {
     justify-content: center;
     align-items: center;
     height: 90%;
+    @include tablet {
+        background-color: white;
+        /* height: 30%; */
+        height: 50%;
+        margin-top: 5%;
+    }
 }
 
 .boton-crear {
@@ -114,12 +133,23 @@ mat-grid-list {
     height: auto;
     width: 94%;
     height: auto;
+    @include tablet {
+        // background-color: yellow;
+        height: 50%;
+        display: flex;
+        align-items: baseline;
+    }
 }
 
 mat-grid-tile {
     border: 2px solid $primary-color;
     height: 20%;
     // font-family: $primary-font;
+    @include tablet {
+        // background-color: red;
+        height: 55%;
+        // height: 100%;
+    }
 }
 
 .title-wrapper {
@@ -130,8 +160,17 @@ mat-grid-tile {
 .grid-flex {
     width: 100%;
     height: auto;
+    @include tablet {
+        width: 90%;
+        // background-color: yellow;
+        height: 90%;
+    }
 }
 
+// .holis {
+//     background-color: blueviolet;
+//     width: 40px;
+// }
 .image {
     width: 100%;
     border-radius: 1%;

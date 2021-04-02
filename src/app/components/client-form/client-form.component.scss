@@ -113,7 +113,8 @@
         text-transform: uppercase;
     }
     
-    // .auth-input {}
+    .auth-input {}
+    
     @import "../../../styles/Lib/variables.scss";
     @import "../../../styles/Lib/mixins.scss";
     form {
@@ -173,6 +174,11 @@
         margin-left: auto;
         margin-right: auto;
         border-radius: 5px;
+        @include tablet {
+            // background-color: red;
+            overflow-x: auto;
+            margin-top: 20%;
+        }
         /* background-color: #F9F9F9;*/
     }
     
@@ -181,6 +187,9 @@
         color: $primary-color;
         letter-spacing: 0.6px;
         text-transform: uppercase;
+        @include tablet {
+            font-size: 0.8em;
+        }
     }
     
     .auth-input {
@@ -194,9 +203,18 @@
         text-transform: capitalize;
         &.correo {
             text-transform: lowercase;
+            @include tablet {
+                font-family: 0.1em;
+            }
         }
         &.active {
             background-color: rgb(237, 249, 250);
+        }
+        @include tablet {
+            width: 12em;
+            background-color: white;
+            font-family: 0.1em;
+            overflow-x: auto;
         }
     }
     
