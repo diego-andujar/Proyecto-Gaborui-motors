@@ -119,6 +119,10 @@
     @import "../../../styles/Lib/mixins.scss";
     form {
         padding: 0px;
+        @include small-phone {
+            background-color: aqua;
+            width: 100%;
+        }
     }
     
     input {
@@ -160,6 +164,12 @@
         margin: 0px;
         padding: 0px;
         height: 100%;
+        @include small-phone {
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
     }
     
     .auth-form-wrapper {
@@ -178,6 +188,13 @@
             // background-color: red;
             overflow-x: auto;
             margin-top: 20%;
+        }
+        @include small-phone {
+            overflow-x: auto;
+            margin-top: 30%;
+            display: flex;
+            flex-direction: column;
+            max-height: 500px;
         }
         /* background-color: #F9F9F9;*/
     }
@@ -216,6 +233,11 @@
             font-family: 0.1em;
             overflow-x: auto;
         }
+        @include small-phone {
+            width: 9em;
+            margin-left: 0.5em;
+            background-color: brown;
+        }
     }
     
     .input {
@@ -227,13 +249,16 @@
         justify-content: space-between;
         width: 40%;
         padding: 0px 5%;
+        @include small-phone {
+            width: 90%;
+        }
     }
     
     .form-container {
         width: 100%;
         @include small-phone {
-            background-color: yellow;
-            width: 200%;
+            // width: 100%;
+            // overflow-x: auto;
         }
     }
     
