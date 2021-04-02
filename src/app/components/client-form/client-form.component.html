@@ -14,13 +14,8 @@
                 <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)">
                 <input #imageUser type="hidden" [value]="urlImage | async">
             </div>
-            <div class="progress" *ngIf="subirFoto">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'">
-
-                </div>
-            </div>
             <button *ngIf="!subirFoto" id="boton-editar" (click)="subirFoto = true">subir foto</button>
-            <button *ngIf="urlImage | async; else btnDisable" id="boton-editar" (click)="uploadImg()">cargar foto</button>
+            <button *ngIf="subirFoto && ( urlImage | async ); else btnDisable" id="boton-editar" (click)="uploadImg()">cargar foto</button>
             <ng-template #btnDisable >
                 <button *ngIf="subirFoto" disabled=true id="boton-editar" disabled=true >cargar foto</button>
             </ng-template>

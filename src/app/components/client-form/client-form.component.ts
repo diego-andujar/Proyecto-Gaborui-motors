@@ -80,8 +80,8 @@ export class ClientFormComponent implements OnInit {
       this.urlImage = ref.getDownloadURL())).subscribe();
   }
 
-  uploadImg(){
-    this.user.updateProfile({
+  async uploadImg(){
+    await this.user.updateProfile({
       photoURL: this.inputImageUser.nativeElement.value,
     }).then(() => {
       this.subirFoto = false;

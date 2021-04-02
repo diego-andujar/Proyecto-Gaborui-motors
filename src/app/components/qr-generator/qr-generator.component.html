@@ -8,7 +8,10 @@
         </qrcode>
     </a>-->
     <qrcode #qrcode [qrdata]="element" [width]="200" elementType="img" [errorCorrectionLevel]="'M'"></qrcode>
-    <a [href]="link" download><button class="btn btn-block" (click)="dlDataUrlBin()">Descargar</button></a>
+    <div class="btn-block">
+        <a [href]="link" download><button mat-raised-button  color="primary" (click)="dlDataUrlBin()">Descargar</button></a>
+    </div>
+    
     <!--<div class="centro">
         <button (click)="downloadQRCode()">Descarga el codigo QR</button>
     </div>-->

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Car } from 'src/app/models/car';
 import { CarsService } from 'src/app/services/cars.service';
@@ -6,6 +6,9 @@ import firebase from "firebase";
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dinamic-car-view',
@@ -15,6 +18,7 @@ import { DatePipe } from '@angular/common';
 export class DinamicCarViewComponent implements OnInit {
 
   verSolicitud = false;
+  photo!: any;
   editarCarro = false;
   name = JSON.parse(localStorage.getItem("CurrentUser")!).name;
   crearCarro: boolean = false;
@@ -70,7 +74,13 @@ export class DinamicCarViewComponent implements OnInit {
   carForm!: FormGroup;
   today = new Date();
 
+  uploadPercent!: Observable<number | undefined>;
+  urlImage!: Observable<string>;
+  @ViewChild("imageUser") inputImageUser!: ElementRef;
+  subirFoto = false;
+
   constructor(
+    private storage: AngularFireStorage,
     private fb: FormBuilder,
     private datePipe : DatePipe,
     private authService: AuthService,
@@ -85,6 +95,28 @@ export class DinamicCarViewComponent implements OnInit {
       })
     })
     this.buildForm()
+  }
+
+  onUpload(pic: any){
+    //console.log(pic.target.files[0])
+    const id = Math.random().toString(36).substring(2);
+    const file = pic.target.files[0];
+    const filePath = `uploads/profile_${id}`;
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe( finalize (() => 
+      this.urlImage = ref.getDownloadURL())).subscribe();
+  }
+
+  uploadImg(car: Car){
+    this.photo = this.inputImageUser.nativeElement.value;
+    const data = {
+      photo: this.inputImageUser.nativeElement.value,
+    }
+    this.carService.updateCar(data, car.carId!).then(() => {
+      this.subirFoto = false;
+    })
   }
 
   buildForm(): void {
