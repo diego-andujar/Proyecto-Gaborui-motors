@@ -23,7 +23,7 @@ export class QrGeneratorComponent implements OnInit {
   }
 
   dlDataUrlBin(){
-    this.link = this.qrcode.qrcElement.nativeElement.firstChild.src;
+    // this.link = this.qrcode.qrcElement.nativeElement.firstChild.src;
   }
 
 }
