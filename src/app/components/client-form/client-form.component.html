@@ -1,12 +1,26 @@
 <div class="form-container">
     <div class="auth-form-wrapper">
         <div class="photo">
-
-            <img [src]="
+            <div class="circular--landscape">
+                <img *ngIf="!subirFoto" [src]="
             user.photoURL
               ? user.photoURL
               : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'" />
-            <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar </button>
+            </div>
+
+            <div *ngIf="subirFoto">
+                <label class="auth-label" for="displayName">selecionar imagen</label>
+                <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)">
+                <input #imageUser type="hidden" [value]="urlImage | async">
+            </div>
+            <button *ngIf="!subirFoto" id="boton-editar" (click)="subirFoto = true">subir foto</button>
+            <button *ngIf="subirFoto && ( urlImage | async ); else btnDisable" id="boton-editar" (click)="uploadImg()">cargar foto</button>
+            <ng-template #btnDisable>
+                <button *ngIf="subirFoto" disabled=true id="boton-editar" disabled=true>cargar foto</button>
+            </ng-template>
+
+            <button *ngIf="subirFoto" id="boton-editar" (click)="subirFoto = false">regresar</button>
+            <button *ngIf="!editarForm && !subirFoto" id="boton-editar" (click)="editar()">editar datos</button>
             <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
         </div>
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()">

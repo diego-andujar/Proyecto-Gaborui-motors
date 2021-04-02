@@ -4,7 +4,7 @@
   </div>
   <div class="span button-wrapper">
     <div class="button-container">
-    <button mat-flat-button class="" class="submit-button" (click)="nuevaCita = !nuevaCita ; getCars()">pedir nueva cita</button>
+    <button mat-raised-button (click)="nuevaCita = !nuevaCita ; getCars()">pedir nueva cita</button>
 </div>
 </div>
   <div class="btn">
@@ -77,7 +77,7 @@
                       <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                       <mat-datepicker  #datepicker>
                           <mat-datepicker-actions>
-                          <button mat-button matDatepickerCancel>Cancel</button>
+                          <button mat-button color="warn" matDatepickerCancel>Cancel</button>
                           <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
                           </mat-datepicker-actions>
                       </mat-datepicker>
@@ -90,8 +90,8 @@
           </div>
           <div class="button-wrapper">
             <div class="button-container">
-                <button type="submit" class="submit-button">enviar solicitud de cita</button>
-                <button type="submit" (click)="nuevaCita = !nuevaCita">volver</button>
+                <button type="submit" mat-raised-button>enviar solicitud de cita</button>
+                <button type="submit" mat-raised-button color="warn" (click)="nuevaCita = !nuevaCita">volver</button>
             </div>
           </div>
       </form>

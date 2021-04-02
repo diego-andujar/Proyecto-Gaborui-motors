@@ -1,11 +1,15 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from 'src/app/models/user';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import firebase from "firebase";
 import { DatePipe } from '@angular/common';
+import { AngularFireStorage } from "@angular/fire/storage";
+import { finalize } from "rxjs/operators";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client-form',
@@ -26,6 +30,11 @@ export class ClientFormComponent implements OnInit {
   startDate = new Date(2000, 0, 1)
   minDate = new Date(1910, 0, 1);
   maxDate = new Date(2005, 12, 31);
+  subirFoto = false;
+
+  uploadPercent!: Observable<number | undefined>;
+  urlImage!: Observable<string>;
+  @ViewChild("imageUser") inputImageUser!: ElementRef;
 
   selectedValue!: string;
   selectedCar!: string;
@@ -39,6 +48,7 @@ export class ClientFormComponent implements OnInit {
   @Output() sendFormEvent = new EventEmitter();
 
   constructor(
+    private storage: AngularFireStorage,
     private datePipe : DatePipe,
     private fb: FormBuilder,
     private authService: AuthService,
@@ -56,6 +66,26 @@ export class ClientFormComponent implements OnInit {
   
     this.createForm();
     this.validateUsers();
+  }
+
+  onUpload(pic: any){
+    //console.log(pic.target.files[0])
+    const id = Math.random().toString(36).substring(2);
+    const file = pic.target.files[0];
+    const filePath = `uploads/profile_${id}`;
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe( finalize (() => 
+      this.urlImage = ref.getDownloadURL())).subscribe();
+  }
+
+  async uploadImg(){
+    await this.user.updateProfile({
+      photoURL: this.inputImageUser.nativeElement.value,
+    }).then(() => {
+      this.subirFoto = false;
+    })
   }
 
   formatDates(date: Date): string{

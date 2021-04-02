@@ -21,6 +21,12 @@
     flex: row;
 }
 
+button {
+    text-transform: uppercase;
+    background-color: $primary-color;
+    color: white;
+}
+
 .btn {
     background-color: $third-color;
     display: flex;

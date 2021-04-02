@@ -11,6 +11,12 @@
   overflow: auto;
 }
 
+button {
+  text-transform: uppercase;
+  background-color: $primary-color;
+  color: white;
+}
+
 .auth-form {
   width: 100%;
   height: 90vh;

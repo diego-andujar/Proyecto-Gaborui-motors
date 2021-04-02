@@ -122,7 +122,6 @@ export class AppointmentViewComponent implements OnInit {
     } else if (num === 3){
       this.appointService.getAppConfirmada().then( res => {
         this.citas = res;
-        console.log(this.citas[0])
         if (this.citas.length < 1){
           this.citas.push();
           alert("No hay citas confirmadas actualmente")
@@ -270,23 +269,23 @@ export class AppointmentViewComponent implements OnInit {
     this.datePicker.open();
   }
 
-  public downloadQRCode(appointment: Appointment) {
+  /*public downloadQRCode(appointment: Appointment) {
     const fileNameToDownload = 'cita#' + appointment.appId;
-    // const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
-    // fetch(base64Img)
-    //     .then(res => res.blob())
-    //     .then((blob) => {
-    //       // IE
-    //       if (window.navigator && window.navigator.msSaveOrOpenBlob){
-    //           window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
-    //       } else { // Chrome
-    //           const url = window.URL.createObjectURL(blob);
-    //           const link = document.createElement('a');
-    //           link.href = url;
-    //           link.download = fileNameToDownload;
-    //           link.click();
-    //       }
-    //     })
- }
+    const base64Img = document.getElementsByClassName('coolQRCode')[1].children[1]['src'];
+    fetch(base64Img)
+        .then(res => res.blob())
+        .then((blob) => {
+          // IE
+          if (window.navigator && window.navigator.msSaveOrOpenBlob){
+              window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
+          } else { // Chrome
+              const url = window.URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = fileNameToDownload;
+              link.click();
+          }
+        })
+ }*/
 
 }

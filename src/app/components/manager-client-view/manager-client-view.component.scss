@@ -1,1 +1,21 @@
 @import "../client-form/client-form.component.scss";
+@import "../../../styles/components/buttons.scss";
+@import "../../../styles/Lib/variables.scss";
+
+.car-queue{
+    width: 100%;
+}
+
+.button-cont{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+button{
+    background-color: $primary-color;
+    color: $third-color;
+    text-align: center;
+    font-family: $third-font;
+    text-transform: uppercase;
+}

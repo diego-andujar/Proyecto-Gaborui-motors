@@ -125,6 +125,20 @@
         </div>
     </form>
     </div>
+    <div *ngIf="user.rol!.client == true" class="car-wrapper">
+        <div class="button-cont">
+            <button mat-raised-button *ngIf="!verCarros" (click)="getCars()">ver vehiculos</button>
+            <button mat-raised-button *ngIf="verCarros" (click)="verCarros = false">esconder vehiculos</button>
+        </div>
+        <div *ngIf="verCarros && carList.length > 0" class="car-queue">
+            <app-car-queue [carList]="carList"></app-car-queue>
+        </div>
+        <div *ngIf="verCarros && carList.length == 0" class="car-queue">
+            <span>el usuario no tiene vehiculos registrados</span>
+        </div>
+    </div>
+    
 </div>
+
     
 

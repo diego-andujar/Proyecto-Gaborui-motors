@@ -36,8 +36,8 @@
 
         <div *ngIf="!isManager">
             <mat-card-actions *ngIf="appointment.estado == 'por confirmar'">
-                <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptAppClient(appointment)">Confirmar cita</button>
-                <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button>
+                <button *ngIf="!cambiarFecha" mat-raised-button (click)="aceptAppClient(appointment)">Confirmar cita</button>
+                <button mat-raised-button *ngIf="!cambiarFecha" color="warn" (click)="selecDate()">Cambiar Fecha</button>
 
                 <form [formGroup]="dayForm" *ngIf="cambiarFecha">
                     <mat-form-field class="example-full-width" appearance="fill">
@@ -46,16 +46,16 @@
                         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                         <mat-datepicker #datepicker>
                             <mat-datepicker-actions>
-                                <button mat-button matDatepickerCancel>Cancel</button>
+                                <button mat-raised-button color="warn" matDatepickerCancel>Cancel</button>
                                 <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
                             </mat-datepicker-actions>
                         </mat-datepicker>
                     </mat-form-field>
-                    <button mat-flat-button *ngIf="cambiarFecha" (click)="modifyAppClient(appointment)">confirmar cambio</button>
-                    <button mat-flat-button *ngIf="cambiarFecha" (click)="selecDate()">volver</button>
+                    <button mat-raised-button *ngIf="cambiarFecha" (click)="modifyAppClient(appointment)">confirmar cambio</button>
+                    <button mat-raised-button color="warn" *ngIf="cambiarFecha" (click)="selecDate()">volver</button>
                 </form>
             </mat-card-actions>
-            <button mat-flat-button (click)="deleteApp(appointment)">Eliminar Cita</button>
+            <button mat-raised-button color="warn" (click)="deleteApp(appointment)">Eliminar Cita</button>
         </div>
 
     </mat-card>
@@ -142,20 +142,28 @@
                 </div>
                 <div class="divqrdescargar" *ngIf="element.estado === 'confirmada'">
                     <div class="grandeqr">
-                        <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" value={{element.appId}} cssClass="coolQRCode">
+                        <!--<ngx-qrcode
+                            [elementType]="elementType"
+                            [errorCorrectionLevel]="correctionLevel"
+                            value={{element.appId}}
+                            cssClass="coolQRCode">
                         </ngx-qrcode>
+                        <div class="centro">
+                            <button (click)="downloadQRCode(element)">Descarga el codigo QR</button>
+                        </div>-->
+                        <app-qr-generator [element]="element.appId!"></app-qr-generator>
                     </div>
-                    <div class="centro">
-                        <button (click)="downloadQRCode(element)">Descarga el codigo QR</button>
-                    </div>
+                    <!--<div>
+                        <app-select-mechanic (submited)="onSubmited($event)"></app-select-mechanic>
+                    </div>-->
                 </div>
             </div>
         </mat-card-content>
         <div>
             <mat-card-actions *ngIf="element.estado === 'solicitada'">
-                <button *ngIf="!cambiarFecha" mat-flat-button (click)="aceptApp(element)">Aceptar Cita</button>
-                <button mat-flat-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button>
-                <button mat-flat-button *ngIf="!cambiarFecha">Rechazar Cita</button>
+                <button *ngIf="!cambiarFecha" mat-raised-button color="primary" (click)="aceptApp(element)">Aceptar Cita</button>
+                <button mat-raised-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button>
+                <button mat-raised-button color="warn" *ngIf="!cambiarFecha">Rechazar Cita</button>
 
                 <div *ngIf="cambiarFecha">
                     <app-select-date [app]="element" [citas]="citas" (response)="onResponse($event)"></app-select-date>

@@ -10,10 +10,25 @@
             <mat-grid-list cols="4">
                 <mat-grid-tile colspan="1">
                     <div class="image-wrapper">
-                        <img class="image" src="https://c0.klipartz.com/pngpicture/421/615/gratis-png-2017-toyota-yaris-ia-scion-carros-medianos-carros.png" alt="">
-                        <div class="title-wrapper">
-                            <span>Propietario</span>
-                            <h2>{{name}}</h2>
+                        <div class="circular--landscape">
+                            <img class="image" *ngIf="!subirFoto" [src]="photo
+                            ? photo
+                            :
+                            car.photo" />
+                        </div>
+                        <div *ngIf="subirFoto">
+                            <label class="auth-label" for="displayName">selecionar imagen</label>
+                            <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)">
+                            <input #imageUser type="hidden" [value]="urlImage | async">
+                        </div>
+                        <div class="upload-buttons">
+                            <button class="btn-img" mat-raised-button *ngIf="!subirFoto" id="boton-editar" (click)="subirFoto = true">subir foto</button>
+                            <button class="btn-img" mat-raised-button color="accent" *ngIf="subirFoto && ( urlImage | async ); else btnDisable" id="boton-editar" (click)="uploadImg(car)">cargar foto</button>
+                            <ng-template #btnDisable>
+                                <button class="btn-img" mat-raised-button color="accent" *ngIf="subirFoto" disabled=true id="boton-editar" disabled=true>cargar foto</button>
+                            </ng-template>
+
+                            <button class="btn-img" mat-raised-button color="warn" *ngIf="subirFoto" id="boton-editar" (click)="subirFoto = false">regresar</button>
                         </div>
                     </div>
 
@@ -53,9 +68,7 @@
                                 <span class="input-container-data longer">{{car.year}}</span>
                             </div>
                             <div *ngIf="editarCarro" class="span button-wrapper">
-                                <div class="button-container">
-                                    <button class="submit-button" type="button">guardar</button>
-                                </div>
+                                <button mat-raised-button color="accent" class="submit-button" type="button">guardar</button>
                             </div>
                         </div>
                     </div>
@@ -68,15 +81,11 @@
                         </div>
                         <div>
                             <div class="span button-wrapper">
-                                <div class="button-container">
-                                    <button class="submit-button" type="button">Aceptar solicitud</button>
-                                </div>
+                                <button mat-raised-button class="submit-button" type="button">Aceptar solicitud</button>
                             </div>
 
                             <div class="span button-wrapper">
-                                <div class="button-container">
-                                    <button class="submit-button">Modificar solicitud</button>
-                                </div>
+                                <button mat-raised-button class="submit-button">Modificar solicitud</button>
                             </div>
                         </div>
                     </div>
@@ -89,14 +98,14 @@
                         <div>
                             <div class="span button-wrapper">
                                 <div class="button-container">
-                                    <button *ngIf="car.active" class="submit-button" (click)="activateCar(car)">Desactivar Carro</button>
-                                    <button *ngIf="!car.active" class="submit-button" (click)="activateCar(car)">Activar Carro</button>
+                                    <button *ngIf="car.active" mat-raised-button color="warn" (click)="activateCar(car)">Desactivar Carro</button>
+                                    <button *ngIf="!car.active" mat-raised-button color="primary" (click)="activateCar(car)">Activar Carro</button>
                                 </div>
                             </div>
 
                             <div class="span button-wrapper">
                                 <div class="button-container">
-                                    <button class="submit-button" type="button" (click)="editarCarro = !editarCarro">editar</button>
+                                    <button mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
                                 </div>
                             </div>
                         </div>
@@ -109,9 +118,7 @@
 
     </div>
     <div class="spaning button-wrapper">
-        <div class="button-container button-add-container">
-            <button class="submit-button" (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button>
-        </div>
+        <button mat-raised-button (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button>
     </div>
 </div>
 <div *ngIf="crearCarro" class="auth-form form-column">
@@ -150,10 +157,10 @@
             </div>
             <div class="btn-wrapper">
                 <div class="butto-container">
-                    <button class="submi-button" type="submit">crear vehiculo</button>
+                    <button mat-raised-button type="submit">crear vehiculo</button>
                 </div>
                 <div class="butto-container">
-                    <button class="submi-button" (click)="!crearCarro = !crearCarro" type="button">volver</button>
+                    <button mat-raised-button color="warn" (click)="!crearCarro = !crearCarro" type="button">volver</button>
                 </div>
             </div>
         </form>

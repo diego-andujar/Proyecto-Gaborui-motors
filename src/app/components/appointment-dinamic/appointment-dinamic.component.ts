@@ -54,6 +54,7 @@ export class AppointmentDinamicComponent implements OnInit {
   user: any;
   db = firebase.firestore();
   @Output() sendFormEvent = new EventEmitter();
+  selectMechanic: boolean = false;
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -96,24 +97,28 @@ export class AppointmentDinamicComponent implements OnInit {
     }
   }
 
-  downloadQRCode(appointment: Appointment) {
+  /*downloadQRCode(appointment: Appointment) {
     const fileNameToDownload = 'cita#' + appointment.appId;
-    // const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
-    // fetch(base64Img)
-    //     .then(res => res.blob())
-    //     .then((blob) => {
-    //       // IE
-    //       if (window.navigator && window.navigator.msSaveOrOpenBlob){
-    //           window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
-    //       } else { // Chrome
-    //           const url = window.URL.createObjectURL(blob);
-    //           const link = document.createElement('a');
-    //           link.href = url;
-    //           link.download = fileNameToDownload;
-    //           link.click();
-    //       }
-    //     })
- }
+    const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
+    fetch(base64Img)
+        .then(res => res.blob())
+        .then((blob) => {
+          // IE
+          if (window.navigator && window.navigator.msSaveOrOpenBlob){
+              window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
+          } else { // Chrome
+              const url = window.URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = fileNameToDownload;
+              link.click();
+          }
+        })
+ }*/
+
+  onSubmited(bool: boolean){
+    this.selectMechanic = true;
+  }
 
   getCars(){
     this.carService.getUsCarsNoApp(this.user.uid).then( doc => {
