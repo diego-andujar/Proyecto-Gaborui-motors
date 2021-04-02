@@ -29,18 +29,39 @@
     }
     
     .circular--landscape {
-        display: inline-block;
-        position: relative;
-        width: 200px;
         height: 200px;
         overflow: hidden;
-        border-radius: 50%;
+        /* border-radius: 50%; */
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
     
     .circular--landscape img {
-        width: auto;
+        // width: auto; */
+        width: 100%;
         height: 100%;
-        margin-left: -50px;
+        /* margin-left: -50px; */
+        /* width: auto;*/
+    }
+    
+    .foto-choosed {
+        // background-color: aqua;
+        margin-top: 5%;
+    }
+    
+    .cargar-foto-button {
+        margin-top: 10%;
+        margin-bottom: 5%;
+    }
+    
+    .cargar-regresar-in {
+        // height: 100%;
+        // background-color: yellow;
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        justify-content: baseline;
     }
     
     .photo {
@@ -49,6 +70,18 @@
     
     label {
         width: 30%;
+    }
+    
+    button {
+        text-transform: uppercase;
+        background-color: $secondary-color;
+        color: white;
+    }
+    
+    .whitebutton {
+        text-transform: uppercase;
+        background-color: $third-color;
+        color: $primary-color;
     }
     
     .wrapper {
@@ -80,7 +113,123 @@
         text-transform: uppercase;
     }
     
-    .auth-input {}
+    // .auth-input {}
+    @import "../../../styles/Lib/variables.scss";
+    @import "../../../styles/Lib/mixins.scss";
+    form {
+        padding: 0px;
+    }
+    
+    input {
+        font-family: $secondary-font;
+        // background-color: aqua;
+    }
+    
+    mat-select {
+        width: 59%;
+        background-color: rgb(237, 249, 250);
+        border: 0.5px solid $primary-color;
+        font-family: $secondary-font;
+    }
+    
+    img {
+        width: 90%;
+        border-radius: 1em;
+    }
+    
+    .photo {
+        justify-content: space-evenly;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* height: 50%; */
+        /* height: 30em; */
+        height: 20em;
+    }
+    
+    label {
+        width: 30%;
+    }
+    
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+    }
+    
+    .auth-form-wrapper {
+        display: flex;
+        align-items: center;
+        width: auto;
+        /* height: 80vh; */
+        height: 50%;
+        border: 0px;
+        /* padding: 5%; */
+        padding-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        /* background-color: #F9F9F9;*/
+    }
+    
+    .auth-label {
+        font-family: $primary-font;
+        color: $primary-color;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+    }
+    
+    .auth-input {
+        display: flex;
+        justify-content: right;
+        margin-left: 1.5em;
+        font-family: $secondary-font;
+        font-weight: 400;
+        width: 19em;
+        text-align: center;
+        text-transform: capitalize;
+        &.correo {
+            text-transform: lowercase;
+        }
+        &.active {
+            background-color: rgb(237, 249, 250);
+        }
+    }
+    
+    .input {
+        width: 50%;
+    }
+    
+    .input-container {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        padding: 0px 5%;
+    }
+    
+    .form-container {
+        width: 100%;
+        @include small-phone {
+            background-color: yellow;
+            width: 200%;
+        }
+    }
+    
+    .no-acc-text {
+        width: 70%;
+        text-decoration: none;
+        text-align: center;
+    }
+    
+    a {
+        text-decoration: none;
+        font-family: $primary-font;
+        color: $primary-color;
+    }
     
     //     display: flex;
     //     justify-content: right;
