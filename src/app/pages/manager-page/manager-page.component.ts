@@ -61,7 +61,6 @@ export class ManagerPageComponent implements OnInit {
     })
     this.getApps();
     this.getAppsOrders();
-    console.log(this.dataSource)
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
