@@ -1,0 +1,16 @@
+@import "../../../styles/components/buttons.scss";
+@import "../../../styles/Lib/variables.scss";
+@import "../../../styles/Lib/mixins.scss";
+
+.auth-label-largo {
+    text-align: center;
+    font-family: $secondary-font;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    max-height: 65vh;
+}

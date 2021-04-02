@@ -1,6 +1,7 @@
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
 @import "../../../styles/Lib/mixins.scss";
+
 .textarea-container {
     display: flex;
     flex-direction: column;
@@ -29,6 +30,7 @@ form {
     width: 100%;
     height: 90%;
     margin-bottom: 10%;
+    font-family: $third-font;
     @include tablet {
         margin-top: 5%;
         margin-bottom: 5%;
