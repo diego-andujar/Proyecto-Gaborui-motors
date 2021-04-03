@@ -75,18 +75,26 @@
                 </div>
             </div>
 
-            <div>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
+            <div class="botones-vehiculos-div">
+                <div class="botones-vehiculos-div2">
+                    <!-- <div class="span">
+                        <span>Fecha Propuesta 10/03/2021</span>
+                    </div> -->
+                    <div class="botones-dae-div">
+                        <div>
+                            <div>
+                                <button *ngIf="car.active" mat-raised-button color="warn" (click)="activateCar(car)">Desactivar Carro</button>
+                                <button *ngIf="!car.active" mat-raised-button class="whitebutton" (click)="activateCar(car)">Activar Carro</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <button mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </ng-container>
     </div>

@@ -34,9 +34,11 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include tablet {
+    @include small-phone {
         // background-color: red;
-        margin-top: -40%;
+        // margin-top: -40%;
+        background-color: $secondary-color;
+        overflow: hidden;
     }
 }
 
@@ -45,10 +47,16 @@ button {
     height: 12%;
     margin: 0;
     margin-bottom: 3%;
+    @include small-phone {
+        // background-color: yellow;
+    }
 }
 
 .button-container {
     height: 100%;
+    @include small-phone {
+        // background-color: green;
+    }
 }
 
 mat-form-field {
@@ -70,11 +78,26 @@ mat-form-field {
     height: 75%;
     padding: 0%;
     margin: 0%;
+    @include small-phone {
+        // background-color: teal;
+        width: 90%;
+        height: 95%;
+        border: 0em;
+        justify-content: space-evenly;
+    }
 }
 
 .wrappers {
     display: flex;
     flex-direction: row;
+    @include small-phone {
+        margin-left: 3%;
+        // background-color: violet;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8em;
+    }
 }
 
 .input-container {
@@ -83,6 +106,15 @@ mat-form-field {
     justify-content: left;
     padding: 0% 2%;
     width: 96%;
+    @include small-phone {
+        margin-left: 3%;
+        // background-color: violet;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8em;
+        align-items: center;
+    }
 }
 
 button {
@@ -96,17 +128,32 @@ button {
     align-items: center;
     padding: 0% 2%;
     width: 96%;
+    @include small-phone {
+        justify-content: center;
+    }
 }
 
 #label {
     width: 20%;
     height: 30vh;
+    @include small-phone {
+        text-align: center;
+        // background-color: yellow;
+        height: 100%;
+        width: 100%;
+        padding: 1%;
+    }
 }
 
 #text-area {
     padding-left: 2%;
     width: 80%;
     resize: none;
+    @include small-phone {
+        // background-color: blue;
+        height: 25vh;
+        margin-bottom: 2%;
+    }
 }
 
 .wrapper {
@@ -114,6 +161,9 @@ button {
     @include tablet {
         // background-color: yellow;
         margin-top: -30%;
+    }
+    @include small-phone {
+        margin-top: 10%;
     }
 }
 
