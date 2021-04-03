@@ -38,7 +38,7 @@ button {
 
 .flow {
     @include small-phone {
-        background-color: yellow;
+        // background-color: yellow;
         overflow-x: auto;
         display: flex;
         flex-direction: column;
@@ -91,6 +91,8 @@ mat-paginator {
 }
 
 .añadir-vehiculo-div {
+    display: flex;
+    justify-content: center;
     @include tablet {
         // background-color: chocolate;
         display: flex;
@@ -169,7 +171,7 @@ mat-grid-list {
         align-items: baseline;
     }
     @include small-phone {
-        background-color: yellow;
+        // background-color: yellow;
         // -webkit-transform: rotate(90deg);
         // -moz-transform: rotate(-90deg);
     }

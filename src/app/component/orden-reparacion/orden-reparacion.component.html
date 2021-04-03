@@ -113,11 +113,25 @@
 </div>-->
 <div class="content-wrapper">
     <div class="comp-wrapper" *ngIf="!verOrden && !ordenCerrada">
+
+        <div class="dibujito">
+
+            <img class="img-perfil" [src]="
+                user.photoURL
+                ? user.photoURL
+                : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'" alt="">
+            <div class="div-palabra-manager">
+                <p class="palabra-manager">Mecánico</p>
+                <h2>{{username.name}}</h2>
+            </div>
+
+        </div>
+
         <div class="scan-wrapper">
             <button class="botonqr" *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
             <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false">Cerrar cámara</button>
             <div class="scanner-image">
-                <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+                <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)" class="video"></zxing-scanner>
             </div>
         </div>
         <!--<div class="resultclass">
@@ -134,7 +148,7 @@
         <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Ver orden</button>
     </div>-->
     <div class="otroqr">
-        <button *ngIf="verOrden && !ordenCerrada" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Escanear otro qr</button>
+        <button *ngIf="verOrden && !ordenCerrada" (click)="verOrden = !verOrden; escanear = !escanear" class="">Escanear otro qr</button>
     </div>
     <div class="list-wrapper" *ngIf="verOrden && !ordenCerrada">
         <div class="datoscliente">
@@ -157,14 +171,14 @@
                         <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
                         <td mat-footer-cell *matFooterCellDef> Total </td>
                     </ng-container>
-            
+
                     <!-- Cost Column -->
                     <ng-container matColumnDef="cost">
                         <th mat-header-cell *matHeaderCellDef> Costo </th>
                         <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
                         <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
                     </ng-container>
-                
+
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let row">
@@ -172,7 +186,7 @@
                         </td>
                         <td mat-footer-cell *matFooterCellDef></td>
                     </ng-container>
-                
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
@@ -196,14 +210,14 @@
                         <td mat-cell *matCellDef="let procesos"> {{procesos.item}} </td>
                         <td mat-footer-cell *matFooterCellDef> Total </td>
                     </ng-container>
-            
+
                     <!-- Cost Column -->
                     <ng-container matColumnDef="cost">
                         <th mat-header-cell *matHeaderCellDef> Costo </th>
                         <td mat-cell *matCellDef="let procesos"> {{procesos.cost | currency}} </td>
                         <td mat-footer-cell *matFooterCellDef> {{getTotalProcessCost() | currency}} </td>
                     </ng-container>
-                
+
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let row">
@@ -211,7 +225,7 @@
                         </td>
                         <td mat-footer-cell *matFooterCellDef></td>
                     </ng-container>
-                
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
@@ -228,7 +242,7 @@
             <button (click)="endOrder()" *ngIf="verOrden" class="submit-button">Cerrar reparacion</button>
         </div>
 
-        
+
     </div>
 
 
@@ -256,21 +270,21 @@
                         <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
                         <td mat-footer-cell *matFooterCellDef> Total </td>
                     </ng-container>
-            
+
                     <!-- Cost Column -->
                     <ng-container matColumnDef="cost">
                         <th mat-header-cell *matHeaderCellDef> Costo </th>
                         <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
                         <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
                     </ng-container>
-                
+
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let row">
                         </td>
                         <td mat-footer-cell *matFooterCellDef></td>
                     </ng-container>
-                
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
@@ -291,21 +305,21 @@
                         <td mat-cell *matCellDef="let procesos"> {{procesos.item}} </td>
                         <td mat-footer-cell *matFooterCellDef> Total </td>
                     </ng-container>
-            
+
                     <!-- Cost Column -->
                     <ng-container matColumnDef="cost">
                         <th mat-header-cell *matHeaderCellDef> Costo </th>
                         <td mat-cell *matCellDef="let procesos"> {{procesos.cost | currency}} </td>
                         <td mat-footer-cell *matFooterCellDef> {{getTotalProcessCost() | currency}} </td>
                     </ng-container>
-                
+
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let row">
                         </td>
                         <td mat-footer-cell *matFooterCellDef></td>
                     </ng-container>
-                
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
@@ -318,8 +332,7 @@
         <div *ngIf="car != undefined">
             <app-diagnosis-form [ordenCerrada]="true" [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
-        
-    </div>
-    
-</div>
 
+    </div>
+
+</div>

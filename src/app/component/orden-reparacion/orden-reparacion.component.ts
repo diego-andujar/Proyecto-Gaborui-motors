@@ -11,14 +11,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Part } from 'src/app/models/part';
 import { stringify } from '@angular/compiler/src/util';
-
+import firebase from "firebase";
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-orden-reparacion',
   templateUrl: './orden-reparacion.component.html',
   styleUrls: ['./orden-reparacion.component.scss']
 })
 export class OrdenReparacionComponent implements OnInit {
-
+  username!:User;
+  user!: firebase.User;
+  userFire!: any;
   displayedColumns = ['item', 'cost', 'actions'];
   appointment!: Appointment;
   transactions: Part[] = [];
@@ -37,6 +41,7 @@ export class OrdenReparacionComponent implements OnInit {
   ordenCerrada: boolean = false;
 
   constructor(
+    private authService: AuthService,
     private cd: ChangeDetectorRef,
     private fb: FormBuilder,
     private appService: AppointmentServiceService,
@@ -46,6 +51,15 @@ export class OrdenReparacionComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+    })
+
+    this.username=JSON.parse(localStorage.getItem("CurrentUser")!);
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+    })
+    this.userFire = JSON.parse(localStorage.getItem("CurrentUser")!);
     this.verOrden = false;
     this.createForm();
   }
