@@ -1,9 +1,12 @@
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
-
-.car-list-wrapper{
+@import "../../../styles/Lib/mixins.scss";
+.car-list-wrapper {
     height: 90%;
     width: 100%;
+    @include small-phone {
+        margin-top: 10%;
+    }
 }
 
 .button-container {

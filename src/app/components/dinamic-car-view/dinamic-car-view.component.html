@@ -5,7 +5,93 @@
         <h2 *ngIf="userType === 'manager'">Solicitudes Pendientes</h2>
         <h2 *ngIf="userType === 'client'">Vehiculos Registrados</h2>
     </div>
-    <div class="ngcont">
+    <!--  -->
+    <div *ngIf="!pantalla" class="ngcont flow">
+        <ng-container *ngFor="let car of (carList | slice: lowValue : highValue)">
+            <div class="image-wrapper">
+                <div class="circular--landscape">
+                    <img class="image" *ngIf="!subirFoto" [src]="photo
+                    ? photo
+                    :
+                    car.photo" />
+                </div>
+                <div *ngIf="subirFoto">
+                    <label class="auth-label" for="displayName">selecionar imagen</label>
+                    <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)">
+                    <input #imageUser type="hidden" [value]="urlImage | async">
+                </div>
+                <div class="upload-buttons">
+                    <button class="btn-img" mat-raised-button *ngIf="!subirFoto" id="boton-editar" (click)="subirFoto = true" mat-raised-button class="whitebutton">Subir foto</button>
+
+                    <div class="cargar-regresar-in">
+
+                        <button class="btn-img" *ngIf="subirFoto && ( urlImage | async ); else btnDisable" id="boton-editar" (click)="uploadImg(car)" mat-raised-button>cargar foto</button>
+                        <ng-template #btnDisable>
+                            <button class="btn-img" *ngIf="subirFoto" disabled=true id="boton-editar" disabled=true mat-raised-button class="cargar-foto-button">cargar foto</button>
+                        </ng-template>
+
+                        <button class="btn-img" mat-raised-button color="warn" *ngIf="subirFoto" id="boton-editar" (click)="subirFoto = false" class="cargar-foto-button">regresar</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="grid-flex">
+                <div class="title-wrapper">
+                    <h2>datos del vehículo</h2>
+                </div>
+                <div class="data-wrapper">
+                    <div class="input-data-container">
+                        <h3 class="auth-label">marca</h3>
+                        <span *ngIf="!editarCarro" class="input-container-data">{{car.brand}}</span>
+                        <input required type="text" placeholder="Carlos Garcia" formControlName="name" class="input-container-data" *ngIf="editarCarro" />
+                    </div>
+                    <div class="input-data-container">
+                        <h3 class="auth-label">placa</h3>
+                        <span *ngIf="!editarCarro" class="input-container-data">{{car.plate}}</span>
+                        <input required type="text" placeholder="Carlos Garcia" formControlName="name" class="input-container-data" *ngIf="editarCarro" />
+                    </div>
+                    <div class="input-data-container">
+                        <h3 class="auth-label">modelo</h3>
+                        <span *ngIf="!editarCarro" class="input-container-data">{{car.model}}</span>
+                        <input required type="text" placeholder="Carlos Garcia" formControlName="name" class="input-container-data" *ngIf="editarCarro" />
+                    </div>
+                    <div class="input-data-container">
+                        <h3 class="auth-label">año</h3>
+                        <span *ngIf="!editarCarro" class="input-container-data">{{car.year}}</span>
+                        <input required type="text" placeholder="Carlos Garcia" formControlName="name" class="input-container-data" *ngIf="editarCarro" />
+                    </div>
+                    <div class="input-data-container">
+                        <h3 class="auth-label">Activo</h3>
+                        <span class="input-container-data">{{car.active}}</span>
+                    </div>
+                    <div class="input-data-container container-texto" *ngIf="userType == 'manager'">
+                        <h3 class="auth-label">motivo de la cita</h3>
+                        <span class="input-container-data longer">{{car.year}}</span>
+                    </div>
+                    <div *ngIf="editarCarro" class="span button-wrapper">
+                        <button mat-raised-button class="submit-button" type="button">guardar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+                <p>hola</p>
+            </div>
+        </ng-container>
+    </div>
+    <!--  -->
+    <div *ngIf="pantalla" class="ngcont">
         <ng-container *ngFor="let car of (carList | slice: lowValue : highValue)">
             <mat-grid-list cols="4">
                 <mat-grid-tile colspan="1">

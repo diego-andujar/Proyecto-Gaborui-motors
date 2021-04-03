@@ -120,7 +120,7 @@
     form {
         padding: 0px;
         @include small-phone {
-            background-color: aqua;
+            // background-color: aqua;
             width: 100%;
         }
     }
@@ -151,6 +151,10 @@
         /* height: 50%; */
         /* height: 30em; */
         height: 20em;
+        @include small-phone {
+            // background-color: aqua;
+            // line-height: 5em;
+        }
     }
     
     label {
@@ -165,10 +169,11 @@
         padding: 0px;
         height: 100%;
         @include small-phone {
-            background-color: yellow;
+            // background-color: yellow;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            align-items: center;
         }
     }
     
@@ -207,6 +212,9 @@
         @include tablet {
             font-size: 0.8em;
         }
+        @include small-phone {
+            font-size: 1em;
+        }
     }
     
     .auth-input {
@@ -234,9 +242,9 @@
             overflow-x: auto;
         }
         @include small-phone {
-            width: 9em;
+            width: 11em;
             margin-left: 0.5em;
-            background-color: brown;
+            // background-color: brown;
         }
     }
     

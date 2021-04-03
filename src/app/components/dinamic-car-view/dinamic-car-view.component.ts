@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dinamic-car-view.component.scss']
 })
 export class DinamicCarViewComponent implements OnInit {
-
+  pantalla:boolean = true;
   verSolicitud = false;
   photo!: any;
   editarCarro = false;
@@ -88,6 +88,9 @@ export class DinamicCarViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (window.screen.width <500) { // 768px portrait
+      this.pantalla = false;
+    }
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
       this.carService.getUsCars(user.uid).then( doc => {
