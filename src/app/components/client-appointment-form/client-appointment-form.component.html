@@ -37,7 +37,7 @@
             <div class="example-element-detail"
                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                 <div class="ngcontainer">
-                  <app-appointment-dinamic [appointment]="element" (deleting)="onDeleting($event)"></app-appointment-dinamic>
+                  <app-appointment-dinamic [appointment]="element" (clientEdit)="clientEditOrder($event)" (deleting)="onDeleting($event)"></app-appointment-dinamic>
                 </div>
               </div>
               </td>
@@ -91,7 +91,7 @@
           <div class="button-wrapper">
             <div class="button-container">
                 <button type="submit" mat-raised-button>enviar solicitud de cita</button>
-                <button type="submit" mat-raised-button color="warn" (click)="nuevaCita = !nuevaCita">volver</button>
+                <button mat-raised-button color="warn" (click)="nuevaCita = !nuevaCita">volver</button>
             </div>
           </div>
       </form>

@@ -81,7 +81,15 @@ export class ClientAppointmentFormComponent implements OnInit {
     if (response != null){
       this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
         this.citasInput = doc;
-      })
+      });
+    }
+  }
+
+  clientEditOrder(event: boolean){
+    if (event){
+      this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
+        this.citasInput = doc;
+      });
     }
   }
 

@@ -1,13 +1,13 @@
 <div class="datos-manager-wrapper">
     <div >
-        <app-calendar-manager></app-calendar-manager>
+        <app-calendar-manager [edit]="uploadSuccess"></app-calendar-manager>
     </div>
     <div>
         <app-vista-gnrl-manager></app-vista-gnrl-manager>
     </div>
 </div>
 <div>
-    <app-appointment-view [isManager]=true></app-appointment-view>
+    <app-appointment-view [isManager]=true (reloadCalendar)="reloadCalendar($event)"></app-appointment-view>
 </div>
 
 <div class="app-list-wrapper">

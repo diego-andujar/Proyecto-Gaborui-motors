@@ -48,6 +48,7 @@ export class AppointmentDinamicComponent implements OnInit {
   authForm!: FormGroup;
   @Output() deleting = new EventEmitter<boolean>(); 
   @Output() editOrder = new EventEmitter<boolean>(); 
+  @Output() clientEdit = new EventEmitter<boolean>(); 
   @Input() isRegister: boolean = false;
   carList: Array<Car> = [];
   selectedValue!: any;
@@ -193,6 +194,7 @@ export class AppointmentDinamicComponent implements OnInit {
     }
     this.orderService.createOrder(orden, this.citas[this.actualPage].appId!);
     this.ngOnInit();
+    this.clientEdit.emit(true);
   }
 
   modifyApp(cita: Appointment){
@@ -219,6 +221,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.dayForm.reset();
     this.selecDate();
     this.ngOnInit();
+    this.clientEdit.emit(true);
   }
 
   async deleteApp(app: Appointment){

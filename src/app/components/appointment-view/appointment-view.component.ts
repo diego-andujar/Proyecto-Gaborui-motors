@@ -1,9 +1,8 @@
 import { NgxMaterialTimepickerComponent } from 'ngx-material-timepicker';
-import { element } from 'protractor';
 import { UsersService } from 'src/app/services/users.service';
 import { CarsService } from 'src/app/services/cars.service';
 import { AppointmentServiceService } from './../../services/appointment-service.service';
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Appointment } from 'src/app/models/appointment';
 import { Car } from 'src/app/models/car';
 import { DatePipe } from '@angular/common';
@@ -31,7 +30,6 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 export class AppointmentViewComponent implements OnInit {
 
-  @Input()
   ngxTimepicker!: NgxMaterialTimepickerComponent; 
   citas!: Array<any>;
   @Input() citasInput: Array<Appointment> = [];
@@ -58,6 +56,7 @@ export class AppointmentViewComponent implements OnInit {
   columnsToDisplay = ['car', 'order status', 'owner'];
   expandedElement!: Appointment | null;
   db = firebase.firestore();
+  @Output() reloadCalendar = new EventEmitter<boolean>(); 
 
 
   constructor(
@@ -87,6 +86,7 @@ export class AppointmentViewComponent implements OnInit {
   reloadOrder(event: boolean){
     if (event){
       this.ngOnInit();
+      this.reloadCalendar.emit(true);
     }
   }
 
