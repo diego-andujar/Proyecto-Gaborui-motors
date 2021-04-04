@@ -65,11 +65,23 @@ export class MainNavComponent implements OnInit{
       this.router.navigate(['/mechanic', this.user.uid])
     }
   }
+  
+  click2(){
+    document.getElementById("quienes").scrollIntoView({behavior:"smooth"});
+  }
+
+  tocontact(){
+    document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+  }
+
+  tomaps(){
+    document.getElementById("maps").scrollIntoView({behavior:"smooth"});
+  }
 
   async logOutUser(){
     await this.authService.logout();
     localStorage.removeItem("CurrentUser");
     this.router.navigate(["/"]);
   }
-
+  
 }
