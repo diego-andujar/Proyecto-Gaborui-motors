@@ -47,6 +47,7 @@ export class AppointmentDinamicComponent implements OnInit {
   dayForm!: FormGroup;
   authForm!: FormGroup;
   @Output() deleting = new EventEmitter<boolean>(); 
+  @Output() editOrder = new EventEmitter<boolean>(); 
   @Input() isRegister: boolean = false;
   carList: Array<Car> = [];
   selectedValue!: any;
@@ -94,6 +95,7 @@ export class AppointmentDinamicComponent implements OnInit {
   onResponse(response: string | boolean){
     if (response != null){
       this.selecDate();
+      this.editOrder.emit(true);
     }
   }
 
@@ -169,13 +171,14 @@ export class AppointmentDinamicComponent implements OnInit {
     const values = {
       to_name: name,
       client_email: email,
-    }
+    }/*
     emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
         console.log('FAILED...', error);
-    });
+    });*/
+    this.editOrder.emit(true);
   }
 
   aceptAppClient(cita: Appointment){

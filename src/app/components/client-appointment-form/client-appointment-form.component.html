@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="!nuevaCita && !isManager">
+<div class="wrapper" *ngIf="!nuevaCita && !isManager && citasInput">
   <div class="btn">
       <h2>CITAS</h2>
   </div>
@@ -10,7 +10,7 @@
   <div class="btn">
   </div>
    
-  <div class="table-container example-container">
+  <div class="table-container example-container" *ngIf="citasInput">
     <table mat-table
         [dataSource]="citasInput" multiTemplateDataRows
         class="mat-elevation-z8">

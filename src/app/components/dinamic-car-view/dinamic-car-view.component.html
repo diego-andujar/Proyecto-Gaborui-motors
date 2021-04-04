@@ -1,4 +1,4 @@
-<div *ngIf="!crearCarro" class="component-container">
+<div *ngIf="!crearCarro && carList" class="component-container">
     <div class="paginator">
         <mat-paginator 
         [length]="carList.length"
@@ -42,18 +42,19 @@
                         <div class="title-wrapper">
                             <h2>datos del vehiculo</h2>
                         </div>
+                        <form [formGroup]="editCarForm"
+                        (ngSubmit)="onEdit(car)">
                         <div class="data-wrapper">
                             <div class="input-data-container">
                                 <h3 class="auth-label">marca</h3>
                                 <span *ngIf="!editarCarro" class="input-container-data">{{car.brand}}</span>
-                                <input
-                                    required
-                                    type="text"
-                                    placeholder="Carlos Garcia"
-                                    formControlName="name"
-                                    class="input-container-data"
-                                    *ngIf="editarCarro"
-                                />
+                                <div class="input-container" *ngIf="editarCarro">
+                                    <mat-select placeholder={{car.model}} formControlName="brandEdit" [(ngModel)]="selectedValue" name="car">
+                                    <mat-option  *ngFor="let car of carBrands" [value]="car.value">
+                                        {{car.viewValue}}
+                                    </mat-option>
+                                    </mat-select>
+                                </div>
                             </div>
                             <div class="input-data-container">
                                 <h3 class="auth-label">placa</h3>
@@ -61,8 +62,8 @@
                                 <input
                                     required
                                     type="text"
-                                    placeholder="Carlos Garcia"
-                                    formControlName="name"
+                                    placeholder={{car.plate}}
+                                    formControlName="plateEdit"
                                     class="input-container-data"
                                     *ngIf="editarCarro"
                                 />
@@ -73,8 +74,8 @@
                                 <input
                                     required
                                     type="text"
-                                    placeholder="Carlos Garcia"
-                                    formControlName="name"
+                                    placeholder={{car.model}}
+                                    formControlName="modelEdit"
                                     class="input-container-data"
                                     *ngIf="editarCarro"
                                 />
@@ -85,8 +86,8 @@
                                 <input
                                     required
                                     type="text"
-                                    placeholder="Carlos Garcia"
-                                    formControlName="name"
+                                    placeholder={{car.year}}
+                                    formControlName="yearEdit"
                                     class="input-container-data"
                                     *ngIf="editarCarro"
                                 />
@@ -100,9 +101,10 @@
                                 <span class="input-container-data longer">{{car.year}}</span>
                             </div>
                             <div *ngIf="editarCarro" class="span button-wrapper" >
-                                    <button mat-raised-button color="accent" class="submit-button" type="button">guardar</button>
+                                    <button mat-raised-button color="accent" class="submit-button" type="submit">guardar</button>
                             </div>
                         </div>
+                        </form>
                     </div>
                     
                 </mat-grid-tile>
@@ -137,7 +139,8 @@
                             
                             <div class="span button-wrapper">
                                 <div class="button-container" >
-                                    <button mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
+                                    <button *ngIf="!editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
+                                    <button *ngIf="editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">volver</button>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +152,7 @@
     </ng-container>
     
     </div>
-    <div class="spaning button-wrapper">
+    <div class="spaning button-wrapper" *ngIf="carsLoad">
         <button mat-raised-button  (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button>
     </div>
 </div>

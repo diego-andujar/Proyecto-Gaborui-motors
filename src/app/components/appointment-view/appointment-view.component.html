@@ -37,7 +37,7 @@
                 <div class="example-element-detail"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="ngcontainer">
-                        <app-appointment-dinamic [isManager]="true" [element]="element"></app-appointment-dinamic>
+                        <app-appointment-dinamic [isManager]="true" [element]="element" (editOrder)="reloadOrder($event)"></app-appointment-dinamic>
                         <!--<mat-card>
                             <mat-card-title>{{element.userName}}</mat-card-title>
                             <mat-card-subtitle>{{element.carInfo}} </mat-card-subtitle>

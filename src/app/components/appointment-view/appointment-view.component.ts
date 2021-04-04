@@ -84,6 +84,12 @@ export class AppointmentViewComponent implements OnInit {
     }
   }
 
+  reloadOrder(event: boolean){
+    if (event){
+      this.ngOnInit();
+    }
+  }
+
   selecDate(){
     this.cambiarFecha = !this.cambiarFecha;
   }
