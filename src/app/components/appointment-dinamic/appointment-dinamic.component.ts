@@ -57,6 +57,7 @@ export class AppointmentDinamicComponent implements OnInit {
   db = firebase.firestore();
   @Output() sendFormEvent = new EventEmitter();
   selectMechanic: boolean = false;
+  listAppsConfirmed: Array<Date> = [];
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -72,6 +73,7 @@ export class AppointmentDinamicComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAppDates()
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
     this.name = (JSON.parse(localStorage.getItem("CurrentUser") || "{}")).name;
@@ -144,10 +146,36 @@ export class AppointmentDinamicComponent implements OnInit {
     });
   }
 
-  /*dateFilter = date => {
+  getAppDates(){
+    let listApp: Array<Appointment> = [];
+    this.appointService.getAppConfirmada().then( doc => {
+      listApp = doc;
+      listApp.forEach(element => {
+        //console.log(element.date);
+        let dateToSelect = this.transformDateForCalendar(element.date!);
+        let newdate = new Date(dateToSelect!);
+        this.listAppsConfirmed.push(newdate);
+      });
+    });
+  }
+
+  transformDateForCalendar(date: string): string{
+    const [day, month, year]: string[] = date.split('-');
+    let days = Number(day) + 1;
+    return`${year}-${month}-${days.toString()}`
+  }
+
+  myFilter = (d: any): boolean => {
+    const day = d.getDay();
+    console.log(day);
+    const blockedDates = this.listAppsConfirmed.map(d => d.valueOf());
+    return (!blockedDates.includes(d.valueOf())) && day != 6 && day != 0 ;
+  }
+
+  dateFilter = (date: any) => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }*/
+  }
 
   getApps(){
     this.firestoreService.getAPP().subscribe( res => {
