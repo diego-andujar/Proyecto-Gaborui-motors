@@ -7,7 +7,11 @@ import { UsersService } from 'src/app/services/users.service';
 import firebase from "firebase";
 import { DatePipe } from '@angular/common';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+
 import { AngularFireStorage } from '@angular/fire/storage'
+import { map, finalize } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 // para fotos con firebase
 interface FeaturedPhotosUrls{
@@ -23,7 +27,11 @@ interface FeaturedPhotosUrls{
 export class ClientFormComponent implements OnInit {
 
   // para fotos con firebase
-  featuredPhotoStream: AngularFireObject<FeaturedPhotosUrls> | undefined
+  featuredPhotoStream: AngularFireObject<FeaturedPhotosUrls> 
+  title = "cloudsSorage";
+  // selectedFile: File = null;
+  fab:any;
+  downloadURL!: Observable<string>;
 
   authForm!: FormGroup;
   @Input() isRegister: boolean = false;
@@ -57,9 +65,11 @@ export class ClientFormComponent implements OnInit {
     // para fotos firebase
     private storage: AngularFireStorage,
     private dab: AngularFireDatabase,
+
+    private Api: UsersService,
   ) {
     // para fotos firebase
-    // this.featuredPhotoStream = this.db.object('/photos/imagen');
+    this.featuredPhotoStream = this.dab.object('/photos/imagen');
   }
 
   ngOnInit(): void {
@@ -256,6 +266,30 @@ export class ClientFormComponent implements OnInit {
       firebase.database().ref('/photos/featured/url1').set(uploadSnapshot.downloadURL);
     })
   }
+  // var n = Date.now();
+  //   const file = event.target.files[0];
+  //   const filePath = `RoomsImages/${n}`;
+  //   const fileRef = this.storage.ref(filePath);
+  //   const task = this.storage.upload(`RoomsImages/${n}`, file);
+  //   task
+  //     .snapshotChanges()
+  //     .pipe(
+  //       finalize(() => {
+  //         this.downloadURL = fileRef.getDownloadURL();
+  //         this.downloadURL.subscribe(url => {
+  //           if (url) {
+  //             this.fab = url;
+  //           }
+  //           console.log(this.fab);
+  //         });
+  //       })
+  //     )
+  //     .subscribe(url => {
+  //       if (url) {
+  //         console.log(url);
+  //       }
+  //     });
+  // }
 }
 
 

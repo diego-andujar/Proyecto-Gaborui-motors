@@ -1,15 +1,16 @@
 <div class="form-container">
     <div class="auth-form-wrapper">
-        <div class="photo">
+        <!-- <div class="photo" >
             <label class="hoverable" for="fileInput">
-                <img [src]="user.photoURL ? user.photoURL : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg' "> 
+                <img [src]="fab ? fab : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg' "> 
                 <div class="hover-text">Choose file</div>
                 <div class="background"></div>
               </label>
               <br/>
-              <input id="fileInput" type='file' (change)="onSelectFile($event)">
+              <img src="../assets/user.svg" alt="" />
+              <input id="fileInput" type='file' #userPhoto name="image" (change)="onSelectFile($event)">
               <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
-        <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button>
+        <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button> -->
             
             <!-- <img [src]="
             user.photoURL
@@ -18,7 +19,24 @@
               />
             <button *ngIf="!editarForm" id="boton-editar" (click)="editar()">editar datos</button>
             <button *ngIf="editarForm" id="boton-editar" (click)="editar()">regresar</button> -->
-        </div>
+        <!-- </div> -->
+
+        <div class="form-group col-12 image">
+            <input
+              type="file"
+              id="file"
+              #userPhoto
+              (change)="onSelectFile($event)"
+              name="image"
+              autocomplete="off"
+            />
+            <img src="../assets/user.svg" alt="" />
+          </div>
+          <div  class="list">
+            <img [src]="featuredPhotoStream " />
+          </div>
+
+
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()">   
         <div class="wrapper">
             <div class="input-container">
@@ -240,5 +258,5 @@
         </div>
     </form>
     </div>
-</div>
+<!-- </div> -->
     
