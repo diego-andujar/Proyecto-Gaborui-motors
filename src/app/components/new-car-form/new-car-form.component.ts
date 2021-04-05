@@ -77,7 +77,7 @@ export class NewCarFormComponent implements OnInit {
     this.createNewCar(newCar);
     this.carForm.reset();
     alert("!Se ha creado con exito tu carro!")
-  }
+  } 
 
   createNewCar(newCar: Car): void {
     this.carService.createNewCar(newCar);

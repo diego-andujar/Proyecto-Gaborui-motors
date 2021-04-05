@@ -1,6 +1,6 @@
 import { Appointment } from 'src/app/models/appointment';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { AppointmentServiceService } from 'src/app/services/appointment-service.service';
 import { DatePipe } from '@angular/common';
@@ -21,6 +21,7 @@ export class SelectDateComponent implements OnInit {
   maxDate = new Date(2021, 12, 31);
   today = new Date();
   datePicker!: MatDatepicker<Date>;
+  listAppsConfirmed: Array<any> = [];
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +30,7 @@ export class SelectDateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.app)
+    this.getAppDates();
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
     this.createForm();
@@ -39,6 +40,32 @@ export class SelectDateComponent implements OnInit {
     this.dayForm = this.fb.group({
       appointmentDate: "",
     });
+  }
+
+  getAppDates(){
+    let listApp: Array<Appointment> = [];
+    this.appointService.getAppConfirmada().then( doc => {
+      listApp = doc;
+      listApp.forEach(element => {
+        //console.log(element.date);
+        let dateToSelect = this.transformDateForCalendar(element.date!);
+        let newdate = new Date(dateToSelect!);
+        this.listAppsConfirmed.push(newdate.toLocaleDateString());
+      });
+    });
+  }
+
+  transformDateForCalendar(date: string): string{
+    const [day, month, year]: string[] = date.split('-');
+    let days = Number(day) + 1;
+    return`${year}-${month}-${days.toString()}`
+  }
+
+  myFilter = (d: any): boolean => {
+    const dat = d.toLocaleDateString();
+    const day = d.getDay();
+    const blockedDates = this.listAppsConfirmed;
+    return (!blockedDates.includes(dat)) && day != 6 && day != 0 ;
   }
 
   modifyApp(cita: Appointment){
@@ -59,10 +86,10 @@ export class SelectDateComponent implements OnInit {
     this.response.emit(false)
   }
 
-  myFilter = (d: any): boolean => {
+  /*myFilter = (d: any): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
-  }
+  }*/
 
 }

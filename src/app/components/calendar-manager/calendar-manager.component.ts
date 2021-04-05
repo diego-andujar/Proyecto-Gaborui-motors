@@ -1,5 +1,5 @@
 import { Appointment } from './../../models/appointment';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { Calendar, CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular'; // useful for typechecking
 import esLocale from '@fullcalendar/core/locales/es';
 import { AppointmentServiceService } from 'src/app/services/appointment-service.service';
@@ -23,6 +23,8 @@ export class CalendarManagerComponent implements OnInit {
     initialView: 'dayGridMonth',
     weekends: false, 
   };
+  @Input() edit!: EventEmitter<boolean>;
+  
   
 
   constructor(

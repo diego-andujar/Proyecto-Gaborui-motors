@@ -72,7 +72,9 @@ export class DinamicCarViewComponent implements OnInit {
     {value: 'volvo', viewValue: 'Volvo'},
   ];
   carForm!: FormGroup;
+  editCarForm!: FormGroup;
   today = new Date();
+  carsLoad = false;
 
   uploadPercent!: Observable<number | undefined>;
   urlImage!: Observable<string>;
@@ -95,9 +97,11 @@ export class DinamicCarViewComponent implements OnInit {
       this.user = user;
       this.carService.getUsCars(user.uid).then( doc => {
         this.carList = doc;
+        this.carsLoad = true;
       })
     })
-    this.buildForm()
+    this.buildForm();
+    this.createEditForm();
   }
 
   onUpload(pic: any){
@@ -130,6 +134,15 @@ export class DinamicCarViewComponent implements OnInit {
       plate: '',
       serialMotor: "",
     });
+  }
+
+  createEditForm(car?: Car){
+    this.editCarForm = this.fb.group({
+      brandEdit: "",
+      modelEdit: "",
+      yearEdit: "",
+      plateEdit: "",
+    })
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
@@ -192,6 +205,39 @@ export class DinamicCarViewComponent implements OnInit {
       this.carForm.reset();
       alert("!Se ha detectado otro vehiculo con este serial de motor!\nNo pueden exister los mismos vehiculos entre distintos usuarios")
     }
+    
+  }
+
+  async onEdit(car: Car){
+    const brand = {
+      brand: this.editCarForm.get("brandEdit")?.value,
+    }
+    const model = {
+      model: this.editCarForm.get("modelEdit")?.value,
+    }
+    const year = {
+      year: this.editCarForm.get("yearEdit")?.value,
+    }
+    const plate = {
+      plate: this.editCarForm.get("plateEdit")?.value,
+    }
+    console.log(brand.brand + " " + model.model + " " + year.year + " " + plate.plate)
+    if (brand.brand != undefined && brand != undefined && brand.brand != "" && brand.brand != " "){
+      await this.carService.updateCar(brand, car.carId!);
+    }
+    if (model.model != undefined && model != undefined && model.model != "" && model.model != " "){
+      await this.carService.updateCar(model, car.carId!);
+    }
+    if (year.year != undefined && year != undefined && year.year != "" && year.year != " "){
+      await this.carService.updateCar(year, car.carId!);
+    }
+    if (plate.plate != undefined && plate != undefined && plate.plate != "" && plate.plate != " "){
+      await this.carService.updateCar(plate, car.carId!);
+    }
+    this.editarCarro = false;
+    alert("!Se han actualizado los datos de tu vehiculo con exito!");
+    this.getCars();
+    
     
   }
 

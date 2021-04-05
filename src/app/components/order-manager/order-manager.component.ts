@@ -1,4 +1,7 @@
-import { DatePipe } from '@angular/common';
+import { User } from 'src/app/models/user';
+import { UsersService } from 'src/app/services/users.service';
+import { element } from 'protractor';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,11 +12,13 @@ import { Part } from 'src/app/models/part';
 import { AppointmentServiceService } from 'src/app/services/appointment-service.service';
 import { CarsService } from 'src/app/services/cars.service';
 import { OrdersService } from 'src/app/services/orders.service';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-order-manager',
   templateUrl: './order-manager.component.html',
-  styleUrls: ['./order-manager.component.scss']
+  styleUrls: ['./order-manager.component.scss'],
+  providers: [CurrencyPipe],
 })
 export class OrderManagerComponent implements OnInit {
 
@@ -25,6 +30,7 @@ export class OrderManagerComponent implements OnInit {
   @Input() event: string = "hola";
   @Input() app!: Appointment;
   orden!: Order;
+  user!: User;
   car!: Car;
   scannerEnabled: boolean = true;
   escanear: boolean = false;
@@ -36,6 +42,7 @@ export class OrderManagerComponent implements OnInit {
   ordenCerrada: boolean = false;
 
   constructor(
+    private currencyPipe: CurrencyPipe,
     private datePipe : DatePipe,
     private cd: ChangeDetectorRef,
     private fb: FormBuilder,
@@ -43,9 +50,13 @@ export class OrderManagerComponent implements OnInit {
     private carService: CarsService,
     private orderService: OrdersService,
     private dialog: MatDialog,
+    private userService: UsersService,
     ) { }
 
   ngOnInit(): void {
+    this.userService.getUserId(this.app.userid!).subscribe( doc => {
+      this.user = doc as User;
+    })
     this.verOrden = false;
     this.onCodeResult(this.app.appId!);
     this.createForm();
@@ -78,6 +89,7 @@ export class OrderManagerComponent implements OnInit {
   }
 
   endOrder(){
+    /*
     let today = new Date();
     let dateEnded = this.datePipe.transform(today, "dd-MM-yyyy");
     let status =  "cerrada";
@@ -86,7 +98,85 @@ export class OrderManagerComponent implements OnInit {
       this.orden = doc[0];
     });
     this.ordenCerrada = true;
-    alert("La orden ha sido cerrada con exito\nSe ha enviado un correo al cliente con los datos de la factura")
+    alert("La orden ha sido cerrada con exito\nSe ha enviado un correo al cliente con los datos de la factura")*/
+    this.getParts();
+  }
+
+  async getParts(){
+    let cost = 0;
+    let parts = "";
+    let partsCost = "";
+    const partsList = this.orden.parts!;
+    partsList.forEach((element, y) => {
+      if (y == partsList.length - 1){
+        let money: number = element.cost!;
+        let moneys = money.toFixed(2);
+        let item = this.toTitleCase(element.item!) 
+        parts += item + " = $" + moneys + "\n"
+        cost += element.cost!;
+      } else {
+        let money: number = element.cost!;
+        let moneys = money.toFixed(2);
+        let item = this.toTitleCase(element.item!) 
+        parts += item + " = $" + moneys + "  +  \n"
+        cost += element.cost!;
+      }
+      
+    });
+    partsCost += `\nTotal Repuestos = $${cost}\n`
+
+    let costRepair = 0;
+    let processes = "";
+    let processesCost = "";
+    const processlist = this.orden.processes!;
+    processlist.forEach((element, x) => {
+      if (x == processlist.length - 1){
+        let money: number = element.cost!;
+        let moneys = money.toFixed(2);
+        let item = this.toTitleCase(element.item!) 
+        processes += item + " = $" + moneys + "\n"
+        cost += element.cost!;
+        costRepair += element.cost!;
+      } else {
+        let money: number = element.cost!;
+        let moneys = money.toFixed(2);
+        let item = this.toTitleCase(element.item!) 
+        processes += item + " = $" + moneys + "  +  \n"
+        cost += element.cost!;
+        costRepair += element.cost!;
+      }
+      
+    });
+    processesCost += `\nTotal Procesos = $${costRepair}\n`
+    let total = `$${cost}\n`
+    const values = {
+      to_name: this.app.userName,
+      message: parts,
+      car: this.app.carInfo,
+      to_email: this.user.email,
+      repuestos: parts,
+      total_repuestos: partsCost,
+      procedimientos: processes,
+      total_procedimientos: processesCost,
+      total: total,
+    }
+    emailjs.send('gmail_service', 'orden_cerrada', values, 'user_fVTGTMmtshFdcHgTabhho')
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        alert("Se ha enviado un correo al cliente \ncon los datos de la reparacion")
+    }, function(error) {
+        console.log('FAILED...', error);
+    });
+    
+  }
+
+  toTitleCase(str: string): string {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
   }
 
   public scanSuccessHandler($event: any){

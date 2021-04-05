@@ -242,6 +242,10 @@
             <button (click)="endOrder()" *ngIf="verOrden" class="submit-button">Cerrar reparacion</button>
         </div>
 
+        <div *ngIf="car != undefined">
+            <app-mechanic-car-images [car]="car"></app-mechanic-car-images>
+        </div>
+
 
     </div>
 

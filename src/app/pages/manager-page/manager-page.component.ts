@@ -3,7 +3,7 @@ import { AppointmentServiceService } from 'src/app/services/appointment-service.
 import { AuthService } from './../../services/auth.service';
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../models/car';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from "firebase";
@@ -45,6 +45,7 @@ export class ManagerPageComponent implements OnInit {
   citas: Array<Appointment> = [];
   ordenes: Array<any> = [];
   dataSource = new MatTableDataSource<Appointment>(this.ordenes);
+  uploadSuccess: EventEmitter<boolean> = new EventEmitter();
 
   carList: Array<Car> = [];
   showFiller = false;
@@ -61,7 +62,12 @@ export class ManagerPageComponent implements OnInit {
     })
     this.getApps();
     this.getAppsOrders();
-    console.log(this.dataSource)
+  }
+
+  reloadCalendar(event: boolean){
+    if (event){
+      this.uploadSuccess.emit(true);
+    }
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {

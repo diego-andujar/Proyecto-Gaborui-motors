@@ -42,7 +42,7 @@
                 <form [formGroup]="dayForm" *ngIf="cambiarFecha">
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
-                        <input [min]="minDate" [max]="maxDate" formControlName="appointmentDate" matInput [matDatepicker]="datepicker" />
+                        <input [min]="minDate" [max]="maxDate" formControlName="appointmentDate" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="datepicker" />
                         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                         <mat-datepicker #datepicker>
                             <mat-datepicker-actions>

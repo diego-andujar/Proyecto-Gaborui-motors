@@ -47,6 +47,8 @@ export class AppointmentDinamicComponent implements OnInit {
   dayForm!: FormGroup;
   authForm!: FormGroup;
   @Output() deleting = new EventEmitter<boolean>(); 
+  @Output() editOrder = new EventEmitter<boolean>(); 
+  @Output() clientEdit = new EventEmitter<boolean>(); 
   @Input() isRegister: boolean = false;
   carList: Array<Car> = [];
   selectedValue!: any;
@@ -55,6 +57,7 @@ export class AppointmentDinamicComponent implements OnInit {
   db = firebase.firestore();
   @Output() sendFormEvent = new EventEmitter();
   selectMechanic: boolean = false;
+  listAppsConfirmed: Array<Date> = [];
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -70,6 +73,7 @@ export class AppointmentDinamicComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAppDates()
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
     this.name = (JSON.parse(localStorage.getItem("CurrentUser") || "{}")).name;
@@ -94,6 +98,7 @@ export class AppointmentDinamicComponent implements OnInit {
   onResponse(response: string | boolean){
     if (response != null){
       this.selecDate();
+      this.editOrder.emit(true);
     }
   }
 
@@ -141,10 +146,36 @@ export class AppointmentDinamicComponent implements OnInit {
     });
   }
 
-  /*dateFilter = date => {
+  getAppDates(){
+    let listApp: Array<Appointment> = [];
+    this.appointService.getAppConfirmada().then( doc => {
+      listApp = doc;
+      listApp.forEach(element => {
+        //console.log(element.date);
+        let dateToSelect = this.transformDateForCalendar(element.date!);
+        let newdate = new Date(dateToSelect!);
+        this.listAppsConfirmed.push(newdate);
+      });
+    });
+  }
+
+  transformDateForCalendar(date: string): string{
+    const [day, month, year]: string[] = date.split('-');
+    let days = Number(day) + 1;
+    return`${year}-${month}-${days.toString()}`
+  }
+
+  myFilter = (d: any): boolean => {
+    const day = d.getDay();
+    console.log(day);
+    const blockedDates = this.listAppsConfirmed.map(d => d.valueOf());
+    return (!blockedDates.includes(d.valueOf())) && day != 6 && day != 0 ;
+  }
+
+  dateFilter = (date: any) => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }*/
+  }
 
   getApps(){
     this.firestoreService.getAPP().subscribe( res => {
@@ -169,13 +200,14 @@ export class AppointmentDinamicComponent implements OnInit {
     const values = {
       to_name: name,
       client_email: email,
-    }
+    }/*
     emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
         console.log('FAILED...', error);
-    });
+    });*/
+    this.editOrder.emit(true);
   }
 
   aceptAppClient(cita: Appointment){
@@ -190,6 +222,7 @@ export class AppointmentDinamicComponent implements OnInit {
     }
     this.orderService.createOrder(orden, this.citas[this.actualPage].appId!);
     this.ngOnInit();
+    this.clientEdit.emit(true);
   }
 
   modifyApp(cita: Appointment){
@@ -216,6 +249,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.dayForm.reset();
     this.selecDate();
     this.ngOnInit();
+    this.clientEdit.emit(true);
   }
 
   async deleteApp(app: Appointment){

@@ -30,12 +30,20 @@
                     <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
                 </ng-container>
 
-                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns
                 <ng-container matColumnDef="expandedDetail">
                     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
                         <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                             <div class="ngcontainer">
                                 <app-appointment-dinamic [isManager]="true" [element]="element"></app-appointment-dinamic>
+                                <mat-card> -->
+
+                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                <ng-container matColumnDef="expandedDetail">
+                    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                            <div class="ngcontainer">
+                                <app-appointment-dinamic [isManager]="true" [element]="element" (editOrder)="reloadOrder($event)"></app-appointment-dinamic>
                                 <!--<mat-card>
                             <mat-card-title>{{element.userName}}</mat-card-title>
                             <mat-card-subtitle>{{element.carInfo}} </mat-card-subtitle>-->

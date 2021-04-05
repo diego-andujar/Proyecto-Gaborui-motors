@@ -15,7 +15,7 @@ export class QrGeneratorComponent implements OnInit {
   public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   link!: string
 
-  @ViewChild("qrcode", {static : true}) qrcode!: QRCodeComponent;
+  @ViewChild("qrcode", {static : true}) qrcode!: QRCodeComponent | any;
 
   constructor() { }
 

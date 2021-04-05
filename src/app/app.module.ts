@@ -94,6 +94,7 @@ import { SelectMechanicComponent } from './components/select-mechanic/select-mec
 import { MechanicCarImagesComponent } from './components/mechanic-car-images/mechanic-car-images.component';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { HomeSliderComponent } from './components/home-slider/home-slider.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -156,6 +157,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ManagerMechanicViewComponent,
     SelectMechanicComponent,
     MechanicCarImagesComponent,
+    HomeSliderComponent,
   ],
   imports: [
     MatCardModule,

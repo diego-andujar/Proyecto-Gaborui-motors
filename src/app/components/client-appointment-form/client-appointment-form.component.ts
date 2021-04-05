@@ -49,6 +49,7 @@ export class ClientAppointmentFormComponent implements OnInit {
   dayForm!: FormGroup;
   name: string = "";
   @Output() sendFormEvent = new EventEmitter();
+  listAppsConfirmed: Array<any> = [];
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -64,6 +65,7 @@ export class ClientAppointmentFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAppDates();
     this.name = (JSON.parse(localStorage.getItem("CurrentUser") || "{}")).name;
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
@@ -81,7 +83,15 @@ export class ClientAppointmentFormComponent implements OnInit {
     if (response != null){
       this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
         this.citasInput = doc;
-      })
+      });
+    }
+  }
+
+  clientEditOrder(event: boolean){
+    if (event){
+      this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
+        this.citasInput = doc;
+      });
     }
   }
 
@@ -102,10 +112,36 @@ export class ClientAppointmentFormComponent implements OnInit {
     });
   }
 
-  /*dateFilter = date => {
+  getAppDates(){
+    let listApp: Array<Appointment> = [];
+    this.appointService.getAppConfirmada().then( doc => {
+      listApp = doc;
+      listApp.forEach(element => {
+        //console.log(element.date);
+        let dateToSelect = this.transformDateForCalendar(element.date!);
+        let newdate = new Date(dateToSelect!);
+        this.listAppsConfirmed.push(newdate.toLocaleDateString());
+      });
+    });
+  }
+
+  transformDateForCalendar(date: string): string{
+    const [day, month, year]: string[] = date.split('-');
+    let days = Number(day) + 1;
+    return`${year}-${month}-${days.toString()}`
+  }
+
+  myFilter = (d: any): boolean => {
+    const dat = d.toLocaleDateString();
+    const day = d.getDay();
+    const blockedDates = this.listAppsConfirmed;
+    return (!blockedDates.includes(dat)) && day != 6 && day != 0 ;
+  }
+
+  dateFilter = (date: any) => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }*/
+  }
 
   async onSubmit() {
     const formValues = {

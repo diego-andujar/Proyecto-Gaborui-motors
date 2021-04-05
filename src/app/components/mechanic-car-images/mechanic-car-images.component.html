@@ -1,11 +1,26 @@
 <!-- <div>Some tags before</div>
+<div class="auth-label-largo" >
+  <h2>diagnostico</h2>
+</div>
+<div class="owl-carousel owl-theme" *ngIf="images.length > 0"></div>
   <owl-carousel-o [options]="customOptions">
-
     <ng-container *ngFor="let slide of images">
-      <ng-template carouselSlide [id]="slide.id">
-        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+      <ng-template carouselSlide>
+        <img class="images" [src]="slide">
       </ng-template>
     </ng-container>
+  </owl-carousel-o>-->
 
-  </owl-carousel-o>
-<div>Some tags after</div> -->
+<div class="photo">
+    <div *ngIf="subirFoto">
+        <label class="auth-label" for="displayName">selecionar imagen</label>
+        <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)">
+        <input #imageUser type="hidden" [value]="urlImage | async">
+    </div>
+    <button *ngIf="!subirFoto" id="boton-editar" (click)="subirFoto = true">subir foto</button>
+    <button *ngIf="subirFoto && ( urlImage | async ); else btnDisable" id="boton-editar" (click)="uploadImg()">cargar foto</button>
+    <ng-template #btnDisable>
+        <button *ngIf="subirFoto" disabled=true id="boton-editar" disabled=true>cargar foto</button>
+    </ng-template>
+    <button *ngIf="subirFoto" id="boton-editar" (click)="subirFoto = false">regresar</button>
+</div>

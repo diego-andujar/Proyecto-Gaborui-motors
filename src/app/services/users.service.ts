@@ -108,6 +108,11 @@ export class UsersService {
     }, {merge: true});
   }
 
+  getUserId(userId: string) {
+    const collection = this.database.collection("users");
+    return collection.doc(userId).valueChanges();
+  }
+
 
   getUser(userId: string) {
     let user: User | void;
