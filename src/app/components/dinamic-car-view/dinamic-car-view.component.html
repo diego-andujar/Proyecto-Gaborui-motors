@@ -210,23 +210,24 @@
                             </div>
 
                             <div class="span button-wrapper">
-                                <<<<<<< HEAD <div class="button-container">
+                                <div class="button-container">
                                     <button mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button> =======
                                     <div class="button-container">
                                         <button *ngIf="!editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
                                         <button *ngIf="editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">volver</button> >>>>>>> origin/fuenmayor
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </mat-grid-tile>
             </mat-grid-list>
 
+
         </ng-container>
 
-    </div>
-    <<<<<<< HEAD <!-- <div class="spaning button-wrapper holis"> COMENTE ESTE POR EL BOTON DE AÑADIR VEHICULO QUE NO SE CENTRABA -->
+
+        <!-- <div class="spaning button-wrapper holis"> COMENTE ESTE POR EL BOTON DE AÑADIR VEHICULO QUE NO SE CENTRABA -->
         <div class="añadir-vehiculo-div">
             <button mat-raised-button (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button> =======
             <div class="spaning button-wrapper" *ngIf="carsLoad">
@@ -278,3 +279,6 @@
                 </form>
             </div>
         </div>
+
+    </div>
+</div>
