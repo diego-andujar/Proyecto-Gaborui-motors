@@ -1,116 +1,3 @@
-<!--<div class="form-container">
-    <div class="title-wrapper">
-        <div>
-            <h2>orden de reparacion</h2>
-        </div>
-    </div>
-    <form [formGroup]="orderForm">
-        <div class="form-wrapper">
-            <div class="data-wrapper">
-                <div class="input-data-container">
-                    <label class="auth-label" for="displayName">cliente </label>
-                    <input
-                    type="text"
-                    id="displayName"
-                    placeholder="Carlos Garcia"
-                    formControlName="ownerName"
-                    class="auth-input"
-                    />
-                </div>
-                <div class="input-data-container">
-                    <label class="auth-label" for="displayName">mecanico </label>
-                    <input
-                    type="text"
-                    id="displayName"
-                    placeholder="Carlos Garcia"
-                    formControlName="mechanicName"
-                    class="auth-input"
-                    />
-                </div>
-                <div class="input-data-container">
-                    <label class="auth-label" for="displayName">gerente </label>
-                    <input
-                    type="text"
-                    id="displayName"
-                    placeholder="Carlos Garcia"
-                    formControlName="managerName"
-                    class="auth-input"
-                    />
-                </div>
-                <div class="input-data-container">
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Fecha de Emision</mat-label>
-                        <input formControlName="date" matInput [matDatepicker]="picker">
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                      <button mat-raised-button (click)="picker.open()">ABRIR</button>
-                </div>
-                <div class="input-data-container-new">
-                    <div class="textarea-container">
-                        <div class="auth-label-largo">
-                            <label for="displayName">diagnostico </label>
-                        </div>
-                        <textarea
-                        type="text"
-                        id="displayName"
-                        formControlName="diagnosis"
-                        ></textarea>
-                        <div class="text-costos">
-                            <textarea 
-                            type="text"
-                            id="diagnosis"
-                            ></textarea>
-                        </div>
-                    </div>
-                    <div class="textarea-container">
-                        <div class="auth-label-largo">
-                            <label for="displayName">repuestos comprados </label>
-                        </div>
-                        <textarea
-                        type="text"
-                        id="displayName"
-                        formControlName="partsNeeded"
-                        ></textarea>
-                        <div class="text-costos">
-                            <textarea 
-                            type="text"
-                            id="displayName"
-                            ></textarea>
-                        </div>
-                    </div>
-                    <div class="textarea-container">
-                        <div class="auth-label-largo" >
-                            <label for="displayName">procedimiento aplicado </label>
-                        </div>
-                        <textarea 
-                        type="text"
-                        id="displayName"
-                        formControlName="processes"
-                        ></textarea>
-                        <div class="text-costos">
-                            <textarea 
-                            type="text"
-                            id="displayName"
-                            ></textarea>
-                        </div>
-                        
-                    </div>
-                    <div class="input-data-container">
-                        <label class="auth-label" for="displayName">costo total </label>
-                        <input
-                        type="text"
-                        id="displayName"
-                        placeholder="$1230.00"
-                        formControlName="finalCost"
-                        class="auth-input"
-                        />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </form>
-</div>-->
 <div class="content-wrapper">
     <div class="comp-wrapper" *ngIf="!verOrden && !ordenCerrada">
 
@@ -128,9 +15,9 @@
         </div>
 
         <div class="scan-wrapper">
-            <button class="botonqr" *ngIf="!escanear" (click)="escanear = true">Escanear Qr</button>
+            <button class="botonqr" *ngIf="!escanear" (click)="escanear = true" mat-raised-button>Escanear Qr</button>
         </div>
-        <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false">Cerrar cámara</button>
+        <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false" mat-raised-button>Cerrar cámara</button>
         <div class="scanner-image">
             <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)" class="video"></zxing-scanner>
         </div>
@@ -147,9 +34,7 @@
     <!--<div class="verorden">
         <button *ngIf="appointment && !verOrden" (click)="verOrden = !verOrden; escanear = !escanear" class="submit-button">Ver orden</button>
     </div>-->
-    <div class="otroqr">
-        <button *ngIf="verOrden && !ordenCerrada" (click)="verOrden = !verOrden; escanear = !escanear" class="">Escanear otro qr</button>
-    </div>
+
     <div class="list-wrapper" *ngIf="verOrden && !ordenCerrada">
         <div class="datoscliente">
             <app-car-form *ngIf="car != undefined" [car]="car"></app-car-form>
@@ -157,10 +42,10 @@
 
         <!--LISTA REPUESTOS-->
         <div class="addrecargar" *ngIf="car != undefined">
-            <h2>repuestos</h2>
+            <h2>REPUESTOS</h2>
             <div class="addrecargarhijo">
-                <button (click)="newPart()" *ngIf="verOrden && !addPart" class="submit-button">Añadir repuesto</button>
-                <button (click)="reLoadPartsList()" *ngIf="verOrden" class="submit-button">recargar</button>
+                <button (click)="newPart()" *ngIf="verOrden && !addPart" class="submit-button" mat-raised-button>Añadir repuesto</button>
+                <button (click)="reLoadPartsList()" *ngIf="verOrden" class="submit-button" mat-raised-button>recargar</button>
             </div>
             <app-new-part-form *ngIf="addPart" (submited)="onSubmitedPart($event)" [list]="transactions" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
@@ -196,10 +81,10 @@
 
         <!--LISTA PROCEDIMIENTOS-->
         <div *ngIf="car != undefined" class="addrecargar">
-            <h2>procedimientos aplicados</h2>
+            <h2>PROCEDIMIENTOS APLICADOS</h2>
             <div class="addrecargarhijo">
-                <button (click)="newProcess()" *ngIf="verOrden && !addProcess" class="submit-button">Añadir procedimiento</button>
-                <button (click)="reLoadProcessList()" *ngIf="verOrden" class="submit-button">recargar</button>
+                <button (click)="newProcess()" *ngIf="verOrden && !addProcess" mat-raised-button class="">Añadir procedimiento</button>
+                <button (click)="reLoadProcessList()" *ngIf="verOrden" mat-raised-button class="">recargar</button>
             </div>
             <app-new-part-form *ngIf="addProcess" (submited)="onSubmitedPart($event)" [isProcess]="true" [list]="procesos" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
@@ -239,14 +124,16 @@
             <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
         <div class="addrecargarhijo">
-            <button (click)="endOrder()" *ngIf="verOrden" class="submit-button">Cerrar reparacion</button>
+            <button (click)="endOrder()" *ngIf="verOrden" mat-raised-button class="whitebutton">Cerrar reparacion</button>
         </div>
 
-        <div *ngIf="car != undefined">
+        <div *ngIf="car != undefined" class="div-carrousel-mechanic">
             <app-mechanic-car-images [car]="car"></app-mechanic-car-images>
         </div>
 
-
+        <div class="otroqr">
+            <button *ngIf="verOrden && !ordenCerrada" (click)="verOrden = !verOrden; escanear = !escanear" mat-raised-button class="whitebutton">Escanear otro qr</button>
+        </div>
     </div>
 
 
@@ -254,7 +141,7 @@
 
     <!--ESTA PARTE ES CUANDO LA ORDEN ESTA CERRADA-->
     <div class="otroqr">
-        <button *ngIf="ordenCerrada" (click)="ordenCerrada = false; escanear = false" class="submit-button">Escanear otro qr</button>
+        <button *ngIf="ordenCerrada" (click)="ordenCerrada = false; escanear = false" mat-raised-button class="whitebutton">Escanear otro qr</button>
     </div>
     <div class="list-wrapper" *ngIf="ordenCerrada">
         <div class="datoscliente">
@@ -263,7 +150,7 @@
 
         <!--LISTA REPUESTOS-->
         <div class="addrecargar" *ngIf="car != undefined">
-            <h2>repuestos</h2>
+            <h2>REPUESTOS</h2>
             <div class="addrecargarhijo">
             </div>
             <div class="example-container mat-elevation-z8">
@@ -298,7 +185,7 @@
 
         <!--LISTA PROCEDIMIENTOS-->
         <div *ngIf="car != undefined" class="addrecargar">
-            <h2>procedimientos aplicados</h2>
+            <h2>PROCEDIMIENTOS APLICADOS</h2>
             <div class="addrecargarhijo">
             </div>
             <div class="example-container mat-elevation-z8">
@@ -333,7 +220,7 @@
 
 
         <!--TEXTAREA DIAGNOSTICO-->
-        <div *ngIf="car != undefined">
+        <div *ngIf="car != undefined" class="div-diagnostico">
             <app-diagnosis-form [ordenCerrada]="true" [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
 

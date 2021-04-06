@@ -12,7 +12,7 @@
             <div class="wrapper">
                 <div class="input-container">
                     <div class="input-container" *ngIf="editarForm">
-                        <mat-label class="auth-label">marca:</mat-label>
+                        <mat-label class="auth-label">marca</mat-label>
                         <mat-select placeholder={{car.brand}} formControlName="brand" [(ngModel)]="selectdValue" name="car">
                             <mat-option *ngFor="let cars of carBrands" [value]="cars.value">
                                 {{cars.viewValue}}
@@ -43,7 +43,7 @@
                     <input readonly type="text" id="displaName" placeholder="aaa00a" formControlName="plate" class="auth-input" *ngIf="!editarForm" />
                 </div>
                 <div class="input-container" *ngIf="editarForm">
-                    <mat-label class="auth-label">tanque de gasolina:</mat-label>
+                    <mat-label class="auth-label">Gasolina</mat-label>
                     <mat-select placeholder="1/2 tanque" formControlName="tank" [(ngModel)]="selectedValue" name="car">
                         <mat-option *ngFor="let level of tankLevels" [value]="level.level">
                             {{level.viewValue}}

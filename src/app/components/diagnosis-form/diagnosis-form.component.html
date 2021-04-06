@@ -1,7 +1,7 @@
 <div class="textarea-container">
     <form [formGroup]="diagnosisForm" class="form-container" (ngSubmit)="onSubmit()">
         <div class="auth-label-largo">
-            <h2>diagnostico</h2>
+            <h2>DIAGNÓSTICO</h2>
         </div>
         <div class="text-area" *ngIf="!ordenCerrada">
             <textarea type="text" id="displayName" formControlName="diagnosis" value={{order.diagnosis}}></textarea>
