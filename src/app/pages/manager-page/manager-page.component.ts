@@ -3,7 +3,7 @@ import { AppointmentServiceService } from 'src/app/services/appointment-service.
 import { AuthService } from './../../services/auth.service';
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../models/car';
-import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from "firebase";
@@ -70,6 +70,15 @@ export class ManagerPageComponent implements OnInit {
     }
   }
 
+  reloadOrders(event: boolean){
+    if (event){
+      this.appService.getTerminadaApp().then( res => {
+        this.ordenes = res;
+        this.dataSource = new MatTableDataSource<Appointment>(this.ordenes);
+      });
+    }
+  }
+
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
@@ -113,6 +122,15 @@ export class ManagerPageComponent implements OnInit {
         if (this.ordenes.length < 1){
           this.ordenes.push(null);
           alert("No hay ordenes terminadas actualmente")
+        }
+      })
+    } else if (num === 4){
+      this.appService.getCerradaApp().then( res => {
+        this.ordenes = res;
+        this.dataSource = new MatTableDataSource<Appointment>(this.ordenes);
+        if (this.ordenes.length < 1){
+          this.ordenes.push(null);
+          alert("No hay ordenes cerradas actualmente")
         }
       })
     }

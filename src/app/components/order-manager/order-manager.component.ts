@@ -2,7 +2,7 @@ import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
 import { element } from 'protractor';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Appointment } from 'src/app/models/appointment';
@@ -29,6 +29,7 @@ export class OrderManagerComponent implements OnInit {
   orderForm!: FormGroup;
   @Input() event: string = "hola";
   @Input() app!: Appointment;
+  @Output() ordencerrada: EventEmitter<boolean> = new EventEmitter();
   orden!: Order;
   user!: User;
   car!: Car;
@@ -54,6 +55,9 @@ export class OrderManagerComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if (this.app.orderStatus == "cerrada"){
+      this.ordenCerrada = true;
+    }
     this.userService.getUserId(this.app.userid!).subscribe( doc => {
       this.user = doc as User;
     })
@@ -89,20 +93,24 @@ export class OrderManagerComponent implements OnInit {
   }
 
   endOrder(){
-    /*
     let today = new Date();
     let dateEnded = this.datePipe.transform(today, "dd-MM-yyyy");
-    let status =  "cerrada";
-    this.appService.endApp(this.appointment.appId, dateEnded!, status);
+    let status = { 
+      orderStatus: "cerrada",
+    };
+    this.appService.updateDoc(status, this.app.appId!);
     this.orderService.getOrder(this.appointment.appId).then( doc => {
       this.orden = doc[0];
     });
     this.ordenCerrada = true;
-    alert("La orden ha sido cerrada con exito\nSe ha enviado un correo al cliente con los datos de la factura")*/
+    alert("La orden ha sido cerrada con exito\nSe ha enviado un correo al cliente con los datos de la factura")
+
     this.getParts();
+    //this.ordencerrada.emit(true);
   }
 
   async getParts(){
+    const diagnostic = this.orden.diagnosis;
     let cost = 0;
     let parts = "";
     let partsCost = "";
@@ -154,6 +162,7 @@ export class OrderManagerComponent implements OnInit {
       message: parts,
       car: this.app.carInfo,
       to_email: this.user.email,
+      diagnostico: diagnostic,
       repuestos: parts,
       total_repuestos: partsCost,
       procedimientos: processes,
