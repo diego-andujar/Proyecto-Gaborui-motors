@@ -41,6 +41,11 @@ export class MechanicCarImagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.images = this.car.mechanicPictures!;
+    if (this.car.mechanicPictures){
+      this.images = this.car.mechanicPictures!;
+    } else {
+      this.images = [];
+    }
   }
 
   onUpload(pic: any){

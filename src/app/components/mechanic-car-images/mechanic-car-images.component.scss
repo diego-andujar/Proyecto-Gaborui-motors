@@ -9,14 +9,35 @@
     width: 100%;
 }
 
+.ng-container {
+    background-color: red;
+}
+
 .images {
     display: flex;
     justify-content: center;
     max-height: 65vh;
+    max-width: 55vh;
+    max-height: 55vh;
+}
+
+owl-theme[_ngcontent-tpb-c186] {
+    display: block;
+    background-color: aquamarine;
+}
+
+.div-images {
+    width: 100%;
+    // background-color: $primary-color;
+    // border: 0.1em solid $primary-color;
+    // border-radius: 0.5em;
+    // margin: 5%;
+    display: flex;
+    justify-content: center;
 }
 
 .photo {
-    background-color: yellow;
+    // background-color: yellow;
     width: 100%;
     display: flex;
     align-items: center;
@@ -45,4 +66,24 @@ button {
     text-transform: uppercase;
     background-color: $secondary-color;
     color: white;
+}
+
+owl-carousel owl-drag owl-item {
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+}
+
+owl-carousel owl-item img {
+    display: block;
+    /* width: 110%; */
+    max-width: 40vh;
+    max-height: 40vh;
+    display: flex;
+}
+
+owl-carousel-o {
+    background-color: cadetblue;
 }

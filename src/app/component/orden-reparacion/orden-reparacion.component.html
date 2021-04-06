@@ -17,7 +17,7 @@
         <div class="scan-wrapper">
             <button class="botonqr" *ngIf="!escanear" (click)="escanear = true" mat-raised-button>Escanear Qr</button>
         </div>
-        <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false" mat-raised-button>Cerrar cámara</button>
+        <button class="botonqr camara" *ngIf="escanear" (click)="escanear = false" mat-raised-button color="warn">Cerrar cámara</button>
         <div class="scanner-image">
             <zxing-scanner *ngIf="escanear" (scanSuccess)="onCodeResult($event)" class="video"></zxing-scanner>
         </div>
@@ -124,7 +124,7 @@
             <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
         <div class="addrecargarhijo">
-            <button (click)="endOrder()" *ngIf="verOrden" mat-raised-button class="whitebutton-nomargin">Cerrar reparacion</button>
+            <button (click)="endOrder()" *ngIf="verOrden" mat-raised-button color="warn">Cerrar reparacion</button>
         </div>
 
         <div *ngIf="car != undefined" class="div-carrousel-mechanic">
