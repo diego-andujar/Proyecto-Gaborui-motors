@@ -159,7 +159,7 @@ export class DinamicCarViewComponent implements OnInit {
     const bool: boolean = !car.active;
     const active = {active: bool}
     await this.carService.updateCar(active, car.carId!)
-    this.getCars()
+    this.getCars();
     if (bool){
       alert("!Has reactivado este vehiculo con exito!\nAprovecha nuestros servicios");
     } else {

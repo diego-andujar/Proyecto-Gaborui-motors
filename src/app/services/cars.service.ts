@@ -40,7 +40,7 @@ export class CarsService {
 
   async getUsCars(id:string): Promise<Car[]>{
     const lista: Array<Car> = [];
-    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    const collection = this.db.collection("cars").where("userid", "==", id).where("active", "==", true).get()
     await collection.then(snapshot => {
       snapshot.docs.forEach( doc => {
         lista.push(doc.data())

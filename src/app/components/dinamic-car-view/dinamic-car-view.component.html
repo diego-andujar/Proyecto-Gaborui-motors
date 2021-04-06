@@ -3,7 +3,6 @@
         <mat-paginator 
         [length]="carList.length"
         [pageSize]="pageSize"
-        [pageSizeOptions]="[1]"
         (page)="getPaginatorData($event)">
     </mat-paginator>
     <h2 *ngIf="userType === 'manager'">Solicitudes Pendientes</h2>
