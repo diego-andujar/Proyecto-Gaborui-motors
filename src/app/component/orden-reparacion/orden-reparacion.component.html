@@ -44,8 +44,8 @@
         <div class="addrecargar" *ngIf="car != undefined">
             <h2>REPUESTOS</h2>
             <div class="addrecargarhijo">
-                <button (click)="newPart()" *ngIf="verOrden && !addPart" class="submit-button" mat-raised-button>Añadir repuesto</button>
-                <button (click)="reLoadPartsList()" *ngIf="verOrden" class="submit-button" mat-raised-button>recargar</button>
+                <button (click)="newPart()" *ngIf="verOrden && !addPart" mat-raised-button>Añadir repuesto</button>
+                <button (click)="reLoadPartsList()" *ngIf="verOrden" mat-raised-button>recargar</button>
             </div>
             <app-new-part-form *ngIf="addPart" (submited)="onSubmitedPart($event)" [list]="transactions" [order]="orden" [app]="appointment"></app-new-part-form>
             <div class="example-container mat-elevation-z8">
@@ -124,7 +124,7 @@
             <app-diagnosis-form [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
         <div class="addrecargarhijo">
-            <button (click)="endOrder()" *ngIf="verOrden" mat-raised-button class="whitebutton">Cerrar reparacion</button>
+            <button (click)="endOrder()" *ngIf="verOrden" mat-raised-button class="whitebutton-nomargin">Cerrar reparacion</button>
         </div>
 
         <div *ngIf="car != undefined" class="div-carrousel-mechanic">
@@ -132,7 +132,7 @@
         </div>
 
         <div class="otroqr">
-            <button *ngIf="verOrden && !ordenCerrada" (click)="verOrden = !verOrden; escanear = !escanear" mat-raised-button class="whitebutton">Escanear otro qr</button>
+            <button *ngIf="verOrden && !ordenCerrada" (click)="verOrden = !verOrden; escanear = !escanear" mat-raised-button>Escanear otro qr</button>
         </div>
     </div>
 
@@ -140,8 +140,8 @@
 
 
     <!--ESTA PARTE ES CUANDO LA ORDEN ESTA CERRADA-->
-    <div class="otroqr">
-        <button *ngIf="ordenCerrada" (click)="ordenCerrada = false; escanear = false" mat-raised-button class="whitebutton">Escanear otro qr</button>
+    <div *ngIf="ordenCerrada" class="otroqr">
+        <button *ngIf="ordenCerrada" (click)="ordenCerrada = false; escanear = false" mat-raised-button class=" whitebutton-nomargin">Escanear otro qr</button>
     </div>
     <div class="list-wrapper" *ngIf="ordenCerrada">
         <div class="datoscliente">

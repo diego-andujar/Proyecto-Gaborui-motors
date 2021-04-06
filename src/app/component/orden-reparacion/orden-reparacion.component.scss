@@ -122,6 +122,14 @@ p {
     margin-bottom: 5%;
 }
 
+.whitebutton-nomargin {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+    // margin-top: 1%;
+    // margin-bottom: 1%;
+}
+
 button {
     text-transform: uppercase;
     background-color: $secondary-color;
@@ -314,6 +322,7 @@ textarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    // display: none;
 }
 
 .addrecargarhijo {
@@ -328,6 +337,9 @@ textarea {
     display: flex;
     justify-content: center;
     margin-top: 4%;
+    margin-bottom: 2%;
+    height: auto;
+    height: 2em;
     @include tablet {
         margin-top: 10%;
     }
@@ -348,7 +360,7 @@ textarea {
     flex-direction: column;
     align-items: center;
     line-height: 0.2em;
-    margin-top: 100%;
+    margin-top: 90%;
     font-family: $primary-font;
     word-spacing: 50%;
     @include small-phone {
