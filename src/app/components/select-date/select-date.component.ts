@@ -15,6 +15,7 @@ export class SelectDateComponent implements OnInit {
   dayForm!: FormGroup;
   cambiarFecha!: boolean;
   @Input() app!: Appointment;
+  @Input() isClient: boolean = false;
   @Input() citas!: Array<Appointment>;
   @Output() response = new EventEmitter<string | boolean>(); 
   minDate = new Date();
@@ -73,9 +74,14 @@ export class SelectDateComponent implements OnInit {
       appDate:  this.datePipe.transform(this.dayForm.get('appointmentDate')?.value, "dd-MM-yyyy"),
     };
     const date = {date: formValues.appDate};
-    const estado = {estado: "por confirmar"};
+    let estados = {};
+    if (this.isClient){
+      estados = {estado: "solicitada"};
+    } else {
+      estados = {estado: "por confirmar"};
+    }
     this.appointService.updateDoc(date, cita.appId!);
-    this.appointService.updateDoc(estado, cita.appId!);
+    this.appointService.updateDoc(estados, cita.appId!);
     this.dayForm.reset();
     this.selecDate();
     this.response.emit(formValues.appDate!);

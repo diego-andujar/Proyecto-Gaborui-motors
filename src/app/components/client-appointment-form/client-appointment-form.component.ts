@@ -79,6 +79,12 @@ export class ClientAppointmentFormComponent implements OnInit {
     this.createForm();
   }
 
+  reloadApps(){
+    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
+      this.citasInput = doc;
+    })
+  }
+
   onDeleting(response: string | boolean){
     if (response != null){
       this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {

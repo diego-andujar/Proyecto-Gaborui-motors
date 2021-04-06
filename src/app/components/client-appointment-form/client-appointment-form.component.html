@@ -37,7 +37,7 @@
             <div class="example-element-detail"
                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                 <div class="ngcontainer">
-                  <app-appointment-dinamic [appointment]="element" (clientEdit)="clientEditOrder($event)" (deleting)="onDeleting($event)"></app-appointment-dinamic>
+                  <app-appointment-dinamic [appointment]="element" (responseClient)="reloadApps()" (clientEdit)="clientEditOrder($event)" (deleting)="onDeleting($event)"></app-appointment-dinamic>
                 </div>
               </div>
               </td>

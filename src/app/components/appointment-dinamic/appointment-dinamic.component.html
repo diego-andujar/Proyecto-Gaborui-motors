@@ -43,7 +43,11 @@
                 <button *ngIf="!cambiarFecha" mat-raised-button (click)="aceptAppClient(appointment)">Confirmar cita</button> 
                 <button mat-raised-button *ngIf="!cambiarFecha" color="warn" (click)="selecDate()">Cambiar Fecha</button> 
             
-                <form [formGroup]="dayForm" *ngIf="cambiarFecha">
+                <div *ngIf="cambiarFecha">
+                    <app-select-date [app]="appointment" [isClient]="true" (response)="onResponseClient($event)"></app-select-date>
+                </div>
+                <!--<form [formGroup]="dayForm" *ngIf="cambiarFecha">
+                    
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label class="auth-label">Fecha propuesta para la reprogramacion</mat-label>
                         <input [min]="minDate" 
@@ -58,7 +62,7 @@
                     </mat-form-field>
                     <button mat-raised-button *ngIf="cambiarFecha" (click)="modifyAppClient(appointment)">confirmar cambio</button> 
                     <button mat-raised-button color="warn" *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
-                </form>
+                </form>-->
             </mat-card-actions>
             <button mat-raised-button color="warn" (click)="deleteApp(appointment)">Eliminar Cita</button> 
         </div>

@@ -49,6 +49,7 @@ export class AppointmentDinamicComponent implements OnInit {
   @Output() deleting = new EventEmitter<boolean>(); 
   @Output() editOrder = new EventEmitter<boolean>(); 
   @Output() clientEdit = new EventEmitter<boolean>(); 
+  @Output() responseClient = new EventEmitter<boolean>(); 
   @Input() isRegister: boolean = false;
   carList: Array<Car> = [];
   selectedValue!: any;
@@ -99,6 +100,13 @@ export class AppointmentDinamicComponent implements OnInit {
     if (response != null){
       this.selecDate();
       this.editOrder.emit(true);
+    }
+  }
+
+  onResponseClient(response: string | boolean){
+    if (response != null){
+      this.selecDate();
+      this.responseClient.emit(true);
     }
   }
 
