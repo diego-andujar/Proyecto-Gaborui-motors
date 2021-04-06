@@ -47,7 +47,7 @@
                             <div class="input-data-container">
                                 <h3 class="auth-label">marca</h3>
                                 <span *ngIf="!editarCarro" class="input-container-data">{{car.brand}}</span>
-                                <div class="input-container" *ngIf="editarCarro">
+                                <div class="input-container " *ngIf="editarCarro">
                                     <mat-select placeholder={{car.model}} formControlName="brandEdit" [(ngModel)]="selectedValue" name="car">
                                     <mat-option  *ngFor="let car of carBrands" [value]="car.value">
                                         {{car.viewValue}}

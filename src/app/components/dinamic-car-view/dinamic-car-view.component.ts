@@ -156,16 +156,13 @@ export class DinamicCarViewComponent implements OnInit {
   }
 
   async activateCar(car: Car){
-    const bool: boolean = !car.active;
-    const active = {active: bool}
-    await this.carService.updateCar(active, car.carId!)
-    this.getCars();
-    if (bool){
-      alert("!Has reactivado este vehiculo con exito!\nAprovecha nuestros servicios");
-    } else {
+    if(confirm("¿Estas seguro que deseas desactivar este vehiculo?\nNo tendras acceso a este despues de desactivado "+name)) {
+      const bool: boolean = !car.active;
+      const active = {active: bool}
+      await this.carService.updateCar(active, car.carId!)
+      this.getCars();
       alert("!Ha desactivado este vehiculo con exito!");
     }
-    
   }
 
   /*async deActivateCar(car: Car){

@@ -70,8 +70,8 @@
             <div class="input-container">
                 <mat-form-field *ngIf="editarForm" class="example-full-width" appearance="fill">
                     <mat-label class="auth-label">Fecha de nacimiento</mat-label>
-                    <input [min]="minDate" 
-                    [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker" />
+                    <input class="date-input" [min]="minDate" 
+                    [max]="maxDate" formControlName="birthDate" placeholder={{userFire.birthDate}} matInput [matDatepicker]="datepicker" />
                     <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker  [startAt]="startDate" #datepicker>
                         <mat-datepicker-actions>
@@ -133,7 +133,7 @@
                 />
             </div>
             <div class="input-container" *ngIf="editarForm">
-                    <mat-label class="auth-label">genero:</mat-label>
+                    <mat-label class="auth-label">genero</mat-label>
                     <mat-select placeholder="Masculino" formControlName="genero" [(ngModel)]="selectedValue" name="car">
                     <mat-option  *ngFor="let car of generos" [value]="car.value">
                         {{car.viewValue}}

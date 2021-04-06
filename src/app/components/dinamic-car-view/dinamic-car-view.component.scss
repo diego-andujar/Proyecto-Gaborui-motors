@@ -166,7 +166,11 @@ mat-grid-tile {
 
 //ahora viene el form
 mat-select {
-    width: 47%;
+    width: 100%;
+}
+
+mat-option{
+    width: 100%;
 }
 
 .auth-form {

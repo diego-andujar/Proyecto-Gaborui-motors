@@ -8,12 +8,17 @@ input {
     font-family: $secondary-font;
 }
 
+.example-full-width {
+    width: 100%;
+}
+
 mat-select {
-    width: 59%;
+    width: 16em;
     background-color: rgb(237, 249, 250);
-    border: 0.5px solid $primary-color;
+    border: 2px solid $primary-color;
     font-family: $secondary-font;
 }
+    
 
 img {
     width: 100%;
