@@ -1,3 +1,4 @@
+import { UsersService } from 'src/app/services/users.service';
 import { CarsService } from 'src/app/services/cars.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Car } from 'src/app/models/car';
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ManagerClientViewComponent implements OnInit {
 
   @Input() user!: User;
+  userPic!: User;
   carList: Array<Car> = [];
   userType = "manager";
   pageSize: number = 1;
@@ -24,11 +26,16 @@ export class ManagerClientViewComponent implements OnInit {
 
   constructor(
     private carService: CarsService,
+    private userService: UsersService,
     private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.createForm();
+    /*this.userService.getUserId(this.user.refId!).subscribe( doc => {
+      this.userPic = doc as User;
+      console.log(this.userPic.photoUrl)
+    })*/
     /*this.carService.getUsCarsForManager(this.user.id!).then( doc => {
       console.log(doc)
       this.carList.push(doc as Car);

@@ -175,7 +175,8 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
         userList.push(user)
       })}
@@ -201,7 +202,8 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
         userList.push(user)
       })}
@@ -238,7 +240,8 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
         userList.push(user)
       })}
@@ -263,7 +266,8 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
         userList.push(user)
       })}
@@ -288,7 +292,8 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
         userList.push(user)
       })}
@@ -421,6 +426,11 @@ export class UsersService {
    */
   updateUser(userId: string, userData: User): Promise<void> {
     return this.userCollection.doc<User>(userId).update(userData);
+  }
+
+  updateDoc(data:any, id:string){
+    const collection = this.database.collection("users")
+    return  collection.doc(id).update(data);
   }
 
   /**

@@ -13,11 +13,14 @@
 </div> -->
 
 
-<div class="form-container">
+<div class="form-container" *ngIf="user">
     <div class="auth-form-wrapper">
         <div class="photo">
             
-            <img [src]=" 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'"    
+            <img [src]="
+                user.photoUrl
+              ? user.photoUrl
+              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'"    
               />
         </div>
         <form [formGroup]="authForm">   
@@ -99,6 +102,7 @@
                     type="text"
                     id="passwor"
                     class="auth-input"
+                    formControlName="ciudad"
                     readonly
                 />
             </div>

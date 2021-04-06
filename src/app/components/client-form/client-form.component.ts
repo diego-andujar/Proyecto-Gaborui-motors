@@ -81,6 +81,8 @@ export class ClientFormComponent implements OnInit {
   }
 
   async uploadImg(){
+    const data = { photoUrl: this.inputImageUser.nativeElement.value};
+    this.userService.updateDoc(data, this.userFire.refId!)
     await this.user.updateProfile({
       photoURL: this.inputImageUser.nativeElement.value,
     }).then(() => {
