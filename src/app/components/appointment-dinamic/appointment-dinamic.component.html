@@ -171,7 +171,7 @@
             <mat-card-actions *ngIf="element.estado === 'solicitada'" >
                 <button *ngIf="!cambiarFecha" mat-raised-button color="primary" (click)="aceptApp(element)">Aceptar Cita</button> 
                 <button mat-raised-button *ngIf="!cambiarFecha" (click)="selecDate()">Cambiar Fecha</button> 
-                <button mat-raised-button color="warn" *ngIf="!cambiarFecha">Rechazar Cita</button> 
+                <button mat-raised-button color="warn" *ngIf="!cambiarFecha" (click)="deleteAppManager(element)">Rechazar Cita</button> 
                 
                 <div *ngIf="cambiarFecha">
                     <app-select-date [app]="element" [citas]="citas" (response)="onResponse($event)"></app-select-date>

@@ -205,9 +205,13 @@ export class AppointmentDinamicComponent implements OnInit {
     const user = await this.db.collection("users").doc(cita.userid).get();
     const email = user.data()!.email;
     const name = user.data()!.name;
+    const title = "Confirma tu cita"
+    const mssg = "Felicidades ya tu cita fue agendada por nuestro gerente, ahora deberás ingresar a tu perfil y confirmar la cita en la sección 'citas', después de realizar este proceso solo quedara esperar a que llegue el día pautado y te dirijas al taller entre las 8am y 2pm."
     const values = {
+      title: title,
       to_name: name,
       client_email: email,
+      message: mssg,
     }/*
     emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
@@ -274,6 +278,34 @@ export class AppointmentDinamicComponent implements OnInit {
     })
     alert("!Se elimino su cita con exito!")
     this.deleting.emit(true);
+  }
+
+  async deleteAppManager(app: Appointment){
+    const userIds = app.userid;
+    const value = {
+      inAppointment: false,
+    }
+    this.carService.updateCar(value, app.car!);
+    this.appointService.deleteApp(app.appId!);
+    const user = await this.db.collection("users").doc(app.userid).get();
+    const email = user.data()!.email;
+    const name = user.data()!.name;
+    const mssg = "Lo sentimos pero nuestro gerente ha cancelado tu cita, si quieres mas informacion nos puedes escribir a este mismo correo o llamarnos a nuestro numero de contacto. Si desea pedir otra cita puede ingresar a su perfil y dirigirse la sección 'citas'."
+    const title = "Cita cancelada"
+    const values = {
+      title: title,
+      to_name: name,
+      client_email: email,
+      message: mssg,
+    }/*
+    emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
+    });*/
+    alert("!Se elimino la cita con exito!")
+    this.editOrder.emit(true);
   }
 
 
