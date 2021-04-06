@@ -198,6 +198,9 @@ tr.mat-footer-row {
         flex-direction: column;
         justify-content: center;
     }
+    @include small-phone {
+        justify-content: space-evenly;
+    }
 }
 
 .results {
