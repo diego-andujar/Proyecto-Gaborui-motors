@@ -354,6 +354,9 @@ textarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include tablet {
+        // margin-top: 30%;
+    }
     // display: none;
 }
 
@@ -400,7 +403,7 @@ textarea {
     word-spacing: 50%;
     @include tablet {
         // margin-top: 40em;
-        margin-top: 0%;
+        margin-top: 200%;
     }
     @include small-phone {
         // background-color: yellow;

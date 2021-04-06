@@ -2,6 +2,13 @@
 @import "../client-appointment-form/client-appointment-form.component.scss";
 .auth-form-wrapper {
     width: 40%;
+    @include tablet {
+        // background-color: yellow;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 80%;
+    }
     @include small-phone {
         width: auto;
         display: flex;
@@ -12,6 +19,10 @@
 }
 
 .auth-form {
+    @include tablet {
+        background-color: $secondary-color;
+        height: 45vh;
+    }
     @include small-phone {
         height: 60vh;
         // margin-top: 80%;

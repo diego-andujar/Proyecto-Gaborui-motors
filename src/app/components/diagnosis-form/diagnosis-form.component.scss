@@ -67,6 +67,11 @@ button {
 
 .div-guardar {
     width: 100%;
+    @include tablet {
+        // background-color: red;
+        display: flex;
+        justify-content: center;
+    }
     @include small-phone {
         // background-color: red;
         display: flex;
@@ -75,6 +80,11 @@ button {
 }
 
 .button-guardar {
+    @include tablet {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
     @include small-phone {
         width: 100%;
         display: flex;

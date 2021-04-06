@@ -60,6 +60,9 @@ owl-theme[_ngcontent-tpb-c186] {
     font-size: 1.2em;
     height: 20%;
     width: 10%;
+    @include tablet {
+        width: auto;
+    }
     @include small-phone {
         margin-top: 5%;
         font-size: 1em;
