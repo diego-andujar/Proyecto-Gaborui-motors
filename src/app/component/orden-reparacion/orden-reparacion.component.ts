@@ -121,7 +121,7 @@ export class OrdenReparacionComponent implements OnInit {
     })
   }
 
-  async onEdit(row){
+  async onEdit(row: any){
     const index = this.transactions.indexOf(row, 0);
     if(index > -1){
       this.transactions.splice(index,1);
@@ -135,7 +135,7 @@ export class OrdenReparacionComponent implements OnInit {
     });
   }
 
-  async onEditProcess(row){
+  async onEditProcess(row: any){
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);

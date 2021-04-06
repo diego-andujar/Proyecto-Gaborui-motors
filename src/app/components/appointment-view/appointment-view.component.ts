@@ -182,7 +182,7 @@ export class AppointmentViewComponent implements OnInit {
 
   public downloadQRCode(appointment: Appointment) {
     console.log("hola")
-    const fileNameToDownload = 'cita#' + appointment.appId;
+    /*const fileNameToDownload = 'cita#' + appointment.appId;
     const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
     fetch(base64Img)
         .then(res => res.blob())
@@ -197,7 +197,7 @@ export class AppointmentViewComponent implements OnInit {
               link.download = fileNameToDownload;
               link.click();
           }
-        })
+        })*/
  }
 
 }
