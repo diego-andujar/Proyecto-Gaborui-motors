@@ -1,6 +1,6 @@
 import { environment } from './../environments/environment.prod';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 // import {MatPaginatorModule} from '@angular/material/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -80,10 +80,16 @@ import { ItemsListComponent } from './components/items-list/items-list.component
 import { CarFormComponent } from './components/car-form/car-form.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { PrompCompComponent } from './components/promp-comp/promp-comp.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { PwaService } from './services/pwa.service';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
 ]);
+
+const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 @NgModule({
   declarations: [
@@ -132,6 +138,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DiagnosisFormComponent,
     ItemsListComponent,
     CarFormComponent,
+    PrompCompComponent,
   ],
   imports: [
     MatCardModule,
@@ -172,6 +179,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatSortModule,
     MatIconModule,
     MatCheckboxModule,
+    MatBottomSheetModule,
+    MatToolbarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
@@ -179,7 +188,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+    {provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true},],
   bootstrap: [AppComponent],
   entryComponents: [ClientAppointmentFormComponent, NewPartFormComponent],
 })
