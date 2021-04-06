@@ -322,6 +322,10 @@
         <div *ngIf="car != undefined">
             <app-diagnosis-form [ordenCerrada]="true" [order]="orden" [appointment]="appointment"></app-diagnosis-form>
         </div>
+
+        <div *ngIf="car != undefined">
+            <app-mechanic-car-images [car]="car"></app-mechanic-car-images>
+        </div>
         
     </div>
     
