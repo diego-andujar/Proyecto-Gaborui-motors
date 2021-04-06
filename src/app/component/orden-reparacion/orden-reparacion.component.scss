@@ -333,7 +333,7 @@ textarea {
 }
 
 .otroqr {
-    background-color: $third-color;
+    // background-color: $primary-color;
     display: flex;
     justify-content: center;
     margin-top: 4%;
@@ -360,7 +360,7 @@ textarea {
     flex-direction: column;
     align-items: center;
     line-height: 0.2em;
-    margin-top: 90%;
+    margin-top: 130%;
     font-family: $primary-font;
     word-spacing: 50%;
     @include small-phone {
