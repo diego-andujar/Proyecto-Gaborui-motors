@@ -6,8 +6,8 @@
         <div class="text-area" *ngIf="!ordenCerrada">
             <textarea type="text" id="displayName" formControlName="diagnosis" value={{order.diagnosis}}></textarea>
         </div>
-        <div class="button-wrapper" *ngIf="!ordenCerrada">
-            <div class="button-container">
+        <div class="div-guardar" *ngIf="!ordenCerrada">
+            <div class="button-guardar">
                 <button type="submit" mat-raised-button>Guardar</button>
             </div>
         </div>

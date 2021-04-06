@@ -65,8 +65,21 @@ button {
     // }
 }
 
-.button-wrapper {
-    width: 96%;
+.div-guardar {
+    width: 100%;
+    @include small-phone {
+        // background-color: red;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.button-guardar {
+    @include small-phone {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 }
 
 textarea {

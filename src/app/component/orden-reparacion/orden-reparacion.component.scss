@@ -131,6 +131,7 @@ p {
     color: $primary-color;
     margin-top: 10%;
     margin-bottom: 5%;
+    @include small-phone {}
 }
 
 .whitebutton-nomargin {
@@ -173,6 +174,9 @@ h2 {
 
 .form-container {
     height: auto;
+    @include small-phone {
+        background-color: yellow;
+    }
 }
 
 table {
@@ -271,7 +275,7 @@ textarea {
         font-size: 1.2em;
         height: auto;
         // background-color: red;
-        margin-top: -40%;
+        // margin-top: -40%;
     }
     .camara {
         margin-top: -15%;
@@ -371,6 +375,9 @@ textarea {
     @include tablet {
         margin-top: 10%;
     }
+    @include small-phone {
+        margin-bottom: 4%;
+    }
 }
 
 .otroqr2 {
@@ -391,11 +398,13 @@ textarea {
     margin-top: 130%;
     font-family: $primary-font;
     word-spacing: 50%;
-    @include small-phone {
-        overflow-x: auto;
-    }
     @include tablet {
         // margin-top: 40em;
+        margin-top: 0%;
+    }
+    @include small-phone {
+        // background-color: yellow;
+        margin-top: 400%;
     }
 }
 

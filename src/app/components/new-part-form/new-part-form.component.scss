@@ -1,6 +1,50 @@
 @import "../../../styles/components/buttons.scss";
+@import "../client-appointment-form/client-appointment-form.component.scss";
 .auth-form-wrapper {
     width: 40%;
+    @include small-phone {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 90%;
+    }
+}
+
+.auth-form {
+    @include small-phone {
+        height: 60vh;
+        // margin-top: 80%;
+    }
 }
 
 .submit-button {}
+
+.auth-label {
+    @include small-phone {
+        margin-bottom: 5%;
+        font-size: 1.4em;
+    }
+}
+
+.whitebutton {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.whitebutton-nomargin {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+    // margin-top: 1%;
+    // margin-bottom: 1%;
+}
+
+button {
+    text-transform: uppercase;
+    background-color: $secondary-color;
+    color: white;
+}

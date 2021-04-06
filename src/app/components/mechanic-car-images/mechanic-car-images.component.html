@@ -16,7 +16,7 @@
 </owl-carousel-o>
 <div class="photo">
     <div *ngIf="subirFoto">
-        <label class="auth-label" for="displayName">Selecionar foto</label>
+        <label class="auth-label" for="displayName">Subir foto</label>
         <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)" class="foto-choosed">
         <input #imageUser type="hidden" [value]="urlImage | async">
     </div>
