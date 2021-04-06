@@ -5,7 +5,7 @@
         <h2 *ngIf="userType === 'manager'">Solicitudes Pendientes</h2>
         <h2 *ngIf="userType === 'client'">Vehiculos Registrados</h2>
     </div>
-    <!--  -->
+    <!-- !pantalla = iphone -->
     <div *ngIf="!pantalla" class="ngcont flow">
         <ng-container *ngFor="let car of (carList | slice: lowValue : highValue)">
             <div class="image-wrapper">
@@ -98,7 +98,7 @@
             </div>
         </ng-container>
     </div>
-    <!--  -->
+    <!--pantalla = desktop  -->
     <div *ngIf="pantalla" class="ngcont">
         <ng-container *ngFor="let car of (carList | slice: lowValue : highValue)">
             <mat-grid-list cols="4">
@@ -182,9 +182,9 @@
                 </mat-grid-tile>
                 <mat-grid-tile colspan="1" *ngIf="userType == 'manager'">
                     <div class="confirmar-cita">
-                        <div class="span">
+                        <!-- <div class="span">
                             <span>Fecha Propuesta 10/03/2021</span>
-                        </div>
+                        </div> -->
                         <div>
                             <div class="span button-wrapper">
                                 <button mat-raised-button class="submit-button" type="button">Aceptar solicitud</button>
@@ -211,10 +211,10 @@
 
                             <div class="span button-wrapper">
                                 <div class="button-container">
-                                    <button mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button> =======
+                                    <button mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
                                     <div class="button-container">
                                         <button *ngIf="!editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
-                                        <button *ngIf="editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">volver</button> >>>>>>> origin/fuenmayor
+                                        <button *ngIf="editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">volver</button>
                                     </div>
                                 </div>
                             </div>
@@ -226,59 +226,58 @@
 
         </ng-container>
 
-
-        <!-- <div class="spaning button-wrapper holis"> COMENTE ESTE POR EL BOTON DE AÑADIR VEHICULO QUE NO SE CENTRABA -->
-        <div class="añadir-vehiculo-div">
-            <button mat-raised-button (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button> =======
-            <div class="spaning button-wrapper" *ngIf="carsLoad">
-                <button mat-raised-button (click)="!crearCarro = !crearCarro" type="button">añadir vehiculo</button> >>>>>>> origin/fuenmayor
-            </div>
+    </div>
+    <!-- <div class="spaning button-wrapper holis"> COMENTE ESTE POR EL BOTON DE AÑADIR VEHICULO QUE NO SE CENTRABA -->
+    <div class="añadir-vehiculo-div">
+        <!-- <button mat-raised-button (click)="crearCarro = !crearCarro" type="button">añadir vehiculo</button> -->
+        <div class="spaning button-wrapper" *ngIf="carsLoad">
+            <button mat-raised-button (click)="crearCarro = !crearCarro" type="button">añadir vehiculo</button>
         </div>
-        <div *ngIf="crearCarro" class="auth-form form-column">
-            <div class="auth-form-wrapper">
-                <h1 class="h1-center">Añadir Un Nuevo Vehiculo</h1>
-                <form [formGroup]="carForm" class="form-container" (ngSubmit)="onSubmit()">
+    </div>
+</div>
+
+<div *ngIf="crearCarro" class="auth-form form-column">
+    <div class="auth-form-wrapper">
+        <h1 class="h1-center">Añadir Un Nuevo Vehiculo</h1>
+        <form [formGroup]="carForm" class="form-container" (ngSubmit)="onSubmit()">
 
 
-                    <div class="input-container">
-                        <mat-label class="auth-label">marca:</mat-label>
-                        <mat-select placeholder="Honda" formControlName="brand" [(ngModel)]="selectedValue" name="car">
-                            <mat-option *ngFor="let car of carBrands" [value]="car.value">
-                                {{car.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </div>
-
-                    <div class="input-container">
-                        <label class="auth-label" for="summary">modelo:</label>
-                        <input type="text" id="summary" placeholder="Fiesta" formControlName="model" class="auth-input">
-                    </div>
-
-                    <div class="input-container">
-                        <label class="auth-label" for="description">año:</label>
-                        <input type="text" id="description" placeholder="2010" formControlName="year" class="auth-input">
-                    </div>
-
-                    <div class="input-container">
-                        <label class="auth-label" for="photo">placa:</label>
-                        <input type="text" id="photo" placeholder="aaa11a" formControlName="plate" class="auth-input" />
-                    </div>
-
-                    <div class="input-container">
-                        <label class="auth-label" for="photo">Serial del motor:</label>
-                        <input type="text" id="photo" placeholder="aaa11a" formControlName="serialMotor" class="auth-input" />
-                    </div>
-                    <div class="btn-wrapper">
-                        <div class="butto-container">
-                            <button mat-raised-button type="submit">crear vehiculo</button>
-                        </div>
-                        <div class="butto-container">
-                            <button mat-raised-button color="warn" (click)="!crearCarro = !crearCarro" type="button">volver</button>
-                        </div>
-                    </div>
-                </form>
+            <div class="input-container">
+                <mat-label class="auth-label">marca:</mat-label>
+                <mat-select placeholder="Honda" formControlName="brand" [(ngModel)]="selectedValue" name="car">
+                    <mat-option *ngFor="let car of carBrands" [value]="car.value">
+                        {{car.viewValue}}
+                    </mat-option>
+                </mat-select>
             </div>
-        </div>
 
+            <div class="input-container">
+                <label class="auth-label" for="summary">modelo:</label>
+                <input type="text" id="summary" placeholder="Fiesta" formControlName="model" class="auth-input">
+            </div>
+
+            <div class="input-container">
+                <label class="auth-label" for="description">año:</label>
+                <input type="text" id="description" placeholder="2010" formControlName="year" class="auth-input">
+            </div>
+
+            <div class="input-container">
+                <label class="auth-label" for="photo">placa:</label>
+                <input type="text" id="photo" placeholder="aaa11a" formControlName="plate" class="auth-input" />
+            </div>
+
+            <div class="input-container">
+                <label class="auth-label" for="photo">Serial del motor:</label>
+                <input type="text" id="photo" placeholder="aaa11a" formControlName="serialMotor" class="auth-input" />
+            </div>
+            <div class="btn-wrapper">
+                <div class="butto-container">
+                    <button mat-raised-button type="submit">crear vehiculo</button>
+                </div>
+                <div class="butto-container">
+                    <button mat-raised-button color="warn" (click)="!crearCarro = !crearCarro" type="button">volver</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
