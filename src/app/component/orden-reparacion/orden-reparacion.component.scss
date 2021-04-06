@@ -48,6 +48,11 @@ p {
         height: 30%;
         background-color: goldenrod;
     }
+    @include small-phone {
+        width: 80%;
+        height: 25%;
+        text-transform: uppercase;
+    }
 }
 
 .seccion-profile-scanner {
@@ -107,6 +112,10 @@ p {
         border-radius: 2em;
         margin-top: 2.5%;
         width: 70%;
+    }
+    @include small-phone {
+        height: auto;
+        margin-top: 1%;
     }
     // @include ipad-pro {
     //     width: 2em;
@@ -248,6 +257,9 @@ textarea {
     }
     @include small-phone {
         margin-top: 5%;
+        font-size: 1.2em;
+        height: auto;
+        background-color: red;
     }
     .camara {
         margin-top: -15%;
@@ -262,7 +274,7 @@ textarea {
             // margin-top: 20%;
         }
         @include small-phone {
-            margin-top: 20%;
+            margin-top: -40%;
         }
     }
 }
@@ -272,6 +284,10 @@ textarea {
     @include tablet {
         margin-top: 20%;
         height: 90%;
+    }
+    @include small-phone {
+        height: auto;
+        margin-top: 0%;
     }
     // margin-top: 0%;
 }
@@ -376,6 +392,10 @@ textarea {
     // width: 100%;
     display: flex;
     justify-content: center;
+    @include small-phone {
+        background-color: blue;
+        margin-top: -10%;
+    }
 }
 
 
