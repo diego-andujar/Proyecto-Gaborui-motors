@@ -25,6 +25,12 @@
 .example-container {
     height: 68vh;
     overflow: auto;
+    // overflow-x: hidden;
+    @include small-phone {
+        // overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 }
 
 // .btn{
@@ -45,6 +51,10 @@
         font-size: 0.9em;
         line-height: 3.2em;
     }
+}
+
+.auth-form {
+    margin-top: -35%;
 }
 
 .botonesacr {

@@ -88,6 +88,10 @@ mat-paginator {
 
 .button-wrapper {
     width: 80em;
+    @include small-phone {
+        height: auto;
+        margin-bottom: -5%;
+    }
 }
 
 .añadir-vehiculo-div {
@@ -340,6 +344,11 @@ mat-option {
     border: 0.2em solid $secondary-color;
     display: flex;
     flex-direction: column;
+    @include tablet {
+        height: 70%;
+        // background-color: aqua;
+        margin-top: -20%;
+    }
     @include small-phone {
         // background-color: blue;
         height: 100%;
