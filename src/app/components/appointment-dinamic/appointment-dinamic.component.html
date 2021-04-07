@@ -59,7 +59,10 @@
                     <button mat-raised-button color="warn" *ngIf="cambiarFecha" (click)="selecDate()">volver</button> 
                 </form>-->
             </mat-card-actions>
-            <button mat-raised-button color="warn" (click)="deleteApp(appointment)">Eliminar Cita</button>
+            <div class="eliminarbutton-div">
+
+                <button mat-raised-button color="warn" (click)="deleteApp(appointment)">Eliminar Cita</button>
+            </div>
         </div>
 
     </mat-card>
