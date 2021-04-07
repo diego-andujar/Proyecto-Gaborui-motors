@@ -27,18 +27,36 @@ button {
     color: white;
 }
 
-.btn {
-    background-color: $third-color;
-    display: flex;
-    justify-content: center;
-}
-
 .ngcontainer {
     display: flex;
     justify-content: center;
     padding: 2% 0% 4%;
     background-color: $third-color;
     font-family: $third-font;
+    // width: 85em;
+}
+
+.blackbutton {
+    text-transform: uppercase;
+    background-color: $primary-color;
+    color: white;
+}
+
+button {
+    text-transform: uppercase;
+    background-color: $secondary-color;
+    color: white;
+}
+
+.whitebutton {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: center;
 }
 
 mat-paginator {
@@ -46,7 +64,7 @@ mat-paginator {
 }
 
 mat-card {
-    width: 80%;
+    width: 100%;
     justify-content: center;
     border-radius: 0px 0px 5px 5px;
     background-color: white;
