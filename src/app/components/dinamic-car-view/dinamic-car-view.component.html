@@ -214,7 +214,7 @@
                                     <button mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
                                     <div class="button-container">
                                         <button *ngIf="!editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">editar carro</button>
-                                        <button *ngIf="editarCarro" mat-raised-button type="button" (click)="editarCarro = !editarCarro">volver</button>
+                                        <button *ngIf="editarCarro" mat-raised-button color="warn" type="button" (click)="editarCarro = !editarCarro">volver</button>
                                     </div>
                                 </div>
                             </div>
