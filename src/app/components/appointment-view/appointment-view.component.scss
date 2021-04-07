@@ -97,6 +97,9 @@ mat-paginator {
     width: 100%;
     display: flex;
     justify-content: center;
+    @include small-phone {
+        width: 90%;
+    }
     // background-color: yellow;
 }
 
