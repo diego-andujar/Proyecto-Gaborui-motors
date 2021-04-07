@@ -94,6 +94,10 @@ import { SelectMechanicComponent } from './components/select-mechanic/select-mec
 import { MechanicCarImagesComponent } from './components/mechanic-car-images/mechanic-car-images.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HomeSliderComponent } from './components/home-slider/home-slider.component';
+import { NavbarResponsiveComponent } from './components/navbar-responsive/navbar-responsive.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { NavSideResponsiveComponent } from './components/nav-side-responsive/nav-side-responsive.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -157,6 +161,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SelectMechanicComponent,
     MechanicCarImagesComponent,
     HomeSliderComponent,
+    NavbarResponsiveComponent,
+    NavSideResponsiveComponent,
   ],
   imports: [
     MatCardModule,
@@ -204,6 +210,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ScrollingModule,
     QRCodeModule,
     CarouselModule,
+    MatToolbarModule,
+    MatListModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
