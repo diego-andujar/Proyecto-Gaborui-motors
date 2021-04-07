@@ -40,7 +40,7 @@
             justify-content: flex-end;
         }
         @include small-phone {
-            width: 80%;
+            width: 90%;
             height: 5%;
             display: flex;
             justify-content: center;
@@ -150,7 +150,7 @@
         }
         @include small-phone {
             // display: none;
-            // width: 5%;
+            width: 5%;
             // background-color: rgb(146, 107, 107);
         }
     }

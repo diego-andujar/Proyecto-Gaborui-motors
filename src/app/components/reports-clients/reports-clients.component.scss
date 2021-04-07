@@ -1,22 +1,58 @@
 @import "../../pages/manager-page/manager-page.component.scss";
+@import "../../../styles/components/text-boxes.scss";
+@import "../../../styles/components/buttons.scss";
+@import "../../../styles/Lib/mixins.scss";
+@import "../../../styles/components/scroll.scss";
 .example-container {
     height: 68vh;
     overflow: auto;
 }
 
 .folder {
-    // height: 8%;
+    display: flex;
+    background-color: $secondary-color;
     width: 88%;
+    @include tablet {
+        font-family: $primary-font;
+        width: 90%;
+        display: flex;
+        height: 10%;
+        justify-content: flex-end;
+    }
+    @include small-phone {
+        width: 90%;
+        height: 5%;
+        display: flex;
+        justify-content: center;
+    }
+    @include ipad-pro {
+        height: 8%;
+        // flex-direction: row;
+    }
+    // justify-content: space-around;
+    // align-items: flex-end;
 }
 
 .table {
+    // background-color: beige;
+    font-family: $primary-font;
+    // // font-size: 0.85em;
+    text-transform: uppercase;
+    // width: 0.5em;
     width: 88%;
+    // border-bottom: 0.1em solid $secondary-color;
+    // background-color: aqua;
+    @include tablet {
+        width: 90%;
+    }
+    @include small-phone {
+        // display: none;
+        width: 5%;
+        // background-color: rgb(146, 107, 107);
+    }
 }
 
-@import "../../../styles/components/text-boxes.scss";
-@import "../../../styles/components/buttons.scss";
-@import "../../../styles/Lib/mixins.scss";
-@import "../../../styles/components/scroll.scss";
+// @import "../../component/orden-reparacion/orden-reparacion.component.scss";
 // @import "../../components/appointment-view/appointment-view.component.scss";
 .calendar-wrapper {
     height: 100%;
@@ -196,6 +232,10 @@ td.mat-footer-cell {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    @include tablet {
+        margin-top: -35%;
+        // background-color: burlywood;
+    }
     // display: none;
 }
 

@@ -1,6 +1,7 @@
 @import "../../../styles/components/text-boxes.scss";
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
+@import "../../../styles/Lib/mixins.scss";
 .aceptar:hover {
     background-color: rgba(61, 248, 101, 0.938);
 }
@@ -69,6 +70,10 @@ mat-card {
     border-radius: 0px 0px 5px 5px;
     background-color: white;
     border: 2px solid;
+    @include small-phone {
+        background-color: aqua;
+        width: 50%;
+    }
 }
 
 mat-card-title {
