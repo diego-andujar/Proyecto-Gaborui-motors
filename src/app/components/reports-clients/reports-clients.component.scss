@@ -61,6 +61,12 @@
 .example-container {
     height: 68vh;
     overflow: auto;
+    @include small-phone {
+        // overflow-x: auto;
+        // padding-left: 10%;
+        // margin-left: 10%;
+        width: auto;
+    }
 }
 
 h2 {
@@ -73,9 +79,12 @@ h2 {
 }
 
 .folder-container {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
+    @include small-phone {
+        width: 100%;
+    }
     // background-color: tomato;
 }
 
@@ -91,7 +100,7 @@ h2 {
         justify-content: flex-end;
     }
     @include small-phone {
-        width: 80%;
+        width: 90%;
         height: 5%;
         display: flex;
         justify-content: center;
@@ -200,6 +209,10 @@ table {
         width: 90%;
     }
     @include small-phone {
+        // width: 10%;
+        // overflow-x: auto;
+        // overflow: hidden;
+        // background-color: red;
         // display: none;
         // width: 5%;
         // background-color: rgb(146, 107, 107);
@@ -244,6 +257,9 @@ td.mat-footer-cell {
     width: 100%;
     display: flex;
     justify-content: center;
+    @include small-phone {
+        width: 90%;
+    }
 }
 
 // }

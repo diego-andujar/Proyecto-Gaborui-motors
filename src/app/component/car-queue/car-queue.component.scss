@@ -1,5 +1,5 @@
 @import "../../../styles/Lib/variables.scss";
-
+@import "../../../styles/Lib/mixins.scss";
 mat-paginator {
     background-color: $secondary-color;
     font-family: $third-font;
@@ -11,10 +11,12 @@ mat-paginator {
     align-items: center;
 }
 
-ng-container{
+ng-container {
     width: 100%;
+    @include small-phone {
+        margin-bottom: 40%;
+    }
 }
-
 
 h2 {
     font-family: $third-font;
