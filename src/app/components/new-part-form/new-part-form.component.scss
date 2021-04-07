@@ -27,6 +27,7 @@
     @include tablet {
         background-color: $secondary-color;
         height: 45vh;
+        margin-top: 0%;
     }
     @include small-phone {
         height: 60vh;
