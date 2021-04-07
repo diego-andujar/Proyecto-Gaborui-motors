@@ -71,8 +71,7 @@ mat-card {
     background-color: white;
     border: 2px solid;
     @include small-phone {
-        background-color: aqua;
-        width: 50%;
+        width: 100%;
     }
 }
 
