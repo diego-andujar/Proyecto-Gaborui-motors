@@ -319,7 +319,7 @@ mat-select {
     width: 100%;
 }
 
-mat-option{
+mat-option {
     width: 100%;
 }
 
@@ -334,7 +334,12 @@ mat-option{
 }
 
 .auth-form-wrapper {
+    height: 75%;
     padding: 0% 3%;
+    background-color: white;
+    border: 0.2em solid $secondary-color;
+    display: flex;
+    flex-direction: column;
     @include small-phone {
         // background-color: blue;
         height: 100%;
@@ -415,4 +420,18 @@ mat-option{
     &.active {
         background-color: powderblue;
     }
+}
+
+.input-container {
+    padding: 0px 5%;
+    // display: flex;
+}
+
+.input-container {
+    // background-color: yellow;
+    width: 100%;
+}
+
+.form-container {
+    margin-top: -2%;
 }
