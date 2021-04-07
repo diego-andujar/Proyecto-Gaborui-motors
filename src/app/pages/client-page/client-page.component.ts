@@ -40,12 +40,14 @@ export class ClientPageComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
-      this.carList = this.carService.getUserCars(user.uid)
+      this.carService.getUsCars(this.user.uid).then( doc => {
+        this.carList = doc;
+      });
     })
   }
 
   async onSubmit() {
-    this.carList = this.authUsers.getUserCars(this.user.uid);
+    this.getCars()
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
@@ -59,6 +61,12 @@ export class ClientPageComponent implements OnInit {
     this.newCar = !this.newCar;
   }
 
+  getCars(){
+    this.carService.getUsCars(this.user.uid).then( doc => {
+      this.carList = doc;
+    });
+  }
+
   onCreate(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -68,8 +76,8 @@ export class ClientPageComponent implements OnInit {
   }
 
   deleteApp(appointment: Appointment){
-    this.appointService.deleteAppointment(appointment.appId);
-    this.appointmentsList = this.appointService.getUserAppointments(localStorage.getItem("user"));
+    this.appointService.deleteAppointment(appointment.appId!);
+    this.appointmentsList = this.appointService.getUserAppointments(localStorage.getItem("user")!);
     alert("!Su cita ha sido eliminado con exito!\nPor favor refresque la pagina")
   }
 

@@ -1,0 +1,161 @@
+@import '../../../styles/Lib/variables.scss';
+// html, body{
+//   height: 100%;
+// }
+// body {
+//   margin: 0;
+// }
+.sidenav-container {
+  height: 100%;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+}
+.center1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 130px;
+  margin-bottom: 7.5%;
+  font-size: 145%;
+}
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7.5%;
+  margin-bottom: 7.5%;
+  font-size: 145%;
+}
+.sidenav {
+  position: fixed;
+  flex-direction: column;
+  background-color: $secondary-color;
+  width: 200px;
+  color: $primary-color;
+  height: 80%;
+  border-radius: 0 0 50px 0;
+  //
+}
+
+.sidenav .mat-toolbar {
+  color: white;
+  background: $primary-color;
+  //menu
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-toolbar{
+  position: fixed;
+  background-color: $primary-color;
+  height: 15%;
+  width: 100%;
+  // position: fixed;barra negra 
+}
+
+.spacer{
+  flex: 1 1 auto;
+  margin-right: 5%;
+}
+
+.spacer2{
+  margin: 5%;
+}
+
+.mat-toolbar a{
+  display: inline-block;
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mat-toolbar a:hover{
+  display: inline-block;
+  margin: 0 10px;
+  color: $secondary-color;
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  align-self: center;
+  height: 110%;
+  width: 60px;
+  text-decoration: none;
+  color: inherit;
+
+}
+
+.photo{
+  width: 45px;
+  border-radius: 39px;
+  margin-top: 16%;
+}
+
+.center2{
+  color: white;
+  font-size: 160%;
+}
+
+.marginleft{
+  margin-left: 50%;
+}
+.text{
+  font-size: 1.6em;
+  text-transform: uppercase;
+}
+
+.logoutfoto {
+  margin-left: 180%;
+  height: 100%;
+  width: 100%;
+  fill: $primary-color;
+  background-color:none;
+}
+
+.logoutfoto2 {
+  margin-left: 0;
+  height: 100%;
+  width: 100%;
+  fill: $third-color;
+  background-color:none;
+}
+
+.moveright{
+  margin-left: 35%;
+}
+.no{
+  background: $secondary-color;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.no2{
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px){
+  .sidenav{
+    display: none;
+  }
+  
+
+ 
+}
+@media (max-width: 767px){
+  .mat-toolbar a{
+    display: none;
+  }
+ 
+}
+

@@ -1,228 +1,110 @@
-<div class="form-container">
+<div class="form-container" *ngIf="user">
     <div class="auth-form-wrapper">
         <div class="photo">
-            <button id="boton-editar" (click)="editar()">editar datos</button>
+            <div class="circular--landscape">
+                <img *ngIf="!subirFoto" [src]="
+            user.photoURL
+              ? user.photoURL
+              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'" />
+            </div>
+
+            <div *ngIf="subirFoto">
+                <label class="auth-label" for="displayName">Selecionar imagen</label>
+                <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)" class="foto-choosed">
+                <input #imageUser type="hidden" [value]="urlImage | async">
+            </div>
+
+            <button *ngIf="!subirFoto" id="boton-editar" (click)="subirFoto = true" mat-raised-button class="whitebutton">Subir foto</button>
+
+            <div class="cargar-regresar-in">
+                <button *ngIf="subirFoto && ( urlImage | async ); else btnDisable" id="boton-editar" (click)="uploadImg()" mat-raised-button>Cargar foto</button>
+
+                <ng-template #btnDisable>
+                    <button *ngIf="subirFoto" disabled=true id="boton-editar" disabled=true mat-raised-button class="cargar-foto-button">Cargar foto</button>
+                </ng-template>
+
+                <button *ngIf="subirFoto" id="boton-editar" (click)="subirFoto = false" mat-raised-button color="warn" class="cargar-foto-button">Regresar</button>
+            </div>
+
+            <button *ngIf="!editarForm && !subirFoto" id="boton-editar" (click)="editar()" mat-raised-button>Editar datos</button>
+            <button *ngIf="editarForm" id="boton-editar" (click)="editar()" mat-raised-button color="warn">Regresar</button>
         </div>
-        <form [formGroup]="authForm" (ngSubmit)="validateForm() && onSubmit()">   
-        <div class="wrapper">
-            <div class="input-container">
-                <label class="auth-label" for="displayName">Nombre Completo</label>
-                <input
-                    required
-                    type="text"
-                    placeholder="Carlos Garcia"
-                    formControlName="name"
-                    class="auth-input"
-                    *ngIf="!userFire.name"
-                />
-                <input
-                    type="text"
-                    value= "hola"
-                    autocomplete="off"
-                    formControlName="name"
-                    class="auth-input"
-                    readonly
-                    *ngIf="userFire.name"
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="email">Correo Electronico</label>
-                <input
-                required
-                type="email"
-                id="email"
-                placeholder="carlos@example.com"
-                formControlName="email"
-                class="auth-input"
-                *ngIf="!userFire.email"
-                />
-                <input
-                readonly
-                type="email"
-                id="email"
-                placeholder="carlos@example.com"
-                formControlName="email"
-                class="auth-input"
-                *ngIf="userFire.email"
-                />
-            </div>
-            <div class="input-container">
-                <mat-form-field *ngIf="!userFire.birthDate || editarForm" class="example-full-width" appearance="fill">
-                    <mat-label class="auth-label">Fecha de nacimiento</mat-label>
-                    <input [min]="minDate" 
-                    [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker" />
-                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker  [startAt]="startDate" #datepicker>
-                        <mat-datepicker-actions>
-                        <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
-                </mat-form-field>
-                <label *ngIf="userFire.birthDate && !editarForm" class="auth-label" for="displayName">Fecha de Nacimiento</label>
-                <input
-                    type="text"
-                    autocomplete="off"
-                    formControlName="birthDate"
-                    class="auth-input"
-                    readonly
-                    *ngIf="userFire.birthDate && !editarForm"
-                />
-            </div>
-            <div class="input-container" >
-                <label class="auth-label" for="displayName">cedula </label>
-                <input
-                    required
-                    type="number"
-                    id="displayName"
-                    placeholder="Carlos Garcia"
-                    formControlName="cedula"
-                    class="auth-input"
-                    *ngIf="!userFire.cedula"
-                />
-                <input
-                    type="number"
-                    id="displayName"
-                    placeholder="Carlos Garcia"
-                    formControlName="cedula"
-                    class="auth-input"
-                    *ngIf="userFire.cedula"
-                    readonly
-                />
-            </div>
-            <div class="input-container" >
-                <label class="auth-label" for="displayName">numero de telefono </label>
-                <input
-                    required
-                    type="number"
-                    id="displaName"
-                    placeholder="4140000000"
-                    formControlName="phone"
-                    class="auth-input"
-                    *ngIf="!userFire.phoneNumber || editarForm"
-                />
-                <input
-                    readonly
-                    type="number"
-                    id="displaName"
-                    placeholder="Carlos Garcia"
-                    formControlName="phone"
-                    class="auth-input"
-                    *ngIf="userFire.phoneNumber && !editarForm"
-                />
-            </div>
-            <div class="input-container" *ngIf="!userFire.genero">
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+            <div class="wrapper">
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">Nombre Completo</label>
+                    <input required type="text" placeholder="Carlos Garcia" formControlName="name" class="auth-input active" *ngIf="!userFire.name" />
+                    <input type="text" value="hola" autocomplete="off" formControlName="name" class="auth-input" readonly *ngIf="userFire.name" />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="email">Correo Electrónico</label>
+                    <input required type="email" id="email" placeholder="carlos@example.com" formControlName="email" class="auth-input active correo" *ngIf="!userFire.email" />
+                    <input readonly type="email" id="email" placeholder="carlos@example.com" formControlName="email" class="auth-input correo" *ngIf="userFire.email" />
+                </div>
+                <div class="input-container">
+                    <mat-form-field *ngIf="editarForm" class="example-full-width" appearance="fill">
+                        <mat-label class="auth-label">Fecha de nacimiento</mat-label>
+                        <input [min]="minDate" [max]="maxDate" formControlName="birthDate" matInput [matDatepicker]="datepicker" />
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker [startAt]="startDate" #datepicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancelar</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Confirmar</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                    <label *ngIf="!editarForm" class="auth-label" for="displayName">Fecha de Nacimiento</label>
+                    <input type="text" autocomplete="off" formControlName="birthDate" class="auth-input" readonly *ngIf="!editarForm" />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">Cédula </label>
+                    <input required type="number" id="displayName" placeholder="1111111" formControlName="cedula" class="auth-input active" *ngIf="editarForm" />
+                    <input type="number" id="displayName" placeholder="1111111" formControlName="cedula" class="auth-input" *ngIf="!editarForm" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">número de teléfono </label>
+                    <input required type="number" id="displaName" placeholder="4140000000" formControlName="phone" class="auth-input active" *ngIf="editarForm" />
+                    <input readonly type="number" id="displaName" placeholder="4140000000" formControlName="phone" class="auth-input" *ngIf="!editarForm" />
+                </div>
+                <div class="input-container" *ngIf="editarForm">
                     <mat-label class="auth-label">genero:</mat-label>
                     <mat-select placeholder="Masculino" formControlName="genero" [(ngModel)]="selectedValue" name="car">
-                    <mat-option  *ngFor="let car of generos" [value]="car.value">
-                        {{car.viewValue}}
-                    </mat-option>
+                        <mat-option *ngFor="let car of generos" [value]="car.value">
+                            {{car.viewValue}}
+                        </mat-option>
                     </mat-select>
-            </div>
-            <div class="input-container" *ngIf="userFire.genero">
-                    <label class="auth-label" for="displayName">genero </label>
-                    <input
-                    type="text"
-                    id="displName"
-                    placeholder="Carlos Garcia"
-                    formControlName="genero"
-                    class="auth-input"
-                    *ngIf="userFire.genero"
-                    readonly
-                    />
-                
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">direccion</label>
-                <input
-                    required
-                    type="text"
-                    id="passwor"
-                    placeholder=""
-                    formControlName="direccion"
-                    class="auth-input"
-                    *ngIf="!userFire.address"
-                />
-                <input
-                    type="text"
-                    id="passwor"
-                    placeholder=""
-                    formControlName="direccion"
-                    class="auth-input"
-                    *ngIf="userFire.address"
-                    readonly
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">ciudad</label>
-                <input
-                    required
-                    type="text"
-                    id="passwor"
-                    placeholder=""
-                    formControlName="ciudad"
-                    class="auth-input"
-                    *ngIf="!userFire.city"
-                />
-                <input
-                    type="text"
-                    id="passwor"
-                    placeholder=""
-                    formControlName="ciudad"
-                    class="auth-input"
-                    *ngIf="userFire.city"
-                    readonly
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">estado</label>
-                <input
-                    required
-                    type="text"
-                    id="passwo"
-                    placeholder=""
-                    formControlName="estado"
-                    class="auth-input"
-                    *ngIf="!userFire.state"
-                />
-                <input
-                    readonly
-                    type="text"
-                    id="passwo"
-                    placeholder=""
-                    formControlName="estado"
-                    class="auth-input"
-                    *ngIf="userFire.state"
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">codigo postal</label>
-                <input
-                    required
-                    type="number"
-                    id="passw"
-                    placeholder=""
-                    formControlName="postal"
-                    class="auth-input"
-                    *ngIf="!userFire.postalCode"
-                />
-                <input
-                    type="number"
-                    id="passw"
-                    placeholder=""
-                    formControlName="postal"
-                    class="auth-input"
-                    *ngIf="userFire.postalCode"
-                    readonly
-                />
-            </div>
-            <div class="button-wrapper">
-                <div class="button-container">
-                  <button type="submit" class="submit-button">seguir</button>
+                </div>
+                <div class="input-container" *ngIf="!editarForm">
+                    <label class="auth-label" for="displayName">género </label>
+                    <input type="text" id="displName" placeholder="Masculino" formControlName="genero" class="auth-input" *ngIf="!editarForm" readonly />
+
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">dirección</label>
+                    <input required type="text" id="passwor" placeholder="1era avenida ..." formControlName="direccion" class="auth-input active" *ngIf="editarForm" />
+                    <input type="text" id="passwor" placeholder="1era avenida ..." formControlName="direccion" class="auth-input" *ngIf="!editarForm" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">ciudad</label>
+                    <input required type="text" id="passwor" placeholder="caracas" formControlName="ciudad" class="auth-input active" *ngIf="editarForm" />
+                    <input type="text" id="passwor" placeholder="" placeholder="caracas" formControlName="ciudad" class="auth-input" *ngIf="!editarForm" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">estado</label>
+                    <input required type="text" id="passwo" placeholder="miranda" formControlName="estado" class="auth-input active" *ngIf="editarForm" />
+                    <input readonly type="text" id="passwo" placeholder="miranda" formControlName="estado" class="auth-input" *ngIf="!editarForm" />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">código postal</label>
+                    <input required type="number" id="passw" placeholder="1060" formControlName="postal" class="auth-input active" *ngIf="editarForm" />
+                    <input type="number" id="passw" placeholder="1060" formControlName="postal" class="auth-input" *ngIf="!editarForm" readonly />
+                </div>
+                <div *ngIf="editarForm" class="button-wrapper">
+                    <div class="button-container">
+                        <button type="submit" class="submit-button" mat-raised-button>Guardar Cambios</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
     </div>
 </div>
-    

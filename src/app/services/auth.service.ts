@@ -16,30 +16,38 @@ export class AuthService {
   user!: firebase.User | null;
   userId!: string;
   constructor(
-    private angularFireAuth: AngularFireAuth,
     private afsAuth: AngularFireAuth,
     public database: AngularFirestore,
     ) { }
   /**
    * Log in with Google account
    */
+  
+  async resetPassword(email:string):Promise<void>{
+    try {
+      return this.afsAuth.sendPasswordResetEmail(email)
+    } catch (error) {
+      console.log("error mano")
+    }
+  }
+
   async loginWithGoogle(): Promise<firebase.User> {
     
     try {
-      let primeraVez: boolean = false;
-      const response = await this.angularFireAuth.signInWithPopup(
+      let primeraVez: boolean | undefined = false;
+      const response = await this.afsAuth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()
       )
       const { user } = response;
-      localStorage.setItem('user', user.uid);
+      localStorage.setItem('user', user!.uid);
       const actualUser = user;
       primeraVez = response.additionalUserInfo?.isNewUser;
       if (primeraVez){
         let userDB: User = {
-          name: actualUser.displayName,
-          email: actualUser.email,
-          phoneNumber: actualUser.phoneNumber,
-          id: actualUser.uid,
+          name: actualUser!.displayName!,
+          email: actualUser!.email!,
+          phoneNumber: actualUser!.phoneNumber!,
+          id: actualUser!.uid,
           rol: {
             client: true,
           }
@@ -48,11 +56,12 @@ export class AuthService {
         userDB.refId = id;
         firebase.firestore().collection("users").doc(id).set(userDB);
       }
-      return user;
+      return user!;
     } catch (err) {
       console.log(err);
       localStorage.removeItem('user');
-      return null;
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
+      return null!;
     }
   }
 
@@ -71,15 +80,18 @@ export class AuthService {
     password: string
   ): Promise<firebase.User> {
     try {
-      const response = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
+      const response: any = await this.afsAuth.signInWithEmailAndPassword(email, password);
       const { user } = response;
-      localStorage.setItem('user', user.uid);
+      if (user != null ){
+        localStorage.setItem('user', user.uid);
+      }
       
       return user;
     } catch (err) {
       console.log(err);
       localStorage.removeItem('user');
-      return null;
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
+      return null!;
     }
   }
 
@@ -88,18 +100,19 @@ export class AuthService {
    * @param email
    * @param password
    */
-  async signUpWithEmail(
+   async signUpWithEmail(
     displayName: string,
     email: string,
     password: string
   ): Promise<firebase.User> {
     try {
-      const response = await this.angularFireAuth.createUserWithEmailAndPassword(
+      const response = await this.afsAuth.createUserWithEmailAndPassword(
         email,
         password
       );
       const { user } = response;
-      localStorage.setItem('user', user.uid);
+      localStorage.setItem('user', user!.uid);
+      
       // Setting up user name and last name
       const actualUser: any = user;
       await actualUser.updateProfile({
@@ -108,6 +121,7 @@ export class AuthService {
           'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
       });
       let userDB: User = {
+        photoUrl: user?.photoURL!,
         name: actualUser.displayName,
         email: actualUser.email,
         phoneNumber: actualUser.phoneNumber,
@@ -118,11 +132,73 @@ export class AuthService {
       }
       const id = this.database.createId()
       userDB.refId = id;
-      firebase.firestore().collection("citas").doc(id).set(userDB);
-      return actualUser;
+      firebase.firestore().collection("users").doc(id).set(userDB);
+      return user!;
+    } catch (err) {
+      localStorage.removeItem('user');
+      alert("No se pudieron verificar los datos\nIntentelo Nuevamente")
+      return null!;
+    }
+  }
+  /*async signUpWithEmail(
+    displayName: string,
+    email: string,
+    password: string
+  ): Promise<firebase.User> {
+    try {
+      const res = await this.afsAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      const { user } = res;
+      localStorage.setItem('user', user.uid);
+      // Setting up user name and last name
+      await user.updateProfile({
+        displayName,
+        photoURL:
+          'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
+      });
+      return user;
     } catch (err) {
       localStorage.removeItem('user');
       return null;
+    }
+  }*/
+
+  // ------------
+  async signUpWithEmailAdmin(
+    displayName: string,
+    email: string,
+    password: string
+  ){
+    try {
+      const response = await this.afsAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      // const { user } = response;
+      // // localStorage.setItem('user', user.uid);
+      // // Setting up user name and last name
+      // const actualUser: any = user;
+      // await actualUser.updateProfile({
+      //   displayName,
+      //   photoURL:
+      //     'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
+      // });
+      // // let userDB: User = {
+      // //   name: actualUser.displayName,
+      // //   email: actualUser.email,
+      // //   phoneNumber: actualUser.phoneNumber,
+      // //   id: actualUser.uid,
+      // //   rol: {
+      // //     client: true,
+      // //   }
+      // // }
+      // // firebase.firestore().collection("users").add(userDB)
+      // return actualUser;
+    } catch (err) {
+      localStorage.removeItem('user');
+       console.log("noMeGrites");
     }
   }
 
@@ -130,7 +206,7 @@ export class AuthService {
    * GET CURRENT LOGGED IN USER
    */
   getCurrentUser(): Observable<firebase.User> {
-    const actualUser: any = this.angularFireAuth.user;
+    const actualUser: any = this.afsAuth.user;
     return actualUser;
   }
 
@@ -144,7 +220,7 @@ export class AuthService {
    */
   async logout(): Promise<void> {
     try {
-      await this.angularFireAuth.signOut();
+      await this.afsAuth.signOut();
       localStorage.removeItem('user');
     } catch (e) {
       localStorage.removeItem('user');

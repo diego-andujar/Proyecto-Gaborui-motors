@@ -1,7 +1,31 @@
-@import "../../../styles/components/text-boxes.scss";
-@import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
+@import "../../../styles/components/buttons.scss";
+@import "../appointment-view/appointment-view.component.scss";
+@import "../../../styles/Lib/mixins.scss";
+.table-container {
+    padding-bottom: 5%;
+}
 
+.example-container {
+    height: 68vh;
+    overflow: auto;
+    @include tablet {
+        max-height: 30vh;
+        overflow-y: auto;
+    }
+}
+
+button {
+    text-transform: uppercase;
+    background-color: $secondary-color;
+    color: white;
+}
+
+.whitebutton {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+}
 
 .auth-form {
     width: 100%;
@@ -10,6 +34,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @include small-phone {
+        // background-color: red;
+        // margin-top: -40%;
+        background-color: $secondary-color;
+        overflow: hidden;
+    }
 }
 
 .button-wrapper {
@@ -17,20 +47,35 @@
     height: 12%;
     margin: 0;
     margin-bottom: 3%;
+    @include small-phone {
+        // background-color: yellow;
+    }
 }
 
 .button-container {
     height: 100%;
+    @include small-phone {
+        // background-color: green;
+    }
+}
+
+mat-select{
+    text-transform: uppercase;
+}
+
+mat-option{
+    text-transform: uppercase;
 }
 
 mat-form-field {
     width: 75%;
 }
 
-div {
-    padding: 0%;
-    margin: 0%;
-}
+
+/*div {
+  padding: 0%;
+  margin: 0%;
+}*/
 
 .auth-form-wrapper {
     display: flex;
@@ -41,11 +86,26 @@ div {
     height: 75%;
     padding: 0%;
     margin: 0%;
+    @include small-phone {
+        // background-color: teal;
+        width: 90%;
+        height: 95%;
+        border: 0em;
+        justify-content: space-evenly;
+    }
 }
 
-.wrapper {
+.wrappers {
     display: flex;
     flex-direction: row;
+    @include small-phone {
+        margin-left: 3%;
+        // background-color: violet;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8em;
+    }
 }
 
 .input-container {
@@ -54,25 +114,76 @@ div {
     justify-content: left;
     padding: 0% 2%;
     width: 96%;
-
+    @include small-phone {
+        margin-left: 3%;
+        // background-color: violet;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8em;
+        align-items: center;
+    }
 }
 
-.inp{
+button {
+    margin: 0% 2%;
+}
+
+.inp {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0% 2%;
     width: 96%;
+    @include small-phone {
+        justify-content: center;
+    }
 }
 
 #label {
     width: 20%;
     height: 30vh;
+    @include small-phone {
+        text-align: center;
+        // background-color: yellow;
+        height: 100%;
+        width: 100%;
+        padding: 1%;
+    }
 }
 
 #text-area {
     padding-left: 2%;
     width: 80%;
     resize: none;
+    @include small-phone {
+        // background-color: blue;
+        height: 25vh;
+        margin-bottom: 2%;
+    }
+}
+
+.wrapper {
+    background-color: $third-color;
+    @include tablet {
+        // background-color: yellow;
+        margin-top: -30%;
+    }
+    @include small-phone {
+        margin-top: 10%;
+    }
+}
+
+.span {
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.btn {
+    background-color: $third-color;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
 }

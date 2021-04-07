@@ -1,0 +1,29 @@
+<div class="auth-form">
+    <div class="auth-form-wrapper">
+        <h1 *ngIf="!isProcess" class="h1-center">Añadir repuesto</h1>
+        <h1 *ngIf="isProcess" class="h1-center">Añadir procedimiento</h1>
+        <form [formGroup]="authForm" class="form-container" (ngSubmit)="onSubmit()">
+            <div *ngIf="!isProcess" class="input-container">
+                <label class="auth-label" for="displayName">Nombre del repuesto </label>
+                <input type="text" id="displayName" placeholder="2lts de aceite para direccion" formControlName="displayName" class="auth-input" />
+            </div>
+            <div *ngIf="!isProcess" class="input-container">
+                <label class="auth-label" for="email">Costo</label>
+                <input type="number" id="email" placeholder="50" formControlName="cost" class="auth-input" />
+            </div>
+            <div *ngIf="isProcess" class="input-container">
+                <label class="auth-label" for="displayName">procedimiento </label>
+                <input type="text" id="displayName" placeholder="2lts de aceite para direccion" formControlName="displayName" class="auth-input" />
+            </div>
+            <div *ngIf="isProcess" class="input-container">
+                <label class="auth-label" for="email">Costo</label>
+                <input type="number" id="email" placeholder="50" formControlName="cost" class="auth-input" />
+            </div>
+            <div class="button-wrapper">
+                <div class="button-container">
+                    <button type="submit" mat-raised-button>Añadir</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,114 @@
 @import "../car-view/car-view.component.scss";
+@import "../../../styles/components/buttons.scss";
+@import "../../../styles/Lib/variables.scss";
+@import "../../../styles/Lib/mixins.scss";
+.seccion-profile-calendario {
+    width: 100%;
+    height: 50%;
+    // background-color: yellow;
+    font-family: $primary-font;
+    text-align: center;
+    @include tablet {
+        margin-top: 20%;
+        height: 35%;
+    }
+    @include small-phone {
+        // background-color: beige;
+        height: 100%;
+        margin-top: 40%;
+    }
+}
+
+.ul-profile-calendario {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    // background-color: blue;
+    list-style: none;
+    height: 100%;
+    align-items: center;
+    height: 33em;
+    // width: 80%;
+    // text-align: center;
+    @include tablet {
+        // margin-top: 10%;
+    }
+    @include small-phone {
+        // background-color: beige;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: baseline;
+        height: 100%;
+    }
+}
+
+.palabra-manager {
+    width: 100%;
+    text-align: center;
+}
+
+.li-profile {
+    height: 50%;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    line-height: 2em;
+    align-items: center;
+    border: 0.4em solid $secondary-color;
+    border-radius: 1em;
+    @include tablet {
+        // margin-top: 10%;
+        margin-left: -5%;
+        width: 30%;
+    }
+    @include small-phone {
+        // background-color: beige;
+        margin-top: 0%;
+        width: 90%;
+        height: 45%;
+    }
+}
+
+.li-calendario {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    line-height: 2em;
+    align-items: center;
+    border: 0.4em solid $secondary-color;
+    border-radius: 1em;
+    @include tablet {
+        margin-top: 0%;
+        width: 60%;
+        height: 80%;
+    }
+    @include small-phone {
+        // background-color: beige;
+        margin-top: 10%;
+        width: 90%;
+        height: 100%;
+        margin-left: -5%;
+    }
+}
+
+.img-perfil {
+    width: 30%;
+    height: 60%;
+    @include tablet {
+        height: 45%;
+    }
+    @include small-phone {
+        height: 45%;
+        width: 25%;
+    }
+}
+
+.mostrar {
+    display: none;
+}
 
 .mat-grid-wrapper {
     color: $primary-color;
@@ -7,20 +117,18 @@
     margin-left: 5%;
 }
 
-
 mat-grid-tile {
     background-color: $third-color;
 }
-
 
 .image-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    
 }
-span{
+
+span {
     margin: 1em;
 }
 
@@ -32,6 +140,7 @@ span{
     align-items: center;
     background-color: white;
 }
+
 .input-data-container {
     width: 50%;
     padding: 1em;
@@ -49,4 +158,236 @@ span{
 
 .image {
     width: 100%;
+}
+
+.grid-flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 768px) {
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+    .mat-grid-wrapper {
+        color: $primary-color;
+        padding-top: 15%;
+        margin-top: 4%;
+        width: 100%;
+        margin-left: 0;
+    }
+    mat-grid-tile {
+        background-color: $third-color;
+    }
+    .image-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    span {
+        margin: 1em;
+    }
+    .input-container-data {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+    .input-data-container {
+        width: 50%;
+        padding: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .confirmar-cita {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .image {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .mat-grid-wrapper {
+        color: $primary-color;
+        margin-top: 4%;
+        width: 90%;
+        margin-left: 5%;
+    }
+    .mostrar {
+        display: none;
+    }
+    mat-grid-tile {
+        background-color: $third-color;
+    }
+    .image-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    span {
+        margin: 1em;
+    }
+    .input-container-data {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+    .input-data-container {
+        width: 50%;
+        padding: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .confirmar-cita {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .image {
+        width: 100%;
+    }
+    @media only screen and (max-width: 768px) {
+        .center {
+            display: flex;
+            justify-self: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .mat-grid-wrapper {
+            color: $primary-color;
+            font-size: 100%;
+            width: 100%;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            margin-right: 10%;
+        }
+        mat-grid-tile {
+            display: flex;
+            justify-content: center;
+            background-color: $third-color;
+        }
+        .image-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        span {
+            margin: 0;
+        }
+        .centroarriba {
+            display: flex;
+            align-content: flex-start;
+        }
+        .input-container-data {
+            width: 50%;
+            font-size: 20px;
+            margin-left: 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+        }
+        .input-data-container {
+            width: 50%;
+            padding: 1em;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .moverde {
+            font-size: 92%;
+            margin-right: auto;
+        }
+        .confirmar-cita {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .image {
+            width: 100%;
+        }
+    }
+    //////////////////////////////////////////////////
+}
+
+@media only screen and (max-width: 414px) {
+    .mostrar {
+        display: flex;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        font-size: 120%;
+    }
+    .block3 {
+        background-color: $third-color;
+        width: auto;
+        //border: 1px solid $primary-color;
+        font-size: 90%;
+        font-weight: 700;
+    }
+    .mos2 {
+        display: none;
+    }
+    .block2 {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-height: 200px;
+        background-color: $third-color;
+        border: 1px solid $primary-color;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        margin-bottom: 0 1px;
+        font-family: $primary-font;
+        font-size: 90%;
+    }
+    .block2-2 {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-height: 200px;
+        background-color: $secondary-color;
+        border: 1px solid $primary-color;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        margin-bottom: 0 1px;
+        margin-top: 50%;
+        font-family: $primary-font;
+        font-size: 70%;
+    }
+    .block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        font-size: 300%;
+        margin-top: 10%;
+    }
+    .titu {
+        display: flex;
+        align-items: center;
+        font-size: 200%;
+    }
+    .margi {
+        margin-bottom: 50px;
+    }
 }

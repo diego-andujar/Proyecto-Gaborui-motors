@@ -1,0 +1,587 @@
+@import "../../../styles/Lib/variables.scss";
+@import "../../../styles/components/scroll.scss";
+@import "../../../styles/components/buttons.scss";
+@import "../../../styles/Lib/mixins.scss";
+// .mat-paginator-outer-container {
+//     display: flex;
+//     line-height: 60%;
+// }
+// .mat-paginator-container {
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-start;
+//     padding: 0 8px;
+//     flex-wrap: wrap-reverse;
+//     width: 100%;
+// }
+.todo {
+    margin-top: 120px;
+    height: 85%;
+    width: 100%;
+    @include tablet {
+        margin-top: 17%;
+        height: 85%;
+        width: 100%;
+    }
+    @include small-phone {
+        margin-top: 30%;
+        width: 100%;
+        height: 100%;
+        background-color: green;
+    }
+}
+
+.bloques {
+    list-style: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-around;
+    margin-left: -70px;
+    // width: 30%;
+    height: 100%;
+    // background-color: $secondary-color;
+    font-family: $primary-font;
+    font-size: 1.5em;
+    @include tablet {
+        background-color: $third-color;
+        margin-top: 16%;
+    }
+    @include small-phone {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 108%;
+        align-items: center;
+        background-color: white;
+        border: 0.1em solid white;
+    }
+    .bloque {
+        border: 0px;
+        // background-color: #6AB8E3;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        @include tablet {
+            height: 60%;
+            width: 34%;
+            margin-right: 1%;
+        }
+        @include small-phone {
+            align-items: center;
+            /* justify-content: center; */
+            margin-left: 10%;
+            margin-top: 45%;
+            width: 85%;
+        }
+    }
+    .bloquea {
+        width: 20%;
+        border-bottom-right-radius: 200px;
+        height: 70%;
+        background-color: $secondary-color;
+        @include tablet {
+            width: 25%;
+            height: 50%;
+        }
+        @include small-phone {
+            width: 85%;
+            /* height: 50%; */
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+            margin-top: -2%;
+            margin-left: 10%;
+            height: 35%;
+            margin-bottom: -35%;
+            // position: fixed;
+        }
+    }
+    .bloqueb {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2%;
+        //background-color: white;
+        // border: 2px solid black;
+        @include tablet {
+            // background-color: blue;
+        }
+    }
+}
+
+.folder {
+    display: flex;
+    background-color: $secondary-color;
+    width: 100%;
+    height: 5%;
+    padding: 0.5%;
+    border-radius: 5px;
+    @include tablet {
+        width: 99%;
+        display: flex;
+        height: 10%;
+        justify-content: flex-end;
+    }
+    @include small-phone {
+        height: 15%;
+    }
+    @include ipad-pro {
+        height: 8%;
+    }
+    // flex-direction: row;
+    // justify-content: space-around;
+    // align-items: flex-end;
+}
+
+.botonesumg {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    // height: 100%;
+    list-style: none;
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    @include tablet {
+        margin-bottom: 3%;
+        margin-left: -10%;
+        margin-right: 1%;
+        // flex-direction: row;
+        // justify-content: space-around;
+        align-items: center;
+        // width: 100%;
+        // height: 100%;
+        // list-style: none;
+        // color: inherit;
+        // display: flex;
+        // flex-direction: row;
+        // background-color: blue;
+    }
+}
+
+.valores {
+    list-style: none;
+    color: inherit;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    @include tablet {
+        // background-color: green;
+        font-size: 0.65em;
+        padding-left: 4%;
+    }
+    // border-bottom: black;
+}
+
+.bloqued {
+    /* Handle */
+     ::-webkit-scrollbar-thumb {
+        background: $primary-color;
+    }
+    /* Handle on hover */
+     ::-webkit-scrollbar-thumb:hover {
+        background: $primary-color;
+    }
+    // background-color: aqua;
+    // background-color: yellow;
+    @include small-phone {
+        // background-color: yellow;
+        // margin-top: -70%;
+    }
+}
+
+.nuevoguardar {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2%;
+    // background-color: $thir;
+    @include tablet {
+        // background-color: blue;
+    }
+    @include small-phone {
+        padding: 2%;
+        padding-top: 5%
+    }
+}
+
+.editdelete {
+    @include tablet {
+        // background-color: blue;
+    }
+    margin-right: 4%;
+}
+
+.username-bar {
+    @include tablet {
+        // background-color: blue;
+    }
+    // background-color: $primary-color;
+}
+
+.formulario-contacto {
+    display: flex;
+    list-style: none;
+    color: inherit;
+    justify-content: center;
+    font-family: $primary-font;
+    width: 100%;
+    overflow-y: auto;
+    @include tablet {
+        width: 80%;
+        margin-bottom: 5%;
+        // background-color: blue;
+    }
+    .informaciondecontacto {
+        color: $third-color;
+        line-height: 44px;
+        font-size: 1.55em;
+        text-align: center;
+        @include tablet {
+            line-height: 1em;
+            font-size: 0.3em;
+            // text-align: center;
+            // background-color: blue;
+        }
+    }
+}
+
+.loco2 {
+    width: 100%;
+    height: 100%;
+    /* background-color: #F9F9F9; */
+    /* border: 1px solid #1C1A1A; */
+    display: flex;
+    @include tablet {
+        justify-content: center;
+        width: 100%;
+        margin-left: -15%;
+        font-size: 0.7em;
+    }
+}
+
+.form-control {
+    background-color: $third-color;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: space-around;
+    margin-left: 80px;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 0.5em;
+    @include tablet {
+        width: 85%;
+        margin-left: 15%;
+        margin-top: 3%;
+        background-color: $third-color;
+        border-bottom: 0.3em solid $secondary-color;
+        border-top: 0.3em solid $third-color;
+        border-right: 0.3em solid $third-color;
+        border-left: 0.3em solid $third-color;
+    }
+    &.ng-touched.ng-invalid {
+        border: 2px solid red;
+    }
+}
+
+#comment {
+    resize: none;
+}
+
+// mat-select-value {
+//     display: table-cell;
+//     max-width: 0;
+//     width: 100%;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     background-color: $primary-color;
+//     color: white;
+// }
+.mat-select {
+    // font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: $secondary-color;
+    color: white;
+    border-radius: 0.2em;
+    margin-left: 32%;
+}
+
+.contactdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    // height: 100%;
+    background-color: white;
+    color: $primary-color;
+    border-radius: 0.3em;
+    height: 90%;
+    // border: 0.1em solid black;
+    @include tablet {
+        width: 100%;
+        background-color: $primary-color;
+        color: $third-color;
+        border-radius: 1em;
+    }
+    @include small-phone {
+        margin-top: -25%;
+        margin-bottom: -25%;
+    }
+}
+
+.botonng {
+    border-radius: 1em;
+    border: 0em;
+    width: 35%;
+    padding: 0.5em;
+    font-family: $primary-font;
+    font-size: 0.7em;
+    background-color: $primary-color;
+    color: $third-color;
+    @include tablet {
+        border-radius: 1em;
+        width: 35%;
+        padding: 0.5em;
+        font-family: $primary-font;
+        font-size: 0.7em;
+        background-color: $third-color;
+        color: $secondary-color;
+    }
+    @include small-phone {
+        // padding: 1%;
+    }
+}
+
+.botonx {
+    border: 0em;
+    border-radius: 0.5em;
+    width: 15%;
+    padding: 0em 0.3em;
+    font-family: $primary-font;
+    font-size: 0.7em;
+    // font-weight: 5em;
+    background-color: $primary-color;
+    color: $third-color;
+}
+
+.botoncitoumg {
+    background-color: $secondary-color;
+    border: 0em solid $secondary-color;
+    font-family: $primary-font;
+    width: 100%;
+    font-size: 0.75em;
+    padding-top: 1%;
+}
+
+.botoncitoumg:hover {
+    font-size: 0.9em;
+    padding-top: 1%;
+    border-bottom: 0.2em solid black;
+    @include tablet {
+        font-size: 0.8em;
+        padding-top: 0.5%;
+        border-bottom: 0.2em solid black;
+    }
+}
+
+.pp {
+    width: 80%;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.listadeusuarios {
+    // border: 0.2em solid $secondary-color;
+    // background-color: yellow;
+    height: 60%;
+    overflow-y: auto;
+    // scroll-behavior: smooth;
+}
+
+.userInfo {
+    // background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 0.8em;
+    word-spacing: 0.2em;
+    @include tablet {
+        margin-left: 15%;
+        height: 100%;
+        font-size: 0.6em;
+        word-spacing: 0.1em;
+        margin-top: 20%;
+    }
+    @include small-phone {
+        // background-color: red;
+        margin-top: 0%;
+        margin-left: 0%;
+        height: 100%;
+        line-height: 0.4em;
+    }
+}
+
+.photo {
+    height: 25%;
+    width: 35%;
+    /* justify-content: center; */
+    border-radius: 50%;
+    margin-top: 10%;
+    @include tablet {
+        // background-color: yellow;
+        height: 15%;
+    }
+    @include small-phone {
+        // background-color: red;
+        height: 100%;
+        margin-top: 1%;
+    }
+}
+
+// @media only screen and (max-width:475px) {
+//     .todo {
+//         margin-top: 29%;
+//         height: 100%;
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         /* display: none;*/
+//         .bloques {
+//             // display: flex;
+//             // flex-direction: column;
+//             .bloque {
+//                 width: 100%;
+//                 display: flex;
+//                 flex-direction: column;
+//                 height: 60%;
+//             }
+//             .bloquea {
+//                 width: 100%;
+//                 border-bottom-right-radius: 200px;
+//                 border-bottom-left-radius: 200px;
+//                 background-color: #1C1A1A;
+//                 height: 300px;
+//                 margin-top: -18px;
+//             }
+//             .bloqueb {
+//                 display: flex;
+//                 flex-direction: column;
+//                 border-radius: 2%;
+//                 //background-color: white;
+//                 // border: 2px solid black;
+//             }
+//         }
+//     }
+//     .folder {
+//         display: flex;
+//         background-color: $secondary-color;
+//         width: 100%;
+//         height: 5%;
+//         padding: 0.5%;
+//         border-radius: 5px;
+//         // flex-direction: row;
+//         // justify-content: space-around;
+//         // align-items: flex-end;
+//     }
+//     .botonesumg {
+//         flex-direction: row;
+//         justify-content: space-around;
+//         align-items: flex-end;
+//         width: 100%;
+//         // height: 100%;
+//         list-style: none;
+//         color: inherit;
+//         display: flex;
+//         flex-direction: row;
+//     }
+//     .valores {
+//         list-style: none;
+//         color: inherit;
+//         margin-top: 5%;
+//         display: flex;
+//         justify-content: space-between;
+//         // border-bottom: black;
+//     }
+//     .nuevoguardar {
+//         display: flex;
+//         justify-content: space-evenly;
+//         padding: 2%;
+//         background-color: white;
+//     }
+//     .editdelete {
+//         margin-right: 4%;
+//     }
+//     .username-bar {
+//         background-color: $primary-color;
+//     }
+//     .formulario-contacto {
+//         display: flex;
+//         list-style: none;
+//         color: inherit;
+//         justify-content: center;
+//         font-family: $primary-font;
+//         width: 100%;
+//     }
+//     .loco {
+//         width: 321px;
+//         height: 402px;
+//         background-color: $secondary-color;
+//         border: 1px solid $primary-color;
+//         display: flex;
+//         justify-content: center;
+//         flex-direction: column;
+//         align-items: center;
+//         color: $third-color;
+//         font-size: 1.2em;
+//         line-height: 24px;
+//         .informaciondecontacto {
+//             color: $third-color;
+//             line-height: 44px;
+//             font-size: 1.55em;
+//             text-align: center;
+//         }
+//     }
+//     .loco2 {
+//         width: 100%;
+//         height: 100%;
+//         /* background-color: #F9F9F9; */
+//         /* border: 1px solid #1C1A1A; */
+//         display: flex;
+//     }
+//     .form-control {
+//         background-color: $third-color;
+//         padding-top: 10px;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-self: space-around;
+//         margin-left: 80px;
+//         margin-top: 10px;
+//         width: 100%;
+//         &.ng-touched.ng-invalid {
+//             border: 2px solid red;
+//         }
+//     }
+//     #comment {
+//         resize: none;
+//     }
+//     .contactdiv {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: flex-start;
+//         width: 100%;
+//         // height: 100%;
+//         background-color: $primary-color;
+//         color: $third-color;
+//     }
+//     .alert {
+//         margin-left: 80px;
+//         background-color: rgba(255, 2, 2, 0.4);
+//         border-radius: 10px;
+//         padding-left: 50px;
+//         margin-top: 5px;
+//     }
+// }

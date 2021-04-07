@@ -1,11 +1,17 @@
 @import "../Lib/variables.scss";
-
+@import "../Lib/mixins.scss";
 .button-wrapper {
     margin: 2em 2em;
     height: 2em;
     width: 90%;
     display: flex;
     justify-content: space-evenly;
+    @include small-phone {
+        // background-color: green;
+        /* height: 100%; */
+        height: 25%;
+        margin-bottom: -5%;
+    }
 }
 
 .button-container {
@@ -14,34 +20,84 @@
     display: flex;
     justify-content: center;
     color: $third-color;
-
+    @include small-phone {
+        // background-color: blue;
+        height: 100%;
+    }
     .button {
         background-color: $primary-color;
-      font-family: $primary-font;
-      font-weight: 500;
-      display: block;
-      width: 80%;
-      outline: none;
-      cursor: pointer;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: white;
-      height: 4em;
+        font-family: $primary-font;
+        font-weight: 500;
+        display: block;
+        width: 80%;
+        outline: none;
+        cursor: pointer;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: white;
+        height: 4em;
+        border-radius: 0.7em;
     }
-
-    .submit-button {
+    .button {
         background-color: $primary-color;
+        font-family: $primary-font;
+        font-weight: 500;
+        display: block;
+        width: 80%;
+        outline: none;
+        cursor: pointer;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: white;
+        height: 4em;
+        @include tablet {
+            margin-right: 20%;
+        }
+        @include small-phone {
+            border-radius: 0.7em;
+            background-color: $primary-color;
+            /* height: 250%; */
+            height: 100%;
+            border: 0em;
+            width: 100%;
+            margin-right: 70%;
+        }
+    }
+    .submit-button {
+        background-color: $secondary-color;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
         display: flex;
         font-family: $primary-font;
-        font-weight: 500;
+        // font-weight: 500;
         width: 20%;
+        padding: 0.2em;
+        border-radius: 0.5em;
+        border: 0em;
+        @include small-phone {
+            // background-color: burlywood;
+        }
         cursor: pointer;
         letter-spacing: 0.8px;
         text-transform: uppercase;
         color: white;
+        @include tablet {
+            background-color: $secondary-color;
+            width: 40%;
+            border-radius: 0.8em;
+            border: 0em;
+            padding: 1%;
+            font-size: 1.1em;
+        }
+        @include small-phone {
+            background-color: $secondary-color;
+            width: 80%;
+            border-radius: 0.8em;
+            border: 0em;
+            padding: 1%;
+            font-size: 1.1em;
+        }
     }
-}  
+}

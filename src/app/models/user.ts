@@ -6,7 +6,7 @@ export interface User {
     name?: string,
     email?: string,
     cedula?: number,
-    phoneNumber?: number,
+    phoneNumber?: string,
     photoUrl?: string,
     address?: string,
     city?: string,

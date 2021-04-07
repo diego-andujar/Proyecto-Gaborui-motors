@@ -1,3 +1,4 @@
+import { Accesorie } from "../components/car-form/car-form.component";
 
 export interface Car {
     brand?: string;
@@ -11,8 +12,9 @@ export interface Car {
     active?: boolean;
     color?: string;
     kmWhenIn?: number;
-    gasTankWhenIn?: number;
-    mechanicPictures?: Array<string>;
-    accesories?: Array<string>;
+    gasTankWhenIn?: string;
+    mechanicPictures?: Array<any>;
+    accesories?: Array<Accesorie>;
     carId?: string;
+    inAppointment?: boolean;
 }

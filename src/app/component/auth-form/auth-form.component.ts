@@ -22,7 +22,6 @@ export class AuthFormComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private userService: UsersService,
   ) {}
 
   ngOnInit(): void {
@@ -47,11 +46,22 @@ export class AuthFormComponent implements OnInit {
 
   async onSubmit() {
     const formValues = {
-      displayName: this.authForm.get('displayName'),
-      email: this.authForm.get('email'),
-      password: this.authForm.get('password'),
+      displayName: this.authForm.get('displayName')?.value,
+      email: this.authForm.get('email')?.value,
+      password: this.authForm.get('password')?.value,
     };
     this.sendFormEvent.emit(formValues);
+    this.authForm.reset()
   }
 
+  holaprueba(){
+    const currentEmailToResetPassword = this.authForm.get('email')?.value;
+    console.log(currentEmailToResetPassword)
+    // en currentEmailToResetPassword yo tengo email que quiero mandar al servicio
+    this.authService.resetPassword(currentEmailToResetPassword)
+    const mensaje = "Hemos enviado un formulario para cambiar tu contraseña al correo  " + currentEmailToResetPassword;
+    window.alert( mensaje )
+    console.log(currentEmailToResetPassword, " es tu correo")
+  
+  }
 }

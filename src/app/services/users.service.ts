@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { FirestoreService } from './firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,7 +15,7 @@ import firebase from 'firebase';
 })
 export class UsersService {
 
-  userCollection: AngularFirestoreCollection<User>;
+  userCollection!: AngularFirestoreCollection<User>;
   db = firebase.firestore();
   user!: User;
   bool!: Promise<boolean>;
@@ -26,13 +27,17 @@ export class UsersService {
     public database: AngularFirestore,
     private fireService: FirestoreService,
     ) { 
-      this.getUser(localStorage.getItem("user"))
+      this.getUser(localStorage.getItem("user")  || '{}')
   }
 
   getDoc(id:string){
-    console.log(id)
     const collection = this.database.collection("users")
     return  collection.doc(id).valueChanges();
+  }
+
+  getDBUser(id:string): Promise<any>{
+    const collection = this.db.collection("users").where("id", "==", id)
+    return collection.get()
   }
 
   createDoc(user: User){
@@ -61,7 +66,7 @@ export class UsersService {
   }
 
   getFireUserId(): string {
-    return JSON.parse(localStorage.getItem("CurrentUser"))
+    return JSON.parse(localStorage.getItem("CurrentUser")  || '{}')
   }
 
 
@@ -89,13 +94,32 @@ export class UsersService {
     localStorage.setItem("UserFireId", doc.id)
   }
 
+  async updateEntireUser(user: User, userId: string){
+    const collection = this.database.collection("users");
+    return await collection.doc(userId).set({
+      birthDate: user.birthDate,
+      cedula: user.cedula,
+      phoneNumber: user.phoneNumber,
+      genero: user.genero,
+      address: user.address,
+      state: user.state,
+      city: user.city,
+      postalCode: user.postalCode,
+    }, {merge: true});
+  }
+
+  getUserId(userId: string) {
+    const collection = this.database.collection("users");
+    return collection.doc(userId).valueChanges();
+  }
+
 
   getUser(userId: string) {
-    let user: User;
+    let user: User | void;
     this.db.collection("users").where("id", "==", userId).get().then(snapshot => {
       snapshot.docs.forEach(doc => {
         localStorage.setItem("UserFireId", doc.id)
-        user = this.creatingUserInLocalStorage(doc)
+        user = this.creatingUserInLocalStorage(doc);
       })
     })
   }
@@ -108,7 +132,175 @@ export class UsersService {
     return this.firestore.doc<User>(`users/${userUid}`).valueChanges()
   }
 
-  
+  getClientUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.client","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId")
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+
+  async getClientUserr():Promise<User[]>{
+    const userList: User[]=[];
+    await this.db.collection("users").where("rol.client","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+
+  async getMechanicUserr():Promise<User[]>{
+    const userList: User[]=[];
+    await this.db.collection("users").where("rol.mechanic", "==", true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+
+  async getClientUserForManager(): Promise<any[] | void>{
+    const collection = this.db.collection("users").where("rol.client", "==", true).get()
+    return await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        return doc;
+        //lista.push(doc.data())
+      })
+    });
+    
+  }
+
+  getMechanicUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.mechanic","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+  getManagerUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.manager","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+  getAdminUser():User[]{
+    const userList: User[]=[];
+    this.db.collection("users").where("rol.admin","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
   /**
    * GET car BY ID
    * @param carId
@@ -223,7 +415,6 @@ export class UsersService {
     this.db.collection("users")
     .where("id", "==", userId).get()
     .then(querySnapshot => {
-      console.log("hola " + querySnapshot);
       return querySnapshot.docs[0];
     })
   }
@@ -235,6 +426,11 @@ export class UsersService {
    */
   updateUser(userId: string, userData: User): Promise<void> {
     return this.userCollection.doc<User>(userId).update(userData);
+  }
+
+  updateDoc(data:any, id:string){
+    const collection = this.database.collection("users")
+    return  collection.doc(id).update(data);
   }
 
   /**
