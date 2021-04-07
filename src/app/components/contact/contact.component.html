@@ -16,11 +16,11 @@
                 <div class="form-group">
                     <label for="firstName">Nombre y apellido</label>
                     <input required pattern="" class="firstName" type="text" class="form-control" formControlName="nombre">
-                    <!-- <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+                    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
                         <div *ngIf="firstName.errors!.required">El nombre y apellido son obligatorios</div>
                         <div *ngIf="firstName.errors!.minlength">El nombre y apellido deben ser minimo 3 caracteres</div>
-                    </div> -->
-                </div>
+                    </div> 
+                </div>-->
                 <div class="form-group">
                     <label for="firstName">Correo electrónico</label>
                     <input required pattern="" class="firstName" type="email" class="form-control" formControlName="email">
@@ -52,7 +52,7 @@
 
                     <button class="enviar-button" action="https://formspree.io/jhoelanexo@gmail.com" type="submit">ENVIAR</button>
                 </div>
-            </form>
+            <!--</form>
         </li>
     </ul>
 </div>-->
