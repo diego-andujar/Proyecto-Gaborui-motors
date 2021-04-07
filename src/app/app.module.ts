@@ -81,7 +81,9 @@ import { CarFormComponent } from './components/car-form/car-form.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OrderManagerComponent } from './components/order-manager/order-manager.component';
 import { CalendarManagerComponent } from './components/calendar-manager/calendar-manager.component';
+import { XdComponent } from './components/xd/xd.component';
 import { SelectDateComponent } from './components/select-date/select-date.component';
+// import { EmailJSResponseStatus } from 'emailjs-com';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { ReportsClientsComponent } from './components/reports-clients/reports-clients.component';
 import { ManagerClientViewComponent } from './components/manager-client-view/manager-client-view.component';
@@ -146,6 +148,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CarFormComponent,
     OrderManagerComponent,
     CalendarManagerComponent,
+    XdComponent,
     SelectDateComponent,
     ReportsClientsComponent,
     ManagerClientViewComponent,
@@ -196,6 +199,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    
+    // EmailJSResponseStatus
     ScrollingModule,
     QRCodeModule,
     CarouselModule,

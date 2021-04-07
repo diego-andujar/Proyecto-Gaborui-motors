@@ -1,56 +1,115 @@
 @import "../../../styles/Lib/variables.scss";
 @import "../../pages/manager-page/manager-page.component.scss";
-
-
+@import "../../../styles/Lib/mixins.scss";
 .all-wrapper {
-  margin: 5% 0%;
+    margin: 5% 0%;
+    @include small-phone {
+        // background-color: yellow;
+    }
+}
+
+.btn {
+    background-color: $third-color;
+    display: flex;
+    justify-content: center;
+}
+
+.descargar-button {
+    background-color: #6AB8E3;
+    padding: 5%;
+    color: white;
+    border: 0em;
+    border-radius: 0.5em;
 }
 
 .example-container {
-  height: 68vh;
-  overflow: auto;
+    height: 68vh;
+    overflow: auto;
 }
 
-.btn{
-  background-color: $third-color;
-  display: flex;
-  justify-content: center;
-}
-
+// .btn{
+//   background-color: $third-color;
+//   display: flex;
+//   justify-content: center;
+// }
 .columna {
-  display: flex;
-  flex: row;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: $primary-font;
+    font-size: 1.2em;
+    word-spacing: 0.2em;
+    line-height: 1.8em;
+    @include small-phone {
+        font-size: 0.9em;
+        line-height: 3.2em;
+    }
+}
+
+.botonesacr {
+    // background-color: green;
+}
+
+.aceptar:hover {
+    background-color: rgba(61, 248, 101, 0.938);
+}
+
+.cambiarfecha:hover {
+    background-color: rgba(245, 248, 61, 0.938);
+}
+
+.rechazar:hover {
+    background-color: rgba(248, 74, 61, 0.938);
 }
 
 .ngcontainer {
-  width: 100%;
-  padding: 2% 0% 4%;
-  background-color: $third-color;
-  font-family: $third-font;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0% 4%;
+    background-color: $third-color;
+    font-family: $primary-font;
 }
 
-mat-paginator{
-  background-color: $third-color;
+mat-card-actions {
+    // background-color: yellow;
+    display: flex;
+    justify-content: space-around;
 }
+
+mat-paginator {
+    background-color: $third-color;
+}
+
+.pruebatablecontainer {
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    // background-color: yellow;
+}
+
+
 /* 
 mat-card {
-  width: 100%;
-  justify-content: center;
-  border-radius: 0px 0px 5px 5px;
-  background-color: white;
+    width: 100%;
+    justify-content: center;
+    border-radius: 0px 0px 5px 5px;
+    background-color: white;
 }
 
 mat-card-title {
-  font-family: $third-font;
-  text-transform: capitalize;
-  font-weight: 500;
-  letter-spacing: 0.1vw;
+    font-family: $third-font;
+    text-transform: capitalize;
+    font-weight: 500;
+    letter-spacing: 0.1vw;
 }
 
 mat-card-subtitle {
-  font-family: $third-font;
-  text-transform: capitalize;
-  letter-spacing: 0.1vw;
-  font-weight: 500;
+    font-family: $third-font;
+    text-transform: capitalize;
+    letter-spacing: 0.1vw;
+    font-weight: 500;
 }
 */

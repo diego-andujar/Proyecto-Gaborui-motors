@@ -1,4 +1,23 @@
 @import "../../../styles/Lib/variables.scss";
+@import "../../../styles/components/buttons.scss";
+.enviar-button {
+    background-color: $secondary-color;
+    padding: 2%;
+    border: 0em;
+    color: white;
+    border-radius: 0.3em;
+}
+
+.form-contacto {
+    // background-color: yellow;
+    margin-left: 5%;
+    margin-top: 1%;
+}
+
+.divbutton {
+    display: flex;
+    justify-content: center;
+}
 
 .formulario-contacto {
     display: flex;
@@ -7,7 +26,6 @@
     justify-content: center;
     font-family: $primary-font;
 }
-
 
 .loco {
     width: 321px;
@@ -39,8 +57,8 @@
 
 .form-control {
     background-color: $third-color;
-    border: 0px;
-    border-bottom: 2px solid $primary-color;
+    border: 0em;
+    border-bottom: 2px solid $secondary-color;
     padding-top: 10px;
     display: flex;
     flex-direction: column;
@@ -49,6 +67,7 @@
     margin-left: 80px;
     margin-top: 10px;
     width: 380px;
+    margin-bottom: 2%;
     &.ng-touched.ng-invalid {
         border: 2px solid red;
     }
@@ -76,7 +95,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-    
     .formulario-contacto {
         display: flex;
         list-style: none;
@@ -84,8 +102,6 @@
         justify-content: center;
         font-family: $primary-font;
     }
-    
-    
     .loco {
         width: 30%;
         height: 470px;
@@ -105,7 +121,6 @@
             text-align: center;
         }
     }
-    
     .loco2 {
         width: 50%;
         height: 470px;
@@ -113,7 +128,6 @@
         border: 1px solid $primary-color;
         display: flex;
     }
-    
     .form-control {
         background-color: $third-color;
         border: 0px;
@@ -130,11 +144,9 @@
             border: 2px solid red;
         }
     }
-    
     #comment {
         resize: none;
     }
-    
     .contactdiv {
         margin-top: 6%;
         display: flex;
@@ -146,7 +158,6 @@
         padding-bottom: 5%;
         background-color: $primary-color;
     }
-    
     .alert {
         margin-left: 25%;
         background-color: rgba(255, 2, 2, 0.4);
@@ -157,7 +168,6 @@
 }
 
 @media only screen and (max-width: 414px) {
-    
     .formulario-contacto {
         display: flex;
         list-style: none;
@@ -165,8 +175,6 @@
         justify-content: center;
         font-family: $primary-font;
     }
-    
-    
     .loco {
         width: 100%;
         height: 470px;
@@ -186,7 +194,6 @@
             text-align: center;
         }
     }
-    
     .loco2 {
         width: 170%;
         height: 470px;
@@ -194,7 +201,6 @@
         border: 1px solid $primary-color;
         display: flex;
     }
-    
     .form-control {
         background-color: $third-color;
         border: 0px;
@@ -211,11 +217,9 @@
             border: 2px solid red;
         }
     }
-    
     #comment {
         resize: none;
     }
-    
     .contactdiv {
         margin-top: 100%;
         display: flex;
@@ -227,7 +231,6 @@
         padding-bottom: 5%;
         background-color: $primary-color;
     }
-    
     .alert {
         margin-left: 25%;
         background-color: rgba(255, 2, 2, 0.4);
@@ -238,7 +241,6 @@
 }
 
 @media only screen and (width: 320px) {
-
     .formulario-contacto {
         display: flex;
         list-style: none;
@@ -246,8 +248,6 @@
         justify-content: center;
         font-family: $primary-font;
     }
-    
-    
     .loco {
         width: 100%;
         height: 470px;
@@ -267,7 +267,6 @@
             text-align: center;
         }
     }
-    
     .loco2 {
         width: 170%;
         height: 470px;
@@ -275,7 +274,6 @@
         border: 1px solid $primary-color;
         display: flex;
     }
-    
     .form-control {
         background-color: $third-color;
         border: 0px;
@@ -292,11 +290,9 @@
             border: 2px solid red;
         }
     }
-    
     #comment {
         resize: none;
     }
-    
     .contactdiv {
         margin-top: 125%;
         display: flex;
@@ -308,7 +304,6 @@
         padding-bottom: 5%;
         background-color: $primary-color;
     }
-    
     .alert {
         margin-left: 25%;
         background-color: rgba(255, 2, 2, 0.4);

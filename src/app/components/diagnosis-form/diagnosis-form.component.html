@@ -1,29 +1,18 @@
 <div class="textarea-container">
     <form [formGroup]="diagnosisForm" class="form-container" (ngSubmit)="onSubmit()">
-    <div class="auth-label-largo" >
-        <h2>diagnostico</h2>
-    </div>
-    <div class="text-area" *ngIf="!ordenCerrada">
-        <textarea 
-            type="text"
-            id="displayName"
-            formControlName="diagnosis"
-            value={{order.diagnosis}}
-        ></textarea>
-    </div>
-    <div class="button-wrapper" *ngIf="!ordenCerrada">
-        <div class="button-container">
-          <button type="submit" class="submit-button">guardar diagnostico</button>
+        <div class="auth-label-largo">
+            <h2>DIAGNÓSTICO</h2>
         </div>
-    </div>
-    <div class="text-area" *ngIf="ordenCerrada">
-        <textarea 
-            readonly
-            type="text"
-            id="displayName"
-            formControlName="diagnosis"
-            value={{order.diagnosis}}
-        ></textarea>
-    </div>
+        <div class="text-area" *ngIf="!ordenCerrada">
+            <textarea type="text" id="displayName" formControlName="diagnosis" value={{order.diagnosis}}></textarea>
+        </div>
+        <div class="div-guardar" *ngIf="!ordenCerrada">
+            <div class="button-guardar">
+                <button type="submit" mat-raised-button>Guardar</button>
+            </div>
+        </div>
+        <div class="text-area" *ngIf="ordenCerrada">
+            <textarea readonly type="text" id="displayName" formControlName="diagnosis" value={{order.diagnosis}}></textarea>
+        </div>
     </form>
 </div>

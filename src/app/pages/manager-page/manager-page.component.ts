@@ -27,7 +27,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ManagerPageComponent implements OnInit {
 
-  columnsToDisplay = ['car', 'repair state', 'mechanic'];
+  columnsToDisplay = ['car', 'mechanic'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   expandedElement!: Appointment | null;
   selectedValue!: string;

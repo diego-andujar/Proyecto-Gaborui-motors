@@ -1,7 +1,7 @@
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
 @import "../../../styles/Lib/mixins.scss";
-
+@import "../client-form/client-form.component.scss";
 .auth-label-largo {
     text-align: center;
     font-family: $secondary-font;
@@ -9,9 +9,92 @@
     width: 100%;
 }
 
+.ng-container {
+    background-color: red;
+}
+
 .images {
     display: flex;
     justify-content: center;
     max-width: 50%;
     max-height: 65vh;
+    max-width: 55vh;
+    max-height: 55vh;
+}
+
+owl-theme[_ngcontent-tpb-c186] {
+    display: block;
+    background-color: aquamarine;
+}
+
+.div-images {
+    width: 100%;
+    // background-color: $primary-color;
+    // border: 0.1em solid $primary-color;
+    // border-radius: 0.5em;
+    // margin: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.photo {
+    // background-color: yellow;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin-top: 2%;
+}
+
+.whitebutton {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.whitebutton-nomargin {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+    font-size: 1.2em;
+    height: 20%;
+    width: 10%;
+    @include tablet {
+        width: auto;
+    }
+    @include small-phone {
+        margin-top: 5%;
+        font-size: 1em;
+        width: auto;
+    }
+    // margin-top: 1%;
+    // margin-bottom: 1%;
+}
+
+button {
+    text-transform: uppercase;
+    background-color: $secondary-color;
+    color: white;
+}
+
+owl-carousel owl-drag owl-item {
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+}
+
+owl-carousel owl-item img {
+    display: block;
+    /* width: 110%; */
+    max-width: 40vh;
+    max-height: 40vh;
+    display: flex;
+}
+
+owl-carousel-o {
+    background-color: cadetblue;
 }

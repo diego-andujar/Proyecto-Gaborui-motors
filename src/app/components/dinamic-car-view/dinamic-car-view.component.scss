@@ -2,54 +2,106 @@
 @import "../../../styles/components/car-view.scss";
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
-
-.paginator{
+@import "../client-form/client-form.component.scss";
+@import "../../../styles/Lib/mixins.scss";
+.paginator {
     width: 100%;
     height: 7%;
     padding-bottom: 2%;
+    // agregue esto porque antes ocupaba el 100% del width
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 
+// button {
+//     text-transform: uppercase;
+//     background-color: $primary-color;
+//     color: white;
+// }
 button {
     text-transform: uppercase;
-    background-color: $primary-color;
+    background-color: $secondary-color;
     color: white;
+}
+
+.whitebutton {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
 }
 
 .btn-img {
     margin: 2%;
 }
 
+.flow {
+    @include small-phone {
+        // background-color: yellow;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-y: auto;
+    }
+}
+
 .upload-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    // margin-top: 10%;
+    @include small-phone {
+        width: 50%;
+    }
 }
 
 .circular--landscape {
-    border-top-left-radius: 50% 50%;
-    border-top-right-radius: 50% 50%;
-    border-bottom-right-radius: 50% 50%;
-    border-bottom-left-radius: 50% 50%;
+    width: 100%;
+    height: 80%;
 }
 
 .image-wrapper {
+    justify-content: space-evenly;
     width: 90%;
     display: flex;
     flex-direction: column;
+    height: 85%;
+    @include small-phone {
+        height: 75%;
+        width: 80%;
+        align-items: center;
+    }
 }
 
 mat-paginator {
     background-color: $secondary-color;
     font-family: $third-font;
-    font-size: small;
+    font-size: medium;
     display: flex;
     justify-content: center;
     align-items: center;
+    // agregue esto porque antes ocupaba el 100% del width
+    width: 95%;
 }
 
 .button-wrapper {
     width: 80em;
+}
+
+.añadir-vehiculo-div {
+    display: flex;
+    justify-content: center;
+    @include tablet {
+        // background-color: chocolate;
+        display: flex;
+        justify-content: center;
+        // background-color: beige;
+    }
+    @include small-phone {
+        margin-top: 5%;
+    }
 }
 
 .auth-label {
@@ -69,6 +121,9 @@ h2 {
     height: 98%;
     display: flex;
     flex-direction: column;
+    @include tablet {
+        // height: 60%;
+    }
 }
 
 .ngcont {
@@ -76,9 +131,22 @@ h2 {
     justify-content: center;
     align-items: center;
     height: 90%;
+    @include tablet {
+        background-color: white;
+        /* height: 30%; */
+        height: 50%;
+        margin-top: 5%;
+    }
+    @include small-phone {
+        height: 100%;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
 }
 
-.boton-crear{
+.boton-crear {
     display: flex;
     justify-content: center;
 }
@@ -96,24 +164,83 @@ mat-grid-list {
     height: auto;
     width: 94%;
     height: auto;
+    @include tablet {
+        // background-color: yellow;
+        height: 50%;
+        display: flex;
+        align-items: baseline;
+    }
+    @include small-phone {
+        // background-color: yellow;
+        // -webkit-transform: rotate(90deg);
+        // -moz-transform: rotate(-90deg);
+    }
 }
 
 mat-grid-tile {
     border: 2px solid $primary-color;
     height: 20%;
+    // font-family: $primary-font;
+    @include tablet {
+        // background-color: red;
+        height: 55%;
+        // height: 100%;
+    }
+    @include small-phone {
+        // background-color: blue;
+        // -webkit-transform: rotate(-90deg);
+        // -moz-transform: rotate(-90deg);
+    }
 }
 
-
+// .mat-grid-tile .mat-figure {
+//     @include small-phone {
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         position: absolute;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         height: 100%;
+//         padding: 0;
+//         margin: 0;
+//         height: 100%;
+//         background-color: blue;
+//         -webkit-transform: rotate(90deg);
+//         // -moz-transform: rotate(-90deg);
+//     }
+// }
 .title-wrapper {
     text-align: center;
+    font-family: $primary-font;
+    @include small-phone {
+        // font-size: 0.6em;
+    }
 }
 
 .grid-flex {
     width: 100%;
     height: auto;
+    @include tablet {
+        width: 90%;
+        // background-color: yellow;
+        height: 90%;
+    }
+    @include small-phone {
+        height: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-
+// .holis {
+//     background-color: blueviolet;
+//     width: 40px;
+// }
 .image {
     width: 100%;
     border-radius: 1%;
@@ -129,11 +256,10 @@ mat-grid-tile {
     border: 2px solid $primary-color;
     padding: 1% 0%;
     margin: 0%;
-
+    font-family: $primary-font;
     &.longer {
         height: 40%;
         padding-bottom: 2%;
-        
     }
 }
 
@@ -147,6 +273,30 @@ mat-grid-tile {
     height: 80%;
     padding: 0%;
     margin: 0%;
+    @include small-phone {
+        // font-size: 0.7em;
+        height: 100%;
+    }
+}
+
+.botones-vehiculos-div {
+    // background-color: red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.botones-vehiculos-div2 {
+    margin-top: 5%;
+    // background-color: aqua;
+    width: 100%;
+}
+
+.botones-dae-div {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .container-texto {
@@ -177,10 +327,21 @@ mat-option{
     margin: 0;
     padding: 0;
     height: 90%;
+    @include small-phone {
+        // background-color: yellow;
+        height: 80%;
+    }
 }
 
 .auth-form-wrapper {
     padding: 0% 3%;
+    @include small-phone {
+        // background-color: blue;
+        height: 100%;
+        margin-top: -0%;
+        /* height: 120%; */
+        padding-bottom: 20%;
+    }
 }
 
 .datos-manager-wrapper {
@@ -217,6 +378,10 @@ mat-option{
     display: flex;
     flex-direction: row;
     margin: 2%;
+    @include small-phone {
+        width: 100%;
+        // justify-content: center;
+    }
 }
 
 .butto-container {

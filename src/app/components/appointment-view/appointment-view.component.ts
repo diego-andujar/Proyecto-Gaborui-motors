@@ -53,7 +53,7 @@ export class AppointmentViewComponent implements OnInit {
   datePicker!: MatDatepicker<Date>;
   public elementType = NgxQrcodeElementTypes.URL;
   public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
-  columnsToDisplay = ['car', 'order status', 'owner'];
+  columnsToDisplay = ['car',  'owner'];
   expandedElement!: Appointment | null;
   db = firebase.firestore();
   @Output() reloadCalendar = new EventEmitter<boolean>(); 

@@ -1,127 +1,383 @@
-@import "../../../styles/Lib/variables.scss";
-@import "../../../styles/Lib/mixins.scss";
-form {
-    padding: 0px;
-}
-
-input {
-    font-family: $secondary-font;
-}
-
-.example-full-width {
-    width: 100%;
-}
-
-mat-select {
-    width: 16em;
-    background-color: rgb(237, 249, 250);
-    border: 2px solid $primary-color;
-    font-family: $secondary-font;
-}
+    @import "../../../styles/Lib/variables.scss";
+    @import "../../../styles/Lib/mixins.scss";
+    form {
+        padding: 0px;
+    }
     
-
-img {
-    width: 100%;
-    height: auto;
-    border-radius: 5%;
-}
-
-.circular--landscape {
-    display: inline-block;
-    position: relative;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-  
-  .circular--landscape img {
-    width: auto;
-    height: 100%;
-    margin-left: -50px;
-  }
-
-.photo {
-    width: 50%;
-}
-
-label {
-    width: 30%;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-}
-
-.auth-form-wrapper {
-    display: flex;
-    align-items: center;
-    width: auto;
-    height: 80vh;
-    border: 0px;
-    padding: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-    background-color: $third-color;
-}
-
-.auth-label {
-    font-family: $primary-font;
-    color: $primary-color;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-}
-
-.auth-input {
-    display: flex;
-    justify-content: right;
-    margin-left: 1.5em;
-    font-family: $secondary-font;
-    font-weight: 400;
-    width: 19em;
-    text-align: center;
-    text-transform: capitalize;
-    &.correo {
-        text-transform: lowercase;
+    input {
+        font-family: $secondary-font;
     }
-    &.active {
+    
+    mat-select {
+        width: 59%;
         background-color: rgb(237, 249, 250);
+        border: 0.5px solid $primary-color;
+        font-family: $secondary-font;
     }
-}
-
-.input {
-    width: 50%;
-}
-
-.input-container {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-    padding: 0px 5%;
-}
-
-.form-container {
-    width: 100%;
-    @include small-phone {
-        background-color: yellow;
-        width: 200%;
+    
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 40%;
     }
-}
-
-.no-acc-text {
-    width: 70%;
-    text-decoration: none;
-    text-align: center;
-}
-
-a {
-    text-decoration: none;
-    font-family: $primary-font;
-    color: $primary-color;
-}
+    
+    .circular--square {
+        border-top-left-radius: 50% 50%;
+        border-top-right-radius: 50% 50%;
+        border-bottom-right-radius: 50% 50%;
+        border-bottom-left-radius: 50% 50%;
+    }
+    
+    .circular--landscape {
+        height: 200px;
+        overflow: hidden;
+        /* border-radius: 50%; */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .circular--landscape img {
+        // width: auto; */
+        width: 100%;
+        height: 100%;
+        /* margin-left: -50px; */
+        /* width: auto;*/
+    }
+    
+    .foto-choosed {
+        // background-color: aqua;
+        margin-top: 5%;
+    }
+    
+    .cargar-foto-button {
+        margin-top: 10%;
+        margin-bottom: 5%;
+    }
+    
+    .cargar-regresar-in {
+        // height: 100%;
+        // background-color: yellow;
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        justify-content: baseline;
+    }
+    
+    .photo {
+        width: 50%;
+    }
+    
+    label {
+        width: 30%;
+    }
+    
+    button {
+        text-transform: uppercase;
+        background-color: $secondary-color;
+        color: white;
+    }
+    
+    .whitebutton {
+        text-transform: uppercase;
+        background-color: $third-color;
+        color: $primary-color;
+        margin-top: 10%;
+        margin-bottom: 5%;
+    }
+    
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+    }
+    
+    .auth-form-wrapper {
+        display: flex;
+        align-items: center;
+        width: auto;
+        height: 80vh;
+        border: 0px;
+        padding: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        background-color: $third-color;
+    }
+    
+    .auth-label {
+        font-family: $primary-font;
+        color: $primary-color;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+    }
+    
+    form {
+        padding: 0px;
+        @include small-phone {
+            // background-color: aqua;
+            width: 100%;
+        }
+    }
+    
+    input {
+        font-family: $secondary-font;
+        // background-color: aqua;
+    }
+    
+    mat-select {
+        width: 59%;
+        background-color: rgb(237, 249, 250);
+        border: 0.5px solid $primary-color;
+        font-family: $secondary-font;
+    }
+    
+    img {
+        width: 90%;
+        border-radius: 1em;
+    }
+    
+    .photo {
+        justify-content: space-evenly;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* height: 50%; */
+        /* height: 30em; */
+        height: 20em;
+        @include small-phone {
+            // background-color: aqua;
+            // line-height: 5em;
+        }
+    }
+    
+    label {
+        width: 30%;
+    }
+    
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        @include small-phone {
+            // background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            align-items: center;
+        }
+    }
+    
+    .auth-form-wrapper {
+        display: flex;
+        align-items: center;
+        width: auto;
+        /* height: 80vh; */
+        height: 50%;
+        border: 0px;
+        /* padding: 5%; */
+        padding-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        @include tablet {
+            // background-color: red;
+            overflow-x: auto;
+            margin-top: 20%;
+        }
+        @include small-phone {
+            overflow-x: auto;
+            margin-top: 30%;
+            display: flex;
+            flex-direction: column;
+            max-height: 500px;
+        }
+        /* background-color: #F9F9F9;*/
+    }
+    
+    .auth-label {
+        font-family: $primary-font;
+        color: $primary-color;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        @include tablet {
+            font-size: 0.8em;
+        }
+        @include small-phone {
+            font-size: 1em;
+        }
+    }
+    
+    .auth-input {
+        display: flex;
+        justify-content: right;
+        margin-left: 1.5em;
+        font-family: $secondary-font;
+        font-weight: 400;
+        width: 19em;
+        text-align: center;
+        text-transform: capitalize;
+        &.correo {
+            text-transform: lowercase;
+            @include tablet {
+                font-family: 0.1em;
+            }
+        }
+        &.active {
+            background-color: rgb(237, 249, 250);
+        }
+        @include tablet {
+            width: 12em;
+            background-color: white;
+            font-family: 0.1em;
+            overflow-x: auto;
+        }
+        @include small-phone {
+            width: 11em;
+            margin-left: 0.5em;
+            // background-color: brown;
+        }
+    }
+    
+    .input {
+        width: 50%;
+    }
+    
+    .input-container {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        padding: 0px 5%;
+        @include small-phone {
+            width: 90%;
+        }
+    }
+    
+    .form-container {
+        width: 100%;
+        @include small-phone {
+            // width: 100%;
+            // overflow-x: auto;
+        }
+    }
+    
+    .no-acc-text {
+        width: 70%;
+        text-decoration: none;
+        text-align: center;
+    }
+    
+    a {
+        text-decoration: none;
+        font-family: $primary-font;
+        color: $primary-color;
+    }
+    
+    //     display: flex;
+    //     justify-content: right;
+    //     margin-left: 1.5em;
+    //     font-family: $secondary-font;
+    //     font-weight: 400;
+    //     width: 19em;
+    //     text-align: center;
+    //     text-transform: capitalize;
+    //     &.correo {
+    //         text-transform: lowercase;
+    //     }
+    //     input {
+    //         font-family: $secondary-font;
+    //     }
+    //     mat-select {
+    //         width: 59%;
+    //         background-color: rgb(237, 249, 250);
+    //         border: 0.5px solid $primary-color;
+    //         font-family: $secondary-font;
+    //     }
+    //     img {
+    //         width: 90%;
+    //         border-radius: 1em;
+    //     }
+    //     .photo {
+    //         width: 50%;
+    //     }
+    //     label {
+    //         width: 30%;
+    //     }
+    //     .wrapper {
+    //         display: flex;
+    //         flex-direction: row;
+    //         flex-wrap: wrap;
+    //         margin: 0px;
+    //         padding: 0px;
+    //         height: 100%;
+    //     }
+    //     .auth-form-wrapper {
+    //         display: flex;
+    //         align-items: center;
+    //         width: auto;
+    //         /* height: 80vh; */
+    //         height: 50%;
+    //         border: 0px;
+    //         /* padding: 5%; */
+    //         padding-top: 10%;
+    //         margin-left: auto;
+    //         margin-right: auto;
+    //         border-radius: 5px;
+    //         /* background-color: #F9F9F9;*/
+    //     }
+    //     .auth-label {
+    //         font-family: $primary-font;
+    //         color: $primary-color;
+    //         letter-spacing: 0.6px;
+    //         text-transform: uppercase;
+    //     }
+    //     .auth-input {
+    //         display: flex;
+    //         justify-content: right;
+    //         margin-left: 1.5em;
+    //         font-family: $secondary-font;
+    //         font-weight: 400;
+    //         width: 19em;
+    //         text-align: center;
+    //         text-transform: capitalize;
+    //         &.correo {
+    //             text-transform: lowercase;
+    //         }
+    //         &.active {
+    //             background-color: rgb(237, 249, 250);
+    //         }
+    //     }
+    //     .input {
+    //         width: 50%;
+    //     }
+    //     .input-container {
+    //         display: flex;
+    //         justify-content: space-between;
+    //         width: 40%;
+    //         padding: 0px 5%;
+    //     }
+    //     .form-container {
+    //         width: 100%;
+    //         @include small-phone {
+    //             background-color: yellow;
+    //             width: 200%;
+    //         }
+    //     }
+    //     .no-acc-text {
+    //         width: 70%;
+    //         text-decoration: none;
+    //         text-align: center;
+    //     }
+    //     a {
+    //         text-decoration: none;
+    //         font-family: $primary-font;
+    //         color: $primary-color;
+    //     }
+    // }
