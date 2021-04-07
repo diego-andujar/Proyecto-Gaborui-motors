@@ -1,7 +1,6 @@
 import { environment } from './../environments/environment.prod';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import {MatPaginatorModule} from '@angular/material/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
@@ -32,9 +31,7 @@ import { CarViewComponent } from './component/car-view/car-view.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MecanicoPageComponent } from './pages/mecanico-page/mecanico-page.component';
 import { UsernameBarComponent } from './components/username-bar/username-bar.component';
-// import { AdmingPageComponent } from './pages/adming-page/adming-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
-//import { ScannerqrComponent } from './components/scannerqr/scannerqr.component';
 import { PaginatorPipe } from './pipes/paginator.pipe';
 import { SideNavComponent } from './component/side-nav/side-nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -56,7 +53,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { UsernameComponent } from './username/username.component';
 import { NewCarFormComponent } from './components/new-car-form/new-car-form.component';
-// import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { ClientFormComponent } from './components/client-form/client-form.component'; // a plugin
 import { DatePipe } from '@angular/common';
 import { ClientAppointmentFormComponent } from './components/client-appointment-form/client-appointment-form.component';
@@ -68,8 +64,6 @@ import { DinamicCarViewComponent } from './components/dinamic-car-view/dinamic-c
 import { AppointmentDinamicComponent } from './components/appointment-dinamic/appointment-dinamic.component';
 import { MechanicsPageComponent } from './pages/mechanics-page/mechanics-page.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-// import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-// import {NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MatButtonModule } from '@angular/material/button';
@@ -83,7 +77,6 @@ import { OrderManagerComponent } from './components/order-manager/order-manager.
 import { CalendarManagerComponent } from './components/calendar-manager/calendar-manager.component';
 import { XdComponent } from './components/xd/xd.component';
 import { SelectDateComponent } from './components/select-date/select-date.component';
-// import { EmailJSResponseStatus } from 'emailjs-com';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { ReportsClientsComponent } from './components/reports-clients/reports-clients.component';
 import { ManagerClientViewComponent } from './components/manager-client-view/manager-client-view.component';
@@ -94,10 +87,15 @@ import { SelectMechanicComponent } from './components/select-mechanic/select-mec
 import { MechanicCarImagesComponent } from './components/mechanic-car-images/mechanic-car-images.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HomeSliderComponent } from './components/home-slider/home-slider.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
 ]);
+
 
 @NgModule({
   declarations: [
@@ -157,6 +155,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SelectMechanicComponent,
     MechanicCarImagesComponent,
     HomeSliderComponent,
+    MainNavComponent,
   ],
   imports: [
     MatCardModule,
@@ -191,7 +190,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatCardModule,
     MatTableModule,
     NgxQRCodeModule,
-    // NgxQRCodeModule,
     ZXingScannerModule,
     MatButtonModule,
     MatSortModule,
@@ -199,11 +197,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
-    // EmailJSResponseStatus
     ScrollingModule,
     QRCodeModule,
     CarouselModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatListModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

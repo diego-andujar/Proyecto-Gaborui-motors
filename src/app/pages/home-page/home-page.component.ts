@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import firebase from "firebase";
 import { User } from 'src/app/models/user';
+import { getLocaleId } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
@@ -19,5 +20,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUser(localStorage.getItem("user")!);
   }
-
+  
+  /*scroll() {
+    document.getElementById("quienes").scrollIntoView();
+  }*/
 }

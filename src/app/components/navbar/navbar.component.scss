@@ -178,7 +178,7 @@
                 .logoutfoto {
                     height: 100%;
                     width: 100%;
-                    fill: $third-color;
+                    fill: $secondary-color;
                 }
             }
         }
@@ -312,5 +312,11 @@
     @include small-phone {
         display: flex;
         margin-right: 10%;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .menu{
+        position: absolute;
     }
 }
