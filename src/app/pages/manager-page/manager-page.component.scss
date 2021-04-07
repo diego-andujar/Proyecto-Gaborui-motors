@@ -1,6 +1,7 @@
     @import "../../../styles/components/text-boxes.scss";
     @import "../../../styles/components/buttons.scss";
     @import "../../../styles/Lib/mixins.scss";
+    @import "../../../styles/components/scroll.scss";
     // @import "../../components/appointment-view/appointment-view.component.scss";
     .calendar-wrapper {
         height: 100%;
@@ -30,7 +31,7 @@
     .folder {
         display: flex;
         background-color: $secondary-color;
-        width: 100%;
+        width: 90%;
         @include tablet {
             font-family: $primary-font;
             width: 90%;
@@ -39,7 +40,7 @@
             justify-content: flex-end;
         }
         @include small-phone {
-            width: 80%;
+            width: 90%;
             height: 5%;
             display: flex;
             justify-content: center;
@@ -141,7 +142,7 @@
         // // font-size: 0.85em;
         text-transform: uppercase;
         // width: 0.5em;
-        width: 100%;
+        width: 90%;
         // border-bottom: 0.1em solid $secondary-color;
         // background-color: aqua;
         @include tablet {
@@ -149,7 +150,7 @@
         }
         @include small-phone {
             // display: none;
-            // width: 5%;
+            width: 5%;
             // background-color: rgb(146, 107, 107);
         }
     }

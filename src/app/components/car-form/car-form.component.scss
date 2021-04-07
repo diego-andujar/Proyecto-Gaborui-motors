@@ -10,10 +10,18 @@
     border-radius: 0.5em;
 }
 
-.submit-button {
-    background-color: $primary-color;
-    padding: 5%;
-    margin-left: 0%;
+// .submit-button {
+//     background-color: $primary-color;
+//     padding: 5%;
+//     margin-left: 0%;
+// }
+button {
+    text-transform: uppercase;
+    background-color: $secondary-color;
+    color: white;
+    // margin-right: 1%;
+    // padding-right: 2%;
+    width: auto;
 }
 
 .auth-form-wrapper {
@@ -22,7 +30,7 @@
     width: auto;
     height: 50%;
     border: 0px;
-    padding-top: 20%;
+    // padding-top: 20%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;

@@ -4,6 +4,7 @@
 @import "../../../styles/Lib/variables.scss";
 @import "../../../styles/Lib/mixins.scss";
 @import "../../component/vista-gnrl-manager/vista-gnrl-manager.component.scss";
+@import"../../../styles/components/scroll.scss";
 .content-wrapper {
     margin-top: 5%;
     width: 100%;
@@ -365,6 +366,7 @@ textarea {
     justify-content: space-evenly;
     margin-bottom: 2%;
     align-items: center;
+    margin-top: 1%;
 }
 
 .otroqr {
@@ -398,16 +400,16 @@ textarea {
     flex-direction: column;
     align-items: center;
     line-height: 0.2em;
-    margin-top: 130%;
+    margin-top: 150%;
     font-family: $primary-font;
     word-spacing: 50%;
     @include tablet {
         // margin-top: 40em;
-        margin-top: 200%;
+        margin-top: 240%;
     }
     @include small-phone {
         // background-color: yellow;
-        margin-top: 400%;
+        margin-top: 420%;
     }
 }
 

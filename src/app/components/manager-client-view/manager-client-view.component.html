@@ -16,133 +16,69 @@
 <div class="form-container" *ngIf="user">
     <div class="auth-form-wrapper">
         <div class="photo">
-            
+
             <img [src]="
                 user.photoUrl
               ? user.photoUrl
-              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'"    
-              />
+              : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'" />
         </div>
-        <form [formGroup]="authForm">   
-        <div class="wrapper">
-            <div class="input-container">
-                <label class="auth-label" for="displayName">Nombre Completo</label>
-                <input
-                    type="text"
-                    autocomplete="off"
-                    formControlName="name"
-                    class="auth-input"
-                    readonly
-                />
+        <form [formGroup]="authForm">
+            <div class="wrapper">
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">Nombre Completo</label>
+                    <input type="text" autocomplete="off" formControlName="name" class="auth-input" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="email">Correo Electrónico</label>
+                    <input readonly type="email" id="email" formControlName="email" class="auth-input correo" />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">Fecha de Nacimiento</label>
+                    <input type="text" autocomplete="off" formControlName="birthDate" class="auth-input" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">cedula </label>
+                    <input type="number" id="displayName" formControlName="cedula" class="auth-input" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">número de telefono </label>
+                    <input readonly type="number" id="displaName" formControlName="phone" class="auth-input" />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="displayName">género </label>
+                    <input type="text" id="displName" formControlName="genero" class="auth-input" readonly />
+
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">dirección</label>
+                    <input type="text" id="passwor" formControlName="direccion" class="auth-input" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">ciudad</label>
+                    <input type="text" id="passwor" class="auth-input" formControlName="ciudad" readonly />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">estado</label>
+                    <input readonly type="text" id="passwo" formControlName="estado" class="auth-input" />
+                </div>
+                <div class="input-container">
+                    <label class="auth-label" for="password">código postal</label>
+                    <input type="number" id="passw" formControlName="postal" class="auth-input" readonly />
+                </div>
             </div>
-            <div class="input-container">
-                <label class="auth-label" for="email">Correo Electronico</label>
-                <input
-                readonly
-                type="email"
-                id="email"
-                formControlName="email"
-                class="auth-input correo"
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="displayName">Fecha de Nacimiento</label>
-                <input
-                    type="text"
-                    autocomplete="off"
-                    formControlName="birthDate"
-                    class="auth-input"
-                    readonly
-                />
-            </div>
-            <div class="input-container" >
-                <label class="auth-label" for="displayName">cedula </label>
-                <input
-                    type="number"
-                    id="displayName"
-                    formControlName="cedula"
-                    class="auth-input"
-                    readonly
-                />
-            </div>
-            <div class="input-container" >
-                <label class="auth-label" for="displayName">numero de telefono </label>
-                <input
-                    readonly
-                    type="number"
-                    id="displaName"
-                    formControlName="phone"
-                    class="auth-input"
-                />
-            </div>
-            <div class="input-container">
-                    <label class="auth-label" for="displayName">genero </label>
-                    <input
-                    type="text"
-                    id="displName"
-                    formControlName="genero"
-                    class="auth-input"
-                    readonly
-                    />
-                
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">direccion</label>
-                <input
-                    type="text"
-                    id="passwor"
-                    formControlName="direccion"
-                    class="auth-input"
-                    readonly
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">ciudad</label>
-                <input
-                    type="text"
-                    id="passwor"
-                    class="auth-input"
-                    formControlName="ciudad"
-                    readonly
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">estado</label>
-                <input
-                    readonly
-                    type="text"
-                    id="passwo"
-                    formControlName="estado"
-                    class="auth-input"
-                />
-            </div>
-            <div class="input-container">
-                <label class="auth-label" for="password">codigo postal</label>
-                <input
-                    type="number"
-                    id="passw"
-                    formControlName="postal"
-                    class="auth-input"
-                    readonly
-                />
-            </div>
-        </div>
-    </form>
+        </form>
     </div>
     <div *ngIf="user.rol!.client == true" class="car-wrapper">
         <div class="button-cont">
-            <button mat-raised-button *ngIf="!verCarros" (click)="getCars()">ver vehiculos</button>
-            <button mat-raised-button *ngIf="verCarros" (click)="verCarros = false">esconder vehiculos</button>
+            <button mat-raised-button *ngIf="!verCarros" (click)="getCars()">ver vehículos</button>
+            <button mat-raised-button color="warn" *ngIf="verCarros" (click)="verCarros = false">esconder vehículos</button>
         </div>
         <div *ngIf="verCarros && carList.length > 0" class="car-queue">
             <app-car-queue [carList]="carList"></app-car-queue>
         </div>
         <div *ngIf="verCarros && carList.length == 0" class="car-queue">
-            <span>el usuario no tiene vehiculos registrados</span>
+            <span>el usuario no tiene vehículos registrados</span>
         </div>
     </div>
-    
+
 </div>
-
-    
-

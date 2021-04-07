@@ -1,6 +1,7 @@
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/variables.scss";
 @import "../../../styles/Lib/mixins.scss";
+@import "../../../styles/components/scroll.scss";
 .textarea-container {
     display: flex;
     flex-direction: column;
@@ -67,6 +68,9 @@ button {
 
 .div-guardar {
     width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
     @include tablet {
         // background-color: red;
         display: flex;
