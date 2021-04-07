@@ -20,7 +20,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class ReportsClientsComponent implements OnInit {
 
   usuarios!: Array<User> | any;
-  columnsToDisplay = ['name', 'date joined', 'email'];
+  columnsToDisplay = ['name', 'email'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   expandedElement!: Appointment | null;
   selectedValue!: string;
