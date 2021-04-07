@@ -1,17 +1,16 @@
 @import "../../../styles/Lib/variables.scss";
 
 .body {
-    padding-top: 10vh;
-    height: 90vh;
+    height: 86vh;
     background-color: $primary-color;
 }
 
 img {
-    margin-top: 4%;
+    margin-top: 2%;
     display: flex;
     justify-content: center;
     max-width: 80vw;
-    max-height: 80vh;
+    max-height: 78vh;
     margin-left: auto;
     margin-right: auto;
     border-radius: 1%;
