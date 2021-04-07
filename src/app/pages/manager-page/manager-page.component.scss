@@ -30,7 +30,7 @@
     .folder {
         display: flex;
         background-color: $secondary-color;
-        width: 100%;
+        width: 90%;
         @include tablet {
             font-family: $primary-font;
             width: 90%;
@@ -141,7 +141,7 @@
         // // font-size: 0.85em;
         text-transform: uppercase;
         // width: 0.5em;
-        width: 100%;
+        width: 90%;
         // border-bottom: 0.1em solid $secondary-color;
         // background-color: aqua;
         @include tablet {
