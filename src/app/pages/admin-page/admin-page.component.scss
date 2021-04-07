@@ -327,7 +327,7 @@
         border-radius: 1em;
     }
     @include small-phone {
-        margin-top: -25%;
+        margin-top: -45%;
         margin-bottom: -25%;
     }
 }
@@ -438,8 +438,8 @@
     }
     @include small-phone {
         // background-color: red;
-        height: 100%;
-        margin-top: 1%;
+        height: 50%;
+        margin-top: 5%;
     }
 }
 
