@@ -185,6 +185,7 @@ export class CarFormComponent implements OnInit {
       } if (formValues.brand?.value != undefined){
         this.car.brand = formValues.brand?.value;
       } 
+      this.car
       this.car.model = formValues.model?.value;
       this.car.year = formValues.year?.value;
       this.car.color = formValues.color?.value;
@@ -208,6 +209,7 @@ export class CarFormComponent implements OnInit {
 
   editar(){
     this.editarForm = !this.editarForm;
+    this.createForm();
   }
   /*
   @Input() car!: Car;

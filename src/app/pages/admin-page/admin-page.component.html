@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div class="listadeusuarios">
-                <mat-paginator [length]="usuarios.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50]" (page)="getPaginatorData($event)">
+                <mat-paginator [length]="usuarios.length" [pageSize]="pageSize" [pageSizeOptions]="[1, 5, 10, 25, 50]" (page)="getPaginatorData($event)">
                 </mat-paginator>
 
                 <ul class="valores" *ngFor="let usuario of (usuarios | slice:lowValue:highValue)">

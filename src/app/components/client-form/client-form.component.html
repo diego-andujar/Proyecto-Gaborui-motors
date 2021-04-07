@@ -87,7 +87,7 @@
                 <div class="input-container">
                     <label class="auth-label" for="password">ciudad</label>
                     <input required type="text" id="passwor" placeholder="caracas" formControlName="ciudad" class="auth-input active" *ngIf="editarForm" />
-                    <input type="text" id="passwor" placeholder="" placeholder="caracas" class="auth-input" *ngIf="!editarForm" readonly />
+                    <input type="text" id="passwor" placeholder="" placeholder="caracas" formControlName="ciudad" class="auth-input" *ngIf="!editarForm" readonly />
                 </div>
                 <div class="input-container">
                     <label class="auth-label" for="password">estado</label>
