@@ -43,7 +43,7 @@
   background-color: $secondary-color;
   width: 200px;
   color: $primary-color;
-  height: 60%;
+  height: 70%;
   border-radius: 0 0 50px 0;
   //
 }
@@ -96,6 +96,10 @@
     color: $secondary-color;
     border-bottom: 3px solid $secondary-color;
   }
+}
+
+.user-name{
+  color: $third-color;
 }
 
 .log{
@@ -239,15 +243,14 @@
   .user-info {
     display: flex;
     align-items: center;
-    background-color: $primary-color;
-    padding: 10px 15px;
+    padding: 20px 0px;
     border-radius: 5px;
     p {
         margin-right: 10px;
     }
     img {
-        width: 30px;
-        height: 30px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         margin-right: 1em;
     }

@@ -23,6 +23,7 @@ export class LogInPageComponent implements OnInit {
         );
         if (user) {
           this.router.navigate(['/']);
+          
         }
       }
     } catch (err) {

@@ -105,6 +105,7 @@ export class AuthService {
     email: string,
     password: string
   ): Promise<firebase.User> {
+    console.log("userDB")
     try {
       const response = await this.afsAuth.createUserWithEmailAndPassword(
         email,
@@ -114,25 +115,20 @@ export class AuthService {
       localStorage.setItem('user', user!.uid);
       
       // Setting up user name and last name
-      const actualUser: any = user;
-      await actualUser.updateProfile({
-        displayName,
-        photoURL:
-          'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg',
-      });
-      let userDB: User = {
+      /*let userDB: User = {
         photoUrl: user?.photoURL!,
-        name: actualUser.displayName,
-        email: actualUser.email,
-        phoneNumber: actualUser.phoneNumber,
-        id: actualUser.uid,
+        name: user?.displayName!,
+        email: user?.email!,
+        phoneNumber: user?.phoneNumber!,
+        id: user?.uid,
         rol: {
           client: true,
         }
       }
+      console.log(userDB)
       const id = this.database.createId()
       userDB.refId = id;
-      firebase.firestore().collection("users").doc(id).set(userDB);
+      firebase.firestore().collection("users").doc(id).set(userDB);*/
       return user!;
     } catch (err) {
       localStorage.removeItem('user');

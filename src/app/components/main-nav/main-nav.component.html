@@ -17,7 +17,6 @@
       <a class="moveright" *ngIf="user">
         <!-- <p>{{ user.displayName }}</p> -->
         <li class="user-info" *ngIf="user">
-          <p>{{ user.displayName }}</p>
           <img [src]="
           user.photoURL
             ? user.photoURL
@@ -61,7 +60,7 @@
       <a *ngIf="user">
         <!-- <p>{{ user.displayName }}</p> -->
         <li class="user-info" *ngIf="user">
-          <p>{{ user.displayName }}</p>
+          <p class="user-name">{{ user.displayName }}</p>
           <img [src]="
           user.photoURL
             ? user.photoURL
