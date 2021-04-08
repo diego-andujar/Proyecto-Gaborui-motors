@@ -39,9 +39,9 @@
                         <div *ngIf="firstName.errors!.maxlength">El telefono deben ser maximo 10 caracteres</div>
                     </div> -->
                 </div>
-                <div class="form-group">
+                <div class="form-group mesj">
                     <label for="comment">Mensaje</label>
-                    <textarea required pattern="" id="comment" cols="30" rows="5" class="form-control" formControlName="mensaje"></textarea>
+                    <textarea class ="textarea" required pattern="" id="comment" cols="30" rows="5" class="form-control" formControlName="mensaje"></textarea>
                     <!-- <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
                         <div *ngIf="firstName.errors!.required">El mensaje son obligatorios</div>
                         <div *ngIf="firstName.errors!.minlength">El mensaje deben ser minimo 3 caracteres</div>
