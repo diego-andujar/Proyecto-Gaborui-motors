@@ -96,9 +96,28 @@ export class AppointmentDinamicComponent implements OnInit {
 
   
 
-  onResponse(response: string | boolean){
+  async onResponse(response: string | boolean, cita: Appointment){
     if (response != null){
       this.selecDate();
+      const estado = {estado: "por confirmar"};
+      this.appointService.updateDoc(estado, cita.appId!);
+      const user = await this.db.collection("users").doc(cita.userid).get();
+      const email = user.data()!.email;
+      const name = user.data()!.name;
+      const title = "Cambio de fecha de tu cita"
+      const mssg = "Nuestro gerente ha modificado la fecha para tu cita en nuestro taller debido a falta de tiempo ese dia, ahora deberás ingresar a tu perfil y desde la sección 'citas' podras modificar la fecha de tu cita o bien puedes confirmar esta si estas de acuerdo con la fecha ahi pactada. En caso de aceptar te deberas dirigir al taller entre las 8am y 2pm para hacer la revision inicial del vehiculo. "
+      const values = {
+        title: title,
+        to_name: name,
+        client_email: email,
+        message: mssg,
+      }
+      emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+      }, function(error) {
+          console.log('FAILED...', error);
+      });
       this.editOrder.emit(true);
     }
   }
@@ -199,7 +218,6 @@ export class AppointmentDinamicComponent implements OnInit {
   }
 
   async aceptApp(cita: Appointment){
-    console.log(cita)
     const estado = {estado: "por confirmar"};
     this.appointService.updateDoc(estado, cita.appId!);
     const user = await this.db.collection("users").doc(cita.userid).get();
