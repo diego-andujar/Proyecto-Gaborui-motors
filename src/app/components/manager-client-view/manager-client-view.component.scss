@@ -56,15 +56,19 @@ button {
 }
 
 .form-container {
+    height: auto;
+    padding-bottom: 2em;
     @include small-phone {
-        height: 80vh;
+        height: auto;
         width: 100%;
-        width: 45vh;
     }
 }
 
 .auth-form-wrapper {
+    height: auto;
+    padding-bottom: 2em;
     @include small-phone {
+        height: auto;
         overflow-x: auto;
         margin-top: 3%;
         display: flex;

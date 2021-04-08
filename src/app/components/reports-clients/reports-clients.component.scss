@@ -3,11 +3,8 @@
 @import "../../../styles/components/buttons.scss";
 @import "../../../styles/Lib/mixins.scss";
 @import "../../../styles/components/scroll.scss";
-.example-container {
-    height: 68vh;
-    overflow: auto;
-}
 
+/* 
 .folder {
     display: flex;
     background-color: $secondary-color;
@@ -31,7 +28,7 @@
     }
     // justify-content: space-around;
     // align-items: flex-end;
-}
+} */
 
 .table {
     // background-color: beige;
@@ -79,7 +76,7 @@ h2 {
 }
 
 .folder-container {
-    width: 90%;
+    width: 99%;
     display: flex;
     justify-content: center;
     @include small-phone {

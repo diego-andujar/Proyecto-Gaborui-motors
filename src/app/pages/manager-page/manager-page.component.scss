@@ -131,6 +131,7 @@
         @include small-phone {
             overflow: hidden;
             margin-top: 1%;
+            margin-bottom: 50%;
             // width: 1em;
             // margin-left: 11.3em;
         }
@@ -182,6 +183,11 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+        @include small-phone {
+            margin-bottom: 50%;
+            // width: 1em;
+            // margin-left: 11.3em;
+        }
         // display: none;
     }
     
