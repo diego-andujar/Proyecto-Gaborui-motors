@@ -23,3 +23,12 @@
         margin-top: 50%;
     }
 }
+
+.div-clientpage-form {
+    @include tablet {
+        margin-top: -20%;
+    }
+    @include small-phone {
+        margin-top: 20%;
+    }
+}
