@@ -19,4 +19,7 @@
 
 .seccion-pagina {
     margin-bottom: 10%;
+    @include small-phone {
+        margin-top: 50%;
+    }
 }
