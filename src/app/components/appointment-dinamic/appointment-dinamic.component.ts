@@ -212,13 +212,13 @@ export class AppointmentDinamicComponent implements OnInit {
       to_name: name,
       client_email: email,
       message: mssg,
-    }/*
+    }
     emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
         console.log('FAILED...', error);
-    });*/
+    });
     this.editOrder.emit(true);
   }
 
@@ -297,13 +297,13 @@ export class AppointmentDinamicComponent implements OnInit {
       to_name: name,
       client_email: email,
       message: mssg,
-    }/*
+    }
     emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
         console.log('FAILED...', error);
-    });*/
+    });
     alert("!Se elimino la cita con exito!")
     this.editOrder.emit(true);
   }

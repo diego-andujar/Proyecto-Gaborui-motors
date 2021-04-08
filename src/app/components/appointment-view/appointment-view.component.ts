@@ -204,12 +204,12 @@ export class AppointmentViewComponent implements OnInit {
       to_name: name,
       client_email: email,
     }
-    /*emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+    emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
         console.log('FAILED...', error);
-    });*/
+    });
   }
 
   onResponse(response: string | boolean){
