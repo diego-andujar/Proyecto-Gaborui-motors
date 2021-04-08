@@ -1,3 +1,11 @@
+@import "../../../styles/Lib/mixins.scss";
+
 div{
-    height: 90%;
+    background-color: white;
+    height: auto;
+    @include small-phone {
+        width: 90%;
+        height: auto;
+    }
 }
+

@@ -1,5 +1,12 @@
 @import "../../../styles/components/text-boxes.scss";
 @import "../../../styles/components/buttons.scss";
+@import "../../../styles/Lib/mixins.scss";
 
 
+.auth-form{
+        margin-top: 0%;
+}
 
+.auth-form-wrapper{
+        margin-top: 0%;
+}

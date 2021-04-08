@@ -203,11 +203,20 @@ a{
         text-align: center;
     }
 
+    .text-lrg{
+        font-size: 80%;
+        line-height: 110%;
+        font-family: $secondary-font;
+        text-align: center;
+        padding: 20px 0%;
+    }
+
     .insta{
         display: flex;
         justify-content: center;
         height: 30px;
         width: 30px;
+        margin: auto;
     }
     
     .face{
@@ -217,6 +226,7 @@ a{
         /* kisspng-facebook-marshall-jr-high-school-icon-facebook-5a8707dda3d7c6 1 */
         height: 30px;
         width: 30px;
+        margin: auto;
     }
 
 }
@@ -230,6 +240,7 @@ a{
     .center{
         display: flex;
         justify-content: center;
+        width: 100vw;
     }
 
     .foot2{
@@ -243,7 +254,7 @@ a{
         justify-content: center;
         align-self: flex-end;
         background-color: $primary-color;
-        width: 100%;
+        width: 100vw;
         height: auto;
         margin-bottom: 0;
     }
@@ -255,7 +266,7 @@ a{
     
     .title{
         font-size: 100%;
-
+        width: 100%;
     }
     .normal{ 
         font-size: 70%;
@@ -264,6 +275,7 @@ a{
         font-family: $secondary-font;
         align-items: center;
         text-align: left;
+        width: 100%;
     
         /*&.image-media{
             display: flex;
@@ -275,10 +287,20 @@ a{
     }
 
     .text{
+        font-size: 80%;
+        line-height: 110%;
+        font-family: $secondary-font;
+        text-align: center;
+        width: 100%;
+    }
+
+    .text-lrg{
         font-size: 70%;
         line-height: 110%;
         font-family: $secondary-font;
         text-align: center;
+        padding: 20px 0%;
+        width: 100%;
     }
 
     .insta{
@@ -286,6 +308,7 @@ a{
         justify-content: center;
         height: 30px;
         width: 30px;
+        margin: auto;
     }
     
     .face{
@@ -295,6 +318,7 @@ a{
         /* kisspng-facebook-marshall-jr-high-school-icon-facebook-5a8707dda3d7c6 1 */
         height: 30px;
         width: 30px;
+        margin: auto;
     }
 }
 
@@ -358,11 +382,20 @@ a{
         text-align: center;
     }
 
+    .text-lrg{
+        font-size: 80%;
+        line-height: 110%;
+        font-family: $secondary-font;
+        text-align: center;
+        padding: 20px 0%;
+    }
+
     .insta{
         display: flex;
         justify-content: center;
         height: 30px;
         width: 30px;
+        margin: auto;
     }
     
     .face{
@@ -372,5 +405,6 @@ a{
         /* kisspng-facebook-marshall-jr-high-school-icon-facebook-5a8707dda3d7c6 1 */
         height: 30px;
         width: 30px;
+        margin: auto;
     }
 }

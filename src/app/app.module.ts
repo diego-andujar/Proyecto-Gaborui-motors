@@ -101,7 +101,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
 ]);
 
-const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
+//const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 @NgModule({
   declarations: [
@@ -220,7 +220,7 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     MatListModule,
   ],
   providers: [DatePipe,
-    {provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true},],
+    /*{provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true},*/],
   bootstrap: [AppComponent],
   entryComponents: [ClientAppointmentFormComponent, NewPartFormComponent],
 })
