@@ -1,28 +1,52 @@
 @import "../../../styles/Lib/variables.scss";
 
+.foot1{
+    display: flex;
+    justify-content: space-around;
+    
+    width: 100%;
+}
+
+.text-normal{
+    font-size: 15px;
+    line-height: 110%;
+    font-family: $secondary-font;
+    text-align: center;
+}
+
+.social-media {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 4% 0%;
+}
+
+.social-media-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 footer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
     background-color: $primary-color;
     color: $third-color;
+    padding-top: 2.5%;
     width: 100%;
-    height: 32%;
+    height: 33.33%;
     margin: 0px;
-    font-size: 35px;
+    font-size: 30px;
     letter-spacing: 5px;
+    font-family: $primary-font;
 }
 
 .title {
-    margin-bottom: 12%;
-}
-
-h5 {
-    font-family: $primary-font;
-    margin: 6% 0 0 0;
-    font-size: x-large;
-    color: $third-color;
-    text-transform: uppercase;
+    margin-bottom: 20%;
 }
 
 .normal{ 
@@ -33,13 +57,13 @@ h5 {
     align-items: center;
     text-align: left;
 
-    &.image-media{
+    /*&.image-media{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 3%;
-    }
+    }*/
 }
 
 /* 5a3a218028bee4 1 */
@@ -56,7 +80,6 @@ h5 {
 
 a{
     display: flex;
-    flex-direction: row;
     align-items: center;
     text-decoration: none;
     color: $third-color;
@@ -68,7 +91,6 @@ a{
     align-items: center;
     width: 100%;
     height: 80%;
-    padding: 0em 1em;
 }
 
 .list-element {
@@ -78,87 +100,277 @@ a{
     height: 100%;
 }
 
+.foot2{
+    display: none;
+}
+
+
 @media only screen and (max-width: 768px) {
-    
+
+    .foot2{
+        display: none;
+    }
+
+
     footer {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: center;
+        align-self: flex-end;
         background-color: $primary-color;
-        color: $third-color;
-        width: 105%;
-        height: 32%;
-        margin: 0px;
-        font-size: 20px;
-        letter-spacing: 2.5px;
+        width: 100%;
+        height: 22.5%;
+        margin-bottom: 0px;
     }
-    
-    .normal{ 
+
+    .foot1{
+        display: flex;
+        justify-content: space-around;
+        
+        width: 100%;
+    }
+
+    .title{
         font-size: 90%;
-        line-height: 20px;
-        font-weight: 500;
+        font-weight: 900;
+        font-family: $primary-font;
+    }
+
+    .normal{
+        font-size: 55%;
         font-family: $secondary-font;
-        align-items: center;
-        text-align: left;
-    
-        &.image-media{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3%;
-        }
+        font-weight: 100;
+        line-height: 150%;
     }
 }
 
 @media only screen and (max-width: 414px) {
-    
+
+    .foot1{
+        display: none;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+    }
+
+    .foot2{
+        display: flex;
+        justify-self: center;
+    }
+
     footer {
+        display: flex;
+        justify-content: center;
+        align-self: flex-end;
         background-color: $primary-color;
-        width: 202%;
+        width: 100%;
+        height: auto;
+        padding-bottom: 5%;
+        margin-bottom: 0;
+    }
+
+    ul  div h4{
+        display: flex;
+        justify-content: center;        
     }
     
+    .title{
+        font-size: 90%;
+
+    }
     .normal{ 
-        font-size: 95%;
-        line-height: 100%;
-        font-weight: 30%;
+        font-size: 40%;
+        line-height: 95%;
+        font-weight: 300;
         font-family: $secondary-font;
         align-items: center;
         text-align: left;
     
-        &.image-media{
+       /* &.image-media{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 3%;
-        }
+        }*/
+    }
+
+    .text{
+        font-size: 80%;
+        line-height: 110%;
+        font-family: $secondary-font;
+        text-align: center;
+    }
+
+    .insta{
+        display: flex;
+        justify-content: center;
+        height: 30px;
+        width: 30px;
+    }
+    
+    .face{
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+        /* kisspng-facebook-marshall-jr-high-school-icon-facebook-5a8707dda3d7c6 1 */
+        height: 30px;
+        width: 30px;
     }
 
 }
 
 @media only screen and (width: 320px) {
     
-    footer {
-        background-color: $primary-color;
-        width: 225%;
+    .foot1{
+        display: none;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+    }
+
+    .foot2{
+        display: flex;
+        justify-self: center;
     }
     
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-self: flex-end;
+        background-color: $primary-color;
+        width: 100%;
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    ul  div h4{
+        display: flex;
+        justify-content: center;        
+    }
+    
+    .title{
+        font-size: 100%;
+
+    }
     .normal{ 
-        font-size: 95%;
-        line-height: 100%;
-        font-weight: 30%;
+        font-size: 70%;
+        line-height: 95%;
+        font-weight: 300;
         font-family: $secondary-font;
         align-items: center;
         text-align: left;
     
-        &.image-media{
+        /*&.image-media{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 3%;
-        }
+        }*/
     }
 
+    .text{
+        font-size: 70%;
+        line-height: 110%;
+        font-family: $secondary-font;
+        text-align: center;
+    }
+
+    .insta{
+        display: flex;
+        justify-content: center;
+        height: 30px;
+        width: 30px;
+    }
+    
+    .face{
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+        /* kisspng-facebook-marshall-jr-high-school-icon-facebook-5a8707dda3d7c6 1 */
+        height: 30px;
+        width: 30px;
+    }
+}
+
+@media only screen and (width: 375px) {
+    .foot1{
+        display: none;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+    }
+
+    .foot2{
+        display: flex;
+        justify-self: center;
+    }
+    
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-self: flex-end;
+        background-color: $primary-color;
+        width: 100%;
+        height: auto;
+        padding-bottom: 35%;
+        margin-bottom: 0;
+    }
+
+    ul  div h4{
+        display: flex;
+        justify-content: center;        
+    }
+    
+    .title{
+        font-size: 90%;
+
+    }
+    .normal{ 
+        font-size: 40%;
+        line-height: 95%;
+        font-weight: 300;
+        font-family: $secondary-font;
+        align-items: center;
+        text-align: left;
+    
+       /* &.image-media{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3%;
+        }*/
+    }
+
+    .text{
+        font-size: 80%;
+        line-height: 110%;
+        font-family: $secondary-font;
+        text-align: center;
+    }
+
+    .insta{
+        display: flex;
+        justify-content: center;
+        height: 30px;
+        width: 30px;
+    }
+    
+    .face{
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+        /* kisspng-facebook-marshall-jr-high-school-icon-facebook-5a8707dda3d7c6 1 */
+        height: 30px;
+        width: 30px;
+    }
 }

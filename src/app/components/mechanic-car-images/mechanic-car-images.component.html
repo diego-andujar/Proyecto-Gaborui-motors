@@ -1,0 +1,28 @@
+<div class="auth-label-largo" >
+  <h2>Imagenes del vehiculo</h2>
+</div>
+<owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let slide of images">
+        <ng-template carouselSlide>
+            <div class="div-images">
+
+                <img class="images" [src]="slide">
+            </div>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>
+<div class="photo">
+    <div *ngIf="subirFoto">
+        <label class="auth-label" for="displayName">Subir foto</label>
+        <input type="file" accept=".png, .jpg, .jpeg" (change)="onUpload($event)" class="foto-choosed">
+        <input #imageUser type="hidden" [value]="urlImage | async">
+    </div>
+    <button *ngIf="!subirFoto" id="boton-editar" (click)="subirFoto = true" mat-raised-button class="whitebutton-nomargin">Subir foto</button>
+    <div class="cargar-regresar-in">
+        <button *ngIf="subirFoto && ( urlImage | async ); else btnDisable" id="boton-editar" (click)="uploadImg()" mat-raised-button>Cargar foto</button>
+        <ng-template #btnDisable>
+            <button *ngIf="subirFoto" disabled=true id="boton-editar" disabled=true mat-raised-button class="cargar-foto-button">Cargar foto</button>
+        </ng-template>
+        <button *ngIf="subirFoto" id="boton-editar" (click)="subirFoto = false" mat-raised-button color="warn" class="cargar-foto-button">Regresar</button>
+    </div>
+</div>

@@ -1,6 +1,75 @@
+<div class="all-wrapper">
+    <h2>cola de citas</h2>
+    <div class="folder-container">
+        <div class="folder">
+            <ul class="botonesumg">
+                <li class="botonesumghijos"><button class="botoncitoumg" (click)="getAppsToShow(1)">Solicitadas</button></li>
+                <li class="botonesumghijos"><button class="botoncitoumg" (click)="getAppsToShow(2)">Por confirmar</button></li>
+                <li class="botonesumghijos"><button class="botoncitoumg" (click)="getAppsToShow(3)">Confirmadas</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="table-container" *ngIf="citas">
+        <div class="pruebatablecontainer">
+            <table mat-table [dataSource]="citas" multiTemplateDataRows class="mat-elevation-z8">
+                <ng-container matColumnDef="car">
+                    <th mat-header-cell *matHeaderCellDef> Carro </th>
+                    <td mat-cell *matCellDef="let element"> {{element.carInfo}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <!-- <ng-container matColumnDef="order status">
+                    <th mat-header-cell *matHeaderCellDef> Estado</th>
+                    <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+                </ng-container> -->
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="owner">
+                    <th mat-header-cell *matHeaderCellDef> dueño </th>
+                    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                </ng-container>
+
+                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns
+                <ng-container matColumnDef="expandedDetail">
+                    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                            <div class="ngcontainer">
+                                <app-appointment-dinamic [isManager]="true" [element]="element"></app-appointment-dinamic>
+                                <mat-card> -->
+
+                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                <ng-container matColumnDef="expandedDetail">
+                    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                            <div class="ngcontainer">
+                                <app-appointment-dinamic [isManager]="true" [element]="element" (editOrder)="reloadOrder($event)"></app-appointment-dinamic>
+                                <!--<mat-card>
+                            <mat-card-title>{{element.userName}}</mat-card-title>
+                            <mat-card-subtitle>{{element.carInfo}} </mat-card-subtitle>-->
+
+
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row" [class.example-expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!--  
 <div>
     <div class="btn">
-        <h2>CITAS</h2>
+        <h2>cola de citas</h2>
     </div>
 <mat-paginator [length]="citas.length"
               [pageSize]="pageSize"
@@ -30,10 +99,10 @@
                                 {{appointment.diagnosis}}
                             </div>
                         </div>
-                        <div class="container" *ngIf="appointment.estado === 'por confirmar'">
+                        <div class="container" *ngIf="appointment.estado === 'confirmada'">
                             <h3 class="font">QRCode de la cita</h3>
                         </div>
-                        <div *ngIf="appointment.estado === 'por confirmar'">
+                        <div *ngIf="appointment.estado === 'confirmada'">
                             <div class="grandeqr">
                                 <ngx-qrcode
                                     [elementType]="elementType"

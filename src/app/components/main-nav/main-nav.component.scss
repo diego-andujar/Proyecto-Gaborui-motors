@@ -1,0 +1,311 @@
+@import '../../../styles/Lib/variables.scss';
+// html, body{
+//   height: 100%;
+// }
+// body {
+//   margin: 0;
+// }
+.sidenav-container {
+  height: 100%;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+}
+.center1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 7.5%;
+  font-size: 145%;
+  text-transform: uppercase;
+  color: $primary-color;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7.5%;
+  margin-bottom: 7.5%;
+  font-size: 145%;
+  text-transform: uppercase;
+  color: $primary-color;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+}
+
+.sidenav {
+  flex-direction: column;
+  background-color: $secondary-color;
+  width: 200px;
+  color: $primary-color;
+  height: 70%;
+  border-radius: 0 0 50px 0;
+  //
+}
+
+.sidenav .mat-toolbar {
+  color: white;
+  background: $primary-color;
+  //menu
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-toolbar{
+  background-color: $primary-color;
+  height: 15%;
+  width: 100%;
+  // position: fixed;barra negra 
+}
+
+.spacer{
+  flex: 1 1 auto;
+  margin-right: 5%;
+}
+
+.spacer2{
+  margin: 4%;
+}
+
+
+.mat-toolbar a{
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.a{
+  background-color: $primary-color;
+  color: $third-color;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  &:hover{
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    color: $secondary-color;
+    border-bottom: 3px solid $secondary-color;
+  }
+}
+
+.user-name{
+  color: $third-color;
+}
+
+.log{
+  font-size: 0.9em;
+  color: $fifth-color;
+  text-transform: capitalize;
+  letter-spacing: 0.8px;
+  padding: 0.5%;
+  border-radius: 5px;
+  font-weight: 500;
+  &:hover{
+    color: white;
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+}
+
+.sign{
+  font-size: 0.9em;
+  color: $fifth-color;
+  text-transform: capitalize;
+  letter-spacing: 0.8px;
+  padding: 0.5%;
+  border-radius: 5px;
+  font-weight: 500;
+  &:hover{
+    color: white;
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+}
+
+.photo{
+  height: 100%;
+}
+
+.a-image{
+  width: 18%;
+  font-size: 0.8em;
+}
+
+.logo {
+  display: flex;
+  align-self: center;
+  height: 75%;
+  width: 60px;
+  text-decoration: none;
+  color: inherit;
+
+}
+
+.center2{
+  font-size: 160%;
+  background-color: $secondary-color;
+  color: $third-color;
+  text-transform: capitalize;
+  letter-spacing: 0.8px;
+  padding: 0.5%;
+  border-radius: 5px;
+  &:hover{
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+}
+
+.marginleft{
+  margin-left: 50%;
+}
+
+.text{
+  font-size: 1.6em;
+}
+
+.logoutfoto {
+  margin-left: 180%;
+  height: 100%;
+  width: 100%;
+  fill: $primary-color;
+  background-color:none;
+}
+
+.logoutfoto2 {
+  margin-top: 2%;
+  margin-left: 0;
+  width: 4vw;
+  fill: $third-color;
+  background-color: none;
+}
+
+.moveright{
+  margin-left: 35%;
+}
+.no{
+  background: $secondary-color;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.no2{
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.user-info{
+  width: 50%;
+}
+
+.a-button{
+  padding-top: 0.8%;
+  width: 5vw;
+}
+
+@media (min-width: 768px){
+  .sidenav{
+    display: none;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    // background-color: $primary-color;
+    // padding: 10px 15px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-left: 1em;
+      margin: auto;
+    }
+    p{
+      margin-right: 10px;
+    }
+  }
+  .logoutfoto2 {
+    margin-left: 0;
+    height: 30%;
+    fill: $third-color;
+    background-color:none;
+  }
+}
+
+@media (width: 768px){
+  p {
+    display: none;
+  }
+  .sidenav{
+    display: none;
+  }
+  .text{
+    font-size: 1em;
+  }
+
+  .user-info{
+    font-size: 0.8px;
+  }
+  .a-image{
+    height: 50px;
+    width: 50px;
+  }
+  .user-info{
+    height: 50px;
+    width: 50px;
+  }
+  .logo {
+    display: flex;
+    align-self: center;
+    height: 50%;
+    width: 20px;
+    text-decoration: none;
+    color: inherit;
+  
+  }
+}
+
+@media (max-width: 767px){
+  .mat-toolbar a{
+    display: none;
+  }
+  .mat-toolbar {
+    background-color: $primary-color;
+    height: 15%;
+    width: 100%;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    padding: 20px 0px;
+    border-radius: 5px;
+    p {
+        margin-right: 10px;
+    }
+    img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 1em;
+    }
+  }
+ 
+}
+

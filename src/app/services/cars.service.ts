@@ -40,13 +40,50 @@ export class CarsService {
 
   async getUsCars(id:string): Promise<Car[]>{
     const lista: Array<Car> = [];
-    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    const collection = this.db.collection("cars").where("userid", "==", id).where("active", "==", true).get()
     await collection.then(snapshot => {
       snapshot.docs.forEach( doc => {
         lista.push(doc.data())
       })
     })
     return lista;
+  }
+
+  async getCarUserr(id: string):Promise<Car[]>{
+    const userList: Car[]=[];
+    await this.db.collection("cars").where("userId", "==", id).get().then(
+      query=>{query.forEach(doc=>{
+        let car=({
+          active: doc.get("active"),
+          brand: doc.get("brand"),
+          carId: doc.get("carId"),
+          inAppointment: doc.get("inAppointment"),
+          model: doc.get("model"),
+          photo: doc.get("photo"),
+          plate: doc.get("plate"),
+          registerDate: doc.get("registerDate"),
+          serialMotor: doc.get("serialMotor"),
+          year: doc.get("year"),
+        })
+        console.log(car)
+        userList.push(car)
+      })}
+    )
+    return userList;
+    
+  }
+
+  async getUsCarsForManager(id:string): Promise<any[] | void>{
+    const lista: Array<Car> = [];
+    const collection = this.db.collection("cars").where("userid", "==", id).get()
+    return await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        console.log(doc.data())
+        return doc.data();
+        //lista.push(doc.data())
+      })
+    })
+    //return lista;
   }
 
   async getUsCarsNoApp(id:string): Promise<Car[]>{

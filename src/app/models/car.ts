@@ -13,7 +13,7 @@ export interface Car {
     color?: string;
     kmWhenIn?: number;
     gasTankWhenIn?: string;
-    mechanicPictures?: Array<string>;
+    mechanicPictures?: Array<any>;
     accesories?: Array<Accesorie>;
     carId?: string;
     inAppointment?: boolean;

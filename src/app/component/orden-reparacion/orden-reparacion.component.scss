@@ -3,15 +3,20 @@
 @import "../car-view/car-view.component.scss";
 @import "../../../styles/Lib/variables.scss";
 @import "../../../styles/Lib/mixins.scss";
-
+@import "../../component/vista-gnrl-manager/vista-gnrl-manager.component.scss";
+@import"../../../styles/components/scroll.scss";
 .content-wrapper {
-    margin-top: 7%;
+    margin-top: 5%;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: $third-color;
+    // background-color: yellow;
+    font-family: $primary-font;
+    @include tablet {
+        // background-color: yellow;
+    }
     @include small-phone {
         // background-color: yellow;
         margin-top: 20%;
@@ -22,6 +27,51 @@
 
 p {
     word-spacing: 0.8em;
+}
+
+// .div-palabra-manager {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+// }
+.dibujito {
+    border: 0.4em solid $secondary-color;
+    border-radius: 0.5em;
+    width: 35%;
+    height: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 2%;
+    text-transform: uppercase;
+    @include tablet {
+        margin-top: 5%;
+        width: 50%;
+        height: 25%;
+        // background-color: goldenrod;
+    }
+    @include small-phone {
+        width: 80%;
+        height: 25%;
+    }
+}
+
+.seccion-profile-scanner {
+    width: 100%;
+    // height: 50%;
+    // background-color: yellow;
+    font-family: $primary-font;
+    text-align: center;
+    @include tablet {
+        margin-top: 20%;
+        height: 35%;
+    }
+    @include small-phone {
+        // background-color: beige;
+        height: 100%;
+        margin-top: 40%;
+    }
 }
 
 .list-wrapper {
@@ -54,18 +104,49 @@ p {
 
 .video {
     border-radius: 2em;
-    margin-top: 2.5%;
+    // margin-top: 2.5%;
     display: flex;
     justify-content: center;
-    width: 90%;
+    width: 80%;
+    height: 70%;
+    margin-left: 2%;
+    @include tablet {
+        border-radius: 2em;
+        margin-top: 2.5%;
+        width: 70%;
+        height: auto;
+    }
+    @include small-phone {
+        height: auto;
+        margin-top: 1%;
+    }
     // @include ipad-pro {
     //     width: 2em;
     // }
     // margin-bottom: -3%;
 }
 
+.whitebutton {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    @include small-phone {}
+}
+
+.whitebutton-nomargin {
+    text-transform: uppercase;
+    background-color: $third-color;
+    color: $primary-color;
+    // margin-top: 1%;
+    // margin-bottom: 1%;
+}
+
 button {
-    width: auto;
+    text-transform: uppercase;
+    background-color: $secondary-color;
+    color: white;
 }
 
 .add-btn {
@@ -79,6 +160,10 @@ h2 {
     padding-top: 4%;
 }
 
+.div-diagnostico {
+    background-color: beige;
+}
+
 .example-container {
     padding: 5% 0%;
     display: flex;
@@ -90,6 +175,9 @@ h2 {
 
 .form-container {
     height: auto;
+    @include small-phone {
+        background-color: yellow;
+    }
 }
 
 table {
@@ -105,15 +193,19 @@ tr.mat-footer-row {
 }
 
 .comp-wrapper {
-    width: 90%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    margin-left: 5%;
-    margin-top: 5%;
-    height: 30%;
-    flex-direction: column;
+    @include tablet {
+        flex-direction: column;
+        justify-content: center;
+    }
+    @include small-phone {
+        justify-content: space-evenly;
+    }
 }
 
 .results {
@@ -154,55 +246,85 @@ textarea {
     border: 0em;
     padding: 1.1em;
     font-size: 1.1em;
-    width: 100%;
+    // width: 100%;
+    // height: 10%;
     height: 10%;
-    height: 100%;
     font-size: 2em;
     color: white;
-    margin-top: 65%;
-    @include ipad-pro {
-        margin-top: 30%;
-        font-size: 3.5em;
-    }
+    display: flex;
+    align-items: center;
+    margin-right: -4%;
+    // margin-top: 65%;
+    // @include ipad-pro {
+    //     margin-top: 35%;
+    //     font-size: 2.5em;
+    // }
     @include tablet {
-        margin-top: 100%;
+        // margin-top: 0%;
+        // // margin-top: 100%;
+        // height: 20%;
+        // display: flex;
+        // align-items: center;
+        margin-top: 5%;
+        font-size: 2em;
+        height: auto;
+        // background-color: red;
+        // margin-top: -40%;
     }
     @include small-phone {
-        margin-top: 85%;
+        margin-top: 5%;
+        font-size: 1.2em;
+        height: auto;
+        // background-color: red;
+        // margin-top: -40%;
     }
-    &.camara {
+    .camara {
         margin-top: -15%;
-        @include ipad-pro {
-            // margin-top: 70%;
+        // @include ipad-pro {
+        //     // margin-top: 70%;
+        //     font-size: 2.5em;
+        //     margin-top: 5%;
+        // }
+        @include tablet {
             font-size: 2.5em;
             margin-top: 5%;
-        }
-        @include tablet {
-            margin-top: 20%;
+            // margin-top: 20%;
         }
         @include small-phone {
-            margin-top: 20%;
+            margin-top: -40%;
         }
     }
 }
 
 .scan-wrapper {
-    margin-top: -10%;
+    // margin-top: -10%;
+    @include tablet {
+        // margin-top: 20%;
+        height: auto;
+    }
+    @include small-phone {
+        height: auto;
+        margin-top: 0%;
+    }
+    // margin-top: 0%;
 }
 
 .submit-button {
-
-    background-color: $primary-color;
+    background-color: $secondary-color;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    display: flex;
     font-family: $primary-font;
-    font-weight: 500;
     width: 20%;
     border-radius: 0.3em;
-    padding: 0.2em;
+    cursor: pointer;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: white;
+    border: 0em;
+    padding: 0.5%;
+    font-size: 1em;
     @include small-phone {
         // background-color: burlywood;
     }
@@ -233,6 +355,10 @@ textarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include tablet {
+        // margin-top: 30%;
+    }
+    // display: none;
 }
 
 .addrecargarhijo {
@@ -240,13 +366,30 @@ textarea {
     justify-content: space-evenly;
     margin-bottom: 2%;
     align-items: center;
+    margin-top: 1%;
 }
 
 .otroqr {
-    background-color: $third-color;
+    // background-color: $primary-color;
     display: flex;
     justify-content: center;
     margin-top: 4%;
+    margin-bottom: 2%;
+    height: auto;
+    height: 2em;
+    @include tablet {
+        margin-top: 10%;
+    }
+    @include small-phone {
+        margin-bottom: 4%;
+    }
+}
+
+.otroqr2 {
+    background-color: $third-color;
+    display: flex;
+    justify-content: center;
+    // margin-top: 42%;
     @include tablet {
         margin-top: 10%;
     }
@@ -257,15 +400,33 @@ textarea {
     flex-direction: column;
     align-items: center;
     line-height: 0.2em;
-    margin-top: 1%;
+    margin-top: 150%;
     font-family: $primary-font;
     word-spacing: 50%;
+    @include tablet {
+        // margin-top: 40em;
+        margin-top: 240%;
+    }
+    @include small-phone {
+        // background-color: yellow;
+        margin-top: 420%;
+    }
 }
 
 .scanner-image {
-    height: 90%;
+    // height: 90%;q
+    // width: 100%;
     display: flex;
     justify-content: center;
+    @include tablet {
+        // margin-top: -40%;
+        // height: 35%;
+    }
+    @include small-phone {
+        // background-color: blue;
+        margin-top: -10%;
+        height: 35%;
+    }
 }
 
 

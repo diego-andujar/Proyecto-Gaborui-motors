@@ -108,6 +108,11 @@ export class UsersService {
     }, {merge: true});
   }
 
+  getUserId(userId: string) {
+    const collection = this.database.collection("users");
+    return collection.doc(userId).valueChanges();
+  }
+
 
   getUser(userId: string) {
     let user: User | void;
@@ -146,13 +151,78 @@ export class UsersService {
           state:doc.get("state"),
           refId:doc.get("refId")
         })
-        console.log(user)
         userList.push(user)
       })}
     )
     return userList;
     
   }
+
+  async getClientUserr():Promise<User[]>{
+    const userList: User[]=[];
+    await this.db.collection("users").where("rol.client","==",true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+
+  async getMechanicUserr():Promise<User[]>{
+    const userList: User[]=[];
+    await this.db.collection("users").where("rol.mechanic", "==", true).get().then(
+      query=>{query.forEach(doc=>{
+        let user=({
+          id:doc.get("id"),
+          address:doc.get("address"),
+          birthDate:doc.get("birthDate"),
+          cedula:doc.get("cedula"),
+          city:doc.get("city"),
+          email:doc.get("email"),
+          genero:doc.get("genero"),
+          name:doc.get("name"),
+          phoneNumber:doc.get("phoneNumber"),
+          postalCode:doc.get("postalCode"),
+          rol:doc.get("rol"),
+          state:doc.get("state"),
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
+        })
+        userList.push(user)
+      })}
+    )
+    return userList;
+    
+  }
+
+  async getClientUserForManager(): Promise<any[] | void>{
+    const collection = this.db.collection("users").where("rol.client", "==", true).get()
+    return await collection.then(snapshot => {
+      snapshot.docs.forEach( doc => {
+        return doc;
+        //lista.push(doc.data())
+      })
+    });
+    
+  }
+
   getMechanicUser():User[]{
     const userList: User[]=[];
     this.db.collection("users").where("rol.mechanic","==",true).get().then(
@@ -170,9 +240,9 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
-        console.log(user)
         userList.push(user)
       })}
     )
@@ -196,9 +266,9 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
-        console.log(user)
         userList.push(user)
       })}
     )
@@ -222,9 +292,9 @@ export class UsersService {
           postalCode:doc.get("postalCode"),
           rol:doc.get("rol"),
           state:doc.get("state"),
-          refId:doc.get("refId")
+          refId:doc.get("refId"),
+          photoUrl:doc.get("photoUrl"),
         })
-        console.log(user)
         userList.push(user)
       })}
     )
@@ -345,7 +415,6 @@ export class UsersService {
     this.db.collection("users")
     .where("id", "==", userId).get()
     .then(querySnapshot => {
-      console.log("hola " + querySnapshot);
       return querySnapshot.docs[0];
     })
   }
@@ -357,6 +426,11 @@ export class UsersService {
    */
   updateUser(userId: string, userData: User): Promise<void> {
     return this.userCollection.doc<User>(userId).update(userData);
+  }
+
+  updateDoc(data:any, id:string){
+    const collection = this.database.collection("users")
+    return  collection.doc(id).update(data);
   }
 
   /**

@@ -11,14 +11,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Part } from 'src/app/models/part';
 import { stringify } from '@angular/compiler/src/util';
-
+import firebase from "firebase";
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-orden-reparacion',
   templateUrl: './orden-reparacion.component.html',
   styleUrls: ['./orden-reparacion.component.scss']
 })
 export class OrdenReparacionComponent implements OnInit {
-
+  username!:User;
+  user!: firebase.User;
+  userFire!: any;
   displayedColumns = ['item', 'cost', 'actions'];
   appointment!: Appointment;
   transactions: Part[] = [];
@@ -26,7 +30,7 @@ export class OrdenReparacionComponent implements OnInit {
   orderForm!: FormGroup;
   @Input() event: string = "hola";
   orden!: Order;
-  car!: any;
+  car!: Car;
   scannerEnabled: boolean = true;
   escanear: boolean = false;
   qrResultString: string | null = "";
@@ -34,8 +38,10 @@ export class OrdenReparacionComponent implements OnInit {
   verOrden: boolean = false;
   addPart: boolean = false;
   addProcess: boolean = false;
+  ordenCerrada: boolean = false;
 
   constructor(
+    private authService: AuthService,
     private cd: ChangeDetectorRef,
     private fb: FormBuilder,
     private appService: AppointmentServiceService,
@@ -45,6 +51,15 @@ export class OrdenReparacionComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+    })
+
+    this.username=JSON.parse(localStorage.getItem("CurrentUser")!);
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+    })
+    this.userFire = JSON.parse(localStorage.getItem("CurrentUser")!);
     this.verOrden = false;
     this.createForm();
   }
@@ -64,9 +79,27 @@ export class OrdenReparacionComponent implements OnInit {
         } if (this.orden.processes != undefined){
           this.procesos = this.orden.processes;
         }
+        if (this.orden.endedRepair){
+          this.ordenCerrada = true;
+          alert("!Esta orden ya se cerro, solo el gerente puede editarla!")
+          return;
+        }
+        this.verOrden = true;
+        return;
       })
-    this.verOrden = true;
-    alert("!Se ha encontrado la orden!")
+
+  }
+
+  endOrder(){
+    let data = {
+      endedRepair: true
+    }
+    this.orderService.updateOrder(data, this.appointment.appId, this.orden.refId);
+    this.orderService.getOrder(this.appointment.appId).then( doc => {
+      this.orden = doc[0];
+    });
+    this.ordenCerrada = true;
+    alert("La reparacion ha sido cerrada y la orden sera verificada por el gerente\nYa no se podra editar desde esta ventana")
   }
 
   public scanSuccessHandler($event: any){
@@ -83,7 +116,7 @@ export class OrdenReparacionComponent implements OnInit {
     this.appService.getSpecificApp(id).subscribe( doc => {
       this.appointment = doc as Appointment;
       this.carService.getCarById(this.appointment.car).subscribe( doc => {
-        this.car = doc;
+        this.car = doc as Car;
       })
     })
   }
@@ -139,7 +172,6 @@ export class OrdenReparacionComponent implements OnInit {
     const index = this.procesos.indexOf(row, 0);
     if (index > -1){
       this.procesos.splice(index,1);
-      console.log(this.procesos)
       const procc = {processes: this.procesos};
       this.orderService.updateOrder(procc, this.appointment?.appId, this.orden.refId);
     }

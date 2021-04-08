@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90%;
+    height: 100vh;
     background-color: $secondary-color;
     font-size: 3em;
     font-family: $primary-font;
@@ -23,14 +23,41 @@
     justify-content: center;
 }
 
+.center{
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $secondary-color;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.block1 {
+    display: none;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+}
+.block2 {
+    display: none;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+    margin-bottom: 10%;
+    color: $primary-color;
+    font-family: $primary-font;
+    font-size: 170%;
+    font-weight: 600;
+}
+
 @media only screen and (max-width: 768px) {
 
     .mapsdiv {
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
-        width: 105%;
-        height: 50%;
+        width: 100%;
+        height: 100vh;
         background-color: $secondary-color;
         font-size: 3em;
         font-family: $primary-font;
@@ -48,8 +75,32 @@
     .mapadegoogle {
         display: flex;
         justify-self: center;
-        width: 95%;
-        height: 300px;
+        width: 90%;
+        height: 100%;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: $secondary-color;
+    }
+
+    .block1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40vh;
+    }
+    .block2 {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        color: $primary-color;
+        font-family: $primary-font;
+        font-size: 2em;
+        font-weight: 600;
     }
     
 }
@@ -57,11 +108,11 @@
 @media only screen and (max-width: 414px) {
 
     .mapsdiv {
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
-        width: 202%;
-        height: 70%;
+        width: 100%;
+        height: 100vh;
         background-color: $secondary-color;
         font-size: 3em;
         font-family: $primary-font;
@@ -79,20 +130,44 @@
     .mapadegoogle {
         display: flex;
         justify-self: center;
-        width: 95%;
-        height: 300px;
+        width: 90%;
+        height: 100%;
     }
-    
+
+    .center{
+        margin-top: -30px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: $secondary-color;
+    }
+
+    .block1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40vh;
+    }
+    .block2 {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        color: $primary-color;
+        font-family: $primary-font;
+        font-size: 2em;
+        font-weight: 600;
+    }
 }
 
 @media only screen and (max-width: 320px) {
 
     .mapsdiv {
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
-        width: 225%;
-        height: 90%;
+        width: 100%;
+        height: 100vh;
         background-color: $secondary-color;
         font-size: 3em;
         font-family: $primary-font;
@@ -100,18 +175,43 @@
     
     .ulcosa {
         width: 100%;
-        height: 100%;
+        height: 100vh;
         list-style: none;
         color: inherit;
-        line-height: 130px;
+        line-height: 13px;
         text-align: center;
     }
     
     .mapadegoogle {
         display: flex;
         justify-self: center;
-        width: 95%;
-        height: 300px;
+        align-items: center;
+        width: 90%;
+        height: 100%;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: $secondary-color;
+    }
+
+    .block1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40vh;
+    }
+    .block2 {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        color: $primary-color;
+        font-family: $primary-font;
+        font-size: 2em;
+        font-weight: 600;
     }
     
 }

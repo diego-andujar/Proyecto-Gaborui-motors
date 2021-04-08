@@ -35,8 +35,8 @@ export class AdminPageComponent implements OnInit {
   ];
 
 
-  lowValue: number = 0;
-  highValue: number = 5;
+  lowValue: number = 5;
+  highValue: number = 10;
 
   usuarios:User[]=[];
   // hijos:Hijo[]=[];
@@ -76,6 +76,7 @@ export class AdminPageComponent implements OnInit {
     
     this.firestoreService.createDoc(this.newUsuario,this.path,this.newUsuario.refId!);
     console.log(this.newUsuario)
+    alert("Se han guardado los datos correctamente")
   }
   
   getUsuarios(){
@@ -86,8 +87,14 @@ export class AdminPageComponent implements OnInit {
   deleteUsuario(users: User){
     console.log(users.refId);
     this.firestoreService.deleteDoc(this.path,users.refId!)
+    console.log("Se ha eliminado con exito")
+  //  this.alertEliminado();
     
   }
+  // alertEliminado(){
+  //   const userDeleted:string="Se ha eliminado exitosamente el usuario seleccionado"
+  //   alert(userDeleted)
+  // }
 
   nuevo(){
     this.enablenewUsuario=true;
@@ -106,6 +113,7 @@ export class AdminPageComponent implements OnInit {
       state:"",
       refId:this.firestoreService.getrefId()
     };
+   
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {

@@ -1,5 +1,6 @@
 import { Car } from '../../models/car';
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 export interface Tile {
   color: string;
@@ -16,6 +17,7 @@ export interface Tile {
 export class CarViewComponent implements OnInit {
 
   @Input() car = {} as Car;
+  @Input() user!: User;
   @Input() userType!: string;
   verSolicitud = false;
   

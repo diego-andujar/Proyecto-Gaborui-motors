@@ -23,6 +23,7 @@ export interface Accesorie {
 export class CarFormComponent implements OnInit {
 
   @Input() car!: Car;
+  @Input() ordenCerrada: boolean = false;
   authForm!: FormGroup;
   @Input() isRegister: boolean = false;
   userFire: any;
@@ -125,7 +126,6 @@ export class CarFormComponent implements OnInit {
       km: this.car.kmWhenIn,
       tank: this.car.gasTankWhenIn,
     });
-    console.log(this.car.gasTankWhenIn)
   }
 
   updateAccesoriesList(accesorie: Accesorie){
@@ -185,6 +185,7 @@ export class CarFormComponent implements OnInit {
       } if (formValues.brand?.value != undefined){
         this.car.brand = formValues.brand?.value;
       } 
+      this.car
       this.car.model = formValues.model?.value;
       this.car.year = formValues.year?.value;
       this.car.color = formValues.color?.value;
@@ -208,6 +209,7 @@ export class CarFormComponent implements OnInit {
 
   editar(){
     this.editarForm = !this.editarForm;
+    this.createForm();
   }
   /*
   @Input() car!: Car;

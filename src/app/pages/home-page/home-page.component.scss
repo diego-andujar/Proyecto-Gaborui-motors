@@ -1,9 +1,44 @@
+@import '../../../styles/Lib/variables.scss';
+@import '../../../styles/Lib/mixins.scss';
+
 body {
     margin: 0;
 }
+
+#quienes{
+    @include small-phone {
+        height: auto;
+        margin-bottom: -80%;
+    }
+}
+
 
 .pages-wrapper {
     clear: both;
     display: block;
 }
 
+.see{
+
+}
+.see2{
+   
+}
+
+@media only screen and (min-width:769px){
+    .see{
+        display: none;
+    }
+    .see2{
+        background-color: $primary-color;
+    }
+}
+
+@media only screen and (max-width:768px){ 
+    .see{
+        background-color: $primary-color;
+    }
+    .see2{
+        display: none;
+    }
+}

@@ -1,4 +1,5 @@
 <div class="car-view">
+    <h2>vehiculos</h2>
     <mat-paginator [length]="carList.length"
               [pageSize]="pageSize"
               [pageSizeOptions]="[1]"
@@ -10,4 +11,7 @@
         <app-car-view [userType]="userType" [car]="car"></app-car-view>
     </ng-container>
 </div>
+<!--<div *ngIf="carList.length == 0" class="car-queue">
+    <span>el usuario no tiene vehiculos registrados</span>
+</div>-->
 

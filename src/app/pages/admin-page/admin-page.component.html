@@ -2,6 +2,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/scss" href="../admin-page/admin-page.component.scss" media="screen" />
 </head>
+
 <div class="todo">
     <ul class="bloques">
         <li class="bloque bloquea">
@@ -11,9 +12,10 @@
               ? user.photoURL
               : 'https://support.grasshopper.com/assets/images/care/topnav/default-user-avatar.jpg'
           " class="photo" />
-                <p>Email: {{username.email}}</p>
-                <p>Nombre: {{username.name}}</p>
-                <p>Rol: Admin</p>
+
+                <p class="pp">{{username.email}}</p>
+                <p class="pp">{{username.name}}</p>
+                <h3>Admin</h3>
             </div>
         </li>
 
@@ -25,8 +27,8 @@
                     <li class="botonesumghijos"><button class="botoncitoumg" (click)="listaGerentes()">Gerente</button></li>
                 </ul>
             </div>
-            <div>
-                <mat-paginator [length]="usuarios.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10]" (page)="getPaginatorData($event)">
+            <div class="listadeusuarios">
+                <mat-paginator [length]="usuarios.length" [pageSize]="pageSize" [pageSizeOptions]="[1, 5, 10, 25, 50]" (page)="getPaginatorData($event)">
                 </mat-paginator>
 
                 <ul class="valores" *ngFor="let usuario of (usuarios | slice:lowValue:highValue)">
@@ -87,22 +89,22 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstName">Cedula</label>
+                                    <label for="firstName">Cédula</label>
                                     <input class="firstName" type="text" class="form-control" [(ngModel)]="newUsuario.cedula" [ngModelOptions]="{standalone: true}">
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstName">Genero</label>
+                                    <label for="firstName">Género</label>
                                     <input class="firstName" type="text" class="form-control" [(ngModel)]="newUsuario.genero" [ngModelOptions]="{standalone: true}">
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstName">PhoneNumber</label>
+                                    <label for="firstName">Teléfono</label>
                                     <input class="firstName" type="text" class="form-control" [(ngModel)]="newUsuario.phoneNumber" [ngModelOptions]="{standalone: true}">
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstName">Direccion</label>
+                                    <label for="firstName">Dirección</label>
                                     <input class="firstName" type="text" class="form-control" [(ngModel)]="newUsuario.address" [ngModelOptions]="{standalone: true}">
 
                                 </div>

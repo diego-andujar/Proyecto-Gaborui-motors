@@ -5,14 +5,14 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 76%;
+    height: 100vh;
+
 }
 
 .info-container {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-top: 10%;
 }
 
 .somos{
@@ -20,7 +20,9 @@
     font-size: 50px;
     padding-top: 50px;
     font-weight: bold;
+    font-family: $primary-font;
 }
+
 .texto {
     padding-top: 3%;
     margin-left: auto;
@@ -28,6 +30,7 @@
     text-align: center;
     width: 70%;
     font-size: 25px;
+    font-family: $secondary-font;
 }
 .center {
     display: flex;
@@ -35,10 +38,10 @@
     width: 50%;
 }
 .servi {
-    padding: 3% 5% 0 5%;
-    width: 95%;
+    padding: 3% 5% 0 0%;
+    width: 100%;
     font-size: 17px;
-    padding-bottom: 50px;
+    font-family: $secondary-font;
 }
 
 @media only screen and (max-width: 768px) {
@@ -73,13 +76,12 @@
     .center {
         display: flex;
         justify-content: center;
-        width: 50%;
+        width: 70%;
     }
     .servi {
         padding: 3% 5% 0 5%;
         width: 95%;
         font-size: 125%;
-        padding-bottom: 50px;
     }
 }
 
@@ -88,10 +90,8 @@
     .info-wrapper {
         display: flex;
         align-items: center;
-        width: 200%;
+        width: 100%;
         height: 76%;
-        padding-top: 170px;
-        padding-bottom: 200px;
     }
     
     .info-container {
@@ -102,9 +102,9 @@
     }
     
     .somos{
-        margin-top: 50%;
         text-align: center;
-        font-size: $primary-font;
+        font-family: $primary-font;
+        font-size: 160%;
         padding-top: 30px;
         font-weight: bold;
     }
@@ -114,44 +114,39 @@
         margin-right: auto;
         text-align: center;
         width: 70%;
-        font-size: 200%;
+        font-size: 120%;
     }
     .center {
         display: flex;
         justify-content: center;
-        width: 50%;
+        
     }
     .servi {
-        padding: 3% 5% 0 5%;
+        padding: 3% 5% 0%;
         width: 95%;
-        font-size: 170%;
-        padding-bottom: 50px;
+        font-size: 115%;
     }
 }
 
 @media only screen and (width: 320px) {
 
     .info-wrapper {
-        margin-top: 25%;
         display: flex;
         align-items: center;
-        width: 225%;
+        width: 100%;
         height: 76%;
-        padding-top: 170px;
-        padding-bottom: 200px;
     }
     
     .info-container {
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding-top: 10%;
     }
     
     .somos{
-        margin-top: 50%;
         text-align: center;
-        font-size: $primary-font;
+        font-family: $primary-font;
+        font-size: 160%;
         padding-top: 30px;
         font-weight: bold;
     }
@@ -161,18 +156,17 @@
         margin-right: auto;
         text-align: center;
         width: 70%;
-        font-size: 200%;
+        font-size: 120%;
     }
     .center {
         display: flex;
         justify-content: center;
-        width: 50%;
+        
     }
     .servi {
-        padding: 3% 5% 0 5%;
+        padding: 3% 5% 0 0%;
         width: 95%;
-        font-size: 170%;
-        padding-bottom: 50px;
+        font-size: 115%;
     }
 
 }

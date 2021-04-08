@@ -2,6 +2,7 @@ import { CarsService } from './../../services/cars.service';
 import { Car } from '../../models/car';
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { User } from 'src/app/models/user';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class CarQueueComponent implements OnInit {
 
   @Input() carList: Array<Car> = [];
-  @Input()
+  @Input() user!: User;
   userType!: string;
   lowValue: number = 0;
   highValue: number = 1;
@@ -22,6 +23,9 @@ export class CarQueueComponent implements OnInit {
   constructor(private carsService: CarsService) { }
 
   ngOnInit(): void {
+    /*this.carsService.getUsCarsForManager(this.user.id!).then( doc => {
+      this.carList = doc as Array<Car>;
+    })*/
     this.cars = this.carsService.getAllCars();
   }
 

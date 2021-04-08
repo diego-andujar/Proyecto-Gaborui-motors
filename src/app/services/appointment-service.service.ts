@@ -58,6 +58,15 @@ export class AppointmentServiceService {
     return collection.valueChanges();
   }
 
+  async getAppOrders(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderOpen", "==", true);
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
   updateDoc(data:any, id:string){
     const collection = this.database.collection("citas")
     return  collection.doc(id).update(data);
@@ -70,12 +79,102 @@ export class AppointmentServiceService {
 
   async getClientApp(userId: string): Promise<any[]>{
     const collection = this.db.collection("citas");
-    let query = collection.where("userId", "==", userId).orderBy('dateCreated', 'desc');
+    let query = collection.where("userId", "==", userId).orderBy('dateCreated', 'asc');
     return query.get().then((snapshot) =>
     {
         return snapshot.docs.map(doc => doc.data());
     })
   }
+
+  async endApp(appId: string | undefined, date: string, status: string){
+    const collection = this.database.collection("citas");
+    return await collection.doc(appId).set({
+      dateEnded: date,
+      estado: status,
+      orderStatus: "terminada",
+    }, {merge: true});
+  }
+
+  getEnEsperaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "en espera").orderBy('date', 'asc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getEnProcesoApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "en proceso").orderBy('date', 'asc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getTerminadaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "terminada");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getCerradaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "cerrada").orderBy('date', 'desc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getAppSolicitada(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "solicitada").orderBy('dateCreated', 'asc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getAppPorConfirmar(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "por confirmar").orderBy('date', 'asc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getAppConfirmada(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "confirmada").orderBy('date', 'asc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  getAppEnCurso(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("estado", "==", "confirmada").orderBy('date', 'asc');
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }
+
+  /*getCerradaApp(): Promise<any[]>{
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("orderStatus", "==", "cerrada");
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
+    })
+  }*/
 
   getUserAppointments(userId: string): Array<Appointment>{
     const list: Array<Appointment> = [];
@@ -101,14 +200,12 @@ export class AppointmentServiceService {
   }
 
   async getUserAppoint(userId: string): Promise<Appointment[]>{
-    const lista: Array<Appointment> = [];
-    const collection = this.db.collection("citas").where("userid", "==", userId).get()
-    await collection.then(snapshot => {
-      snapshot.docs.forEach( doc => {
-        lista.push(doc.data())
-      })
+    const collectio = this.db.collection("citas");
+    let query = collectio.where("userid", "==", userId);
+    return query.get().then((snapshot) =>
+    {
+        return snapshot.docs.map(doc => doc.data());
     })
-    return lista;
   }
     /*.get()
     .then((querySnapshot) =>{

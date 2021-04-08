@@ -1,3 +1,6 @@
+import { element } from 'protractor';
+import { OrdersService } from 'src/app/services/orders.service';
+import { Order } from 'src/app/models/order';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
@@ -9,6 +12,9 @@ import { AppointmentServiceService } from 'src/app/services/appointment-service.
 import { CarsService } from 'src/app/services/cars.service';
 import { UsersService } from 'src/app/services/users.service';
 import { PageEvent } from '@angular/material/paginator';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import firebase from "firebase";
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-appointment-dinamic',
@@ -20,6 +26,10 @@ export class AppointmentDinamicComponent implements OnInit {
   citas!: Array<Appointment>;
   nuevaCita: boolean = false;
   @Input() citasInput: Array<Appointment> = [];
+  @Input() element!: Appointment;
+  @Input() appointment!: Appointment;
+  public elementType = NgxQrcodeElementTypes.URL;
+  public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   cars!: Array<Car>;
   car!: any;
   userApp!: any;
@@ -36,12 +46,19 @@ export class AppointmentDinamicComponent implements OnInit {
   today = new Date();
   dayForm!: FormGroup;
   authForm!: FormGroup;
-  @Output() sendFormEvent = new EventEmitter();
+  @Output() deleting = new EventEmitter<boolean>(); 
+  @Output() editOrder = new EventEmitter<boolean>(); 
+  @Output() clientEdit = new EventEmitter<boolean>(); 
+  @Output() responseClient = new EventEmitter<boolean>(); 
   @Input() isRegister: boolean = false;
   carList: Array<Car> = [];
   selectedValue!: any;
   name: string = "";
   user: any;
+  db = firebase.firestore();
+  @Output() sendFormEvent = new EventEmitter();
+  selectMechanic: boolean = false;
+  listAppsConfirmed: Array<Date> = [];
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -53,9 +70,11 @@ export class AppointmentDinamicComponent implements OnInit {
     private fb: FormBuilder,
     private renderer:Renderer2,
     private el: ElementRef,
+    private orderService: OrdersService,
   ) { }
 
   ngOnInit(): void {
+    this.getAppDates()
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 54);
     this.name = (JSON.parse(localStorage.getItem("CurrentUser") || "{}")).name;
@@ -73,6 +92,45 @@ export class AppointmentDinamicComponent implements OnInit {
     } else {
       
     }
+  }
+
+  
+
+  onResponse(response: string | boolean){
+    if (response != null){
+      this.selecDate();
+      this.editOrder.emit(true);
+    }
+  }
+
+  onResponseClient(response: string | boolean){
+    if (response != null){
+      this.selecDate();
+      this.responseClient.emit(true);
+    }
+  }
+
+  /*downloadQRCode(appointment: Appointment) {
+    const fileNameToDownload = 'cita#' + appointment.appId;
+    const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
+    fetch(base64Img)
+        .then(res => res.blob())
+        .then((blob) => {
+          // IE
+          if (window.navigator && window.navigator.msSaveOrOpenBlob){
+              window.navigator.msSaveOrOpenBlob(blob,fileNameToDownload);
+          } else { // Chrome
+              const url = window.URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = fileNameToDownload;
+              link.click();
+          }
+        })
+ }*/
+
+  onSubmited(bool: boolean){
+    this.selectMechanic = true;
   }
 
   getCars(){
@@ -96,10 +154,36 @@ export class AppointmentDinamicComponent implements OnInit {
     });
   }
 
-  /*dateFilter = date => {
+  getAppDates(){
+    let listApp: Array<Appointment> = [];
+    this.appointService.getAppConfirmada().then( doc => {
+      listApp = doc;
+      listApp.forEach(element => {
+        //console.log(element.date);
+        let dateToSelect = this.transformDateForCalendar(element.date!);
+        let newdate = new Date(dateToSelect!);
+        this.listAppsConfirmed.push(newdate);
+      });
+    });
+  }
+
+  transformDateForCalendar(date: string): string{
+    const [day, month, year]: string[] = date.split('-');
+    let days = Number(day) + 1;
+    return`${year}-${month}-${days.toString()}`
+  }
+
+  myFilter = (d: any): boolean => {
+    const day = d.getDay();
+    console.log(day);
+    const blockedDates = this.listAppsConfirmed.map(d => d.valueOf());
+    return (!blockedDates.includes(d.valueOf())) && day != 6 && day != 0 ;
+  }
+
+  dateFilter = (date: any) => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }*/
+  }
 
   getApps(){
     this.firestoreService.getAPP().subscribe( res => {
@@ -114,14 +198,43 @@ export class AppointmentDinamicComponent implements OnInit {
     return event;
   }
 
-  aceptApp(cita: Appointment){
+  async aceptApp(cita: Appointment){
+    console.log(cita)
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
+    const user = await this.db.collection("users").doc(cita.userid).get();
+    const email = user.data()!.email;
+    const name = user.data()!.name;
+    const title = "Confirma tu cita"
+    const mssg = "Felicidades ya tu cita fue agendada por nuestro gerente, ahora deberás ingresar a tu perfil y confirmar la cita en la sección 'citas', después de realizar este proceso solo quedara esperar a que llegue el día pautado y te dirijas al taller entre las 8am y 2pm."
+    const values = {
+      title: title,
+      to_name: name,
+      client_email: email,
+      message: mssg,
+    }/*
+    emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
+    });*/
+    this.editOrder.emit(true);
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    const data = {orderOpen: true};
+    this.appointService.updateDoc(data, this.citas[this.actualPage].appId!);
+    const orderRep = {orderStatus: "en espera"};
+    this.appointService.updateDoc(orderRep, this.citas[this.actualPage].appId!);
+    const orden: Order = {
+      endedRepair: false,
+    }
+    this.orderService.createOrder(orden, this.citas[this.actualPage].appId!);
+    this.ngOnInit();
+    this.clientEdit.emit(true);
   }
 
   modifyApp(cita: Appointment){
@@ -134,6 +247,7 @@ export class AppointmentDinamicComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.ngOnInit();
   }
 
   modifyAppClient(cita: Appointment){
@@ -146,16 +260,52 @@ export class AppointmentDinamicComponent implements OnInit {
     this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.ngOnInit();
+    this.clientEdit.emit(true);
   }
 
-  async deleteApp(id: string, car: string){
-    this.carService.carForAppointment(car, false);
-    this.firestoreService.deleteApp(id);
-    alert("!Se elimino su cita con exito!")
+  async deleteApp(app: Appointment){
+    const userIds = app.userid;
+    const value = {
+      inAppointment: false,
+    }
+    this.carService.updateCar(value, app.car!);
+    this.appointService.deleteApp(app.appId!);
     this.getCars();
-    this.appointService.getUserAppoint(localStorage.getItem("UserFireId")!).then( doc => {
+    this.appointService.getUserAppoint(userIds!).then( doc => {
+      console.log(doc)
       this.citas = doc;
     })
+    alert("!Se elimino su cita con exito!")
+    this.deleting.emit(true);
+  }
+
+  async deleteAppManager(app: Appointment){
+    const userIds = app.userid;
+    const value = {
+      inAppointment: false,
+    }
+    this.carService.updateCar(value, app.car!);
+    this.appointService.deleteApp(app.appId!);
+    const user = await this.db.collection("users").doc(app.userid).get();
+    const email = user.data()!.email;
+    const name = user.data()!.name;
+    const mssg = "Lo sentimos pero nuestro gerente ha cancelado tu cita, si quieres mas informacion nos puedes escribir a este mismo correo o llamarnos a nuestro numero de contacto. Si desea pedir otra cita puede ingresar a su perfil y dirigirse la sección 'citas'."
+    const title = "Cita cancelada"
+    const values = {
+      title: title,
+      to_name: name,
+      client_email: email,
+      message: mssg,
+    }/*
+    emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
+    });*/
+    alert("!Se elimino la cita con exito!")
+    this.editOrder.emit(true);
   }
 
 
@@ -178,7 +328,6 @@ export class AppointmentDinamicComponent implements OnInit {
       dateCreated: this.datePipe.transform(this.today, "dd-MM-yyyy")!,
       carPhoto: formValues.selectedCar?.value.photo,
     }
-    console.log(cita.dateCreated + " " + cita.date)
     this.carService.carForAppointment(formValues.selectedCar?.value.carId, true);
     this.firestoreService.crearCita(cita);
     this.authForm.reset()

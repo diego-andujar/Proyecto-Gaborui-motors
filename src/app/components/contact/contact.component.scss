@@ -1,4 +1,27 @@
 @import "../../../styles/Lib/variables.scss";
+@import "../../../styles/components/buttons.scss";
+
+
+
+
+.enviar-button {
+    background-color: $secondary-color;
+    padding: 2%;
+    border: 0em;
+    color: white;
+    border-radius: 0.3em;
+}
+
+.form-contacto {
+    // background-color: yellow;
+    margin-left: 5%;
+    margin-top: 1%;
+}
+
+.divbutton {
+    display: flex;
+    justify-content: center;
+}
 
 .formulario-contacto {
     display: flex;
@@ -6,8 +29,8 @@
     color: inherit;
     justify-content: center;
     font-family: $primary-font;
+    padding: 5%;
 }
-
 
 .loco {
     width: 321px;
@@ -35,12 +58,13 @@
     background-color: $third-color;
     border: 1px solid $primary-color;
     display: flex;
+    text-transform: uppercase;
 }
 
 .form-control {
     background-color: $third-color;
-    border: 0px;
-    border-bottom: 2px solid $primary-color;
+    border: 0em;
+    border-bottom: 2px solid $secondary-color;
     padding-top: 10px;
     display: flex;
     flex-direction: column;
@@ -49,6 +73,7 @@
     margin-left: 80px;
     margin-top: 10px;
     width: 380px;
+    margin-bottom: 2%;
     &.ng-touched.ng-invalid {
         border: 2px solid red;
     }
@@ -76,18 +101,18 @@
 }
 
 @media only screen and (max-width: 768px) {
-    
     .formulario-contacto {
+        padding: 4%;
         display: flex;
         list-style: none;
         color: inherit;
         justify-content: center;
         font-family: $primary-font;
+        width: 90vw;
     }
     
-    
     .loco {
-        width: 30%;
+        width: 45%;
         height: 470px;
         background-color: $secondary-color;
         border: 1px solid $primary-color;
@@ -105,20 +130,18 @@
             text-align: center;
         }
     }
-    
     .loco2 {
-        width: 50%;
+        width: 55%;
         height: 470px;
         background-color: $third-color;
         border: 1px solid $primary-color;
         display: flex;
     }
-    
     .form-control {
         background-color: $third-color;
         border: 0px;
         border-bottom: 2px solid $primary-color;
-        padding-top: 10px;
+        padding-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -130,23 +153,25 @@
             border: 2px solid red;
         }
     }
-    
+
+    .form-contacto{
+        padding-top: 4%;
+    }
+
     #comment {
         resize: none;
     }
-    
     .contactdiv {
         margin-top: 6%;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 105%;
+        width: 100%;
         height: 50%;
         padding-top: 5%;
         padding-bottom: 5%;
         background-color: $primary-color;
     }
-    
     .alert {
         margin-left: 25%;
         background-color: rgba(255, 2, 2, 0.4);
@@ -157,19 +182,18 @@
 }
 
 @media only screen and (max-width: 414px) {
-    
     .formulario-contacto {
         display: flex;
+        flex-direction: column;
         list-style: none;
         color: inherit;
         justify-content: center;
         font-family: $primary-font;
+        width: 85%;
     }
-    
-    
     .loco {
         width: 100%;
-        height: 470px;
+        height: 270px;
         background-color: $secondary-color;
         border: 1px solid $primary-color;
         display: flex;
@@ -177,24 +201,22 @@
         flex-direction: column;
         align-items: center;
         color: $third-color;
-        font-size: 1.2em;
+        font-size: 1em;
         line-height: 19px;
         .informaciondecontacto {
             color: $third-color;
             line-height: 44px;
-            font-size: 1.55em;
+            font-size: 1.2em;
             text-align: center;
         }
     }
-    
     .loco2 {
-        width: 170%;
-        height: 470px;
+        width: 100%;
+        height: 460px;
         background-color: $third-color;
         border: 1px solid $primary-color;
         display: flex;
     }
-    
     .form-control {
         background-color: $third-color;
         border: 0px;
@@ -206,28 +228,25 @@
         justify-self: space-around;
         margin-left: 80px;
         margin-top: 10px;
-        width: 80%;
+        width: 70%;
         &.ng-touched.ng-invalid {
             border: 2px solid red;
         }
     }
-    
     #comment {
         resize: none;
     }
-    
     .contactdiv {
         margin-top: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 202%;
+        width: 100%;
         height: 70%;
         padding-top: 5%;
         padding-bottom: 5%;
         background-color: $primary-color;
     }
-    
     .alert {
         margin-left: 25%;
         background-color: rgba(255, 2, 2, 0.4);
@@ -235,22 +254,32 @@
         padding-left: 0;
         margin-top: 0;
     }
+
+    .textarea{
+        margin-bottom: 3%;
+    }
+
+    .form-group{
+
+        &.mesj{
+            margin-bottom: 10%;
+        }
+    }
 }
 
 @media only screen and (width: 320px) {
-
     .formulario-contacto {
         display: flex;
+        flex-direction: column;
         list-style: none;
         color: inherit;
         justify-content: center;
         font-family: $primary-font;
+        width: 85%;
     }
-    
-    
     .loco {
         width: 100%;
-        height: 470px;
+        height: 250px;
         background-color: $secondary-color;
         border: 1px solid $primary-color;
         display: flex;
@@ -258,24 +287,22 @@
         flex-direction: column;
         align-items: center;
         color: $third-color;
-        font-size: 1.2em;
+        font-size: 1em;
         line-height: 19px;
         .informaciondecontacto {
             color: $third-color;
             line-height: 44px;
-            font-size: 1.55em;
+            font-size: 1.2em;
             text-align: center;
         }
     }
-    
     .loco2 {
-        width: 170%;
-        height: 470px;
+        width: 100%;
+        height: 440px;
         background-color: $third-color;
         border: 1px solid $primary-color;
         display: flex;
     }
-    
     .form-control {
         background-color: $third-color;
         border: 0px;
@@ -287,28 +314,25 @@
         justify-self: space-around;
         margin-left: 80px;
         margin-top: 10px;
-        width: 80%;
+        width: 70%;
         &.ng-touched.ng-invalid {
             border: 2px solid red;
         }
     }
-    
     #comment {
         resize: none;
     }
-    
     .contactdiv {
-        margin-top: 125%;
+        margin-top: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 225%;
-        height: 100%;
+        width: 100%;
+        height: 70%;
         padding-top: 5%;
         padding-bottom: 5%;
         background-color: $primary-color;
     }
-    
     .alert {
         margin-left: 25%;
         background-color: rgba(255, 2, 2, 0.4);
@@ -316,4 +340,12 @@
         padding-left: 0;
         margin-top: 0;
     }
+
+    .form-group{
+        width: 95%;
+        &.mesj{
+            margin-bottom: 10%;
+        }
+    }
+
 }

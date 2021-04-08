@@ -1,8 +1,8 @@
-import { element } from 'protractor';
+import { NgxMaterialTimepickerComponent } from 'ngx-material-timepicker';
 import { UsersService } from 'src/app/services/users.service';
 import { CarsService } from 'src/app/services/cars.service';
 import { AppointmentServiceService } from './../../services/appointment-service.service';
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Appointment } from 'src/app/models/appointment';
 import { Car } from 'src/app/models/car';
 import { DatePipe } from '@angular/common';
@@ -11,7 +11,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatDatepicker } from '@angular/material/datepicker';
-import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode'
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-appointment-view',
@@ -28,7 +30,8 @@ import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiedi
 
 export class AppointmentViewComponent implements OnInit {
 
-  citas!: Array<Appointment>;
+  ngxTimepicker!: NgxMaterialTimepickerComponent; 
+  citas!: Array<any>;
   @Input() citasInput: Array<Appointment> = [];
   cars!: Array<Car>;
   car!: any;
@@ -46,12 +49,15 @@ export class AppointmentViewComponent implements OnInit {
   today = new Date();
   dayForm!: FormGroup;
   dataSource: Appointment[] = [];
-  columnsToDisplay = ['Detalles del carro ', 'Usuario', 'Fecha solicitada', 'Fecha de la cita', 'estado de la cita'];
-  expandedElement!: Appointment;
   @ViewChild('picker')
   datePicker!: MatDatepicker<Date>;
   public elementType = NgxQrcodeElementTypes.URL;
   public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  columnsToDisplay = ['car',  'owner'];
+  expandedElement!: Appointment | null;
+  db = firebase.firestore();
+  @Output() reloadCalendar = new EventEmitter<boolean>(); 
+
 
   constructor(
     private appointService: AppointmentServiceService,
@@ -77,6 +83,13 @@ export class AppointmentViewComponent implements OnInit {
     }
   }
 
+  reloadOrder(event: boolean){
+    if (event){
+      this.ngOnInit();
+      this.reloadCalendar.emit(true);
+    }
+  }
+
   selecDate(){
     this.cambiarFecha = !this.cambiarFecha;
   }
@@ -85,6 +98,42 @@ export class AppointmentViewComponent implements OnInit {
     this.dayForm = this.fb.group({
       appointmentDate: "",
     });
+  }
+
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
+
+  getAppsToShow(num: number){
+    if (num === 1){
+      this.appointService.getAppSolicitada().then( res => {
+        this.citas = res;
+        console.log(this.citas.length)
+        if (this.citas.length < 1){
+          this.citas.push();
+          alert("No hay citas solicitadas actualmente")
+        }
+      })
+    } else if (num === 2){
+      this.appointService.getAppPorConfirmar().then( res => {
+        this.citas = res;
+        console.log(this.citas[0])
+        if (this.citas.length < 1){
+          this.citas.push();
+          alert("No hay citas por confirmar actualmente")
+        }
+      })
+    } else if (num === 3){
+      this.appointService.getAppConfirmada().then( res => {
+        this.citas = res;
+        if (this.citas.length < 1){
+          this.citas.push();
+          alert("No hay citas confirmadas actualmente")
+        }
+      })
+    }
   }
 
   getCars(num: number){
@@ -99,10 +148,10 @@ export class AppointmentViewComponent implements OnInit {
     })
   }
 
-  /*dateFilter = date => {
+  dateFilter = (date: any) => {
     const day = date.getDay();
     return day != 0 && day != 6
-  }*/
+  }
 
   getUser(num: number){
     this.userService.getDoc(this.citas[num].userid!).subscribe( res => {
@@ -111,7 +160,6 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   getCarAndUser(app: Appointment){
-    console.log("hola")
     this.carService.getDoc(app.car!).subscribe((car) => {
       this.car = car;
     })
@@ -121,8 +169,11 @@ export class AppointmentViewComponent implements OnInit {
   }
 
   getApps(){
-    this.firestoreService.getAPP().subscribe( res => {
+    this.appointService.getAppSolicitada().then( res => {
       this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push(null);
+      }
       this.dataSource = res;
       this.carService.getDoc(res[0].car!).subscribe((car) => {
         this.car = car;
@@ -142,14 +193,46 @@ export class AppointmentViewComponent implements OnInit {
     return event;
   }
 
-  aceptApp(cita: Appointment){
+  async aceptApp(cita: Appointment){
+    console.log(cita)
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
+    const user = await this.db.collection("users").doc(cita.userid).get();
+    const email = user.data()!.email;
+    const name = user.data()!.name;
+    const values = {
+      to_name: name,
+      client_email: email,
+    }
+    /*emailjs.send('contact_service', 'appointment_confirmation', values, 'user_XWdrDn6QKZanPmZRRCZ3f')
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
+    });*/
+  }
+
+  onResponse(response: string | boolean){
+    if (response != null){
+      this.selecDate();
+    }
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   aceptAppClient(cita: Appointment){
     const estado = {estado: "confirmada"};
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   modifyApp(cita: Appointment){
@@ -158,10 +241,16 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "por confirmar"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(date, cita.appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   modifyAppClient(cita: Appointment){
@@ -170,20 +259,25 @@ export class AppointmentViewComponent implements OnInit {
     };
     const date = {date: formValues.appDate};
     const estado = {estado: "solicitada"};
-    this.appointService.updateDoc(date, this.citas[this.actualPage].appId!);
-    this.appointService.updateDoc(estado, this.citas[this.actualPage].appId!);
+    this.appointService.updateDoc(date, cita.appId!);
+    this.appointService.updateDoc(estado, cita.appId!);
     this.dayForm.reset();
     this.selecDate();
+    this.appointService.getAppSolicitada().then( res => {
+      this.citas = res;
+      if (this.citas.length < 1){
+        this.citas.push();
+      }
+    });
   }
 
   onClick(){
     this.datePicker.open();
   }
 
-  public downloadQRCode(appointment: Appointment) {
-    console.log("hola")
-    /*const fileNameToDownload = 'cita#' + appointment.appId;
-    const base64Img = document.getElementsByClassName('coolQRCode')[0].children[0]['src'];
+  /*public downloadQRCode(appointment: Appointment) {
+    const fileNameToDownload = 'cita#' + appointment.appId;
+    const base64Img = document.getElementsByClassName('coolQRCode')[1].children[1]['src'];
     fetch(base64Img)
         .then(res => res.blob())
         .then((blob) => {
@@ -197,7 +291,7 @@ export class AppointmentViewComponent implements OnInit {
               link.download = fileNameToDownload;
               link.click();
           }
-        })*/
- }
+        })
+ }*/
 
 }

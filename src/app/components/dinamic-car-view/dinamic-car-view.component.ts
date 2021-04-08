@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Car } from 'src/app/models/car';
 import { CarsService } from 'src/app/services/cars.service';
@@ -6,6 +6,9 @@ import firebase from "firebase";
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dinamic-car-view',
@@ -13,8 +16,9 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./dinamic-car-view.component.scss']
 })
 export class DinamicCarViewComponent implements OnInit {
-
+  pantalla:boolean = true;
   verSolicitud = false;
+  photo!: any;
   editarCarro = false;
   name = JSON.parse(localStorage.getItem("CurrentUser")!).name;
   crearCarro: boolean = false;
@@ -68,9 +72,17 @@ export class DinamicCarViewComponent implements OnInit {
     {value: 'volvo', viewValue: 'Volvo'},
   ];
   carForm!: FormGroup;
+  editCarForm!: FormGroup;
   today = new Date();
+  carsLoad = false;
+
+  uploadPercent!: Observable<number | undefined>;
+  urlImage!: Observable<string>;
+  @ViewChild("imageUser") inputImageUser!: ElementRef;
+  subirFoto = false;
 
   constructor(
+    private storage: AngularFireStorage,
     private fb: FormBuilder,
     private datePipe : DatePipe,
     private authService: AuthService,
@@ -78,13 +90,40 @@ export class DinamicCarViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (window.screen.width <500) { // 768px portrait
+      this.pantalla = false;
+    }
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
       this.carService.getUsCars(user.uid).then( doc => {
         this.carList = doc;
+        this.carsLoad = true;
       })
     })
-    this.buildForm()
+    this.buildForm();
+    this.createEditForm();
+  }
+
+  onUpload(pic: any){
+    //console.log(pic.target.files[0])
+    const id = Math.random().toString(36).substring(2);
+    const file = pic.target.files[0];
+    const filePath = `uploads/profile_${id}`;
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe( finalize (() => 
+      this.urlImage = ref.getDownloadURL())).subscribe();
+  }
+
+  uploadImg(car: Car){
+    this.photo = this.inputImageUser.nativeElement.value;
+    const data = {
+      photo: this.inputImageUser.nativeElement.value,
+    }
+    this.carService.updateCar(data, car.carId!).then(() => {
+      this.subirFoto = false;
+    })
   }
 
   buildForm(): void {
@@ -95,6 +134,15 @@ export class DinamicCarViewComponent implements OnInit {
       plate: '',
       serialMotor: "",
     });
+  }
+
+  createEditForm(car?: Car){
+    this.editCarForm = this.fb.group({
+      brandEdit: "",
+      modelEdit: "",
+      yearEdit: "",
+      plateEdit: "",
+    })
   }
 
   public getPaginatorData(event: PageEvent): PageEvent {
@@ -111,16 +159,13 @@ export class DinamicCarViewComponent implements OnInit {
   }
 
   async activateCar(car: Car){
-    const bool: boolean = !car.active;
-    const active = {active: bool}
-    await this.carService.updateCar(active, car.carId!)
-    this.getCars()
-    if (bool){
-      alert("!Has reactivado este vehiculo con exito!\nAprovecha nuestros servicios");
-    } else {
+    if(confirm("¿Estas seguro que deseas desactivar este vehiculo?\nNo tendras acceso a este despues de desactivado "+name)) {
+      const bool: boolean = !car.active;
+      const active = {active: bool}
+      await this.carService.updateCar(active, car.carId!)
+      this.getCars();
       alert("!Ha desactivado este vehiculo con exito!");
     }
-    
   }
 
   /*async deActivateCar(car: Car){
@@ -147,7 +192,6 @@ export class DinamicCarViewComponent implements OnInit {
     await this.carService.checkIfCarExists(newCar.serialMotor!).then( doc => {
       existe = doc;
     })
-    console.log(existe)
     if (!existe){
       this.createNewCar(newCar);
       this.carForm.reset();
@@ -158,6 +202,39 @@ export class DinamicCarViewComponent implements OnInit {
       this.carForm.reset();
       alert("!Se ha detectado otro vehiculo con este serial de motor!\nNo pueden exister los mismos vehiculos entre distintos usuarios")
     }
+    
+  }
+
+  async onEdit(car: Car){
+    const brand = {
+      brand: this.editCarForm.get("brandEdit")?.value,
+    }
+    const model = {
+      model: this.editCarForm.get("modelEdit")?.value,
+    }
+    const year = {
+      year: this.editCarForm.get("yearEdit")?.value,
+    }
+    const plate = {
+      plate: this.editCarForm.get("plateEdit")?.value,
+    }
+    console.log(brand.brand + " " + model.model + " " + year.year + " " + plate.plate)
+    if (brand.brand != undefined && brand != undefined && brand.brand != "" && brand.brand != " "){
+      await this.carService.updateCar(brand, car.carId!);
+    }
+    if (model.model != undefined && model != undefined && model.model != "" && model.model != " "){
+      await this.carService.updateCar(model, car.carId!);
+    }
+    if (year.year != undefined && year != undefined && year.year != "" && year.year != " "){
+      await this.carService.updateCar(year, car.carId!);
+    }
+    if (plate.plate != undefined && plate != undefined && plate.plate != "" && plate.plate != " "){
+      await this.carService.updateCar(plate, car.carId!);
+    }
+    this.editarCarro = false;
+    alert("!Se han actualizado los datos de tu vehiculo con exito!");
+    this.getCars();
+    
     
   }
 
