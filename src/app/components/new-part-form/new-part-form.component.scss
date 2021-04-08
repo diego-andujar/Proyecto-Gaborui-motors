@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     width: 40%;
+    margin-top: 0%;
     @include tablet {
         // background-color: yellow;
         display: flex;
@@ -24,6 +25,7 @@
 .auth-form {
     background-color: $secondary-color;
     height: 55vh;
+    margin-top: 2%;
     @include tablet {
         background-color: $secondary-color;
         height: 45vh;
